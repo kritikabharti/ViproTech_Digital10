@@ -156,7 +156,7 @@ const styles = {
   },
 
   link: {
-    color: "#FFD700",
+    color: "#4F46E5",
     textDecoration: "none",
     fontSize: "14px",
   },
@@ -180,7 +180,7 @@ const styles = {
   },
 
   switchBtn: {
-    color: "#FFD700",
+    color:  "#4F46E5",
     cursor: "pointer",
     fontWeight: "600",
   },

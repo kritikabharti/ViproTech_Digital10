@@ -3,10 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../assets/imagesss.png";
 import { FiMenu, FiX } from "react-icons/fi";
+import { serviceDomains } from "../data/servicesData";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
+const [showDropdown, setShowDropdown] = useState(false);
+const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,14 +48,14 @@ export default function Navbar() {
   }}
 >
   <li>
-    <NavLink
-      to="/register"
-      className={({ isActive }) =>
-        isActive ? "nav-link active" : "nav-link"
-      }
-    >
-      Register For Internship
-    </NavLink>
+   <NavLink
+  to="/register"
+  className={({ isActive }) =>
+    `nav-link blink-link ${isActive ? "active" : ""}`
+  }
+>
+  Register For Internship
+</NavLink>
   </li>
 
   <li>
@@ -75,16 +80,85 @@ export default function Navbar() {
     </NavLink>
   </li>
 
-  <li>
-    <NavLink
-      to="/services"
-      className={({ isActive }) =>
-        isActive ? "nav-link active" : "nav-link"
-      }
-    >
-      Services
-    </NavLink>
-  </li>
+ <li
+  className="services-wrapper"
+  onMouseEnter={() => setShowMegaMenu(true)}
+  onMouseLeave={() => setShowMegaMenu(false)}
+>
+
+  <span
+  className={`nav-link ${showMegaMenu ? "active" : ""}`}
+>
+  Services
+</span>
+
+  {showMegaMenu && (
+    
+   <div className="mega-menu">
+
+  {/* LEFT COLUMN */}
+  <div className="mega-column domains">
+
+    <h3 className="mega-heading">Domains</h3>
+
+    {serviceDomains.map((domain) => (
+      <div
+        key={domain.id}
+        className={`domain-item ${
+          selectedDomain.id === domain.id ? "active-domain" : ""
+        }`}
+        onMouseEnter={() => setSelectedDomain(domain)}
+      >
+        <span>{domain.name}</span>
+
+        <span>›</span>
+      </div>
+    ))}
+
+  </div>
+
+  {/* MIDDLE COLUMN */}
+
+  <div className="mega-column">
+
+    <h3 className="mega-heading">
+      Courses
+    </h3>
+
+    {selectedDomain.courses.map((course, index) => (
+      <div
+        key={index}
+        className="mega-item"
+      >
+        {course}
+      </div>
+    ))}
+
+  </div>
+
+  {/* RIGHT COLUMN */}
+
+  <div className="mega-column">
+
+    <h3 className="mega-heading">
+      Industries
+    </h3>
+
+    {selectedDomain.industries.map((industry, index) => (
+      <div
+        key={index}
+        className="mega-item"
+      >
+        {industry}
+      </div>
+    ))}
+
+  </div>
+
+</div>
+  )}
+
+</li>
 
   <li>
     <NavLink
@@ -141,22 +215,22 @@ export default function Navbar() {
 }
 
 const styles = {
-  navbar: {
+ navbar: {
   position: "fixed",
   top: 0,
   left: 0,
   width: "100%",
   height: "90px",
-  background: "rgba(0, 0, 0, 0.5)", // Black with 50% transparency
-  backdropFilter: "blur(10px)",      // Optional glass effect
-  WebkitBackdropFilter: "blur(10px)", // Safari support
-  transition: "0.35s",
+  background: "rgba(246, 227, 227, 0.5)",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)",
+  overflow: "visible",   // <-- Add this
   zIndex: 1000,
-  padding: "18px 0",
+
 },
 
   navbarScrolled: {
-   background: "rgba(0, 0, 0, 0.5)", // Black with 50% transparency
+   background: "rgba(246, 227, 227, 0.5)", // Black with 50% transparency
   backdropFilter: "blur(10px)",      // Optional glass effect
   WebkitBackdropFilter: "blur(10px)",
   boxShadow: "0 5px 20px rgba(0,0,0,0.08)",
@@ -245,4 +319,6 @@ navLinks: {
   mobileMenuOpen: {
     display: "flex",
   },
+
+  
 };

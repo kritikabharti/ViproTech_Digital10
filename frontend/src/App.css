@@ -218,3 +218,67 @@
 
 
 }
+
+
+
+.flip-card{
+    background:transparent;
+    perspective:1000px;
+    height:320px;
+}
+
+.flip-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transition:transform .8s;
+    transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{
+    transform:rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:20px;
+    overflow:hidden;
+    backface-visibility:hidden;
+}
+
+.flip-card-front{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.15);
+    padding:35px;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.flip-card-front h3{
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.flip-card-front p{
+    color:#d1d5db;
+    line-height:1.8;
+}
+
+.flip-card-back{
+    transform:rotateY(180deg);
+    background-size:cover;
+    background-position:center;
+}
+
+.flip-card-back::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:none;
+}

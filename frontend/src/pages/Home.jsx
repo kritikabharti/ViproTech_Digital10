@@ -1,13 +1,23 @@
 import React from "react";
 import {motion} from "framer-motion";
+import {
+  FaCloudUploadAlt,
+  FaUsers,
+  FaAward,
+} from "react-icons/fa";
+
+import { HiArrowLongRight } from "react-icons/hi2";
+
 import Footer from "../components/Footer";
 import "../App.css";
 import image from "../assets/viprotech.mp4";
-import bgaImge from "../assets/model.jpg";
+import bgaImge from "../assets/save.jpg";
 import expertiseBg from "../assets/digital.jpg";
 import custom from "../assets/itand custom.jpg";
 
 import sectionBg from "../assets/imagee.jpg";
+import heroBg from "../assets/bggg.jpg";
+import heroImage from "../assets/team.jpg";
 
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
@@ -48,7 +58,7 @@ export default function Home() {
 
 
 {/* Sliding Contact Bar */}
-<section style={styles.contactBar}>
+{/* <section style={styles.contactBar}>
   <motion.div
     style={styles.track}
     animate={{
@@ -56,7 +66,7 @@ export default function Home() {
     }}
     transition={{
       repeat: Infinity,
-      duration: 20,
+      duration: 50,
       ease: "linear",
     }}
   >
@@ -66,139 +76,390 @@ export default function Home() {
     <span style={styles.item}>📍  SCF-116 A, Second Floor, Phase 5, Industrial Area, Sector 58, Sahibzada Ajit Singh Nagar, Punjab 160055</span>
 
   </motion.div>
-</section>
+</section> */}
 
 
 
 <motion.section
-  style={styles.hero}
-  initial={{ opacity: 0, y: 80 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
+  style={{
+    ...styles.hero,
+    backgroundImage: `url(${heroBg})`,
+  }}
+  initial={{ scale: 1 }}
+  animate={{
+    scale: [1, 1.08, 1],
+  }}
+  transition={{
+    duration: 18,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
 >
-  <motion.h1
-    style={styles.heading}
-    initial={{ opacity: 0, y: -40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.3, duration: 0.8 }}
-  >
-    Welcome to VProTech Digital
-  </motion.h1>
-
-  <motion.p
-    style={styles.subHeading}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 0.7, duration: 0.8 }}
-  >
-    We provide innovative digital solutions to help your business thrive in the
-    modern world.
-  </motion.p>
-
+  {/* Overlay */}
   <motion.div
-    style={styles.buttonContainer}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 1, duration: 0.6 }}
-  >
-    <motion.button
-      style={styles.secondaryBtn}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
+    style={styles.overlay}
+    animate={{
+      opacity: [0.82, 0.9, 0.82],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
+
+  <div style={styles.heroContent}>
+    {/* LEFT SIDE */}
+    <motion.div
+      style={styles.left}
+      initial={{ opacity: 0, x: -80 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1 }}
     >
-      Learn More
-    </motion.button>
-  </motion.div>
+      <motion.h1
+        style={styles.heading}
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.9 }}
+      >
+        Transform Your
+        <br />
+        <span style={{ color: "#4F46E5" }}>
+          Digital Future
+        </span>
+      </motion.h1>
+
+      <motion.p
+        style={styles.subHeading}
+        initial={{ opacity: 0, y: 35 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.9 }}
+      >
+        VProTech Digital empowers startups, enterprises and
+        students with innovative software development,
+        AI solutions, cloud technologies, web applications,
+        mobile apps, digital marketing and industry-focused
+        internship programs that drive measurable growth.
+      </motion.p>
+
+      <motion.div
+        style={styles.buttons}
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+      >
+        {/* Buttons */}
+      </motion.div>
+    </motion.div>
+
+    {/* RIGHT SIDE IMAGE */}
+   {/* <div style={styles.right}>
+  <img
+    src={heroImage}
+    alt="Team"
+    style={styles.image}
+  />
+</div> */}
+  </div>
 </motion.section>
 
 
 
+ {/* ================= OUR SERVICES ================= */}
 
-
-  {/* Next Section */}
-     <section style={styles.section}
-      style={{
-    ...styles.section,
+<section
+  style={{
+    ...styles.servicesSection,
     backgroundImage: `url(${bgaImge})`,
   }}
-
-     >
-
-      
-  <motion.div
-  style={{
-    ...styles.card,
-    backgroundImage: `url(${custom})`,
-  }}
-  variants={cardVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  whileHover={{
-    scale: 1.04,
-    y: -10,
-    boxShadow: "0 20px 40px rgba(18,62,158,0.4)",
-    transition: { duration: 0.3 },
-  }}
-
 >
-  <motion.div
-    style={styles.overlay}
-    whileHover={{
-      backgroundColor: "rgba(18, 62, 158, 0.75)", // Blue overlay
-    }}
-    transition={{ duration: 0.3 }}
-  />
+  <div style={styles.servicesOverlay}></div>
 
-  <div style={styles.content}>
-    <h2 style={styles.title}>IT & Digital Solutions</h2>
-
-    <p style={styles.text}>
-     VproTech Digital provides end-to-end IT and digital solutions tailored for startups and small-to-medium enterprises. Their core expertise includes custom software, web development, mobile applications, and strategic digital marketing like SEO and SMM.
-    </p>
-  </div>
-</motion.div>
-
-
-
-
-
-  <motion.div
-  style={{
-    ...styles.card,
-    backgroundImage: `url(${expertiseBg})`,
-  }}
-  variants={cardVariants}
-  initial="hidden"
-  whileInView="visible"
+  <div style={styles.sectionContent}>
+   <motion.h5
+  style={styles.smallTitle}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
   viewport={{ once: true }}
-  whileHover={{
-    scale: 1.04,
-    y: -10,
-    boxShadow: "0 20px 40px rgba(18,62,158,0.4)",
-    transition: { duration: 0.3 },
-  }}
-
 >
-  <motion.div
-    style={styles.overlay}
-    whileHover={{
-      backgroundColor: "rgba(18, 62, 158, 0.75)", // Blue overlay
-    }}
-    transition={{ duration: 0.3 }}
-  />
+  WHAT WE OFFER
+</motion.h5>
 
-  <div style={styles.content}>
-    <h2 style={styles.title}>Industrial & Corporate Training</h2>
+<motion.h2
+  style={styles.sectionTitle}
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.2, duration: 0.8 }}
+  viewport={{ once: true }}
+>
+  Services & Training{" "}
+  <span style={{ color: "#4F46E5" }}>Solutions</span>
+</motion.h2>
 
-    <p style={styles.text}>
-      VproTech Digital is highly regarded for its intensive 6-week and 6-month hands-on industrial training programs tailored for CSE, IT, and mechanical engineering students. Their comprehensive curriculum spans core domains like full-stack development, Python, Java, CAD design software like AutoCAD and SolidWorks, and Oracle’s Primavera P6 project management.
-    </p>
+<motion.p
+  style={styles.sectionText}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4, duration: 0.8 }}
+  viewport={{ once: true }}
+>
+  Empowering businesses with innovative digital solutions while preparing
+  students with industry-ready practical training.
+</motion.p>
+
+    <div style={styles.cardGrid}>
+
+      {/* CARD 1 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>Web Development</h3>
+            <p>
+              Responsive websites, React applications, Admin Panels &
+              Enterprise Solutions.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${custom})` }}
+          ></div>
+
+        </div>
+      </div>
+
+      {/* CARD 2 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>Mobile Apps</h3>
+            <p>
+              Android & iOS apps with modern UI and scalable backend systems.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${expertiseBg})` }}
+          ></div>
+
+        </div>
+      </div>
+
+      {/* CARD 3 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>Digital Marketing</h3>
+            <p>
+              SEO, Social Media Marketing, Branding & Business Growth.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          ></div>
+
+        </div>
+      </div>
+
+      {/* CARD 4 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>Full Stack Training</h3>
+            <p>
+              MERN, Java Full Stack, Python, React & Node.js Industrial
+              Training.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${custom})` }}
+          ></div>
+
+        </div>
+      </div>
+
+      {/* CARD 5 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>CAD & Mechanical</h3>
+            <p>
+              AutoCAD, SolidWorks, Primavera P6 & Industrial Projects.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${expertiseBg})` }}
+          ></div>
+
+        </div>
+      </div>
+
+      {/* CARD 6 */}
+      <div className="flip-card">
+        <div className="flip-card-inner">
+
+          <div className="flip-card-front">
+            <h3>Internship Programs</h3>
+            <p>
+              Live projects, mentorship, certifications & placement support.
+            </p>
+          </div>
+
+          <div
+            className="flip-card-back"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          ></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{/* ================= WORKING PROCESS ================= */}
+
+<section 
+  style={{
+    ...styles.processSection,
+    backgroundImage: `
+      linear-gradient(
+        rgba(60, 59, 75, 0.88),
+        rgba(120,70,180,.88)
+      ),
+      url(${custom})
+    `,
+  }}
+>
+
+  <motion.h4
+    style={styles.smallHeading}
+    initial={{ opacity: 0, y: -30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: .6 }}
+  >
+    WORKING PROCESS
+  </motion.h4>
+
+  <motion.h2
+    style={styles.mainHeading}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: .2 }}
+  >
+    How Can You Start?
+  </motion.h2>
+
+  <div style={styles.processContainer}>
+
+    {/* STEP 1 */}
+
+    <motion.div
+      style={styles.step}
+      whileHover={{ y: -10 }}
+      transition={{ duration: .3 }}
+    >
+
+      <div style={styles.iconCircle}>
+        <FaCloudUploadAlt size={52} color="#111" />
+
+        <div style={styles.number}>01</div>
+      </div>
+
+      <h3 style={styles.title}>
+        Share Your Requirements
+      </h3>
+
+      <p style={styles.desc}>
+        Tell us about your business goals, website requirements,
+        application needs, or digital challenges.
+      </p>
+
+    </motion.div>
+
+    {/* Arrow */}
+
+    <HiArrowLongRight
+      size={120}
+      color="white"
+      style={styles.arrow}
+    />
+
+    {/* STEP 2 */}
+
+    <motion.div
+      style={styles.step}
+      whileHover={{ y: -10 }}
+    >
+
+      <div style={styles.iconCircle}>
+        <FaUsers size={48} color="#111" />
+
+        <div style={styles.number}>02</div>
+      </div>
+
+      <h3 style={styles.title}>
+        Strategy & Planning
+      </h3>
+
+      <p style={styles.desc}>
+        We prepare the perfect roadmap including design,
+        development, timeline and execution plan.
+      </p>
+
+    </motion.div>
+
+    {/* Arrow */}
+
+    <HiArrowLongRight
+      size={120}
+      color="white"
+      style={styles.arrow}
+    />
+
+    {/* STEP 3 */}
+
+    <motion.div
+      style={styles.step}
+      whileHover={{ y: -10 }}
+    >
+
+      <div style={styles.iconCircle}>
+        <FaAward size={48} color="#111" />
+
+        <div style={styles.number}>03</div>
+      </div>
+
+      <h3 style={styles.title}>
+        Design, Launch & Growth
+      </h3>
+
+      <p style={styles.desc}>
+        Our experts build, test and launch your project while
+        providing continuous support.
+      </p>
+
+    </motion.div>
 
   </div>
-</motion.div>
 
 </section>
+
+
 
 
 {/* next Section */}
@@ -269,57 +530,80 @@ const styles = {
 },
 
   hero: {
-    maxWidth: "1200px",
-    maxHeight: "70vh",
-    margin: "0 auto",
-    padding: "120px 20px",
-    textAlign: "center",
-  },
+  position: "relative",
+  minHeight: "100vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  overflow: "hidden",
+},
 
-  heading: {
-    fontSize: "56px",
-    fontWeight: "700",
-    color: "#1E293B",
-    lineHeight: "1.2",
-    marginBottom: "20px",
-  },
+overlay: {
+  position: "absolute",
+  inset: 0,
+  background:
+    "linear-gradient(90deg, rgba(5,15,40,.82), rgba(20,40,90,.68), rgba(0,0,0,.55))",
+},
 
-  subHeading: {
-    fontSize: "18px",
-    color: "#0d2a52",
-    maxWidth: "700px",
-    margin: "0 auto 40px",
-    lineHeight: "1.7",
-  },
+heroContent: {
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "40px",
+  height: "100%",
+  paddingLeft: "70px",
+  paddingRight: "0", // No right padding
+  position: "relative",
+  zIndex: 2,
+},
 
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
-    flexWrap: "wrap",
-  },
+left: {
+  flex: 1,
+},
 
-  primaryBtn: {
-    background: "#123e9e",
-    color: "#fff",
-    border: "none",
-    padding: "14px 32px",
-    borderRadius: "30px",
-    fontSize: "16px",
-    fontWeight: "600",
-    cursor: "pointer",
-  },
+right: {
+  flex: 1,
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "stretch",
+  height: "100%",          // <-- Fill parent
+},
 
-  secondaryBtn: {
-    background: "transparent",
-    color: "#4F46E5",
-    border: "2px solid #4F46E5",
-    padding: "14px 32px",
-    borderRadius: "30px",
-    fontSize: "16px",
-    fontWeight: "600",
-    cursor: "pointer",
-  },
+
+image: {
+  width: "100%",
+  maxWidth: "780px",
+  height: "100%",
+  minHeight: "650px",
+  objectFit: "cover",
+  objectPosition: "center",
+  borderRadius: "30px 0 0 30px", // Rounded only on left
+  boxShadow: "0 30px 80px rgba(0,0,0,.45)",
+},
+
+heading: {
+  color: "#fff",
+  fontSize: "68px",
+  fontWeight: 800,
+  lineHeight: 1.1,
+  marginBottom: "25px",
+},
+
+subHeading: {
+  color: "rgba(255,255,255,.88)",
+  fontSize: "22px",
+  lineHeight: 1.9,
+  maxWidth: "700px",
+},
+
+buttons: {
+  marginTop: "40px",
+  display: "flex",
+  gap: "20px",
+},
 
    /* Next Section */
   nextSection: {
@@ -523,6 +807,133 @@ image: {
   transition: ".5s",
 },
 
+servicesSection: {
+  position: "relative",
+  padding: "120px 8%",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+},
+
+servicesOverlay: {
+  position: "absolute",
+  inset: 0,
+  background: "rgba(5,15,40,.82)",
+},
+
+sectionContent: {
+  position: "relative",
+  zIndex: 2,
+},
+
+smallTitle: {
+  color: "#4F46E5",
+  letterSpacing: "3px",
+  fontWeight: 700,
+  marginBottom: 15,
+},
+
+sectionTitle: {
+  color: "#fff",
+  fontSize: "52px",
+  fontWeight: 800,
+  marginBottom: 20,
+},
+
+sectionText: {
+  color: "#d1d5db",
+  fontSize: "18px",
+  maxWidth: "700px",
+  lineHeight: 1.8,
+  marginBottom: "60px",
+},
+
+cardGrid: {
+  display: "grid",
+  gridTemplateColumns: "repeat(3,1fr)",
+  gap: "35px",
+},
+
+processSection: {
+  padding: "110px 8%",
+  background:
+    "linear-gradient(#0B4A92)",
+  textAlign: "center",
+  color: "#fff",
+},
+
+smallHeading: {
+  fontSize: 24,
+  fontWeight: 300,
+  marginBottom: 15,
+  letterSpacing: 2,
+},
+
+mainHeading: {
+  fontSize: 64,
+  fontWeight: 800,
+  marginBottom: 90,
+},
+
+processContainer: {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: 20,
+},
+
+step: {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+},
+
+iconCircle: {
+  width: 150,
+  height: 150,
+  borderRadius: "50%",
+  background: "#fff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  boxShadow: "12px 12px 0 rgba(255,255,255,.18)",
+},
+
+number: {
+  position: "absolute",
+  top: -8,
+  right: -8,
+  width: 50,
+  height: 50,
+  borderRadius: "50%",
+  background: "#5f0bde",
+  color: "#fff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 700,
+  fontSize: 24,
+  border: "6px solid rgba(255,255,255,.15)",
+},
+
+title: {
+  marginTop: 35,
+  fontSize: 38,
+  fontWeight: 700,
+},
+
+desc: {
+  marginTop: 20,
+  color: "#f4f4f4",
+  fontSize: 24,
+  lineHeight: 1.8,
+  maxWidth: 420,
+},
+
+arrow: {
+  marginTop: -80,
+},
 
 
 };

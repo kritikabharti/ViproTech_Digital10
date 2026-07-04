@@ -10,10 +10,44 @@ import marketing from "../assets/markting.jpg";
 import devops from "../assets/devops.jpg";
 import cyber from "../assets/cyber.jpg";
 
+import teamImg from "../assets/team.jpg";
+import visionImg from "../assets/vision.jpg";
+import bottomImg from "../assets/digital.jpg";
 
 export default function About() {
+   const fadeLeft = {
+    hidden: { opacity: 0, x: -80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
+
   return (
+    
     <>
+
+    
       <Navbar />
 
       <section style={styles.hero}>
@@ -89,6 +123,23 @@ export default function About() {
       </h2>
 
       <p style={styles.aboutText}>
+        Born in 2016, VproTech digital is a forward looking company focused on software, 
+        solution and innovative ideas that are required for 21st century. 
+        As an institution being a pioneer in courses that is gave birth to , 
+        vprotech digital offers different job practices oriented trainings from 
+        different streams including mechanical, civil, electronics and computer 
+        science engineering with placement tie ups all over the country.
+
+
+      </p>
+
+      <p style={styles.aboutText}>
+     Under the 9001:2015 ISO Certification, we offer you standardize trainings and 
+personality development sessions that helps building the mindset and vision of the 
+students for their bright future.
+      </p>
+
+      <p style={styles.aboutText}>
         VProTech Digital is a technology-driven company dedicated to helping
         businesses and aspiring professionals succeed in today's digital world.
         We combine creativity, technical expertise, and strategic thinking to
@@ -104,13 +155,7 @@ export default function About() {
         business growth.
       </p>
 
-      <p style={styles.aboutText}>
-        Alongside software development, we are committed to preparing students
-        for successful careers through practical internship programs, live
-        industry projects, and professional mentoring. Our learning approach
-        bridges the gap between academic knowledge and real-world experience,
-        enabling students to become confident technology professionals.
-      </p>
+      
 
 
     </motion.div>
@@ -140,6 +185,113 @@ export default function About() {
 
   </div>
 </section>
+
+
+
+{/* ================= OUR TEAM & VISION ================= */}
+
+<section style={styles.teamVisionSection}>
+
+  {/* Team */}
+  <div style={styles.teamRow}>
+
+    <motion.div
+      style={styles.teamImageBox}
+      variants={fadeLeft}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <img src={teamImg} alt="Our Team" style={styles.teamImage} />
+    </motion.div>
+
+    <motion.div
+      style={styles.teamContent}
+      variants={fadeRight}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <span style={styles.sectionTag}>OUR TEAM</span>
+
+      <h2 style={styles.teamHeading}>
+        Passionate Professionals Delivering
+        <span style={{ color: "#4F46E5" }}> Excellence</span>
+      </h2>
+
+      <p style={styles.teamText}>
+        At VProTech Digital, our team is made up of experienced developers,
+        designers, digital marketers, AI specialists, and business consultants.
+        We work together with one mission—to create innovative digital
+        solutions that help businesses succeed.
+      </p>
+
+      <p style={styles.teamText}>
+        Every project is driven by collaboration, creativity, and a commitment
+        to delivering outstanding results for our clients.
+      </p>
+    </motion.div>
+
+  </div>
+
+  {/* Vision */}
+
+  <div style={styles.teamRowReverse}>
+
+    <motion.div
+      style={styles.teamContent}
+      variants={fadeLeft}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <span style={styles.sectionTag}>OUR VISION</span>
+
+      <h2 style={styles.teamHeading}>
+        Building a
+        <span style={{ color: "#4F46E5" }}> Smarter Digital Future</span>
+      </h2>
+
+      <p style={styles.teamText}>
+        Our vision is to become one of India's leading technology companies by
+        delivering world-class software, AI, cloud, cybersecurity, and digital
+        transformation solutions.
+      </p>
+
+      <p style={styles.teamText}>
+        We believe technology should simplify business, inspire innovation, and
+        create opportunities for everyone.
+      </p>
+
+    </motion.div>
+
+    <motion.div
+      style={styles.teamImageBox}
+      variants={fadeRight}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <img src={visionImg} alt="Vision" style={styles.teamImage} />
+    </motion.div>
+
+  </div>
+
+  {/* Bottom Image */}
+
+  <motion.div
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    style={styles.bottomImageBox}
+  >
+    <img src={bottomImg} alt="" style={styles.bottomImage} />
+  </motion.div>
+
+</section>
+
+
 
 
 
@@ -576,7 +728,7 @@ content: {
 
 aboutContainer: {
   maxWidth: "1400px",
-  height:"600px",
+  height:"850px",
   margin: "auto",
   display: "grid",
   gridTemplateColumns: "1.2fr 1fr",
@@ -741,5 +893,82 @@ cardText: {
   fontSize: "17px",
   lineHeight: "1.7",
 },
+
+teamVisionSection: {
+  background: "#fff",
+  padding: "40px 8% 5px",
+},
+
+teamRow: {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "70px",
+  alignItems: "center",
+  marginBottom: "120px",
+},
+
+teamRowReverse: {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "70px",
+  alignItems: "center",
+  marginBottom: "80px",
+},
+
+teamImageBox: {
+  display: "flex",
+  justifyContent: "center",
+},
+
+teamImage: {
+  width: "100%",
+  maxWidth: "560px",
+  height: "450px",
+  objectFit: "cover",
+  borderRadius: "20px",
+  boxShadow: "0 20px 60px rgba(0,0,0,.12)",
+  transition: ".4s",
+},
+
+teamContent: {
+  display: "flex",
+  flexDirection: "column",
+},
+
+sectionTag: {
+  color: "#4F46E5",
+  fontWeight: "700",
+  letterSpacing: "3px",
+  marginBottom: "15px",
+  fontSize: "18px",
+},
+
+teamHeading: {
+  fontSize: "46px",
+  color: "#111827",
+  marginBottom: "25px",
+  lineHeight: "1.2",
+},
+
+teamText: {
+  fontSize: "18px",
+  color: "#555",
+  lineHeight: "1.9",
+  marginBottom: "18px",
+},
+
+bottomImageBox: {
+  marginTop: "30px",
+  display: "flex",
+  justifyContent: "center",
+},
+
+bottomImage: {
+  width: "100%",
+  maxWidth: "1150px",
+  borderRadius: "22px",
+  boxShadow: "0 20px 60px rgba(0,0,0,.15)",
+},
+
 
 };
