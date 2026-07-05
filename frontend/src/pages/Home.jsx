@@ -27,6 +27,33 @@ import img4 from "../assets/img4.jpg";
 
 
 
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.6,     // Wait before first character
+      staggerChildren: 0.04,  // Characters appear one by one
+    },
+  },
+};
+
+const child = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
+
+
 const cardVariants = {
   hidden: {
     opacity: 0,
@@ -85,84 +112,96 @@ export default function Home() {
     ...styles.hero,
     backgroundImage: `url(${heroBg})`,
   }}
-  initial={{ scale: 1 }}
-  animate={{
-    scale: [1, 1.08, 1],
-  }}
-  transition={{
-    duration: 18,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
 >
-  {/* Overlay */}
-  <motion.div
-    style={styles.overlay}
-    animate={{
-      opacity: [0.82, 0.9, 0.82],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  />
+  <div style={styles.overlay}></div>
 
   <div style={styles.heroContent}>
-    {/* LEFT SIDE */}
+    {/* LEFT CONTENT */}
     <motion.div
       style={styles.left}
-      initial={{ opacity: 0, x: -80 }}
+      initial={{ opacity: 0, x: -70 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9 }}
+    >
+  
+
+<motion.h1
+  style={styles.heading}
+  variants={container}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.4 }}
+  transition={{ delay: 0.5 }} // starts after 0.5s
+>
+  {"Building the Future".split("").map((char, index) => (
+    <motion.span
+      key={index}
+      variants={child}
+      style={{ display: "inline-block" }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+
+  <br />
+
+  {"with ".split("").map((char, index) => (
+    <motion.span
+      key={`with-${index}`}
+      variants={child}
+      style={{ display: "inline-block" }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+
+  {"Technology".split("").map((char, index) => (
+    <motion.span
+      key={`tech-${index}`}
+      variants={child}
+      style={{
+        display: "inline-block",
+        color: "#4F46E5",
+      }}
+    >
+      {char}
+    </motion.span>
+  ))}
+</motion.h1>
+
+     <motion.p
+  style={styles.subHeading}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{
+    delay: 2, // after heading animation
+    duration: 0.8,
+  }}
+>
+  VProTech Digital delivers world-class software development,
+  AI solutions, cloud computing, cybersecurity, web and mobile
+  applications, digital marketing, and professional internship
+  programs that empower businesses and students to achieve
+  long-term success.
+</motion.p>
+    </motion.div>
+
+    {/* RIGHT IMAGE */}
+    <motion.div
+      style={styles.right}
+      initial={{ opacity: 0, x: 70 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
     >
-      <motion.h1
-        style={styles.heading}
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.9 }}
-      >
-        Transform Your
-        <br />
-        <span style={{ color: "#4F46E5" }}>
-          Digital Future
-        </span>
-      </motion.h1>
-
-      <motion.p
-        style={styles.subHeading}
-        initial={{ opacity: 0, y: 35 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.9 }}
-      >
-        VProTech Digital empowers startups, enterprises and
-        students with innovative software development,
-        AI solutions, cloud technologies, web applications,
-        mobile apps, digital marketing and industry-focused
-        internship programs that drive measurable growth.
-      </motion.p>
-
-      <motion.div
-        style={styles.buttons}
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-      >
-        {/* Buttons */}
-      </motion.div>
+      <img
+        src={heroImage}
+        alt="VProTech Digital"
+        style={styles.heroImage}
+      />
     </motion.div>
-
-    {/* RIGHT SIDE IMAGE */}
-   {/* <div style={styles.right}>
-  <img
-    src={heroImage}
-    alt="Team"
-    style={styles.image}
-  />
-</div> */}
   </div>
 </motion.section>
-
 
 
  {/* ================= OUR SERVICES ================= */}
@@ -339,7 +378,7 @@ export default function Home() {
     backgroundImage: `
       linear-gradient(
         rgba(60, 59, 75, 0.88),
-        rgba(120,70,180,.88)
+        rgba(90, 85, 95, 0.88)
       ),
       url(${custom})
     `,
@@ -529,80 +568,103 @@ const styles = {
   zIndex: -1,
 },
 
-  hero: {
-  position: "relative",
+ hero: {
   minHeight: "100vh",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  overflow: "hidden",
+  backgroundPosition: "center",
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
 },
 
 overlay: {
   position: "absolute",
   inset: 0,
   background:
-    "linear-gradient(90deg, rgba(5,15,40,.82), rgba(20,40,90,.68), rgba(0,0,0,.55))",
+    "linear-gradient(90deg, rgba(5,10,25,.88) 40%, rgba(5,10,25,.45) 100%)",
 },
 
 heroContent: {
-  width: "100%",
-  maxWidth: "1600px",
-  margin: "0 auto",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "40px",
-  height: "100%",
-  paddingLeft: "70px",
-  paddingRight: "0", // No right padding
   position: "relative",
   zIndex: 2,
+  width: "100%",          // instead of 90%
+  paddingLeft: "5%",
+  paddingRight: "0",      // remove right padding
+  display: "grid",
+  gridTemplateColumns: "45% 55%",
+  alignItems: "center",
+  gap: "30px",
 },
 
 left: {
-  flex: 1,
+  color: "#fff",
 },
 
-right: {
-  flex: 1,
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "stretch",
-  height: "100%",          // <-- Fill parent
-},
-
-
-image: {
-  width: "100%",
-  maxWidth: "780px",
-  height: "100%",
-  minHeight: "650px",
-  objectFit: "cover",
-  objectPosition: "center",
-  borderRadius: "30px 0 0 30px", // Rounded only on left
-  boxShadow: "0 30px 80px rgba(0,0,0,.45)",
-},
 
 heading: {
-  color: "#fff",
-  fontSize: "68px",
-  fontWeight: 800,
-  lineHeight: 1.1,
-  marginBottom: "25px",
+  fontSize: "72px",
+  fontWeight: "800",
+  lineHeight: "1.1",
+  marginBottom: "30px",
+},
+
+highlight: {
+  color: "#4F46E5",
 },
 
 subHeading: {
-  color: "rgba(255,255,255,.88)",
-  fontSize: "22px",
-  lineHeight: 1.9,
+  fontSize: "20px",
+  lineHeight: "1.9",
+  color: "#d8d8d8",
   maxWidth: "700px",
+  marginBottom: "45px",
 },
 
 buttons: {
-  marginTop: "40px",
   display: "flex",
   gap: "20px",
+},
+
+primaryBtn: {
+  padding: "18px 40px",
+  background: "#4F46E5",
+  color: "#fff",
+  border: "none",
+  borderRadius: "50px",
+  fontWeight: "700",
+  fontSize: "16px",
+  cursor: "pointer",
+},
+
+secondaryBtn: {
+  padding: "18px 40px",
+  background: "transparent",
+  color: "#fff",
+  border: "2px solid rgba(255,255,255,.35)",
+  borderRadius: "50px",
+  fontWeight: "700",
+  fontSize: "16px",
+  cursor: "pointer",
+},
+
+right: {
+  display: "flex",
+  justifyContent: "flex-end", // Push image to the right
+  alignItems: "center",
+  width: "100%",
+  height: "100vh",
+  marginLeft: "auto",
+},
+
+heroImage: {
+  width: "95%",
+  height: "100vh",
+  objectFit: "cover",
+  objectPosition: "center",
+  borderTopLeftRadius: "0px",
+  borderBottomLeftRadius: "0px",
+  marginLeft: "auto",
+  display: "block",
 },
 
    /* Next Section */
