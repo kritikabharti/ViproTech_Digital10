@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./pages/Register";
 import CustomCursor from "./components/CustomCursor";
+import Blogs from "./pages/Blogs";
+import Careers from "./pages/Careers";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -16,6 +19,11 @@ function App() {
         <Route path="/about" element={<About />} />
      
                <Route path="/register" element={<Register />} />
+
+<Route path="/blogs" element={<Blogs />} />
+<Route path="/careers" element={<Careers />} />
+<Route path="/contact" element={<Contact />} />
+
 
 
        

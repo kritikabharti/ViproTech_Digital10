@@ -194,21 +194,7 @@ const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
   </li>
 </ul>
 
-        {/* Right Side */}
-        <div style={styles.rightSide}>
-          {/* <button style={styles.language}>🌐 EN</button> */}
-
-          <button style={styles.button}>
-            Get Consultation
-          </button>
-
-          <div
-            style={styles.mobileIcon}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-          </div>
-        </div>
+       
       </div>
     </nav>
   );
