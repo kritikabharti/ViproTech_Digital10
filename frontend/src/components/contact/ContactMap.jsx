@@ -54,73 +54,82 @@ export default function ContactMap() {
   );
 }
 
+
+
+const isMobile = window.innerWidth <= 768;
+
 const styles = {
 
 section:{
-padding:"120px 8%",
-background:"#F8FAFC",
+  padding: isMobile ? "70px 20px" : "120px 8%",
+  background:"#F8FAFC",
 },
 
 headingContainer:{
-textAlign:"center",
-marginBottom:"60px",
+  textAlign:"center",
+  marginBottom:isMobile ? "40px" : "60px",
 },
 
 tag:{
-color:"#4F46E5",
-fontWeight:"700",
-letterSpacing:"3px",
-marginBottom:"15px",
+  color:"#4F46E5",
+  fontWeight:"700",
+  letterSpacing:"3px",
+  marginBottom:"15px",
+  fontSize:isMobile ? "13px" : "15px",
 },
 
 heading:{
-fontSize:"52px",
-fontWeight:"800",
-color:"#111827",
-marginBottom:"20px",
+  fontSize:isMobile ? "34px" : "52px",
+  fontWeight:"800",
+  color:"#111827",
+  marginBottom:"20px",
+  lineHeight:"1.2",
 },
 
 highlight:{
-color:"#4F46E5",
+  color:"#4F46E5",
 },
 
 description:{
-maxWidth:"760px",
-margin:"auto",
-fontSize:"18px",
-lineHeight:"1.8",
-color:"#6B7280",
+  maxWidth:"760px",
+  margin:"auto",
+  fontSize:isMobile ? "16px" : "18px",
+  lineHeight:"1.8",
+  color:"#6B7280",
 },
 
 mapContainer:{
-maxWidth:"1300px",
-margin:"60px auto",
-borderRadius:"25px",
-overflow:"hidden",
-boxShadow:"0 25px 60px rgba(0,0,0,.12)",
-border:"1px solid #E5E7EB",
+  maxWidth:"1300px",
+  margin:isMobile ? "40px auto" : "60px auto",
+  borderRadius:isMobile ? "18px" : "25px",
+  overflow:"hidden",
+  boxShadow:"0 25px 60px rgba(0,0,0,.12)",
+  border:"1px solid #E5E7EB",
 },
 
 map:{
-border:0,
-display:"block",
+  border:0,
+  display:"block",
+  width:"100%",
+  height:isMobile ? "320px" : "500px",
 },
 
 info:{
-textAlign:"center",
+  textAlign:"center",
+  padding:isMobile ? "0 10px" : "0",
 },
 
 office:{
-fontSize:"32px",
-fontWeight:"700",
-marginBottom:"20px",
-color:"#111827",
+  fontSize:isMobile ? "26px" : "32px",
+  fontWeight:"700",
+  marginBottom:"15px",
+  color:"#111827",
 },
 
 address:{
-fontSize:"18px",
-color:"#6B7280",
-lineHeight:"2",
+  fontSize:isMobile ? "15px" : "18px",
+  color:"#6B7280",
+  lineHeight:"1.8",
 },
 
 };

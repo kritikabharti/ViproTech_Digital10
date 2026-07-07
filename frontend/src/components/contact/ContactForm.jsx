@@ -112,35 +112,49 @@ export default function ContactForm() {
   );
 }
 
+
+const isMobile = window.innerWidth <= 768;
+
 const styles = {
   section: {
     background: "#081120",
-    padding: "120px 8%",
+    padding: isMobile ? "70px 20px" : "120px 8%",
   },
 
   container: {
     maxWidth: "1350px",
     margin: "auto",
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "70px",
+    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+    gap: isMobile ? "50px" : "70px",
     alignItems: "center",
   },
 
-  left: {},
+  left: {
+    order: isMobile ? 2 : 1,
+    textAlign: isMobile ? "center" : "left",
+  },
+
+  right: {
+    order: isMobile ? 1 : 2,
+    display: "flex",
+    justifyContent: "center",
+  },
 
   tag: {
     color: "#FFD700",
     letterSpacing: "3px",
     fontWeight: "700",
     marginBottom: "15px",
+    fontSize: isMobile ? "13px" : "15px",
   },
 
   heading: {
     color: "#fff",
-    fontSize: "50px",
+    fontSize: isMobile ? "34px" : "50px",
     fontWeight: "800",
     marginBottom: "20px",
+    lineHeight: "1.2",
   },
 
   highlight: {
@@ -150,59 +164,59 @@ const styles = {
   description: {
     color: "#CBD5E1",
     lineHeight: "1.8",
-    marginBottom: "40px",
-    fontSize: "18px",
+    marginBottom: "35px",
+    fontSize: isMobile ? "16px" : "18px",
   },
 
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: "18px",
+    gap: isMobile ? "15px" : "18px",
   },
 
   input: {
-    padding: "18px",
+    width: "100%",
+    padding: isMobile ? "15px" : "18px",
     borderRadius: "12px",
     border: "1px solid rgba(255,255,255,.12)",
     background: "rgba(255,255,255,.05)",
     color: "#fff",
-    fontSize: "16px",
+    fontSize: isMobile ? "15px" : "16px",
     outline: "none",
+    boxSizing: "border-box",
   },
 
   textarea: {
-    padding: "18px",
+    width: "100%",
+    padding: isMobile ? "15px" : "18px",
     borderRadius: "12px",
     border: "1px solid rgba(255,255,255,.12)",
     background: "rgba(255,255,255,.05)",
     color: "#fff",
-    fontSize: "16px",
+    fontSize: isMobile ? "15px" : "16px",
     outline: "none",
     resize: "none",
     fontFamily: "inherit",
+    boxSizing: "border-box",
   },
 
   button: {
+    width: "100%",
     marginTop: "10px",
-    padding: "18px",
+    padding: isMobile ? "16px" : "18px",
     border: "none",
     borderRadius: "50px",
     background: "linear-gradient(135deg,#4F46E5,#6366F1)",
     color: "#fff",
     fontWeight: "700",
-    fontSize: "17px",
+    fontSize: isMobile ? "16px" : "17px",
     cursor: "pointer",
     boxShadow: "0 12px 30px rgba(79,70,229,.35)",
   },
 
-  right: {
-    display: "flex",
-    justifyContent: "center",
-  },
-
   image: {
     width: "100%",
-    maxWidth: "560px",
+    maxWidth: isMobile ? "320px" : "560px",
     borderRadius: "25px",
     objectFit: "cover",
     boxShadow: "0 25px 60px rgba(0,0,0,.35)",

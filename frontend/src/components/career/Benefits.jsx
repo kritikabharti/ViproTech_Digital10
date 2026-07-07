@@ -104,84 +104,90 @@ export default function Benefits() {
     </section>
   );
 }
+const isMobile = window.innerWidth <= 768;
 
 const styles = {
 
 section: {
-padding: "90px 5%",
-background: "#fff",
+  padding: isMobile ? "60px 20px" : "90px 5%",
+  background: "#fff",
 },
 
 headingContainer: {
-textAlign: "center",
-marginBottom: "70px",
+  textAlign: "center",
+  marginBottom: isMobile ? "45px" : "70px",
 },
 
 smallHeading: {
-color: "#4F46E5",
-fontWeight: "700",
-letterSpacing: "3px",
-marginBottom: "15px",
+  color: "#4F46E5",
+  fontWeight: "700",
+  letterSpacing: "3px",
+  marginBottom: "15px",
+  fontSize: isMobile ? "13px" : "15px",
 },
 
 heading: {
-fontSize: "52px",
-fontWeight: "800",
-color: "#111827",
-marginBottom: "20px",
+  fontSize: isMobile ? "34px" : "52px",
+  fontWeight: "800",
+  color: "#111827",
+  marginBottom: "20px",
+  lineHeight: "1.2",
 },
 
 description: {
-maxWidth: "760px",
-margin: "auto",
-fontSize: "18px",
-lineHeight: "1.8",
-color: "#6B7280",
+  maxWidth: "760px",
+  margin: "auto",
+  fontSize: isMobile ? "16px" : "18px",
+  lineHeight: "1.8",
+  color: "#6B7280",
 },
 
 grid: {
-display: "grid",
-gridTemplateColumns: "repeat(3,1fr)",
-gap: "30px",
+  display: "grid",
+  gridTemplateColumns: isMobile
+    ? "1fr"
+    : "repeat(3,1fr)",
+  gap: isMobile ? "22px" : "30px",
 },
 
 card: {
-position: "relative",
-overflow: "hidden",
-height: "360px",
-borderRadius: "24px",
-cursor: "pointer",
-boxShadow: "0 20px 45px rgba(0,0,0,.1)",
+  position: "relative",
+  overflow: "hidden",
+  height: isMobile ? "300px" : "360px",
+  borderRadius: "20px",
+  cursor: "pointer",
+  boxShadow: "0 20px 45px rgba(0,0,0,.1)",
 },
 
 image: {
-width: "100%",
-height: "100%",
-objectFit: "cover",
-transition: ".5s",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  transition: ".5s",
 },
 
 overlay: {
-position: "absolute",
-bottom: 0,
-left: 0,
-right: 0,
-padding: "30px",
-background:
-"linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.2), transparent)",
-color: "#fff",
+  position: "absolute",
+  inset: 0,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  padding: isMobile ? "20px" : "30px",
+  background:
+    "linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.25), transparent)",
+  color: "#fff",
 },
 
 cardTitle: {
-fontSize: "28px",
-fontWeight: "700",
-marginBottom: "15px",
+  fontSize: isMobile ? "22px" : "28px",
+  fontWeight: "700",
+  marginBottom: "12px",
 },
 
 cardText: {
-fontSize: "16px",
-lineHeight: "1.8",
-color: "#E5E7EB",
+  fontSize: isMobile ? "14px" : "16px",
+  lineHeight: "1.7",
+  color: "#E5E7EB",
 },
 
 };

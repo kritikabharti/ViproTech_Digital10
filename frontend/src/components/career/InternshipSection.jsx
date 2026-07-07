@@ -84,86 +84,93 @@ export default function InternshipSection() {
   );
 }
 
+
+
+const isMobile = window.innerWidth <= 768;
 const styles = {
 
 section:{
-padding:"0px 5%",
-background:"#F8FAFC",
+  padding:isMobile ? "70px 20px" : "90px 5%",
+  background:"#F8FAFC",
 },
 
 container:{
-display:"flex",
-justifyContent:"space-between",
-alignItems:"center",
-gap:"70px",
-maxWidth:"1400px",
-margin:"auto",
+  display:"flex",
+  flexDirection:isMobile ? "column-reverse" : "row",
+  justifyContent:"space-between",
+  alignItems:"center",
+  gap:isMobile ? "40px" : "70px",
+  maxWidth:"1400px",
+  margin:"auto",
 },
 
 left:{
-flex:1,
+  flex:1,
+  textAlign:isMobile ? "center" : "left",
 },
 
 right:{
-flex:1,
-display:"flex",
-justifyContent:"center",
+  flex:1,
+  display:"flex",
+  justifyContent:"center",
 },
 
 smallHeading:{
-color:"#4F46E5",
-fontWeight:"700",
-letterSpacing:"3px",
-marginBottom:"18px",
+  color:"#4F46E5",
+  fontWeight:"700",
+  letterSpacing:"3px",
+  marginBottom:"18px",
+  fontSize:isMobile ? "13px" : "15px",
 },
 
 heading:{
-fontSize:"52px",
-fontWeight:"800",
-lineHeight:"1.2",
-color:"#111827",
-marginBottom:"28px",
+  fontSize:isMobile ? "34px" : "52px",
+  fontWeight:"800",
+  lineHeight:"1.25",
+  color:"#111827",
+  marginBottom:"24px",
 },
 
 description:{
-fontSize:"18px",
-lineHeight:"1.9",
-color:"#6B7280",
-marginBottom:"35px",
+  fontSize:isMobile ? "16px" : "18px",
+  lineHeight:"1.8",
+  color:"#6B7280",
+  marginBottom:"30px",
 },
 
 tags:{
-display:"flex",
-flexWrap:"wrap",
-gap:"15px",
-marginBottom:"40px",
+  display:"flex",
+  flexWrap:"wrap",
+  justifyContent:isMobile ? "center" : "flex-start",
+  gap:isMobile ? "10px" : "15px",
+  marginBottom:"35px",
 },
 
 tag:{
-padding:"12px 22px",
-background:"#EEF2FF",
-color:"#4F46E5",
-borderRadius:"30px",
-fontWeight:"600",
-fontSize:"15px",
+  padding:isMobile ? "10px 16px" : "12px 22px",
+  background:"#EEF2FF",
+  color:"#4F46E5",
+  borderRadius:"30px",
+  fontWeight:"600",
+  fontSize:isMobile ? "13px" : "15px",
 },
 
 button:{
-padding:"16px 36px",
-border:"none",
-borderRadius:"50px",
-background:"#4F46E5",
-color:"#fff",
-fontSize:"17px",
-fontWeight:"700",
-cursor:"pointer",
-transition:".3s",
+  padding:isMobile ? "14px 30px" : "16px 36px",
+  border:"none",
+  borderRadius:"50px",
+  background:"#4F46E5",
+  color:"#fff",
+  fontSize:isMobile ? "15px" : "17px",
+  fontWeight:"700",
+  cursor:"pointer",
+  transition:".3s",
 },
 
 image:{
-width:"100%",
-maxWidth:"550px",
-objectFit:"contain",
+  width:"100%",
+  maxWidth:isMobile ? "320px" : "550px",
+  objectFit:"contain",
 },
 
 };

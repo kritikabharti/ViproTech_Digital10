@@ -105,97 +105,106 @@ export default function HiringProcess() {
   );
 }
 
+const isMobile = window.innerWidth <= 768;
 
 const styles = {
 
 section:{
-padding:"50px 8%",
-background:"#F9FAFB",
+  padding: isMobile ? "70px 20px" : "90px 8%",
+  background:"#F9FAFB",
 },
 
 headingContainer:{
-textAlign:"center",
-marginBottom:"80px",
+  textAlign:"center",
+  marginBottom:isMobile ? "50px" : "80px",
 },
 
 small:{
-color:"#4F46E5",
-fontWeight:"700",
-letterSpacing:"3px",
-marginBottom:"15px",
+  color:"#4F46E5",
+  fontWeight:"700",
+  letterSpacing:"3px",
+  marginBottom:"15px",
+  fontSize:isMobile ? "13px" : "15px",
 },
 
 heading:{
-fontSize:"54px",
-fontWeight:"800",
-marginBottom:"20px",
-color:"#111827",
+  fontSize:isMobile ? "34px" : "54px",
+  fontWeight:"800",
+  marginBottom:"20px",
+  color:"#111827",
+  lineHeight:1.2,
 },
 
 desc:{
-fontSize:"18px",
-color:"#6B7280",
-maxWidth:"700px",
-margin:"auto",
-lineHeight:"1.8",
+  fontSize:isMobile ? "16px" : "18px",
+  color:"#6B7280",
+  maxWidth:"700px",
+  margin:"auto",
+  lineHeight:"1.8",
 },
 
 timeline:{
-position:"relative",
-maxWidth:"1100px",
-margin:"80px auto 0",
+  position:"relative",
+  maxWidth:"1100px",
+  margin:"60px auto 0",
 },
 
 centerLine:{
-position:"absolute",
-left:"50%",
-top:0,
-bottom:0,
-width:"4px",
-background:"#4F46E5",
-transform:"translateX(-50%)",
+  position:"absolute",
+  left:isMobile ? "30px" : "50%",
+  top:0,
+  bottom:0,
+  width:"4px",
+  background:"#4F46E5",
+  transform:isMobile ? "none" : "translateX(-50%)",
 },
 
 row:{
-display:"flex",
-marginBottom:"70px",
-position:"relative",
+  display:"flex",
+  justifyContent:isMobile ? "flex-start" : undefined,
+  marginBottom:isMobile ? "35px" : "70px",
+  position:"relative",
 },
 
 card:{
-width:"43%",
-background:"#fff",
-padding:"35px",
-borderRadius:"22px",
-boxShadow:"0 15px 35px rgba(0,0,0,.08)",
-border:"1px solid #E5E7EB",
-position:"relative",
+  width:isMobile ? "calc(100% - 60px)" : "43%",
+  marginLeft:isMobile ? "60px" : "0",
+  background:"#fff",
+  padding:isMobile ? "22px" : "35px",
+  borderRadius:"20px",
+  boxShadow:"0 15px 35px rgba(0,0,0,.08)",
+  border:"1px solid #E5E7EB",
 },
 
 number:{
-width:"70px",
-height:"70px",
-borderRadius:"50%",
-background:"#4F46E5",
-color:"#fff",
-display:"flex",
-justifyContent:"center",
-alignItems:"center",
-fontWeight:"700",
-fontSize:"24px",
-marginBottom:"20px",
+  width:isMobile ? "55px" : "70px",
+  height:isMobile ? "55px" : "70px",
+  borderRadius:"50%",
+  background:"#4F46E5",
+  color:"#fff",
+  display:"flex",
+  justifyContent:"center",
+  alignItems:"center",
+  fontWeight:"700",
+  fontSize:isMobile ? "18px" : "24px",
+  marginBottom:"18px",
+
+  position:isMobile ? "absolute" : "relative",
+  left:isMobile ? "-88px" : "0",
+  top:isMobile ? "18px" : "0",
 },
 
 title:{
-fontSize:"28px",
-fontWeight:"700",
-marginBottom:"18px",
-color:"#111827",
+  fontSize:isMobile ? "22px" : "28px",
+  fontWeight:"700",
+  marginBottom:"15px",
+  color:"#111827",
 },
 
 text:{
-fontSize:"16px",
-lineHeight:"1.8",
-color:"#6B7280",
+  fontSize:isMobile ? "15px" : "16px",
+  lineHeight:"1.8",
+  color:"#6B7280",
 },
+
 };

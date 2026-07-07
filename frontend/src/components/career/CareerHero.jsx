@@ -87,108 +87,91 @@ export default function CareerHero() {
   );
 }
 
+const isMobile = window.innerWidth <= 768;
+
 const styles = {
+  hero: {
+    minHeight: isMobile ? "70vh" : "90vh",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: isMobile ? "80px 20px" : "120px 40px",
+  },
 
-hero:{
-height:"120vh",
-backgroundSize:"cover",
-backgroundPosition:"center",
-position:"relative",
-display:"flex",
-alignItems:"center",
-},
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    background: "rgba(0,0,0,.68)",
+  },
 
-overlay:{
-position:"absolute",
-inset:0,
-background:"rgba(0,0,0,.68)",
-},
+  container: {
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    zIndex: 2,
+  },
 
-container: {
-  width: "100%",
-  height: "90%",
-  maxWidth: "1200px",
-  margin: "0 auto",
-  padding: "0 40px",
+  left: {
+    width: "100%",
+    maxWidth: "900px",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
+  },
 
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  smallHeading: {
+    color: "#FFD700",
+    letterSpacing: "3px",
+    fontWeight: "700",
+    marginBottom: "16px",
+    fontSize: isMobile ? "13px" : "15px",
+  },
 
-  position: "relative",
-  zIndex: 2,
-},
+  heading: {
+    fontSize: isMobile ? "42px" : "82px",
+    fontWeight: "700",
+    lineHeight: "1.15",
+    marginBottom: "25px",
+  },
 
-hero: {
-  height: "90vh", // Change from 120vh
-  minHeight: "500px", // Optional: prevents it from becoming too small
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-},
+  highlight: {
+    color: "#4F46E5",
+  },
 
-left: {
-  width: "100%",
-  maxWidth: "950px",
-  color: "#fff",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-},
+  description: {
+    fontSize: isMobile ? "16px" : "22px",
+    lineHeight: "1.8",
+    color: "#E5E7EB",
+    maxWidth: "760px",
+    marginBottom: "45px",
+    padding: isMobile ? "0 10px" : "0",
+  },
 
-smallHeading: {
-  color: "#FFD700",
-  letterSpacing: "4px",
-  fontWeight: "700",
-  marginBottom: "18px",
-  textAlign: "center",
-},
+  button: {
+    padding: isMobile ? "14px 28px" : "17px 38px",
+    borderRadius: "50px",
+    border: "none",
+    background: "#4F46E5",
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: isMobile ? "15px" : "17px",
+    cursor: "pointer",
+  },
 
-
-heading: {
-  fontSize: "82px",
-  fontWeight: "500",
-  lineHeight: "1.1",
-  marginBottom: "28px",
-  textAlign: "center",
-},
-
-highlight:{
-color:"#4F46E5",
-},
-
-description: {
-  fontSize: "22px",
-  lineHeight: "1.9",
-  color: "#E5E7EB",
-  maxWidth: "820px",
-  textAlign: "center",
-  marginBottom: "60px",
-},
-
-button:{
-padding:"17px 38px",
-borderRadius:"50px",
-border:"none",
-background:"#4F46E5",
-color:"#fff",
-fontWeight:"700",
-fontSize:"17px",
-cursor:"pointer",
-transition:".35s",
-},
-
-right:{
-flex:1,
-display:"flex",
-justifyContent:"flex-end",
-},
-
-image:{
-width:"100%",
-maxWidth:"700px",
-objectFit:"contain",
-},
+  image: {
+    width: "100%",
+    maxWidth: "700px",
+    height: "auto",
+    objectFit: "contain",
+  },
 };

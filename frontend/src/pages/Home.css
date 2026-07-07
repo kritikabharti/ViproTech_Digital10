@@ -17,6 +17,48 @@
     object-fit: cover;
 }
 
+
+/* Tablet */
+@media (max-width: 992px){
+
+    .home{
+        height: 70vh;
+    }
+
+    .video-bg{
+        object-position: center;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .home{
+        height: 45vh;
+    }
+
+    .video-bg{
+        object-fit: cover;
+        object-position: center;
+    }
+
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    .home{
+        height: 35vh;
+    }
+
+    .video-bg{
+        object-fit: cover;
+        object-position: center;
+    }
+
+}
+
 /* ==========================
    HERO SECTION
 ========================== */
@@ -115,47 +157,51 @@
    MOBILE
 ========================== */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.home{
-    height:100vh;
-}
+  .hero{
+    min-height: auto;
+    padding: 60px 0;
+  }
 
-.hero{
-    min-height:100vh;
-}
-
-.hero-content{
-    grid-template-columns:1fr;
+  .hero-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    gap:35px;
-    padding:90px 25px 60px;
-}
+    gap:30px;
+    padding:40px 20px;
+  }
 
-.hero-left{
-    order:2;
-}
+  .hero-right{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
 
-.hero-right{
-    order:1;
-}
+  .hero-image{
+    width:90%;
+    max-width:300px;
+    margin:0 auto;
+    transform:none; /* Removes desktop translateX */
+  }
 
-.hero-heading{
-    font-size:2.3rem;
-    line-height:1.2;
-}
+  .hero-left{
+    width:100%;
+  }
 
-.hero-text{
+  .hero-heading{
+    font-size:2.2rem;
+    line-height:1.25;
+  }
+
+  .hero-text{
     font-size:1rem;
     line-height:1.8;
-    margin:auto;
-}
-
-.hero-image{
-    width:100%;
-    max-width:320px;
-    margin:auto;
-}
+    max-width:100%;
+  }
 
 }
 
