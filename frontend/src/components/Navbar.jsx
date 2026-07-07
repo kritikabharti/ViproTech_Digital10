@@ -24,6 +24,8 @@ const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
   }, []);
 
   return (
+
+    
     <nav
       style={{
         ...styles.navbar,
@@ -40,13 +42,15 @@ const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
   />
 </Link>
 
-        {/* Navigation */}
-       <ul
-  style={{
-    ...styles.navLinks,
-    ...(menuOpen ? styles.mobileMenuOpen : {}),
-  }}
+<div
+  className="mobile-menu-icon"
+  onClick={() => setMenuOpen(!menuOpen)}
 >
+  {menuOpen ? <FiX /> : <FiMenu />}
+</div>
+
+        {/* Navigation */}
+      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
   <li>
    <NavLink
   to="/register"
@@ -243,24 +247,25 @@ const styles = {
     color: "#0b478b",
   },
 
-navLink: {
-  textDecoration: "none",
-  color: "#fff",
-  fontSize: "16px",
-  fontWeight: "600",
-  padding: "8px 0",
-  transition: "all 0.3s ease",
-},
+// navLink: {
+//   textDecoration: "none",
+//   color: "#fff",
+//   fontSize: "16px",
+//   fontWeight: "600",
+//   padding: "8px 0",
+//   transition: "all 0.3s ease",
+// },
 
 
-navLinks: {
-  display: "flex",
-  alignItems: "center",
-  listStyle: "none",
-  gap: "35px",
-  margin: 0,
-  padding: 0,
-},
+// navLinks: {
+//   display: "flex",
+//   alignItems: "center",
+//   listStyle: "none",
+//  gap: "22px",
+// flexWrap: "wrap",
+//   margin: 0,
+//   padding: 0,
+// },
 
   navItem: {
     display: "flex",

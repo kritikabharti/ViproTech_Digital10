@@ -1,16 +1,16 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import {motion} from "framer-motion";
 import {
   FaCloudUploadAlt,
   FaUsers,
   FaAward,
 } from "react-icons/fa";
-
+import "./Home.css";
 import { HiArrowLongRight } from "react-icons/hi2";
 
 import Footer from "../components/Footer";
 import "../App.css";
-import image from "../assets/viprotech.mp4";
+import videos from "../assets/viprotech.mp4";
 import bgaImge from "../assets/save.jpg";
 import expertiseBg from "../assets/digital.jpg";
 import custom from "../assets/itand custom.jpg";
@@ -71,54 +71,34 @@ const cardVariants = {
   },
 };
 
+
+
+
+
+
 export default function Home() {
   return (
     <>
-    <div style={styles.home}>
-
-        {/* Video Background */}
-      <video autoPlay loop muted playsInline style={styles.video}>
-        <source src={image} type="video/mp4" />
-      </video>
-    </div>
-
-
-
-{/* Sliding Contact Bar */}
-{/* <section style={styles.contactBar}>
-  <motion.div
-    style={styles.track}
-    animate={{
-      x: ["100%", "-100%"],
-    }}
-    transition={{
-      repeat: Infinity,
-      duration: 50,
-      ease: "linear",
-    }}
-  >
-    <span style={styles.item}>📞 +91 88941 10026</span>
-    <span style={styles.item}>📞 +91 81467 59797</span>
-    <span style={styles.item}>✉️ Vprotechdigitalmohali@gmail.com</span>
-    <span style={styles.item}>📍  SCF-116 A, Second Floor, Phase 5, Industrial Area, Sector 58, Sahibzada Ajit Singh Nagar, Punjab 160055</span>
-
-  </motion.div>
-</section> */}
+  {/* First Section - Fullscreen Video */}
+  <section className="home">
+    <video autoPlay loop muted playsInline className="video-bg">
+      <source src={videos} type="video/mp4" />
+    </video>
+  </section>
 
 
 
-<motion.section
+
+<section
+  className="hero"
   style={{
-    ...styles.hero,
     backgroundImage: `url(${heroBg})`,
   }}
 >
-  <div style={styles.overlay}></div>
 
-  <div style={styles.heroContent}>
+ <div className="hero-content">
     {/* LEFT CONTENT */}
-    <motion.div
-      style={styles.left}
+   <motion.div className="hero-left"
       initial={{ opacity: 0, x: -70 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9 }}
@@ -126,7 +106,7 @@ export default function Home() {
   
 
 <motion.h1
-  style={styles.heading}
+className="hero-heading"
   variants={container}
   initial="hidden"
   whileInView="visible"
@@ -170,7 +150,7 @@ export default function Home() {
 </motion.h1>
 
      <motion.p
-  style={styles.subHeading}
+  className="hero-text"
   initial={{ opacity: 0, y: 30 }}
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
@@ -188,8 +168,7 @@ export default function Home() {
     </motion.div>
 
     {/* RIGHT IMAGE */}
-    <motion.div
-      style={styles.right}
+   <motion.div className="hero-right"
       initial={{ opacity: 0, x: 70 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
@@ -197,26 +176,26 @@ export default function Home() {
       <img
         src={heroImage}
         alt="VProTech Digital"
-        style={styles.heroImage}
+        className="hero-image"
       />
     </motion.div>
   </div>
-</motion.section>
+</section>
 
 
  {/* ================= OUR SERVICES ================= */}
 
 <section
-  style={{
-    ...styles.servicesSection,
-    backgroundImage: `url(${bgaImge})`,
-  }}
+className="services-section"
+style={{
+backgroundImage:`url(${bgaImge})`
+}}
 >
-  <div style={styles.servicesOverlay}></div>
+  <div className="services-overlay"></div>
 
-  <div style={styles.sectionContent}>
+  <div className="section-content">
    <motion.h5
-  style={styles.smallTitle}
+  className="small-title"
   initial={{ opacity: 0, y: 30 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6 }}
@@ -226,7 +205,7 @@ export default function Home() {
 </motion.h5>
 
 <motion.h2
-  style={styles.sectionTitle}
+ className="section-title"
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.2, duration: 0.8 }}
@@ -237,7 +216,7 @@ export default function Home() {
 </motion.h2>
 
 <motion.p
-  style={styles.sectionText}
+ className="section-text"
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.4, duration: 0.8 }}
@@ -247,7 +226,7 @@ export default function Home() {
   students with industry-ready practical training.
 </motion.p>
 
-    <div style={styles.cardGrid}>
+    <div className="card-grid">
 
       {/* CARD 1 */}
       <div className="flip-card">
@@ -372,169 +351,167 @@ export default function Home() {
 
 {/* ================= WORKING PROCESS ================= */}
 
-<section 
+<section
+  className="process-section"
   style={{
-    ...styles.processSection,
     backgroundImage: `
       linear-gradient(
-        rgba(60, 59, 75, 0.88),
-        rgba(90, 85, 95, 0.88)
+        rgba(60,59,75,.88),
+        rgba(90,85,95,.88)
       ),
       url(${custom})
     `,
   }}
 >
-
   <motion.h4
-    style={styles.smallHeading}
+    className="small-heading"
     initial={{ opacity: 0, y: -30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: .6 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
   >
     WORKING PROCESS
   </motion.h4>
 
   <motion.h2
-    style={styles.mainHeading}
+    className="main-heading"
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: .2 }}
+    transition={{ delay: 0.2 }}
+    viewport={{ once: true }}
   >
     How Can You Start?
   </motion.h2>
 
-  <div style={styles.processContainer}>
+  <div className="process-container">
 
-    {/* STEP 1 */}
+    {/* Step 1 */}
 
     <motion.div
-      style={styles.step}
+      className="step"
       whileHover={{ y: -10 }}
       transition={{ duration: .3 }}
     >
-
-      <div style={styles.iconCircle}>
+      <div className="icon-circle">
         <FaCloudUploadAlt size={52} color="#111" />
-
-        <div style={styles.number}>01</div>
+        <div className="step-number">01</div>
       </div>
 
-      <h3 style={styles.title}>
+      <h3 className="step-title">
         Share Your Requirements
       </h3>
 
-      <p style={styles.desc}>
+      <p className="step-desc">
         Tell us about your business goals, website requirements,
         application needs, or digital challenges.
       </p>
-
     </motion.div>
-
-    {/* Arrow */}
 
     <HiArrowLongRight
       size={120}
       color="white"
-      style={styles.arrow}
+      className="process-arrow"
     />
 
-    {/* STEP 2 */}
+    {/* Step 2 */}
 
     <motion.div
-      style={styles.step}
+      className="step"
       whileHover={{ y: -10 }}
     >
-
-      <div style={styles.iconCircle}>
+      <div className="icon-circle">
         <FaUsers size={48} color="#111" />
-
-        <div style={styles.number}>02</div>
+        <div className="step-number">02</div>
       </div>
 
-      <h3 style={styles.title}>
+      <h3 className="step-title">
         Strategy & Planning
       </h3>
 
-      <p style={styles.desc}>
+      <p className="step-desc">
         We prepare the perfect roadmap including design,
         development, timeline and execution plan.
       </p>
-
     </motion.div>
-
-    {/* Arrow */}
 
     <HiArrowLongRight
       size={120}
       color="white"
-      style={styles.arrow}
+      className="process-arrow"
     />
 
-    {/* STEP 3 */}
+    {/* Step 3 */}
 
     <motion.div
-      style={styles.step}
+      className="step"
       whileHover={{ y: -10 }}
     >
-
-      <div style={styles.iconCircle}>
+      <div className="icon-circle">
         <FaAward size={48} color="#111" />
-
-        <div style={styles.number}>03</div>
+        <div className="step-number">03</div>
       </div>
 
-      <h3 style={styles.title}>
+      <h3 className="step-title">
         Design, Launch & Growth
       </h3>
 
-      <p style={styles.desc}>
+      <p className="step-desc">
         Our experts build, test and launch your project while
         providing continuous support.
       </p>
-
     </motion.div>
 
   </div>
-
 </section>
-
-
-
 
 {/* next Section */}
 
 
+{/* ================= OUR JOURNEY ================= */}
+
 <section
+  className="gallery-section"
   style={{
-    ...styles.gallerySection,
     backgroundImage: `url(${sectionBg})`,
   }}
 >
-  <div style={styles.galleryOverlay}></div>
+  <div className="gallery-overlay"></div>
 
-  <div style={styles.galleryContent}>
-    <h2 style={styles.galleryTitle}>Our Journey</h2>
-
-    <motion.div
-      style={styles.slider}
-      animate={{
-        x: ["0%", "-50%"],
-      }}
-      transition={{
-        repeat: Infinity,
-        duration: 20,
-        ease: "linear",
-      }}
+  <div className="gallery-content">
+    <motion.h2
+      className="gallery-title"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
     >
-      {[img1, img2, img3, img4, img1, img2, img3, img4].map((img, index) => (
-        <div key={index} style={styles.imageCard}>
-          <img src={img} alt="" style={styles.image} />
-        </div>
-      ))}
-    </motion.div>
-  
+      Our Journey
+    </motion.h2>
+
+    <div className="slider-wrapper">
+      <motion.div
+        className="slider"
+        animate={{
+          x: ["0%", "-50%"],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 20,
+          ease: "linear",
+        }}
+      >
+        {[img1, img2, img3, img4, img1, img2, img3, img4].map(
+          (img, index) => (
+            <div className="image-card" key={index}>
+              <img src={img} alt="" className="gallery-image" />
+            </div>
+          )
+        )}
+      </motion.div>
+    </div>
   </div>
 </section>
+
 
  <Footer />
 
@@ -544,458 +521,3 @@ export default function Home() {
 
 }
 
-const styles = {
-  home: {
-    width: "100%",
-    marginTop: "70px",
-    minHeight: "100vh",
-    home: {
-  position: "relative",
-  overflow: "hidden",
-  zIndex: 0,
-}
-  },
-
-  
-
-  video: {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "120%",
-  objectFit: "cover",
-  zIndex: -1,
-},
-
- hero: {
-  minHeight: "100vh",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-},
-
-overlay: {
-  position: "absolute",
-  inset: 0,
-  background:
-    "linear-gradient(90deg, rgba(5,10,25,.88) 40%, rgba(5,10,25,.45) 100%)",
-},
-
-heroContent: {
-  position: "relative",
-  zIndex: 2,
-  width: "100%",          // instead of 90%
-  paddingLeft: "5%",
-  paddingRight: "0",      // remove right padding
-  display: "grid",
-  gridTemplateColumns: "45% 55%",
-  alignItems: "center",
-  gap: "30px",
-},
-
-left: {
-  color: "#fff",
-},
-
-
-heading: {
-  fontSize: "72px",
-  fontWeight: "800",
-  lineHeight: "1.1",
-  marginBottom: "30px",
-},
-
-highlight: {
-  color: "#4F46E5",
-},
-
-subHeading: {
-  fontSize: "20px",
-  lineHeight: "1.9",
-  color: "#d8d8d8",
-  maxWidth: "700px",
-  marginBottom: "45px",
-},
-
-buttons: {
-  display: "flex",
-  gap: "20px",
-},
-
-primaryBtn: {
-  padding: "18px 40px",
-  background: "#4F46E5",
-  color: "#fff",
-  border: "none",
-  borderRadius: "50px",
-  fontWeight: "700",
-  fontSize: "16px",
-  cursor: "pointer",
-},
-
-secondaryBtn: {
-  padding: "18px 40px",
-  background: "transparent",
-  color: "#fff",
-  border: "2px solid rgba(255,255,255,.35)",
-  borderRadius: "50px",
-  fontWeight: "700",
-  fontSize: "16px",
-  cursor: "pointer",
-},
-
-right: {
-  display: "flex",
-  justifyContent: "flex-end", // Push image to the right
-  alignItems: "center",
-  width: "100%",
-  height: "100vh",
-  marginLeft: "auto",
-},
-
-heroImage: {
-  width: "95%",
-  height: "100vh",
-  objectFit: "cover",
-  objectPosition: "center",
-  borderTopLeftRadius: "0px",
-  borderBottomLeftRadius: "0px",
-  marginLeft: "auto",
-  display: "block",
-},
-
-   /* Next Section */
-  nextSection: {
-    position: "relative",
-    minHeight: "100vh",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  nextOverlay: {
-    position: "absolute",
-    inset: 0,
-    background: "rgba(0,0,0,0.6)",
-  },
-
-  content: {
-    position: "relative",
-    zIndex: 2,
-    textAlign: "center",
-    color: "#fff",
-    maxWidth: "900px",
-    padding: "20px",
-  },
-
-  sectionTitle: {
-    fontSize: "48px",
-    marginBottom: "20px",
-    fontWeight: "700",
-  },
-
-  sectionText: {
-    fontSize: "18px",
-    lineHeight: "1.8",
-  },
-
-
-  section: {
-  display: "flex",
-  gap: "30px",
-  padding: "80px 60px",
-  justifyContent: "center",
-  alignItems: "center",
-  flexWrap: "wrap",
-
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  position: "relative",
-},
-
-  card: {
-    flex: "1 1 500px",
-    minHeight: "650px",
-    position: "relative",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    borderRadius: "12px",
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-   transition: "all 0.3s ease",
-   },
-
-  overlay: {
-    position: "absolute",
-    inset: 0,
-    background: "rgba(25,35,45,.70)",
-  },
-
-  lightOverlay: {
-    position: "absolute",
-    inset: 0,
-      background: "rgba(25,35,45,.70)",
-  },
-
-  content: {
-    position: "relative",
-    zIndex: 2,
-    maxWidth: "800px",
-    textAlign: "center",
-    padding: "50px",
-  },
-
-  title: {
-    fontSize: "52px",
-    color: "#fff",
-    marginBottom: "30px",
-    fontWeight: "700",
-  },
-
-  text: {
-    color: "#fff",
-    fontSize: "22px",
-    lineHeight: "1.5",
-    marginBottom: "45px",
-  },
-
-  pinkBtn: {
-    background: "#ff6b81",
-    color: "#fff",
-    border: "none",
-    padding: "12px 25px",
-    fontSize: "18px",
-    fontWeight: "600",
-    borderRadius: "2px",
-    cursor: "pointer",
-  },
-  
-  blueBtn: {
-    background: "#0B4A92",
-    color: "#fff",
-    border: "none",
-    padding: "16px 45px",
-    fontSize: "18px",
-    fontWeight: "700",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-
-
-contactBar: {
-  width: "200%",
-  background: "#0B4A92",
-  color: "#fff",
-  padding: "18px 0",
-  overflow: "hidden",
-},
-
-marquee: {
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-},
-
-track: {
-  display: "inline-flex",
-  alignItems: "center",
-  animation: "scroll 30s linear infinite",
-},
-
-item: {
-  marginRight: "80px",
-  fontSize: "18px",
-  fontWeight: "600",
-},
-
-
-gallerySection: {
-  position: "relative",
-  padding: "100px 0",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  overflow: "hidden",
-},
-
-galleryOverlay: {
-  position: "absolute",
-  inset: 0,
-  background: "rgba(0,0,0,0.65)",
-},
-
-galleryContent: {
-  position: "relative",
-  zIndex: 2,
-},
-
-galleryTitle: {
-  color: "#fff",
-  fontSize: "48px",
-  textAlign: "center",
-  marginBottom: "60px",
-  fontWeight: "700",
-},
-
-slider: {
-  display: "flex",
-  gap: "30px",
-  width: "max-content",
-  paddingLeft: "40px",
-},
-
-imageCard: {
-  width: "350px",
-  height: "450px",
-  borderRadius: "18px",
-  overflow: "hidden",
-  flexShrink: 0,
-  boxShadow: "0 15px 40px rgba(0,0,0,.35)",
-  cursor: "pointer",
-  transition: ".4s",
-},
-
-image: {
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  transition: ".5s",
-},
-
-servicesSection: {
-  position: "relative",
-  padding: "120px 8%",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-},
-
-servicesOverlay: {
-  position: "absolute",
-  inset: 0,
-  background: "rgba(5,15,40,.82)",
-},
-
-sectionContent: {
-  position: "relative",
-  zIndex: 2,
-},
-
-smallTitle: {
-  color: "#4F46E5",
-  letterSpacing: "3px",
-  fontWeight: 700,
-  marginBottom: 15,
-},
-
-sectionTitle: {
-  color: "#fff",
-  fontSize: "52px",
-  fontWeight: 800,
-  marginBottom: 20,
-},
-
-sectionText: {
-  color: "#d1d5db",
-  fontSize: "18px",
-  maxWidth: "700px",
-  lineHeight: 1.8,
-  marginBottom: "60px",
-},
-
-cardGrid: {
-  display: "grid",
-  gridTemplateColumns: "repeat(3,1fr)",
-  gap: "35px",
-},
-
-processSection: {
-  padding: "110px 8%",
-  background:
-    "linear-gradient(#0B4A92)",
-  textAlign: "center",
-  color: "#fff",
-},
-
-smallHeading: {
-  fontSize: 24,
-  fontWeight: 300,
-  marginBottom: 15,
-  letterSpacing: 2,
-},
-
-mainHeading: {
-  fontSize: 64,
-  fontWeight: 800,
-  marginBottom: 90,
-},
-
-processContainer: {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: 20,
-},
-
-step: {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-},
-
-iconCircle: {
-  width: 150,
-  height: 150,
-  borderRadius: "50%",
-  background: "#fff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  position: "relative",
-  boxShadow: "12px 12px 0 rgba(255,255,255,.18)",
-},
-
-number: {
-  position: "absolute",
-  top: -8,
-  right: -8,
-  width: 50,
-  height: 50,
-  borderRadius: "50%",
-  background: "#5f0bde",
-  color: "#fff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 700,
-  fontSize: 24,
-  border: "6px solid rgba(255,255,255,.15)",
-},
-
-title: {
-  marginTop: 35,
-  fontSize: 38,
-  fontWeight: 700,
-},
-
-desc: {
-  marginTop: 20,
-  color: "#f4f4f4",
-  fontSize: 24,
-  lineHeight: 1.8,
-  maxWidth: 420,
-},
-
-arrow: {
-  marginTop: -80,
-},
-
-
-};
