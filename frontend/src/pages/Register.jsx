@@ -1,11 +1,88 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import bg from "../assets/digital.jpg";
 
+import {
+  login as loginUser,
+  register,
+} from "../services/authService";
+
 export default function Auth() {
+  const navigate = useNavigate();
+
   const [login, setLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      return alert("Please fill all required fields.");
+    }
+
+    if (!login && !formData.name) {
+      return alert("Please enter your full name.");
+    }
+
+    try {
+      setLoading(true);
+
+      if (login) {
+        const res = await loginUser({
+          email: formData.email,
+          password: formData.password,
+        });
+
+        localStorage.setItem("token", res.data.token);
+
+        alert("Login Successful");
+
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+
+        navigate("/");
+      } else {
+        await register(formData);
+
+        alert("Registration Successful");
+
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+
+        setLogin(true);
+      }
+    } catch (err) {
+      alert(
+        err.response?.data?.message ||
+          "Something went wrong."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -26,7 +103,9 @@ export default function Auth() {
           transition={{ duration: 0.8 }}
         >
           <h2 style={styles.heading}>
-            {login ? "Welcome Back" : "Student Registration"}
+            {login
+              ? "Welcome Back"
+              : "Student Registration"}
           </h2>
 
           <p style={styles.subHeading}>
@@ -35,41 +114,62 @@ export default function Auth() {
               : "Create your account and start learning today."}
           </p>
 
-          {!login && (
+          <form
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
+            {!login && (
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                style={styles.input}
+              />
+            )}
+
             <input
-              type="text"
-              placeholder="Full Name"
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
               style={styles.input}
             />
-          )}
 
-          <input
-  type="email"
-  name="user_email"
-  autoComplete="off"
-  placeholder="Email Address"
-  style={styles.input}
-/>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              style={styles.input}
+            />
 
-<input
-  type="password"
-  name="user_password"
-  autoComplete={login ? "current-password" : "new-password"}
-  placeholder="Password"
-  style={styles.input}
-/>
+            {login && (
+              <div style={styles.forgot}>
+                <Link
+                  to="/forgot-password"
+                  style={styles.link}
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+            )}
 
-          {login && (
-            <div style={styles.forgot}>
-              <a href="/" style={styles.link}>
-                Forgot Password?
-              </a>
-            </div>
-          )}
-
-          <button style={styles.button}>
-            {login ? "Login" : "Register"}
-          </button>
+            <button
+              type="submit"
+              style={styles.button}
+              disabled={loading}
+            >
+              {loading
+                ? "Please wait..."
+                : login
+                ? "Login"
+                : "Register"}
+            </button>
+          </form>
 
           <p style={styles.switchText}>
             {login
@@ -78,7 +178,15 @@ export default function Auth() {
 
             <span
               style={styles.switchBtn}
-              onClick={() => setLogin(!login)}
+              onClick={() => {
+                setLogin(!login);
+
+                setFormData({
+                  name: "",
+                  email: "",
+                  password: "",
+                });
+              }}
             >
               {login ? " Register" : " Login"}
             </span>
@@ -180,7 +288,7 @@ const styles = {
   },
 
   switchBtn: {
-    color:  "#4F46E5",
+    color: "#4F46E5",
     cursor: "pointer",
     fontWeight: "600",
   },

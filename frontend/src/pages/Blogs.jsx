@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "./Blogs.css";
-import blogHero  from "../assets/blog.jpg";
 
+import "./Blogs.css";
+
+import blogHero from "../assets/blog.jpg";
 import featuredBlog from "../assets/featureblog.jpg";
 
+import { getBlogs } from "../services/blogService";
+
+
 export default function Blog() {
+
+const [blogs, setBlogs] = useState([]);
+
+useEffect(() => {
+  fetchBlogs();
+}, []);
+
+const fetchBlogs = async () => {
+  try {
+    const res = await getBlogs();
+
+    console.log(res.data);
+
+    setBlogs(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
   return (
     <>
       <Navbar />
@@ -60,57 +85,60 @@ export default function Blog() {
 
 
 <section className="featured-section">
-  <motion.div
-    className="featured-container"
-    initial={{ opacity: 0, y: 70 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-  >
-    {/* Left Image */}
-    <motion.div
-      className="featured-image-wrapper"
-      whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.4 }}
-    >
-      <img
-        src={featuredBlog}
-        alt="Featured Blog"
-        className="featured-image"
-      />
-    </motion.div>
 
-    {/* Right Content */}
-    <div className="featured-content">
+{blogs.length > 0 && (
 
-      <span className="featured-category">
-        Technology
-      </span>
+<motion.div
+className="featured-container"
+initial={{ opacity: 0, y: 70 }}
+whileInView={{ opacity: 1, y: 0 }}
+transition={{ duration: 0.8 }}
+viewport={{ once: true }}
+>
 
-      <h2 className="featured-title">
-        The Future of Artificial Intelligence
-        in Modern Business
-      </h2>
+<div className="featured-image-wrapper">
 
-      <p className="featured-description">
-        Artificial Intelligence is transforming industries faster than ever.
-        From intelligent automation to predictive analytics and smart
-        customer experiences, discover how AI is reshaping modern businesses
-        and creating new opportunities for innovation.
-      </p>
+<img
+src={blogs[0].image || featuredBlog}
+alt={blogs[0].title}
+className="featured-image"
+/>
 
-      <div className="featured-meta">
-        January 12, 2026
-        <span className="featured-dot">•</span>
-        8 min read
-      </div>
+</div>
 
-      <button className="featured-btn">
-        Read Full Article →
-      </button>
+<div className="featured-content">
 
-    </div>
-  </motion.div>
+<span className="featured-category">
+{blogs[0].category}
+</span>
+
+<h2 className="featured-title">
+{blogs[0].title}
+</h2>
+
+<p className="featured-description">
+{blogs[0].description}
+</p>
+
+<div className="featured-meta">
+{blogs[0].createdAt}
+<span className="featured-dot">•</span>
+{blogs[0].readTime}
+</div>
+
+<Link
+to={`/blog/${blogs[0]._id}`}
+className="featured-btn"
+>
+Read Full Article →
+</Link>
+
+</div>
+
+</motion.div>
+
+)}
+
 </section>
 
 
@@ -182,78 +210,84 @@ export default function Blog() {
 
 <section className="popular-section">
 
-  <motion.div
-    className="popular-heading"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-  >
+<motion.div
+className="popular-heading"
+initial={{ opacity: 0, y: 50 }}
+whileInView={{ opacity: 1, y: 0 }}
+transition={{ duration: 0.8 }}
+viewport={{ once: true }}
+>
 
-    <p className="popular-small-title">
-      TRENDING
-    </p>
+<p className="popular-small-title">
+TRENDING
+</p>
 
-    <h2 className="popular-title">
-      Popular <span>Articles</span>
-    </h2>
+<h2 className="popular-title">
+Popular <span>Articles</span>
+</h2>
 
-    <p className="popular-text">
-      Discover the articles our readers love the most.
-    </p>
+<p className="popular-text">
+Discover the articles our readers love the most.
+</p>
 
-  </motion.div>
+</motion.div>
 
-  <div className="popular-grid">
+<div className="popular-grid">
 
-    {[1, 2, 3].map((item, index) => (
+{Array.isArray(blogs) &&
+  blogs.slice(1).map((blog, index) => (
 
-      <motion.div
-        key={index}
-        className="popular-card"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          delay: index * 0.15,
-        }}
-        viewport={{ once: true }}
-        whileHover={{
-          y: -10,
-        }}
-      >
+<motion.div
+key={blog._id}
+className="popular-card"
+initial={{ opacity: 0, y: 50 }}
+whileInView={{ opacity: 1, y: 0 }}
+transition={{
+duration: 0.6,
+delay: index * 0.15,
+}}
+viewport={{ once: true }}
+whileHover={{ y: -10 }}
+>
 
-        <div className="popular-image-wrapper">
+<div className="popular-image-wrapper">
 
-          <img
-            src={featuredBlog}
-            alt="Popular Blog"
-            className="popular-image"
-          />
+<img
+src={blog.image || featuredBlog}
+alt={blog.title}
+className="popular-image"
+/>
 
-        </div>
+</div>
 
-        <div className="popular-content">
+<div className="popular-content">
 
-          <span className="read-time">
-            8 min read
-          </span>
+<span className="read-time">
+{blog.readTime}
+</span>
 
-          <h3 className="popular-card-title">
-            AI is Revolutionizing Modern Business
-          </h3>
+<h3 className="popular-card-title">
+{blog.title}
+</h3>
 
-          <button className="read-btn">
-            Read Article →
-          </button>
+<p>
+{blog.description.substring(0,80)}...
+</p>
 
-        </div>
+<Link
+to={`/blog/${blog._id}`}
+className="read-btn"
+>
+Read Article →
+</Link>
 
-      </motion.div>
+</div>
 
-    ))}
+</motion.div>
 
-  </div>
+))}
+
+</div>
 
 </section>
 
