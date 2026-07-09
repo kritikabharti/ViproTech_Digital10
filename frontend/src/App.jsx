@@ -9,10 +9,9 @@ import Blogs from "./pages/Blogs";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 
-import Dashboard from "./admin/Dashboard";
-import AddBlog from "./admin/AddBlog";
-import BlogList from "./admin/BlogList";
-import EditBlog from "./admin/EditBlog";
+import AdminDashboard from "./pages/AdminDashboard";
+import AddBlog from "./pages/AddBlog";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -22,22 +21,35 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-     
-               <Route path="/register" element={<Register />} />
+      
+       <Route path="/register" element={<Register />} />
+       
+               
 
 <Route path="/blogs" element={<Blogs />} />
 <Route path="/careers" element={<Careers />} />
 <Route path="/contact" element={<Contact />} />
 
-<Route path="/admin" element={<Dashboard />} />
-
-<Route path="/admin/add-blog" element={<AddBlog />} />
-
-<Route path="/admin/blogs" element={<BlogList />} />
-
-<Route path="/admin/edit-blog/:id" element={<EditBlog />} />
 
 
+
+<Route
+  path="/admin"
+  element={
+    // <ProtectedRoute>
+      <AdminDashboard />
+   // </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/admin/add-blog"
+  element={
+    //<ProtectedRoute>
+      <AddBlog />
+    //</ProtectedRoute>
+  }
+/>
 
        
 

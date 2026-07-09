@@ -13,6 +13,10 @@ export default function Navbar() {
 const [showDropdown, setShowDropdown] = useState(false);
 const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
 
+const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+const isSuperAdmin = user?.role === "superadmin";
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -51,6 +55,30 @@ const [selectedDomain, setSelectedDomain] = useState(serviceDomains[0]);
 
         {/* Navigation */}
       <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+
+     {/* {isSuperAdmin && (
+<> */}
+<li>
+  <NavLink
+    to="/admin"
+    className="nav-link"
+  >
+    AdminDashboard
+  </NavLink>
+</li>
+
+<li>
+  <NavLink
+    to="/admin/add-blog"
+    className="nav-link"
+  >
+    Add Blog
+  </NavLink>
+</li>
+
+{/* </> */}
+{/* )} */}
+
   <li>
    <NavLink
   to="/register"

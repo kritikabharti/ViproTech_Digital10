@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import {motion} from "framer-motion";
 import {
   FaCloudUploadAlt,
@@ -6,6 +7,7 @@ import {
   FaAward,
 } from "react-icons/fa";
 import "./Home.css";
+import { ArrowRight, Users, ChevronRight, Briefcase } from 'lucide-react';
 import { HiArrowLongRight } from "react-icons/hi2";
 
 import Footer from "../components/Footer";
@@ -24,6 +26,8 @@ import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
 import img4 from "../assets/img4.jpg";
 
+import aboutImage from '../assets/prooo.jpg';
+import teamImage from '../assets/unnn.jpg';
 
 
 
@@ -76,16 +80,141 @@ const cardVariants = {
 
 
 
+
 export default function Home() {
+
   return (
     <>
-  {/* First Section - Fullscreen Video */}
+  {/* First Section - Fullscreen Video
   <section className="home">
     <video autoPlay loop muted playsInline className="video-bg">
       <source src={videos} type="video/mp4" />
     </video>
-  </section>
+  </section> */}
 
+<section className="two-image-section">
+      <div className="two-image-container">
+        
+        {/* LEFT - Image with Motion */}
+        <motion.div 
+          className="left-image-wrapper"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.div 
+            className="left-image-container"
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <img 
+              src={aboutImage} 
+              alt="VProTech Digital Team"
+              className="left-image"
+            />
+           
+          </motion.div>
+        </motion.div>
+
+        {/* RIGHT - Still Image with Content */}
+        <div className="right-image-wrapper">
+          <div className="right-image-container">
+            <img 
+              src={teamImage} 
+              alt="VProTech Digital Work"
+              className="right-image"
+            />
+            
+            {/* Content Overlay on Right Image */}
+            <div className="right-image-content">
+              <motion.div 
+                className="content-inner"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+               
+
+                <motion.h2 
+                  className="content-title"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  VProTech <span className="highlight">Digital</span>
+                </motion.h2>
+
+                <motion.p 
+                  className="content-description"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                 Founded in 2020 in Mohali, Punjab, VProtech Digital operates as a multifaceted IT solutions firm and technical vocational training institute. The company delivers commercial digital services including custom website development, mobile application design, and targeted search engine optimization. 
+                 Simultaneously, they offer intensive six-week and six-month industrial training programs focused on live-project experience in web development, Python, and digital marketing. To bridge the gap between education and employment, they also provide graduating engineering and computer students with comprehensive job placement assistance.
+                </motion.p>
+
+                
+                 <motion.div 
+                  className="content-buttons"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Why Us Button - Navigates to /about */}
+                 <div className="content-buttons">
+  {/* Why Us Button - Navigates to /about */}
+  <motion.div
+    className="button-wrapper"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.8 }}
+    viewport={{ once: true }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <Link to="/about" className="content-cta primary">
+      <Users size={18} />
+      Why Us
+      <ChevronRight size={16} />
+    </Link>
+  </motion.div>
+
+  {/* Career Button - Navigates to /career */}
+  <motion.div
+    className="button-wrapper"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.9 }}
+    viewport={{ once: true }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <Link to="/careers" className="content-cta secondary">
+      <Briefcase size={18} />
+      Career
+      <ChevronRight size={16} />
+    </Link>
+  </motion.div>
+</div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
 
