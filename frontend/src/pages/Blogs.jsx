@@ -1,443 +1,233 @@
+// src/pages/Blogs.jsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-
+import toast, { Toaster } from "react-hot-toast";
+import { 
+  Search, 
+  Calendar, 
+  Clock, 
+  User,
+  ChevronRight,
+  Eye
+} from "lucide-react";
+import { blogService } from "../services/api";
 import "./Blogs.css";
 
-import blogHero from "../assets/blog.jpg";
-import featuredBlog from "../assets/featureblog.jpg";
+export default function Blogs() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-import { getBlogs } from "../services/blogService";
+  const categories = [
+    "All",
+    "Artificial Intelligence",
+    "Web Development",
+    "Mobile Apps",
+    "Cloud Computing",
+    "Cyber Security",
+    "Digital Marketing",
+    "Career Tips",
+    "Internships",
+  ];
 
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
-export default function Blog() {
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      const response = await blogService.getBlogs();
+      setBlogs(response.blogs || []);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+      toast.error("Failed to load blogs");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-const [blogs, setBlogs] = useState([]);
+  const filteredBlogs = blogs.filter((blog) => {
+    const matchesSearch = 
+      blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.category?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesCategory = 
+      selectedCategory === "All" || blog.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
 
-useEffect(() => {
-  fetchBlogs();
-}, []);
+  const formatDate = (date) => {
+    if (!date) return "";
+    return new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
-const fetchBlogs = async () => {
-  try {
-    const res = await getBlogs();
+  // Get featured blog (first one or most viewed)
+  const featuredBlog = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
+  const remainingBlogs = filteredBlogs.length > 1 ? filteredBlogs.slice(1) : [];
 
-    console.log(res.data);
-
-    setBlogs(res.data);
-  } catch (error) {
-    console.log(error);
+  if (loading) {
+    return (
+      <div className="blogs-loading">
+        <div className="spinner"></div>
+        <p>Loading blogs...</p>
+      </div>
+    );
   }
-};
 
   return (
-    <>
-      <Navbar />
+    <div className="blogs-container">
+      <Toaster position="top-right" />
 
-   
-<section
-  className="blog-hero"
-  style={{
-    backgroundImage: `url(${blogHero})`,
-  }}
->
-  <div className="blog-overlay"></div>
+      {/* Hero Section */}
+      <section className="blogs-hero">
+        <div className="blogs-hero-overlay"></div>
+        <motion.div 
+          className="blogs-hero-content"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1>Our <span className="highlight">Blogs</span></h1>
+          <p>Discover expert articles, technology trends, and insights from our team</p>
+        </motion.div>
+      </section>
 
-  <motion.div
-    className="blog-hero-content"
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.9 }}
-  >
-    <p className="blog-small-title">
-      KNOWLEDGE • TECHNOLOGY • INNOVATION
-    </p>
+      {/* Search and Filter */}
+      <section className="blogs-filters">
+        <div className="container">
+          <div className="filter-row">
+            <div className="search-box">
+              <Search size={20} />
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="category-filters">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  className={`category-btn ${selectedCategory === cat ? "active" : ""}`}
+                  onClick={() => setSelectedCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <h1 className="blog-title">
-      Our <span className="highlight">Blogs</span> &
-      <br />
-      Insights
-    </h1>
+      {/* Blogs Grid */}
+      <section className="blogs-grid-section">
+        <div className="container">
+          {filteredBlogs.length === 0 ? (
+            <div className="no-blogs">
+              <div className="no-blogs-icon">📝</div>
+              <h3>No blogs found</h3>
+              <p>
+                {searchTerm || selectedCategory !== "All"
+                  ? "Try adjusting your search or filter"
+                  : "Check back later for new articles"}
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Featured Blog */}
+              {featuredBlog && (
+                <motion.div 
+                  className="featured-blog"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="featured-blog-image">
+                    <img
+                      src={featuredBlog.image || "https://via.placeholder.com/800x400/1e293b/4F46E5?text=VProTech"}
+                      alt={featuredBlog.title}
+                    />
+                    <span className="featured-badge">Featured</span>
+                  </div>
+                  <div className="featured-blog-content">
+                    <span className="blog-category">{featuredBlog.category}</span>
+                    <h2>{featuredBlog.title}</h2>
+                    <p>{featuredBlog.description}</p>
+                    <div className="blog-meta">
+                      <span>
+                        <Calendar size={16} />
+                        {formatDate(featuredBlog.createdAt)}
+                      </span>
+                      <span>
+                        <Clock size={16} />
+                        {featuredBlog.readTime || "5 min read"}
+                      </span>
+                      <span>
+                        <User size={16} />
+                        {featuredBlog.author || "VProTech Digital"}
+                      </span>
+                    </div>
+                    <Link to={`/blog/${featuredBlog._id}`} className="read-more-btn">
+                      Read Full Article
+                      <ChevronRight size={18} />
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
 
-    <p className="blog-description">
-      Discover expert articles, technology trends, software development
-      guides, AI innovations, cybersecurity insights, and professional
-      career resources written by the VProTech Digital team.
-    </p>
-
-    <div className="search-box">
-      <input
-        type="text"
-        placeholder="Search articles..."
-        className="search-input"
-      />
-
-      <button className="search-btn">
-        Search
-      </button>
+              {/* Blog Grid */}
+              <div className="blog-grid">
+                {remainingBlogs.map((blog, index) => (
+                  <motion.div
+                    key={blog._id}
+                    className="blog-card"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="blog-card-image">
+                      <img
+                        src={blog.image || "https://via.placeholder.com/400x250/1e293b/4F46E5?text=VProTech"}
+                        alt={blog.title}
+                      />
+                      <span className="blog-card-category">{blog.category}</span>
+                    </div>
+                    <div className="blog-card-body">
+                      <h3>{blog.title}</h3>
+                      <p>{blog.description?.substring(0, 120)}...</p>
+                      <div className="blog-card-meta">
+                        <span>
+                          <Calendar size={14} />
+                          {formatDate(blog.createdAt)}
+                        </span>
+                        <span>
+                          <Clock size={14} />
+                          {blog.readTime || "5 min read"}
+                        </span>
+                      </div>
+                      <Link to={`/blog/${blog._id}`} className="blog-card-link">
+                        Read More
+                        <ChevronRight size={16} />
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
     </div>
-  </motion.div>
-</section>
-
-
-
-<section className="featured-section">
-
-{blogs.length > 0 && (
-
-<motion.div
-className="featured-container"
-initial={{ opacity: 0, y: 70 }}
-whileInView={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.8 }}
-viewport={{ once: true }}
->
-
-<div className="featured-image-wrapper">
-
-<img
-src={blogs[0].image || featuredBlog}
-alt={blogs[0].title}
-className="featured-image"
-/>
-
-</div>
-
-<div className="featured-content">
-
-<span className="featured-category">
-{blogs[0].category}
-</span>
-
-<h2 className="featured-title">
-{blogs[0].title}
-</h2>
-
-<p className="featured-description">
-{blogs[0].description}
-</p>
-
-<div className="featured-meta">
-{blogs[0].createdAt}
-<span className="featured-dot">•</span>
-{blogs[0].readTime}
-</div>
-
-<Link
-to={`/blog/${blogs[0]._id}`}
-className="featured-btn"
->
-Read Full Article →
-</Link>
-
-</div>
-
-</motion.div>
-
-)}
-
-</section>
-
-
-
-<section className="category-section">
-
-  <motion.div
-    className="category-heading"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-  >
-    <p className="category-small-title">
-      DISCOVER MORE
-    </p>
-
-    <h2 className="category-title">
-      Browse by <span className="text-primary">Category</span>
-    </h2>
-
-    <p className="category-description">
-      Explore articles tailored to your interests in technology,
-      software engineering, artificial intelligence and career growth.
-    </p>
-  </motion.div>
-
-  <div className="category-grid">
-
-    {[
-      "Artificial Intelligence",
-      "Web Development",
-      "Mobile Apps",
-      "Cloud Computing",
-      "Cyber Security",
-      "Digital Marketing",
-      "Career Tips",
-      "Internships"
-    ].map((item, index) => (
-
-      <motion.div
-        key={index}
-        className="category-card"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.5,
-          delay: index * 0.1,
-        }}
-        viewport={{ once: true }}
-        whileHover={{
-          y: -10,
-          scale: 1.05,
-        }}
-      >
-        <h3 className="category-name">
-          {item}
-        </h3>
-
-      </motion.div>
-
-    ))}
-
-  </div>
-
-</section>
-
-
-
-<section className="popular-section">
-
-<motion.div
-className="popular-heading"
-initial={{ opacity: 0, y: 50 }}
-whileInView={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.8 }}
-viewport={{ once: true }}
->
-
-<p className="popular-small-title">
-TRENDING
-</p>
-
-<h2 className="popular-title">
-Popular <span>Articles</span>
-</h2>
-
-<p className="popular-text">
-Discover the articles our readers love the most.
-</p>
-
-</motion.div>
-
-<div className="popular-grid">
-
-{Array.isArray(blogs) &&
-  blogs.slice(1).map((blog, index) => (
-
-<motion.div
-key={blog._id}
-className="popular-card"
-initial={{ opacity: 0, y: 50 }}
-whileInView={{ opacity: 1, y: 0 }}
-transition={{
-duration: 0.6,
-delay: index * 0.15,
-}}
-viewport={{ once: true }}
-whileHover={{ y: -10 }}
->
-
-<div className="popular-image-wrapper">
-
-<img
-src={blog.image || featuredBlog}
-alt={blog.title}
-className="popular-image"
-/>
-
-</div>
-
-<div className="popular-content">
-
-<span className="read-time">
-{blog.readTime}
-</span>
-
-<h3 className="popular-card-title">
-{blog.title}
-</h3>
-
-<p>
-{blog.description.substring(0,80)}...
-</p>
-
-<Link
-to={`/blog/${blog._id}`}
-className="read-btn"
->
-Read Article →
-</Link>
-
-</div>
-
-</motion.div>
-
-))}
-
-</div>
-
-</section>
-
-
-<section style={styles.newsletterSection}>
-
-  <motion.div
-    style={styles.newsletterCard}
-    initial={{ opacity: 0, y: 60 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-  >
-
-    <p style={styles.newsletterSmall}>
-      JOIN OUR COMMUNITY
-    </p>
-
-    <h2 style={styles.newsletterTitle}>
-      Stay Updated with
-      <span style={{ color: "#FFD700" }}>
-        {" "}Technology Trends
-      </span>
-    </h2>
-
-    <p style={styles.newsletterText}>
-      Subscribe to receive the latest blogs, AI insights,
-      software engineering tips, internship opportunities,
-      digital marketing strategies, and technology news
-      directly in your inbox.
-    </p>
-
-    <div style={styles.subscribeBox}>
-
-      <input
-        type="email"
-        placeholder="Enter your email address"
-        style={styles.subscribeInput}
-      />
-
-      <motion.button
-        style={styles.subscribeButton}
-        whileHover={{
-          scale: 1.05,
-        }}
-        whileTap={{
-          scale: 0.95,
-        }}
-      >
-        Subscribe
-      </motion.button>
-
-    </div>
-
-    <div style={styles.bottomText}>
-
-      <span>✓ Weekly Updates</span>
-
-      <span>✓ No Spam</span>
-
-      <span>✓ Cancel Anytime</span>
-
-    </div>
-
-  </motion.div>
-
-</section>
-
-
-      <Footer />
-    </>
   );
-}
-
-
-
-const styles = {
-
-newsletterSection: {
-  padding: "120px 8%",
-  background: "#F8FAFC",
-},
-
-newsletterCard: {
-  maxWidth: "1100px",
-  margin: "auto",
-  padding: "80px 60px",
-  borderRadius: "30px",
-  textAlign: "center",
-  background: "linear-gradient(135deg,#4F46E5,#1E3A8A)",
-  color: "#fff",
-  boxShadow: "0 35px 80px rgba(79,70,229,.25)",
-},
-
-newsletterSmall: {
-  letterSpacing: "4px",
-  fontWeight: "600",
-  color: "#FFD700",
-  marginBottom: "20px",
-},
-
-newsletterTitle: {
-  fontSize: "54px",
-  fontWeight: "800",
-  marginBottom: "25px",
-},
-
-newsletterText: {
-  maxWidth: "700px",
-  margin: "auto",
-  color: "#E5E7EB",
-  lineHeight: "1.8",
-  fontSize: "18px",
-},
-
-subscribeBox: {
-  marginTop: "50px",
-  display: "flex",
-  justifyContent: "center",
-  gap: "20px",
-  flexWrap: "wrap",
-},
-
-subscribeInput: {
-  width: "500px",
-  padding: "18px 24px",
-  borderRadius: "50px",
-  border: "none",
-  outline: "none",
-  fontSize: "16px",
-},
-
-subscribeButton: {
-  padding: "18px 35px",
-  borderRadius: "50px",
-  border: "none",
-  background: "#FFD700",
-  color: "#111827",
-  fontWeight: "700",
-  fontSize: "16px",
-  cursor: "pointer",
-},
-
-bottomText: {
-  marginTop: "35px",
-  display: "flex",
-  justifyContent: "center",
-  gap: "35px",
-  color: "#E5E7EB",
-  flexWrap: "wrap",
-},
-
 }

@@ -1,45 +1,67 @@
+// src/pages/AddBlog.jsx
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
-import {
+import { motion, AnimatePresence } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
+import { 
+  ArrowLeft, 
+  Save, 
+  X, 
+  Image, 
+  Tag, 
+  Clock, 
+  User,
   Plus,
-  Edit,
   Trash2,
-  Save,
-  X,
-  Image,
-  Tag,
-  Calendar,
-  Clock,
+  Upload,
+  FileImage,
+  Edit,
   Eye,
-  ArrowLeft,
+  EyeOff,
   Search,
+  Calendar,
+  RefreshCw,
   Filter,
-  ChevronDown
+  ChevronDown,
+  FileText,
+  AlertCircle,
+  CheckCircle,
+  TrendingUp,
+  Star,
+  Globe
 } from "lucide-react";
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { blogService } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import "./AddBlog.css";
 
+const categories = [
+  "Artificial Intelligence",
+  "Web Development",
+  "Mobile Apps",
+  "Cloud Computing",
+  "Cyber Security",
+  "Digital Marketing",
+  "Career Tips",
+  "Internships",
+];
 
 export default function AddBlog() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { user } = useAuth();
   const isEditing = !!id;
 
-  // State Management
+  // ============ STATES ============
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [editingBlog, setEditingBlog] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterCategory, setFilterCategory] = useState("All");
-  const [useMockData, setUseMockData] = useState(true);
-
-  // Form state
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterCategory, setFilterCategory] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedBlogId, setSelectedBlogId] = useState(null);
+  
+  // Form states
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -47,93 +69,53 @@ export default function AddBlog() {
     content: "",
     image: "",
     readTime: "",
-    author: ""
+    author: "",
+    tags: [],
+    isPublished: true,
+    featured: false,
   });
+  const [tagInput, setTagInput] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [editingBlog, setEditingBlog] = useState(null);
 
-  // Categories list
-  const categories = [
-    "All",
-    "Artificial Intelligence",
-    "Web Development",
-    "Mobile Apps",
-    "Cloud Computing",
-    "Cyber Security",
-    "Digital Marketing",
-    "Career Tips",
-    "Internships"
-  ];
-
-  // Fetch blogs on component mount
+  // ============ FETCH BLOGS ============
   useEffect(() => {
     fetchBlogs();
   }, []);
 
-  // Filter blogs based on search and category
-  const filteredBlogs = blogs.filter(blog => {
-    const matchesSearch = 
-      blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.category?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.author?.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesCategory = filterCategory === "All" || blog.category === filterCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
+  useEffect(() => {
+    if (isEditing && id) {
+      const blogToEdit = blogs.find(b => b._id === id);
+      if (blogToEdit) {
+        handleEditBlog(blogToEdit);
+      }
+    }
+  }, [isEditing, id, blogs]);
 
-  // Fetch all blogs
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      
-      if (useMockData) {
-        setTimeout(() => {
-          setBlogs(MOCK_BLOGS);
-          setError("");
-          setLoading(false);
-        }, 500);
-        return;
-      }
-
-      // Uncomment when API is ready
-      // const res = await getBlogs();
-      // setBlogs(res.data?.blogs || res.data || []);
-      
-    } catch (err) {
-      setError("Failed to fetch blogs");
-      console.error(err);
+      const response = await blogService.getAdminBlogs();
+      setBlogs(response.blogs || []);
+    } catch (error) {
+      toast.error("Failed to load blogs");
+    } finally {
       setLoading(false);
     }
   };
 
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  // Reset form
-  const resetForm = () => {
-    setFormData({
-      title: "",
-      category: "",
-      description: "",
-      content: "",
-      image: "",
-      readTime: "",
-      author: ""
-    });
+  // ============ BLOG LIST FUNCTIONS ============
+  const handleCreateNew = () => {
+    resetForm();
     setEditingBlog(null);
-    setShowForm(false);
-    setError("");
-    setSuccess("");
+    setShowForm(true);
   };
 
-  // Load blog for editing
-  const handleEdit = (blog) => {
+  const handleEditBlog = (blog) => {
     setEditingBlog(blog);
     setFormData({
       title: blog.title || "",
@@ -142,101 +124,221 @@ export default function AddBlog() {
       content: blog.content || "",
       image: blog.image || "",
       readTime: blog.readTime || "",
-      author: blog.author || ""
+      author: blog.author || user?.name || "",
+      tags: blog.tags || [],
+      isPublished: blog.isPublished !== undefined ? blog.isPublished : true,
+      featured: blog.featured || false,
     });
+    setImagePreview(blog.image || "");
     setShowForm(true);
-    setError("");
-    setSuccess("");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSelectedBlogId(blog._id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Handle form submit (Create or Update)
+  const handleCancelForm = () => {
+    resetForm();
+    setShowForm(false);
+    setEditingBlog(null);
+    setSelectedBlogId(null);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      title: "",
+      category: "",
+      description: "",
+      content: "",
+      image: "",
+      readTime: "",
+      author: "",
+      tags: [],
+      isPublished: true,
+      featured: false,
+    });
+    setTagInput("");
+    setImagePreview("");
+    setImageFile(null);
+  };
+
+  // ============ FORM HANDLERS ============
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size should be less than 5MB');
+      return;
+    }
+
+    setImageFile(file);
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+      setFormData(prev => ({
+        ...prev,
+        image: reader.result
+      }));
+    };
+    reader.readAsDataURL(file);
+    
+    toast.success('Image uploaded successfully!');
+  };
+
+  const handleRemoveImage = () => {
+    setImagePreview("");
+    setImageFile(null);
+    setFormData(prev => ({
+      ...prev,
+      image: ""
+    }));
+    const fileInput = document.getElementById('image-upload');
+    if (fileInput) fileInput.value = '';
+  };
+
+  const handleAddTag = () => {
+    if (tagInput.trim() && !formData.tags.includes(tagInput.trim())) {
+      setFormData({
+        ...formData,
+        tags: [...formData.tags, tagInput.trim()],
+      });
+      setTagInput("");
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove) => {
+    setFormData({
+      ...formData,
+      tags: formData.tags.filter((tag) => tag !== tagToRemove),
+    });
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddTag();
+    }
+  };
+
+  // ============ SUBMIT BLOG ============
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess("");
 
+    if (!formData.title || !formData.category || !formData.description || !formData.content) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setFormLoading(true);
     try {
       const submitData = {
         ...formData,
-        readTime: formData.readTime || "5 min read"
+        author: formData.author || user?.name || "VProTech Digital",
+        readTime: formData.readTime || "5 min read",
       };
 
+      let response;
       if (editingBlog) {
-        // UPDATE: Update existing blog
-        if (useMockData) {
-          const updatedBlogs = blogs.map(blog => 
-            blog._id === editingBlog._id 
-              ? { 
-                  ...blog, 
-                  ...submitData,
-                  updatedAt: new Date().toISOString()
-                }
-              : blog
-          );
-          setBlogs(updatedBlogs);
-          setSuccess("✅ Blog updated successfully!");
-        }
+        response = await blogService.updateBlog(editingBlog._id, submitData);
+        toast.success("Blog updated successfully!");
       } else {
-        // CREATE: Create new blog
-        if (useMockData) {
-          const newBlog = {
-            ...submitData,
-            _id: Date.now().toString(),
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-          };
-          setBlogs([newBlog, ...blogs]);
-          setSuccess("✅ Blog created successfully!");
-        }
+        response = await blogService.createBlog(submitData);
+        toast.success("Blog created successfully!");
       }
+
+      await fetchBlogs();
       
-      // Auto close form after success
       setTimeout(() => {
-        resetForm();
-        setSuccess("");
-      }, 3000);
+        handleCancelForm();
+        navigate("/admin/add-blog");
+      }, 1500);
       
-    } catch (err) {
-      setError("Failed to save blog");
-      console.error(err);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to save blog");
     } finally {
-      setLoading(false);
+      setFormLoading(false);
     }
   };
 
-  // Handle delete blog
-  const handleDelete = async (blogId) => {
-    if (!window.confirm("Are you sure you want to delete this blog?")) return;
+  // ============ DELETE BLOG ============
+  const handleDelete = async () => {
+    if (!editingBlog) return;
     
+    setDeleteLoading(true);
     try {
-      setLoading(true);
-      
-      if (useMockData) {
-        const updatedBlogs = blogs.filter(blog => blog._id !== blogId);
-        setBlogs(updatedBlogs);
-        setSuccess("🗑️ Blog deleted successfully!");
-        
-        if (editingBlog?._id === blogId) {
-          resetForm();
-        }
-        
-        setTimeout(() => setSuccess(""), 3000);
-      }
-      
-    } catch (err) {
-      setError("Failed to delete blog");
-      console.error(err);
+      await blogService.deleteBlog(editingBlog._id);
+      toast.success("Blog deleted successfully!");
+      setShowDeleteModal(false);
+      await fetchBlogs();
+      handleCancelForm();
+      setTimeout(() => {
+        navigate("/admin/add-blog");
+      }, 1000);
+    } catch (error) {
+      toast.error("Failed to delete blog");
     } finally {
-      setLoading(false);
+      setDeleteLoading(false);
     }
   };
 
-  // Format date
-  const formatDate = (dateString) => {
-    if (!dateString) return "N/A";
-    return new Date(dateString).toLocaleDateString('en-US', {
+  // ============ TOGGLE PUBLISH ============
+  const handleTogglePublish = async (blogId, currentStatus) => {
+    try {
+      await blogService.togglePublish(blogId);
+      const newStatus = !currentStatus;
+      toast.success(`Blog ${newStatus ? "published" : "unpublished"} successfully!`);
+      await fetchBlogs();
+    } catch (error) {
+      toast.error("Failed to toggle publish status");
+    }
+  };
+
+  // ============ VIEW BLOG ============
+  const handleViewBlog = (blogId) => {
+    navigate(`/blog/${blogId}`);
+  };
+
+  // ============ FILTER FUNCTIONS ============
+  const getStatusCount = (status) => {
+    if (status === "all") return blogs.length;
+    if (status === "published") return blogs.filter(b => b.isPublished).length;
+    if (status === "draft") return blogs.filter(b => !b.isPublished).length;
+    return 0;
+  };
+
+  const filteredBlogs = blogs.filter((blog) => {
+    const matchesSearch = 
+      blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.category?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.author?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesStatus = 
+      filterStatus === "all" ||
+      (filterStatus === "published" && blog.isPublished) ||
+      (filterStatus === "draft" && !blog.isPublished);
+    
+    const matchesCategory = 
+      filterCategory === "all" || blog.category === filterCategory;
+    
+    return matchesSearch && matchesStatus && matchesCategory;
+  });
+
+  const formatDate = (date) => {
+    if (!date) return "N/A";
+    return new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -244,273 +346,230 @@ export default function AddBlog() {
   };
 
   return (
-    <>
-      <Navbar />
+    <div className="addblog-container">
+      <Toaster position="top-right" />
 
-      <div className="addblog-container">
-        {/* Header */}
-        <div className="addblog-header">
-          <div className="header-left">
-            <button className="back-btn" onClick={() => navigate('/admin')}>
-              <ArrowLeft size={20} />
-              Back to Dashboard
-            </button>
-            <h1 className="addblog-title">📝 Manage Blogs</h1>
-          </div>
-          <button 
-            className="add-new-btn"
-            onClick={() => {
-              resetForm();
-              setShowForm(true);
-            }}
-          >
-            <Plus size={20} />
-            Add New Blog
-          </button>
-        </div>
-
-        {/* Messages */}
-        {success && (
-          <motion.div 
-            className="success-message"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {success}
-          </motion.div>
-        )}
-        {error && (
-          <motion.div 
-            className="error-message"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {error}
-          </motion.div>
-        )}
-
-        {/* Blog Form */}
-        {showForm && (
-          <motion.div 
-            className="blog-form-container"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-          >
-            <div className="form-header">
-              <h2>
-                {editingBlog ? (
-                  <>✏️ Edit Blog</>
-                ) : (
-                  <>📝 Create New Blog</>
-                )}
-              </h2>
-              <button className="close-form-btn" onClick={resetForm} title="Close form">
-                <X size={24} />
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="blog-form">
-              <div className="form-group">
-                <label htmlFor="title">
-                  <Tag size={16} />
-                  Title *
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                  placeholder="Enter blog title"
-                  required
-                />
+      {/* Delete Modal */}
+      <AnimatePresence>
+        {showDeleteModal && (
+          <div className="delete-modal-overlay" onClick={() => setShowDeleteModal(false)}>
+            <motion.div 
+              className="delete-modal"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="delete-modal-header">
+                <h3>Delete Blog</h3>
+                <button className="close-modal-btn" onClick={() => setShowDeleteModal(false)}>
+                  <X size={20} />
+                </button>
               </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="category">Category *</label>
-                  <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="">Select Category</option>
-                    {categories.filter(c => c !== "All").map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="readTime">
-                    <Clock size={16} />
-                    Read Time *
-                  </label>
-                  <input
-                    type="text"
-                    id="readTime"
-                    name="readTime"
-                    value={formData.readTime}
-                    onChange={handleInputChange}
-                    placeholder="e.g., 5 min read"
-                    required
-                  />
-                </div>
+              <div className="delete-modal-body">
+                <p>Are you sure you want to delete <strong>"{editingBlog?.title}"</strong>?</p>
+                <p className="delete-warning">This action cannot be undone.</p>
               </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Description *</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  placeholder="Brief description of the blog"
-                  rows="3"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="content">Content *</label>
-                <textarea
-                  id="content"
-                  name="content"
-                  value={formData.content}
-                  onChange={handleInputChange}
-                  placeholder="Full blog content here..."
-                  rows="8"
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="image">
-                    <Image size={16} />
-                    Image URL
-                  </label>
-                  <input
-                    type="text"
-                    id="image"
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                    placeholder="Enter image URL (optional)"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="author">Author</label>
-                  <input
-                    type="text"
-                    id="author"
-                    name="author"
-                    value={formData.author}
-                    onChange={handleInputChange}
-                    placeholder="Enter author name (optional)"
-                  />
-                </div>
-              </div>
-
-              <div className="form-actions">
+              <div className="delete-modal-footer">
                 <button 
-                  type="button" 
-                  className="cancel-btn"
-                  onClick={resetForm}
+                  className="cancel-delete-btn" 
+                  onClick={() => setShowDeleteModal(false)}
+                  disabled={deleteLoading}
                 >
                   Cancel
                 </button>
                 <button 
-                  type="submit" 
-                  className="submit-btn"
-                  disabled={loading}
+                  className="confirm-delete-btn" 
+                  onClick={handleDelete}
+                  disabled={deleteLoading}
                 >
-                  <Save size={18} />
-                  {loading ? "Saving..." : (editingBlog ? "Update Blog" : "Create Blog")}
+                  {deleteLoading ? "Deleting..." : "Yes, Delete"}
                 </button>
               </div>
-            </form>
-          </motion.div>
+            </motion.div>
+          </div>
         )}
+      </AnimatePresence>
 
-        {/* Search and Filter Bar */}
-        <div className="search-filter-bar">
-          <div className="search-box-admin">
-            <Search size={20} className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search blogs by title, description, category..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input-admin"
-            />
+      {/* Header */}
+      <div className="addblog-header">
+  <div className="header-left">
+    <h1>Manage Blogs</h1>
+    <p className="subtitle">Create, edit, and manage your blog posts</p>
+  </div>
+  <div className="header-actions">
+    {!showForm ? (
+      <button className="create-btn" onClick={handleCreateNew}>
+        <Plus size={18} />
+        Create New Blog
+      </button>
+    ) : (
+      <button className="create-btn cancel-btn" onClick={handleCancelForm}>
+        <X size={18} />
+        Cancel
+      </button>
+    )}
+  </div>
+</div>
+
+      {/* Blog List View */}
+      {!showForm ? (
+        <>
+          {/* Stats */}
+          <div className="bloglist-stats">
+            <div className="stat-item">
+              <span className="stat-number">{blogs.length}</span>
+              <span className="stat-label">Total Blogs</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">{getStatusCount("published")}</span>
+              <span className="stat-label">Published</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">{getStatusCount("draft")}</span>
+              <span className="stat-label">Drafts</span>
+            </div>
           </div>
-          <div className="filter-box">
-            <Filter size={20} className="filter-icon" />
-            <select
-              value={filterCategory}
-              onChange={(e) => setFilterCategory(e.target.value)}
-              className="filter-select"
+
+          {/* Filters */}
+          <div className="bloglist-filters">
+            <div className="search-box">
+              <Search size={18} />
+              <input
+                type="text"
+                placeholder="Search blogs by title, category, or author..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <button 
+              className="filter-toggle"
+              onClick={() => setShowFilters(!showFilters)}
             >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Blog List */}
-        <div className="blogs-list-container">
-          <div className="list-header">
-            <h2>📚 All Blogs</h2>
-            <span className="blog-count">{filteredBlogs.length} blogs</span>
+              <Filter size={18} />
+              Filters
+              <ChevronDown size={16} className={showFilters ? "rotated" : ""} />
+            </button>
+            <button className="refresh-btn" onClick={fetchBlogs} title="Refresh">
+              <RefreshCw size={18} />
+            </button>
           </div>
 
-          {loading && !showForm ? (
-            <div className="loading-spinner">
+          {/* Expanded Filters */}
+          {showFilters && (
+            <motion.div 
+              className="filter-expanded"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <div className="filter-group">
+                <label>Status:</label>
+                <div className="filter-tabs">
+                  <button
+                    className={`filter-tab ${filterStatus === "all" ? "active" : ""}`}
+                    onClick={() => setFilterStatus("all")}
+                  >
+                    All ({getStatusCount("all")})
+                  </button>
+                  <button
+                    className={`filter-tab ${filterStatus === "published" ? "active" : ""}`}
+                    onClick={() => setFilterStatus("published")}
+                  >
+                    Published ({getStatusCount("published")})
+                  </button>
+                  <button
+                    className={`filter-tab ${filterStatus === "draft" ? "active" : ""}`}
+                    onClick={() => setFilterStatus("draft")}
+                  >
+                    Drafts ({getStatusCount("draft")})
+                  </button>
+                </div>
+              </div>
+
+              <div className="filter-group">
+                <label>Category:</label>
+                <div className="category-tabs">
+                  <button
+                    className={`category-tab ${filterCategory === "all" ? "active" : ""}`}
+                    onClick={() => setFilterCategory("all")}
+                  >
+                    All
+                  </button>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      className={`category-tab ${filterCategory === cat ? "active" : ""}`}
+                      onClick={() => setFilterCategory(cat)}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Results Count */}
+          <div className="results-count">
+            Showing {filteredBlogs.length} of {blogs.length} blogs
+          </div>
+
+          {/* Blog Grid */}
+          {loading ? (
+            <div className="loading-state">
               <div className="spinner"></div>
               <p>Loading blogs...</p>
             </div>
           ) : filteredBlogs.length === 0 ? (
             <div className="no-blogs">
-              <div className="no-blogs-icon">📭</div>
+              <div className="no-blogs-icon">📝</div>
               <h3>No blogs found</h3>
               <p>
-                {searchTerm || filterCategory !== "All" 
-                  ? "Try adjusting your search or filter criteria" 
-                  : "Create your first blog by clicking the 'Add New Blog' button above"}
+                {searchTerm || filterStatus !== "all" || filterCategory !== "all"
+                  ? "Try adjusting your search or filters"
+                  : "Create your first blog post by clicking the 'Create New Blog' button"}
               </p>
+              <button className="create-btn" onClick={handleCreateNew}>
+                <Plus size={18} />
+                Create New Blog
+              </button>
             </div>
           ) : (
-            <div className="blogs-grid">
+            <div className="bloglist-grid">
               {filteredBlogs.map((blog, index) => (
                 <motion.div
-                  key={blog._id || index}
+                  key={blog._id}
                   className="blog-card"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
+                  whileHover={{ y: -4 }}
                 >
                   <div className="blog-card-image">
-                    <img 
-                      src={blog.image || "https://via.placeholder.com/400x250/4F46E5/FFFFFF?text=Blog"} 
-                      alt={blog.title || "Blog post"}
+                    <img
+                      src={blog.image || "https://via.placeholder.com/400x200/1e293b/4F46E5?text=VProTech"}
+                      alt={blog.title}
                       onError={(e) => {
-                        e.target.src = "https://via.placeholder.com/400x250/4F46E5/FFFFFF?text=Blog";
+                        e.target.src = "https://via.placeholder.com/400x200/1e293b/4F46E5?text=VProTech";
                       }}
                     />
-                    <span className="blog-card-category">{blog.category || "Uncategorized"}</span>
+                    {blog.featured && (
+                      <span className="featured-badge">
+                        <Star size={12} />
+                        Featured
+                      </span>
+                    )}
+                    <span className={`blog-status ${blog.isPublished ? "published" : "draft"}`}>
+                      {blog.isPublished ? "Published" : "Draft"}
+                    </span>
+                    <span className="blog-category">{blog.category}</span>
                   </div>
-                  
+
                   <div className="blog-card-content">
-                    <h3 className="blog-card-title">{blog.title || "Untitled"}</h3>
-                    <p className="blog-card-description">
-                      {blog.description?.substring(0, 120) || "No description available"}...
-                    </p>
-                    
+                    <h3>{blog.title}</h3>
+                    <p>{blog.description?.substring(0, 100)}...</p>
+
                     <div className="blog-card-meta">
                       <span>
                         <Calendar size={14} />
@@ -520,32 +579,47 @@ export default function AddBlog() {
                         <Clock size={14} />
                         {blog.readTime || "5 min read"}
                       </span>
-                      {blog.author && (
-                        <span>
-                          ✍️ {blog.author}
-                        </span>
-                      )}
+                      <span>👁️ {blog.views || 0}</span>
+                      <span>❤️ {blog.likes || 0}</span>
+                    </div>
+
+                    <div className="blog-card-author">
+                      By {blog.author || "VProTech Digital"}
                     </div>
                   </div>
 
                   <div className="blog-card-actions">
-                    <button 
-                      className="view-btn"
-                      onClick={() => navigate(`/blog/${blog._id}`)}
+                    <button
+                      className="action-btn view"
+                      onClick={() => handleViewBlog(blog._id)}
+                      title="View"
                     >
                       <Eye size={16} />
                       View
                     </button>
-                    <button 
-                      className="edit-btn"
-                      onClick={() => handleEdit(blog)}
+                    <button
+                      className="action-btn edit"
+                      onClick={() => handleEditBlog(blog)}
+                      title="Edit"
                     >
                       <Edit size={16} />
                       Edit
                     </button>
-                    <button 
-                      className="delete-btn"
-                      onClick={() => handleDelete(blog._id)}
+                    <button
+                      className={`action-btn ${blog.isPublished ? "unpublish" : "publish"}`}
+                      onClick={() => handleTogglePublish(blog._id, blog.isPublished)}
+                      title={blog.isPublished ? "Unpublish" : "Publish"}
+                    >
+                      {blog.isPublished ? <EyeOff size={16} /> : <Eye size={16} />}
+                      {blog.isPublished ? "Unpublish" : "Publish"}
+                    </button>
+                    <button
+                      className="action-btn delete"
+                      onClick={() => {
+                        setEditingBlog(blog);
+                        setShowDeleteModal(true);
+                      }}
+                      title="Delete"
                     >
                       <Trash2 size={16} />
                       Delete
@@ -555,11 +629,252 @@ export default function AddBlog() {
               ))}
             </div>
           )}
-        </div>
-      </div>
+        </>
+      ) : (
+        /* ============ BLOG FORM ============ */
+        <motion.div
+          className="addblog-form-container"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="form-header">
+            <h2>{editingBlog ? "Edit Blog" : "Create New Blog"}</h2>
+            <span className="form-status">
+              {editingBlog ? `Editing: ${editingBlog.title}` : "New Blog"}
+            </span>
+          </div>
 
-      <Footer />
-    </>
+          <form onSubmit={handleSubmit} className="addblog-form">
+            <div className="form-row">
+              <div className="form-group full-width">
+                <label>
+                  <Tag size={16} />
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  placeholder="Enter blog title"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Category *</label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <Clock size={16} />
+                  Read Time
+                </label>
+                <input
+                  type="text"
+                  name="readTime"
+                  value={formData.readTime}
+                  onChange={handleChange}
+                  placeholder="e.g., 5 min read"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group full-width">
+                <label>Description *</label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="Brief description of the blog"
+                  rows="3"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group full-width">
+                <label>Content *</label>
+                <textarea
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange}
+                  placeholder="Full blog content here..."
+                  rows="10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>
+                  <Image size={16} />
+                  Upload Image
+                </label>
+                
+                {!imagePreview ? (
+                  <div className="image-upload-area">
+                    <input
+                      type="file"
+                      id="image-upload"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      className="image-upload-input"
+                    />
+                    <label htmlFor="image-upload" className="image-upload-label">
+                      <Upload size={32} />
+                      <span>Click to upload image</span>
+                      <span className="upload-hint">PNG, JPG, JPEG (Max 5MB)</span>
+                    </label>
+                  </div>
+                ) : (
+                  <div className="image-preview-container">
+                    <img src={imagePreview} alt="Preview" className="image-preview" />
+                    <div className="image-preview-overlay">
+                      <button
+                        type="button"
+                        className="change-image-btn"
+                        onClick={() => document.getElementById('image-upload')?.click()}
+                      >
+                        <FileImage size={16} />
+                        Change
+                      </button>
+                      <button
+                        type="button"
+                        className="remove-image-btn"
+                        onClick={handleRemoveImage}
+                      >
+                        <X size={16} />
+                        Remove
+                      </button>
+                    </div>
+                    <input
+                      type="file"
+                      id="image-upload"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      className="image-upload-input-hidden"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <User size={16} />
+                  Author
+                </label>
+                <input
+                  type="text"
+                  name="author"
+                  value={formData.author}
+                  onChange={handleChange}
+                  placeholder="Author name"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Tags</label>
+                <div className="tags-input-container">
+                  <input
+                    type="text"
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Add a tag and press Enter"
+                  />
+                  <button type="button" onClick={handleAddTag} className="add-tag-btn">
+                    <Plus size={16} />
+                  </button>
+                </div>
+                <div className="tags-container">
+                  {formData.tags.map((tag) => (
+                    <span key={tag} className="tag-item">
+                      {tag}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveTag(tag)}
+                        className="remove-tag-btn"
+                      >
+                        <X size={12} />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="checkbox-group">
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="isPublished"
+                      checked={formData.isPublished}
+                      onChange={handleChange}
+                    />
+                    Publish Immediately
+                  </label>
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="featured"
+                      checked={formData.featured}
+                      onChange={handleChange}
+                    />
+                    <Star size={16} />
+                    Feature this blog
+                  </label>
+                </div>
+                {editingBlog && (
+                  <button
+                    type="button"
+                    className="delete-blog-btn-form"
+                    onClick={() => setShowDeleteModal(true)}
+                  >
+                    <Trash2 size={16} />
+                    Delete Blog
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="form-actions">
+              <button
+                type="button"
+                className="cancel-btn"
+                onClick={handleCancelForm}
+              >
+                Cancel
+              </button>
+              <button type="submit" className="submit-btn" disabled={formLoading}>
+                <Save size={18} />
+                {formLoading ? "Saving..." : editingBlog ? "Update Blog" : "Create Blog"}
+              </button>
+            </div>
+          </form>
+        </motion.div>
+      )}
+    </div>
   );
 }
-

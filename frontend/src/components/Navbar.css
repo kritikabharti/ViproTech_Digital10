@@ -403,3 +403,32 @@ font-size:16px;
 }
 
 }
+
+
+/* Navbar.css - Add logout button styles */
+
+.logout-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .logout-btn {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+}

@@ -85,14 +85,23 @@ export default function Home() {
 
   return (
     <>
-  {/* First Section - Fullscreen Video
-  <section className="home">
-    <video autoPlay loop muted playsInline className="video-bg">
-      <source src={videos} type="video/mp4" />
-    </video>
-  </section> */}
+ 
+
+
+<section className="tech-hero">
+  <div className="tech-overlay" />
+  <div className="tech-content">
+    <h1>Empowering Digital Innovation</h1>
+    {/* <p>
+      We build modern web, mobile, cloud, and cybersecurity solutions that
+      help businesses grow and succeed.
+    </p> */}
+  </div>
+</section>
+  
 
 <section className="two-image-section">
+  
       <div className="two-image-container">
         
         {/* LEFT - Image with Motion */}
@@ -217,99 +226,6 @@ export default function Home() {
     </section>
 
 
-
-<section
-  className="hero"
-  style={{
-    backgroundImage: `url(${heroBg})`,
-  }}
->
-
- <div className="hero-content">
-    {/* LEFT CONTENT */}
-   <motion.div className="hero-left"
-      initial={{ opacity: 0, x: -70 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.9 }}
-    >
-  
-
-<motion.h1
-className="hero-heading"
-  variants={container}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.4 }}
-  transition={{ delay: 0.5 }} // starts after 0.5s
->
-  {"Building the Future".split("").map((char, index) => (
-    <motion.span
-      key={index}
-      variants={child}
-      style={{ display: "inline-block" }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  ))}
-
-  <br />
-
-  {"with ".split("").map((char, index) => (
-    <motion.span
-      key={`with-${index}`}
-      variants={child}
-      style={{ display: "inline-block" }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  ))}
-
-  {"Technology".split("").map((char, index) => (
-    <motion.span
-      key={`tech-${index}`}
-      variants={child}
-      style={{
-        display: "inline-block",
-        color: "#4F46E5",
-      }}
-    >
-      {char}
-    </motion.span>
-  ))}
-</motion.h1>
-
-     <motion.p
-  className="hero-text"
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{
-    delay: 2, // after heading animation
-    duration: 0.8,
-  }}
->
-  VProTech Digital delivers world-class software development,
-  AI solutions, cloud computing, cybersecurity, web and mobile
-  applications, digital marketing, and professional internship
-  programs that empower businesses and students to achieve
-  long-term success.
-</motion.p>
-    </motion.div>
-
-    {/* RIGHT IMAGE */}
-   <motion.div className="hero-right"
-      initial={{ opacity: 0, x: 70 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1 }}
-    >
-      <img
-        src={heroImage}
-        alt="VProTech Digital"
-        className="hero-image"
-      />
-    </motion.div>
-  </div>
-</section>
 
 
  {/* ================= OUR SERVICES ================= */}
