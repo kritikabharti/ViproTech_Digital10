@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { userService } from "../services/api";
+import { userService, contactAdminService } from "../services/api";
 import { 
   Users, 
   UserCheck, 
@@ -25,7 +25,12 @@ import {
   Calendar,
   Mail,
   Phone,
-  Briefcase
+  Briefcase,
+  MessageSquare,
+  Inbox,
+  Reply,
+  Archive,
+  Clock
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import "./AdminDashboard.css";
@@ -34,9 +39,15 @@ export default function AdminDashboard() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [stats, setStats] = useState(null);
+  const [contactStats, setContactStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [replyText, setReplyText] = useState("");
+  const [showReplyModal, setShowReplyModal] = useState(false);
+  const [contactFilter, setContactFilter] = useState("all");
 
   useEffect(() => {
     fetchData();
@@ -45,12 +56,16 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [usersRes, statsRes] = await Promise.all([
+      const [usersRes, statsRes, contactsRes, contactStatsRes] = await Promise.all([
         userService.getAllUsers(),
         userService.getUserStats(),
+        contactAdminService.getAllMessages(),
+        contactAdminService.getStats(),
       ]);
       setUsers(usersRes.users || []);
       setStats(statsRes.stats);
+      setContacts(contactsRes.messages || []);
+      setContactStats(contactStatsRes.stats);
     } catch (error) {
       toast.error("Failed to load data");
     } finally {
@@ -84,13 +99,79 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDeleteContact = async (contactId) => {
+    if (!window.confirm("Are you sure you want to delete this message?")) return;
+    try {
+      await contactAdminService.deleteMessage(contactId);
+      toast.success("Message deleted successfully");
+      fetchData();
+    } catch (error) {
+      toast.error("Failed to delete message");
+    }
+  };
+
+  const handleUpdateContactStatus = async (contactId, status) => {
+    try {
+      await contactAdminService.updateStatus(contactId, { status });
+      toast.success(`Message marked as ${status}`);
+      fetchData();
+    } catch (error) {
+      toast.error("Failed to update message status");
+    }
+  };
+
+  const handleReply = async () => {
+    if (!replyText.trim()) {
+      toast.error("Please enter a reply");
+      return;
+    }
+    try {
+      await contactAdminService.updateStatus(selectedContact._id, {
+        status: "replied",
+        reply: replyText,
+      });
+      toast.success("Reply sent successfully!");
+      setShowReplyModal(false);
+      setReplyText("");
+      setSelectedContact(null);
+      fetchData();
+    } catch (error) {
+      toast.error("Failed to send reply");
+    }
+  };
+
   const navigateToAddBlog = () => {
     navigate("/admin/add-blog");
   };
 
   const navigateToManageBlogs = () => {
-    navigate("/admin/blogs");
+    navigate("/admin/add-blog");
   };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "pending": return "orange";
+      case "read": return "blue";
+      case "replied": return "green";
+      case "archived": return "gray";
+      default: return "gray";
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "pending": return <Clock size={14} />;
+      case "read": return <Eye size={14} />;
+      case "replied": return <Reply size={14} />;
+      case "archived": return <Archive size={14} />;
+      default: return <Clock size={14} />;
+    }
+  };
+
+  const filteredContacts = contacts.filter(contact => {
+    if (contactFilter === "all") return true;
+    return contact.status === contactFilter;
+  });
 
   if (loading) {
     return (
@@ -104,7 +185,44 @@ export default function AdminDashboard() {
   return (
     <div className="admin-container">
       <Toaster position="top-right" />
-      
+
+      {/* Reply Modal */}
+      {showReplyModal && selectedContact && (
+        <div className="modal-overlay" onClick={() => setShowReplyModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Reply to {selectedContact.fullname}</h3>
+              <button className="modal-close" onClick={() => setShowReplyModal(false)}>
+                <XCircle size={24} />
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="reply-message-preview">
+                <p><strong>Subject:</strong> {selectedContact.subject}</p>
+                <p><strong>Message:</strong></p>
+                <p className="original-message">{selectedContact.message}</p>
+              </div>
+              <textarea
+                className="reply-textarea"
+                placeholder="Type your reply here..."
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                rows="5"
+              />
+            </div>
+            <div className="modal-footer">
+              <button className="cancel-btn" onClick={() => setShowReplyModal(false)}>
+                Cancel
+              </button>
+              <button className="submit-btn" onClick={handleReply}>
+                <Reply size={18} />
+                Send Reply
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Sidebar */}
       <div className="admin-sidebar">
         <div className="sidebar-brand">
@@ -131,6 +249,13 @@ export default function AdminDashboard() {
             <span>Users</span>
           </button>
           <button 
+            className={`nav-item ${activeTab === "contacts" ? "active" : ""}`}
+            onClick={() => setActiveTab("contacts")}
+          >
+            <MessageSquare size={20} />
+            <span>Messages</span>
+          </button>
+          <button 
             className={`nav-item ${activeTab === "blogs" ? "active" : ""}`}
             onClick={() => setActiveTab("blogs")}
           >
@@ -155,10 +280,7 @@ export default function AdminDashboard() {
               <RefreshCw size={18} />
               Refresh
             </button>
-            <button onClick={handleLogout} className="logout-btn">
-              <LogOut size={18} />
-              Logout
-            </button>
+           
           </div>
         </div>
 
@@ -183,21 +305,21 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon red">
-              <UserX size={24} />
+            <div className="stat-icon purple">
+              <MessageSquare size={24} />
             </div>
             <div className="stat-info">
-              <h3>{stats?.totalUsers - stats?.totalActive || 0}</h3>
-              <p>Inactive Users</p>
+              <h3>{contactStats?.totalMessages || 0}</h3>
+              <p>Total Messages</p>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon purple">
-              <Shield size={24} />
+            <div className="stat-icon orange">
+              <Clock size={24} />
             </div>
             <div className="stat-info">
-              <h3>{stats?.totalAdmins || 0}</h3>
-              <p>Admins</p>
+              <h3>{contactStats?.pending || 0}</h3>
+              <p>Pending Messages</p>
             </div>
           </div>
         </div>
@@ -217,6 +339,10 @@ export default function AdminDashboard() {
             <div className="quick-action-card" onClick={() => setActiveTab("users")}>
               <Users size={28} />
               <span>Manage Users</span>
+            </div>
+            <div className="quick-action-card" onClick={() => setActiveTab("contacts")}>
+              <MessageSquare size={28} />
+              <span>View Messages</span>
             </div>
           </div>
         </div>
@@ -294,6 +420,120 @@ export default function AdminDashboard() {
                   )}
                 </tbody>
               </table>
+            </div>
+          </div>
+        )}
+
+        {/* Contacts Section */}
+        {activeTab === "contacts" && (
+          <div className="contacts-section">
+            <div className="section-header">
+              <h2>Contact Messages</h2>
+              <div className="contact-filters">
+                <button
+                  className={`filter-btn ${contactFilter === "all" ? "active" : ""}`}
+                  onClick={() => setContactFilter("all")}
+                >
+                  All ({contactStats?.totalMessages || 0})
+                </button>
+                <button
+                  className={`filter-btn ${contactFilter === "pending" ? "active" : ""}`}
+                  onClick={() => setContactFilter("pending")}
+                >
+                  Pending ({contactStats?.pending || 0})
+                </button>
+                <button
+                  className={`filter-btn ${contactFilter === "read" ? "active" : ""}`}
+                  onClick={() => setContactFilter("read")}
+                >
+                  Read ({contactStats?.read || 0})
+                </button>
+                <button
+                  className={`filter-btn ${contactFilter === "replied" ? "active" : ""}`}
+                  onClick={() => setContactFilter("replied")}
+                >
+                  Replied ({contactStats?.replied || 0})
+                </button>
+              </div>
+            </div>
+
+            <div className="contacts-list">
+              {filteredContacts.length === 0 ? (
+                <div className="no-contacts">
+                  <Inbox size={48} />
+                  <h3>No messages</h3>
+                  <p>No contact messages found</p>
+                </div>
+              ) : (
+                filteredContacts.map((contact) => (
+                  <div key={contact._id} className="contact-card">
+                    <div className="contact-header">
+                      <div className="contact-info">
+                        <h4>{contact.fullname}</h4>
+                        <div className="contact-meta">
+                          <span><Mail size={14} /> {contact.email}</span>
+                          <span><Phone size={14} /> {contact.phone}</span>
+                          <span><Calendar size={14} /> {new Date(contact.createdAt).toLocaleDateString()}</span>
+                        </div>
+                      </div>
+                      <div className="contact-status">
+                        <span className={`status-badge ${getStatusColor(contact.status)}`}>
+                          {getStatusIcon(contact.status)}
+                          {contact.status.charAt(0).toUpperCase() + contact.status.slice(1)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="contact-body">
+                      <p><strong>Subject:</strong> {contact.subject}</p>
+                      <p className="contact-message">{contact.message}</p>
+                      {contact.reply && (
+                        <div className="contact-reply">
+                          <p><strong>Reply:</strong> {contact.reply}</p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="contact-actions">
+                      {contact.status === "pending" && (
+                        <button
+                          className="action-btn mark-read"
+                          onClick={() => handleUpdateContactStatus(contact._id, "read")}
+                        >
+                          <Eye size={16} />
+                          Mark as Read
+                        </button>
+                      )}
+                      {contact.status !== "replied" && contact.status !== "archived" && (
+                        <button
+                          className="action-btn reply"
+                          onClick={() => {
+                            setSelectedContact(contact);
+                            setShowReplyModal(true);
+                          }}
+                        >
+                          <Reply size={16} />
+                          Reply
+                        </button>
+                      )}
+                      {contact.status === "read" && (
+                        <button
+                          className="action-btn archive"
+                          onClick={() => handleUpdateContactStatus(contact._id, "archived")}
+                        >
+                          <Archive size={16} />
+                          Archive
+                        </button>
+                      )}
+                      <button
+                        className="action-btn delete"
+                        onClick={() => handleDeleteContact(contact._id)}
+                      >
+                        <Trash2 size={16} />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         )}
