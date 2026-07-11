@@ -139,4 +139,50 @@ export const blogService = {
 };
 
 
+// Add to services/api.js
+
+export const contactAdminService = {
+  getAllMessages: async (params = {}) => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/contact", {
+      params,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  getMessageById: async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await api.get(`/contact/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  updateStatus: async (id, data) => {
+    const token = localStorage.getItem("token");
+    const response = await api.put(`/contact/${id}/status`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  deleteMessage: async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await api.delete(`/contact/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  getStats: async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/contact/stats", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+};
+
+
 export default api;
