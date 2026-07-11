@@ -16,6 +16,8 @@ import visionImg from "../assets/vision.jpg";
 import bottomImg from "../assets/digital.jpg";
 
 export default function About() {
+
+  
    const fadeLeft = {
     hidden: { opacity: 0, x: -80 },
     visible: {

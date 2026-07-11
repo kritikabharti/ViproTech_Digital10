@@ -1,3 +1,14 @@
+/* Add to index.css or App.css */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Or to force scroll to top */
+html, body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
 
 * {
   margin: 0;
