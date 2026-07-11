@@ -76,26 +76,25 @@ const cardVariants = {
 };
 
 
-
-
-
-
-
 export default function Home() {
+useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
- 
-
-
 <section className="tech-hero">
   <div className="tech-overlay" />
   <div className="tech-content">
-    <h1>Empowering Digital Innovation</h1>
-    {/* <p>
-      We build modern web, mobile, cloud, and cybersecurity solutions that
-      help businesses grow and succeed.
-    </p> */}
+   <motion.h2 
+                  className="content-title"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  VProTech <span className="highlight">Digital</span>
+                </motion.h2>
   </div>
 </section>
   
@@ -147,20 +146,21 @@ export default function Home() {
                 className="content-inner"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.8, delay:
+                   0.3 }}
                 viewport={{ once: true }}
               >
                
-
-                <motion.h2 
-                  className="content-title"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  VProTech <span className="highlight">Digital</span>
-                </motion.h2>
+                 <motion.h2 
+              className="content-heading"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              Building <span className="heading-highlight">Digital</span> Futures
+            </motion.h2>
+                
 
                 <motion.p 
                   className="content-description"
@@ -558,7 +558,7 @@ backgroundImage:`url(${bgaImge})`
 </section>
 
 
- <Footer />
+ {/* <Footer /> */}
 
 </>
     

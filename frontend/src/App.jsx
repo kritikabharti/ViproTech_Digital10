@@ -14,10 +14,12 @@ import AddBlog from "./pages/AddBlog";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import BlogDetail from "./pages/BlogDetail";
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+     <ScrollToTop />
       <AuthProvider>
         <Navbar />
         <CustomCursor />

@@ -46,6 +46,10 @@ const categories = [
 ];
 
 export default function AddBlog() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useAuth();
