@@ -10,6 +10,8 @@ export default function Register() {
   const navigate = useNavigate();
   const { register } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [showVerificationMessage, setShowVerificationMessage] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,18 +63,116 @@ export default function Register() {
 
     setLoading(true);
     const { confirmPassword, ...registerData } = formData;
-    const result = await register(registerData);
-    setLoading(false);
+    
+    try {
+      // Call the register API directly (not through auth context to handle verification properly)
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerData),
+      });
 
-    if (result.success) {
-      toast.success("🎉 Registration successful! Please login.");
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
-    } else {
-      toast.error(result.error || "Registration failed");
+      const data = await response.json();
+      
+      if (data.success) {
+        setRegisteredEmail(formData.email);
+        setShowVerificationMessage(true);
+        toast.success("Registration successful! Please check your email to verify your account.");
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          domain: "",
+          password: "",
+          confirmPassword: "",
+        });
+      } else {
+        toast.error(data.message || "Registration failed");
+      }
+    } catch (error) {
+      toast.error("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
+
+  // Resend verification email
+  const resendVerification = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/resend-verification", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: registeredEmail }),
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        toast.success("Verification email resent! Please check your inbox.");
+      } else {
+        toast.error(data.message || "Failed to resend verification email");
+      }
+    } catch (error) {
+      toast.error("Network error. Please try again.");
+    }
+  };
+
+  // If verification message is shown
+  if (showVerificationMessage) {
+    return (
+      <div className="auth-container">
+        <Toaster position="top-right" />
+        
+        <motion.div 
+          className="auth-card register-card"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="verification-success">
+            <div className="success-icon">📧</div>
+            <h2 className="auth-title">Verify Your Email</h2>
+            <p className="auth-subtitle">
+              We've sent a verification link to:
+            </p>
+            <p className="email-highlight">{registeredEmail}</p>
+            <p className="auth-subtitle" style={{ fontSize: "14px", color: "#94a3b8" }}>
+              Please check your inbox and spam folder to verify your account.
+            </p>
+            
+            <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
+              <button 
+                onClick={resendVerification}
+                className="auth-btn-secondary"
+                style={{
+                  padding: "12px 24px",
+                  background: "rgba(79, 70, 229, 0.15)",
+                  color: "#4F46E5",
+                  border: "1px solid rgba(79, 70, 229, 0.3)",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                }}
+              >
+                Resend Verification Email
+              </button>
+              
+              <Link to="/login" className="auth-btn" style={{ textDecoration: "none", textAlign: "center" }}>
+                Go to Login
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="auth-container">

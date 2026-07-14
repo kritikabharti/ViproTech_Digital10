@@ -153,3 +153,115 @@
     font-size: 14px;
   }
 }
+
+/* Add to Auth.css */
+.success-message {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-message p {
+  color: #e2e8f0;
+  margin: 8px 0;
+}
+
+.email-highlight {
+  color: #4F46E5 !important;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.small-text {
+  font-size: 14px;
+  color: #94a3b8 !important;
+}
+
+.back-to-login {
+  display: inline-block;
+  margin-top: 16px;
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-to-login:hover {
+  color: #818CF8;
+}
+
+
+/* Add to Auth.css */
+
+.verification-success {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.email-highlight {
+  color: #4F46E5;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 8px 0;
+  word-break: break-all;
+}
+
+.auth-btn-secondary {
+  padding: 12px 24px;
+  background: rgba(79, 70, 229, 0.15);
+  color: #4F46E5;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.auth-btn-secondary:hover {
+  background: rgba(79, 70, 229, 0.25);
+  transform: translateY(-2px);
+}
+
+
+/* Add to Auth.css */
+
+.verification-warning {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verification-warning .resend-btn {
+  padding: 8px 20px;
+  background: rgba(79, 70, 229, 0.15);
+  color: #4F46E5;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.verification-warning .resend-btn:hover:not(:disabled) {
+  background: rgba(79, 70, 229, 0.25);
+  transform: translateY(-2px);
+}
+
+.verification-warning .resend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
