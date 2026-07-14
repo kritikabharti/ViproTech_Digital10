@@ -37,24 +37,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (email, password) => {
-    try {
-      const response = await authService.login({ email, password });
-      if (response.success) {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("user", JSON.stringify(response.user));
-        setToken(response.token);
-        setUser(response.user);
-        return { success: true, user: response.user };
-      }
-      return { success: false, error: response.message };
-    } catch (error) {
-      return { 
-        success: false, 
-        error: error.response?.data?.message || "Login failed" 
-      };
+  
+
+  // In AuthContext.jsx, update the login function
+const login = async (email, password) => {
+  try {
+    const response = await authService.login({ email, password });
+    if (response.success) {
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      setToken(response.token);
+      setUser(response.user);
+      return { success: true, user: response.user };
     }
-  };
+    return { success: false, error: response.message };
+  } catch (error) {
+    // Check if error is about verification
+    const errorMessage = error.response?.data?.message || "Login failed";
+    return { 
+      success: false, 
+      error: errorMessage 
+    };
+  }
+};
 
   const register = async (userData) => {
     try {

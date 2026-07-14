@@ -1,4 +1,5 @@
-// models/User.js - Clean version without pre-save middleware
+
+// models/User.js
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -65,6 +66,19 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+ // ============ EMAIL VERIFICATION FIELDS ============
+    verificationToken: {
+      type: String,
+      default: "",
+    },
+    verificationTokenExpires: {
+      type: Date,
+    },
+    verifiedAt: {
+      type: Date,
+    },
+
     profileImage: {
       type: String,
       default: "",
@@ -76,20 +90,26 @@ const userSchema = new mongoose.Schema(
     lastLogin: {
       type: Date,
     },
+    // ============ FORGOT PASSWORD FIELDS ============
+    resetPasswordToken: {
+      type: String,
+      default: "",
+    },
+    resetPasswordExpires: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-// ============ NO PRE-SAVE MIDDLEWARE ============
-// We hash passwords in the controller
-
-// ============ REMOVE PASSWORD FROM JSON ============
 userSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.password;
   delete user.__v;
+  delete user.resetPasswordToken;
+  delete user.resetPasswordExpires;
   return user;
 };
 
