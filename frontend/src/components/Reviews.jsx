@@ -317,16 +317,10 @@ export default function Reviews() {
       {/* Header */}
       <div className="reviews-header">
         <div className="reviews-header-left">
-          <h2>Client Reviews</h2>
-          <p>Real feedback from our students and clients</p>
+          <h2>Student Reviews</h2>
+          <p>Real feedback from our students</p>
         </div>
-        <button 
-          className="write-review-btn"
-          onClick={() => setShowWriteReview(true)}
-        >
-          <MessageCircle size={18} />
-          Write a Review
-        </button>
+        
       </div>
 
       {/* Stats */}

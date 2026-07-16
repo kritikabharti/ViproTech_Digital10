@@ -1,6 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "./LogoSlider.css";
+
+import logo1 from "../assets/allenagroup.png";
+import logo2 from "../assets/CBL.png";
+import logo3 from "../assets/greenlotus.png";
+import logo4 from "../assets/gulmohar.png";
+import logo5 from "../assets/IBM.png";
+import logo6 from "../assets/Infotech.png";
+import logo7 from "../assets/JLPL-Logo-white-2023.png";
+import logo8 from "../assets/MGE.png";
+import logo9 from "../assets/PJ.png";
+import logo10 from "../assets/SEWlogo.png";
+import logo11 from "../assets/shiv&sons.png";
+import logo12 from "../assets/SK files&tools.png";
+import logo13 from "../assets/tech mahindra.png";
+import logo14 from "../assets/wiproapplying.png";
+
+
 import {
   FaCloudUploadAlt,
   FaUsers,
@@ -28,9 +49,15 @@ import img4 from "../assets/img4.jpg";
 
 import aboutImage from '../assets/prooo.jpg';
 import teamImage from '../assets/unnn.jpg';
+import digital from "../assets/digi.jpg";
+import fullstack from "../assets/full.jpg";
+import mechanical from "../assets/cad.jpg";
+import internship from "../assets/internship.jpg";
 
+import "./WhyChooseSection.css";
 
-
+import bgImage from "../assets/first.jpg";
+import cardImage from "../assets/second.jpg";
 
 const container = {
   hidden: {},
@@ -75,6 +102,22 @@ const cardVariants = {
   },
 };
 
+const logos = [
+  logo1,
+  logo2,
+  logo3,
+  logo4,
+  logo5,
+  logo6,
+  logo7,
+  logo8,
+  logo9,
+  logo10,
+  logo11,
+  logo12,
+  logo13,
+  logo14,
+];
 
 export default function Home() {
 useEffect(() => {
@@ -83,6 +126,141 @@ useEffect(() => {
 
   return (
     <>
+
+ <section className="why-section">
+      {/* Animated Background */}
+      <motion.div
+        className="bg-image"
+        style={{ backgroundImage: `url(${bgImage})` }}
+        animate={{
+          scale: [1, 1.12, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="overlay"></div>
+
+      <div className="why-container">
+        {/* Left Card */}
+        <motion.div
+          className="left-card"
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          animate={{
+            y: [0, -12, 0],
+          }}
+        >
+          <div className="card-image-wrapper">
+            <img src={cardImage} alt="Training" />
+            <div className="card-overlay">
+              <span className="experience-badge">5+ Years Experience</span>
+            </div>
+          </div>
+
+         
+          {/* Floating Stats */}
+          <motion.div 
+            className="floating-stats"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="stat-item">
+              <span className="stat-number">50+</span>
+              <span className="stat-label">Courses</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">1000+</span>
+              <span className="stat-label">Students</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">95%</span>
+              <span className="stat-label">Placement</span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Content */}
+        <motion.div
+          className="right-content"
+          initial={{ opacity: 0, x: 80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          
+          <h2 style={{ fontSize: '50px' }}>
+  Empowering Future
+  <br />
+  <span className="highlight-text">Through Technology</span>
+</h2>
+
+          <p>
+            VProTech Digital provides professional IT training,
+            internships, web development, app development,
+            UI/UX design, and digital marketing solutions.
+            We prepare students with industry-ready skills.
+          </p>
+
+          <div className="feature-list">
+            <div className="feature-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span>Industry-Ready Training</span>
+            </div>
+            <div className="feature-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span>Live Project Experience</span>
+            </div>
+            <div className="feature-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span>100% Placement Assistance</span>
+            </div>
+          </div>
+           
+            <div className="card-buttons">
+            <Link to="/about">
+              <button className="btn-why">
+                <span>Services</span>
+                <svg width="18" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </Link>
+
+            <Link to="/courses">
+              <button className="btn-courses">
+                <span>Our Courses</span>
+                <svg width="18" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
+
 <section className="tech-hero">
   <div className="tech-overlay" />
   <div className="tech-content">
@@ -325,7 +503,7 @@ backgroundImage:`url(${bgaImge})`
 
           <div
             className="flip-card-back"
-            style={{ backgroundImage: `url(${heroImage})` }}
+            style={{ backgroundImage: `url(${digital})` }}
           ></div>
 
         </div>
@@ -345,7 +523,7 @@ backgroundImage:`url(${bgaImge})`
 
           <div
             className="flip-card-back"
-            style={{ backgroundImage: `url(${custom})` }}
+            style={{ backgroundImage: `url(${fullstack})` }}
           ></div>
 
         </div>
@@ -364,7 +542,7 @@ backgroundImage:`url(${bgaImge})`
 
           <div
             className="flip-card-back"
-            style={{ backgroundImage: `url(${expertiseBg})` }}
+            style={{ backgroundImage: `url(${mechanical})` }}
           ></div>
 
         </div>
@@ -383,7 +561,7 @@ backgroundImage:`url(${bgaImge})`
 
           <div
             className="flip-card-back"
-            style={{ backgroundImage: `url(${heroImage})` }}
+            style={{ backgroundImage: `url(${internship})` }}
           ></div>
 
         </div>
@@ -392,6 +570,24 @@ backgroundImage:`url(${bgaImge})`
     </div>
   </div>
 </section>
+
+
+{/* next Section */}
+
+ <section className="logo-section">
+      <h2>Recruiters We Work With</h2>
+
+      <div className="logo-slider">
+        <div className="logo-track">
+          {[...logos, ...logos].map((logo, index) => (
+            <div className="logo-item" key={index}>
+              <img src={logo} alt={`Logo ${index}`} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
 
 
 {/* ================= WORKING PROCESS ================= */}
@@ -509,7 +705,10 @@ backgroundImage:`url(${bgaImge})`
   </div>
 </section>
 
-{/* next Section */}
+
+
+
+
 
 
 {/* ================= OUR JOURNEY ================= */}
