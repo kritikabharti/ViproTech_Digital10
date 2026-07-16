@@ -21,35 +21,55 @@ export default function Footer() {
 
           <a href="/" style={styles.link}>Home</a>
           <a href="/about" style={styles.link}>About</a>
-          <a href="/courses" style={styles.link}>Courses</a>
-          <a href="/services" style={styles.link}>Services</a>
+          <a href="/blogs" style={styles.link}>Blogs</a>
+          <a href="/careers" style={styles.link}>Career</a>
           <a href="/contact" style={styles.link}>Contact</a>
         </div>
 
         {/* Contact */}
         <div style={styles.footerColumn}>
-          <h3 style={styles.heading}>Contact Us</h3>
+  <h3 style={styles.heading}>Contact Us</h3>
 
-          <p style={styles.footerText}>📞 +91 88941 10026</p>
-          <p style={styles.footerText}>📞 +91 81467 59497</p>
-          <p style={styles.footerText}>✉️ vprotechdigitalmohali@gmail.com</p>
-        </div>
+  <p style={styles.footerText}>
+    📞{" "}
+    <a href="tel:+918894110026" style={styles.link}>
+      +91 88941 10026
+    </a>
+  </p>
+
+  <p style={styles.footerText}>
+    📞{" "}
+    <a href="tel:+918146759497" style={styles.link}>
+      +91 81467 59497
+    </a>
+  </p>
+
+  <p style={styles.footerText}>
+    ✉️{" "}
+    <a
+      href="mailto:vprotechdigitalmohali@gmail.com"
+      style={styles.link}
+    >
+      vprotechdigitalmohali@gmail.com
+    </a>
+  </p>
+</div>
 
         {/* Follow */}
         <div style={styles.footerColumn}>
           <h3 style={styles.heading}>Follow Us</h3>
 
           <a
-            href="https://vprotechdigital.com"
+            href="https://in.linkedin.com/company/vprotechdigital"
             target="_blank"
             rel="noreferrer"
             style={styles.link}
           >
-            🌐 Official Website
+            🌐 Linkedin
           </a>
 
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/vprotechdigital/?_rdr"
             target="_blank"
             rel="noreferrer"
             style={styles.link}
@@ -58,12 +78,12 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/vprotech_digitalx/"
             target="_blank"
             rel="noreferrer"
             style={styles.link}
           >
-            📷 Instagram
+             🅾 Instagram
           </a>
         </div>
       </div>

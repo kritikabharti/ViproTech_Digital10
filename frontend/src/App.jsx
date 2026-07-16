@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -19,15 +20,33 @@ import VerifyEmail from "./pages/VerifyEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerificationRequired from "./components/VerificationRequired";
-
+import Loader from "./components/Loader";
 
 function App() {
+  const [loading,setLoading]=useState(true);
+
+useEffect(()=>{
+
+const timer=setTimeout(()=>{
+setLoading(false);
+},1800);
+
+return()=>clearTimeout(timer);
+
+},[]);
+
+if(loading){
+return <Loader/>
+}
+
+
   return (
     <BrowserRouter>
      <ScrollToTop />
       <AuthProvider>
         <Navbar />
         <CustomCursor />
+        
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />

@@ -11,9 +11,9 @@ import marketing from "../assets/markting.jpg";
 import devops from "../assets/devops.jpg";
 import cyber from "../assets/cyber.jpg";
 
-import teamImg from "../assets/team.jpg";
-import visionImg from "../assets/vision.jpg";
-import bottomImg from "../assets/digital.jpg";
+import teamImg from "../assets/ourteam.jpg";
+import visionImg from "../assets/ourvalues.jpg";
+import bottomImg from "../assets/photo.jpg";
 
 export default function About() {
 
@@ -134,13 +134,7 @@ export default function About() {
       </h2>
 
       <p className="about-text">
-        Born in 2016, VproTech digital is a forward looking company focused on software, 
-        solution and innovative ideas that are required for 21st century. 
-        As an institution being a pioneer in courses that is gave birth to , 
-        vprotech digital offers different job practices oriented trainings from 
-        different streams including mechanical, civil, electronics and computer 
-        science engineering with placement tie ups all over the country.
-
+        Founded in march, 2020 by Rajat Kumar, VProtech Digital has come a long way from its beginning. When Rajat Kumar first started out, his passion for "making technically strong professional out of students" drove him to start his own business. We provide Industrial Training to students in Chandigarh for Btech, Diploma, BCA and MCA students. Our team of professional trainers train students in web development, web design, Android applications, SEO, social media marketing (SMM), digital marketing and other courses under our six (6) months / 6 weeks industrial training program in Mohali, Chandigarh.
 
       </p>
 
@@ -648,7 +642,7 @@ className="feature-card"
 
 
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

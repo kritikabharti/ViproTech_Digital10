@@ -61,17 +61,6 @@ export default function CareerCTA() {
           transition={{ delay: 0.7 }}
           viewport={{ once: true }}
         >
-          <Link to="/register">
-            <button style={styles.primaryBtn}>
-              Apply Now
-            </button>
-          </Link>
-
-          <Link to="/contact">
-            <button style={styles.secondaryBtn}>
-              Contact HR
-            </button>
-          </Link>
         </motion.div>
       </motion.div>
     </section>

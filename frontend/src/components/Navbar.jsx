@@ -75,6 +75,7 @@ export default function Navbar() {
               <li>
                 <NavLink
                   to="/admin"
+                  
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active" : ""}`
                   }
@@ -135,7 +136,7 @@ export default function Navbar() {
             onMouseLeave={() => setShowMegaMenu(false)}
           >
             <span className={`nav-link ${showMegaMenu ? "active" : ""}`}>
-              Services
+              Courses
             </span>
 
             {showMegaMenu && (

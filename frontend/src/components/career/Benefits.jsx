@@ -2,11 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import growth from "../../assets/growth.jpg";
-import learning from "../../assets/learning.jpg";
+import learning from "../../assets/continu.jpg";
 import culture from "../../assets/culture.jpg";
-import innovation from "../../assets/growth.jpg";
-import internship from "../../assets/learning.jpg";
-import technology from "../../assets/about.jpg";
+import innovation from "../../assets/innovation.jpg";
+import internship from "../../assets/intern.jpg";
+import technology from "../../assets/modernn.jpg";
 
 const benefits = [
   {
