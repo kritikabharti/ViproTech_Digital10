@@ -1,0 +1,360 @@
+/* src/pages/LogoDesigning.css */
+
+/* ============ CONTAINER ============ */
+.ld-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* ============ SERVICES SECTION ============ */
+.ld-services {
+  padding: 80px 0 40px;
+  background: #ffffff;
+}
+
+.ld-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.ld-section-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.ld-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ld-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ld-section-header p {
+  color: #475569;
+  font-size: 16px;
+}
+
+.ld-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ld-service-card {
+  padding: 32px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ld-service-card:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.ld-service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.ld-service-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ============ STYLES SECTION ============ */
+.ld-styles {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ld-styles-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.ld-style-item {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.ld-style-item:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ld-style-name {
+  color: #1e293b;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============ PROCESS SECTION ============ */
+.ld-process {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.ld-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ld-process-step {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ld-process-step:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ld-step-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.ld-step-content h4 {
+  color: #0a0f1e;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ld-step-content p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ STATS SECTION ============ */
+.ld-stats {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ld-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ld-stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.ld-stat-card h3 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #4F46E5;
+  margin-bottom: 4px;
+}
+
+.ld-stat-card p {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ============ CTA SECTION ============ */
+.ld-cta {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ld-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ld-cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ld-cta-content p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.ld-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ld-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ld-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+.ld-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ld-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .ld-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ld-styles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ld-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ld-services {
+    padding: 60px 0 30px;
+  }
+
+  .ld-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-styles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ld-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ld-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-section-header h2 {
+    font-size: 28px;
+  }
+
+  .ld-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .ld-cta-buttons {
+    flex-direction: column;
+  }
+
+  .ld-cta-buttons .ld-btn-primary,
+  .ld-cta-buttons .ld-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ld-stat-card h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ld-styles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ld-service-card {
+    padding: 24px 16px;
+  }
+
+  .ld-step-number {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .ld-section-header h2 {
+    font-size: 24px;
+  }
+
+  .ld-stat-card h3 {
+    font-size: 24px;
+  }
+
+  .ld-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

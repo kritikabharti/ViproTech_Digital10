@@ -1,0 +1,260 @@
+/* src/pages/InteriorDesigning.css */
+
+/* ============ CONTAINER ============ */
+.id-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* ============ SERVICES SECTION ============ */
+.id-services {
+  padding: 80px 0 40px;
+  background: #ffffff;
+}
+
+.id-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.id-section-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.id-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.id-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.id-section-header p {
+  color: #475569;
+  font-size: 16px;
+}
+
+.id-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.id-service-card {
+  padding: 32px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.id-service-card:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.id-service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.id-service-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ============ PROCESS SECTION ============ */
+.id-process {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.id-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.id-process-step {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.id-process-step:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.id-step-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.id-step-content h4 {
+  color: #0a0f1e;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.id-step-content p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ CTA SECTION ============ */
+.id-cta {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.id-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.id-cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.id-cta-content p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.id-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.id-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.id-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+.id-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.id-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .id-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .id-services {
+    padding: 60px 0 30px;
+  }
+
+  .id-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .id-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .id-section-header h2 {
+    font-size: 28px;
+  }
+
+  .id-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .id-cta-buttons {
+    flex-direction: column;
+  }
+
+  .id-cta-buttons .id-btn-primary,
+  .id-cta-buttons .id-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .id-service-card {
+    padding: 24px 16px;
+  }
+
+  .id-step-number {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .id-section-header h2 {
+    font-size: 24px;
+  }
+}

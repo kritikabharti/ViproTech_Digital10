@@ -130,57 +130,6 @@ export default function Navbar() {
             </NavLink>
           </li>
 
-          <li
-            className="services-wrapper"
-            onMouseEnter={() => setShowMegaMenu(true)}
-            onMouseLeave={() => setShowMegaMenu(false)}
-          >
-            <span className={`nav-link ${showMegaMenu ? "active" : ""}`}>
-              Courses
-            </span>
-
-            {showMegaMenu && (
-              <div className="mega-menu">
-                {/* LEFT COLUMN */}
-                <div className="mega-column domains">
-                  <h3 className="mega-heading">Domains</h3>
-                  {serviceDomains.map((domain) => (
-                    <div
-                      key={domain.id}
-                      className={`domain-item ${
-                        selectedDomain.id === domain.id ? "active-domain" : ""
-                      }`}
-                      onMouseEnter={() => setSelectedDomain(domain)}
-                    >
-                      <span>{domain.name}</span>
-                      <span>›</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* MIDDLE COLUMN */}
-                <div className="mega-column">
-                  <h3 className="mega-heading">Courses</h3>
-                  {selectedDomain.courses.map((course, index) => (
-                    <div key={index} className="mega-item">
-                      {course}
-                    </div>
-                  ))}
-                </div>
-
-                {/* RIGHT COLUMN */}
-                <div className="mega-column">
-                  <h3 className="mega-heading">Industries</h3>
-                  {selectedDomain.industries.map((industry, index) => (
-                    <div key={index} className="mega-item">
-                      {industry}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </li>
-
           <li>
             <NavLink
               to="/blogs"

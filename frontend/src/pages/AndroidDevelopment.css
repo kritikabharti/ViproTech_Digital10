@@ -1,0 +1,378 @@
+/* src/pages/AndroidDevelopment.css */
+
+/* ============ CONTAINER ============ */
+.ad-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* ============ SERVICES SECTION ============ */
+.ad-services {
+  padding: 80px 0 40px;
+  background: #ffffff;
+}
+
+.ad-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.ad-section-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.ad-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ad-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ad-section-header p {
+  color: #475569;
+  font-size: 16px;
+}
+
+.ad-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ad-service-card {
+  padding: 32px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ad-service-card:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.ad-service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(79, 70, 229, 0.08);
+  color: #4F46E5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ad-service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.ad-service-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ============ TECH STACK SECTION ============ */
+.ad-tech-stack {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ad-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.ad-tech-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ad-tech-item:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ad-tech-icon {
+  font-size: 24px;
+}
+
+.ad-tech-name {
+  color: #1e293b;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============ PROCESS SECTION ============ */
+.ad-process {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.ad-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ad-process-step {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ad-process-step:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ad-step-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.ad-step-content h4 {
+  color: #0a0f1e;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ad-step-content p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ STATS SECTION ============ */
+.ad-stats {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ad-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ad-stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.ad-stat-card h3 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #4F46E5;
+  margin-bottom: 4px;
+}
+
+.ad-stat-card p {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ============ CTA SECTION ============ */
+.ad-cta {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ad-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ad-cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ad-cta-content p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.ad-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ad-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ad-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+.ad-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ad-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .ad-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ad-tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ad-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ad-services {
+    padding: 60px 0 30px;
+  }
+
+  .ad-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ad-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ad-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-section-header h2 {
+    font-size: 28px;
+  }
+
+  .ad-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .ad-cta-buttons {
+    flex-direction: column;
+  }
+
+  .ad-cta-buttons .ad-btn-primary,
+  .ad-cta-buttons .ad-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ad-stat-card h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ad-service-card {
+    padding: 24px 16px;
+  }
+
+  .ad-step-number {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .ad-section-header h2 {
+    font-size: 24px;
+  }
+
+  .ad-stat-card h3 {
+    font-size: 24px;
+  }
+
+  .ad-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

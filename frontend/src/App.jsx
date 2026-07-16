@@ -21,6 +21,13 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerificationRequired from "./components/VerificationRequired";
 import Loader from "./components/Loader";
+import WebDevelopment from './pages/WebDevelopment';
+import AndroidDevelopment from './pages/AndroidDevelopment';
+import DigitalMarketing from './pages/DigitalMarketing';
+import LogoDesigning from './pages/LogoDesigning';
+import WebsiteDesign from './pages/WebsiteDesign';
+import InteriorDesigning from './pages/InteriorDesigning';
+import DomainsCourses from './pages/DomainsCourses';
 
 function App() {
   const [loading,setLoading]=useState(true);
@@ -60,8 +67,13 @@ return <Loader/>
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
-
-
+          <Route path="/webdevelopment" element={<WebDevelopment />} />
+          <Route path="/mobile-apps" element={<AndroidDevelopment />} />
+           <Route path="/digital-marketing" element={<DigitalMarketing />} />
+          <Route path="/logo-designing" element={<LogoDesigning />} />
+          <Route path="/website-design" element={<WebsiteDesign />} />
+          <Route path="/interior-designing" element={<InteriorDesigning />} />
+          <Route path="/courses" element={<DomainsCourses />} />
           
           {/* Protected Admin Routes */}
           <Route 

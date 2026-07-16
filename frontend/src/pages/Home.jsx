@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, Link } from 'react-router-dom';
 import {motion} from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -20,7 +20,7 @@ import logo11 from "../assets/shiv&sons.png";
 import logo12 from "../assets/SK files&tools.png";
 import logo13 from "../assets/tech mahindra.png";
 import logo14 from "../assets/wiproapplying.png";
-
+import process from "../assets/custom.jpg";
 
 import {
   FaCloudUploadAlt,
@@ -51,13 +51,15 @@ import aboutImage from '../assets/prooo.jpg';
 import teamImage from '../assets/unnn.jpg';
 import digital from "../assets/digi.jpg";
 import fullstack from "../assets/full.jpg";
-import mechanical from "../assets/cad.jpg";
-import internship from "../assets/internship.jpg";
+import mechanical from "../assets/design.jpg";
+import internship from "../assets/interior.jpg";
 
-import "./WhyChooseSection.css";
 
-import bgImage from "../assets/first.jpg";
-import cardImage from "../assets/second.jpg";
+import { Sparkles, Rocket, Target, Globe } from 'lucide-react';
+import herImage  from "../assets/herImage.jpg";
+import DomainsCourses from './DomainsCourses';
+
+
 
 const container = {
   hidden: {},
@@ -120,148 +122,196 @@ const logos = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
 useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+ const titleText = "Shaping the Future Through Technology and Purpose";
+  const subtitleText = "Innovation. Sustainability. Impact.";
+  const descriptionText = "At VProTech Digital, success goes beyond profit — we focus on creating value through advanced digital capabilities, empowering businesses to scale with purpose.";
+
+const coursesRef = useRef(null);
+
+// Scroll function for courses
+const scrollToCourses = () => {
+  coursesRef.current?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
+
+
+
+ const servicesRef = useRef(null);
+
+  // Scroll function
+  const scrollToServices = () => {
+    servicesRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
+
+
   return (
     <>
 
- <section className="why-section">
-      {/* Animated Background */}
-      <motion.div
-        className="bg-image"
-        style={{ backgroundImage: `url(${bgImage})` }}
-        animate={{
-          scale: [1, 1.12, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <div className="overlay"></div>
-
-      <div className="why-container">
-        {/* Left Card */}
-        <motion.div
-          className="left-card"
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          animate={{
-            y: [0, -12, 0],
-          }}
-        >
-          <div className="card-image-wrapper">
-            <img src={cardImage} alt="Training" />
-            <div className="card-overlay">
-              <span className="experience-badge">5+ Years Experience</span>
-            </div>
-          </div>
-
-         
-          {/* Floating Stats */}
-          <motion.div 
-            className="floating-stats"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="stat-item">
-              <span className="stat-number">50+</span>
-              <span className="stat-label">Courses</span>
-            </div>
-            <div className="stat-divider"></div>
-            <div className="stat-item">
-              <span className="stat-number">1000+</span>
-              <span className="stat-label">Students</span>
-            </div>
-            <div className="stat-divider"></div>
-            <div className="stat-item">
-              <span className="stat-number">95%</span>
-              <span className="stat-label">Placement</span>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Content */}
-        <motion.div
-          className="right-content"
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
+  <section className="home-section">
+      <div className="home-container">
+        {/* LEFT CONTENT */}
+        <motion.div 
+          className="home-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
         >
           
-          <h2 style={{ fontSize: '50px' }}>
-  Empowering Future
-  <br />
-  <span className="highlight-text">Through Technology</span>
-</h2>
+          {/* Heading with character animation - using existing container */}
+          <motion.h1
+            className="home-title"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {titleText.split(" ").map((word, index) => (
+              <motion.span
+                key={index}
+                variants={child}
+                style={{ display: "inline-block", marginRight: "8px" }}
+              >
+                {word.split("").map((char, charIndex) => (
+                  <motion.span
+                    key={charIndex}
+                    variants={child}
+                    style={{ display: "inline-block" }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.span>
+            ))}
+          </motion.h1>
 
-          <p>
-            VProTech Digital provides professional IT training,
-            internships, web development, app development,
-            UI/UX design, and digital marketing solutions.
-            We prepare students with industry-ready skills.
-          </p>
+          {/* Subtitle with character animation */}
+          <motion.h2
+            className="home-subtitle"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {subtitleText.split(" ").map((word, index) => (
+              <motion.span
+                key={index}
+                variants={child}
+                style={{ display: "inline-block", marginRight: "6px" }}
+              >
+                {word.split("").map((char, charIndex) => (
+                  <motion.span
+                    key={charIndex}
+                    variants={child}
+                    style={{ display: "inline-block" }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.span>
+            ))}
+          </motion.h2>
 
-          <div className="feature-list">
-            <div className="feature-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-              <span>Industry-Ready Training</span>
-            </div>
-            <div className="feature-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-              <span>Live Project Experience</span>
-            </div>
-            <div className="feature-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-              <span>100% Placement Assistance</span>
-            </div>
-          </div>
-           
-            <div className="card-buttons">
-            <Link to="/about">
-              <button className="btn-why">
-                <span>Services</span>
-                <svg width="18" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-            </Link>
+          {/* Description */}
+          <motion.p
+            className="home-description"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+          >
+            {descriptionText}
+          </motion.p>
 
-            <Link to="/courses">
-              <button className="btn-courses">
-                <span>Our Courses</span>
-                <svg width="18" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-            </Link>
+         
+
+          {/* Buttons */}
+          <motion.div 
+            className="home-buttons"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 0.6 }}
+          >
+            <motion.button
+              className="btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(79, 70, 229, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+               onClick={scrollToServices} 
+            >
+              <span>Services</span>
+              <ArrowRight size={18} />
+            </motion.button>
+
+           <motion.button
+  className="btn-secondary"
+  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
+  whileTap={{ scale: 0.95 }}
+  onClick={scrollToCourses} // Add this
+>
+  <span>Courses</span>
+  <Sparkles size={18} />
+</motion.button>
+          </motion.div>
+
+        
+          
+        </motion.div>
+
+        {/* RIGHT CONTENT - Circular Image */}
+        <motion.div 
+          className="home-right"
+          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
+        >
+          <div className="circle-image-wrapper">
+            <div className="circle-image-container">
+              <img 
+                src={herImage}
+                alt="VProTech Digital" 
+                className="circle-image"
+              />
+              <div className="circle-ring ring-1"></div>
+              <div className="circle-ring ring-2"></div>
+              <div className="circle-ring ring-3"></div>
+            </div>
+            
+            {/* Floating elements */}
+            <motion.div 
+              className="float-element float-1"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles size={20} color="#4F46E5" />
+            </motion.div>
+            <motion.div 
+              className="float-element float-2"
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Rocket size={20} color="#4F46E5" />
+            </motion.div>
+            <motion.div 
+              className="float-element float-3"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Target size={20} color="#4F46E5" />
+            </motion.div>
           </div>
         </motion.div>
       </div>
     </section>
 
 
-<section className="tech-hero">
+{/* <section className="tech-hero">
   <div className="tech-overlay" />
   <div className="tech-content">
    <motion.h2 
@@ -274,11 +324,22 @@ useEffect(() => {
                   VProTech <span className="highlight">Digital</span>
                 </motion.h2>
   </div>
-</section>
+</section> */}
   
+
 
 <section className="two-image-section">
   
+  {/* Wave Divider at Top - White */}
+   <div className="wave-divider-top">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path 
+        d="M0,50 C300,130 600,30 900,100 C1200,170 1350,80 1440,120 L1440,0 L0,0 Z" 
+        fill="#ffffff"
+      />
+    </svg>
+  </div>
+
       <div className="two-image-container">
         
         {/* LEFT - Image with Motion */}
@@ -328,18 +389,6 @@ useEffect(() => {
                    0.3 }}
                 viewport={{ once: true }}
               >
-               
-                 <motion.h2 
-              className="content-heading"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Building <span className="heading-highlight">Digital</span> Futures
-            </motion.h2>
-                
-
                 <motion.p 
                   className="content-description"
                   initial={{ opacity: 0, y: 20 }}
@@ -348,54 +397,8 @@ useEffect(() => {
                   viewport={{ once: true }}
                 >
                  Founded in 2020 in Mohali, Punjab, VProtech Digital operates as a multifaceted IT solutions firm and technical vocational training institute. The company delivers commercial digital services including custom website development, mobile application design, and targeted search engine optimization. 
-                 Simultaneously, they offer intensive six-week and six-month industrial training programs focused on live-project experience in web development, Python, and digital marketing. To bridge the gap between education and employment, they also provide graduating engineering and computer students with comprehensive job placement assistance.
+                 Simultaneously, they offer intensive six-week and six-month industrial training programs focused on live-project experience in web development, Python, and digital marketing. 
                 </motion.p>
-
-                
-                 <motion.div 
-                  className="content-buttons"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  {/* Why Us Button - Navigates to /about */}
-                 <div className="content-buttons">
-  {/* Why Us Button - Navigates to /about */}
-  <motion.div
-    className="button-wrapper"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.8 }}
-    viewport={{ once: true }}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <Link to="/about" className="content-cta primary">
-      <Users size={18} />
-      Why Us
-      <ChevronRight size={16} />
-    </Link>
-  </motion.div>
-
-  {/* Career Button - Navigates to /career */}
-  <motion.div
-    className="button-wrapper"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.9 }}
-    viewport={{ once: true }}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <Link to="/careers" className="content-cta secondary">
-      <Briefcase size={18} />
-      Career
-      <ChevronRight size={16} />
-    </Link>
-  </motion.div>
-</div>
-                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -405,10 +408,10 @@ useEffect(() => {
 
 
 
-
  {/* ================= OUR SERVICES ================= */}
 
 <section
+   ref={servicesRef} 
 className="services-section"
 style={{
 backgroundImage:`url(${bgaImge})`
@@ -434,8 +437,8 @@ backgroundImage:`url(${bgaImge})`
   transition={{ delay: 0.2, duration: 0.8 }}
   viewport={{ once: true }}
 >
-  Services & Training{" "}
-  <span style={{ color: "#4F46E5" }}>Solutions</span>
+  Serv
+  <span style={{ color: "#4F46E5" }}>ices</span>
 </motion.h2>
 
 <motion.p
@@ -445,8 +448,7 @@ backgroundImage:`url(${bgaImge})`
   transition={{ delay: 0.4, duration: 0.8 }}
   viewport={{ once: true }}
 >
-  Empowering businesses with innovative digital solutions while preparing
-  students with industry-ready practical training.
+  Empowering businesses with innovative digital solutions 
 </motion.p>
 
     <div className="card-grid">
@@ -458,15 +460,29 @@ backgroundImage:`url(${bgaImge})`
           <div className="flip-card-front">
             <h3>Web Development</h3>
             <p>
-              Responsive websites, React applications, Admin Panels &
-              Enterprise Solutions.
+             Custom web applications,
+E-commerce website development,
+Real estate websites,
+Hotel booking websites,
+Business management systems
             </p>
+            
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${custom})` }}
-          ></div>
+          >
+            {/* Button on Image */}
+        
+          <button 
+            className="explore-btn-image"
+          onClick={() => navigate('/webdevelopment')}
+          >
+            Explore More →
+          </button>
+       
+          </div>
 
         </div>
       </div>
@@ -476,16 +492,26 @@ backgroundImage:`url(${bgaImge})`
         <div className="flip-card-inner">
 
           <div className="flip-card-front">
-            <h3>Mobile Apps</h3>
+            <h3>Android App Development</h3>
             <p>
-              Android & iOS apps with modern UI and scalable backend systems.
+              Custom Android applications,
+Business apps,
+Mobile solutions for startups and enterprises.
             </p>
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${expertiseBg})` }}
-          ></div>
+          >
+            
+          <button 
+            className="explore-btn-image"
+            onClick={() => navigate('/mobile-apps')}
+          >
+            Explore More →
+          </button>
+          </div>
 
         </div>
       </div>
@@ -497,14 +523,26 @@ backgroundImage:`url(${bgaImge})`
           <div className="flip-card-front">
             <h3>Digital Marketing</h3>
             <p>
-              SEO, Social Media Marketing, Branding & Business Growth.
+             Search Engine Optimization (SEO),
+Social Media Marketing (SMM),
+Google Ads,
+Online branding,
+Business promotion and lead generation.
             </p>
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${digital})` }}
-          ></div>
+          >
+            
+          <button 
+            className="explore-btn-image"
+              onClick={() => navigate('/digital-marketing')}
+          >
+            Explore More →
+          </button>
+          </div>
 
         </div>
       </div>
@@ -514,17 +552,25 @@ backgroundImage:`url(${bgaImge})`
         <div className="flip-card-inner">
 
           <div className="flip-card-front">
-            <h3>Full Stack Training</h3>
+            <h3>Logo Designing</h3>
             <p>
-              MERN, Java Full Stack, Python, React & Node.js Industrial
-              Training.
+             Custom logo creation,
+       Brand identity design.
             </p>
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${fullstack})` }}
-          ></div>
+          >
+            
+          <button 
+            className="explore-btn-image"
+             onClick={() => navigate('/logo-designing')}
+          >
+            Explore More →
+          </button>
+          </div>
 
         </div>
       </div>
@@ -534,16 +580,27 @@ backgroundImage:`url(${bgaImge})`
         <div className="flip-card-inner">
 
           <div className="flip-card-front">
-            <h3>CAD & Mechanical</h3>
+            <h3>Website Design</h3>
             <p>
-              AutoCAD, SolidWorks, Primavera P6 & Industrial Projects.
+              Responsive website design,
+UI/UX design,
+Business and portfolio websites,
+Corporate websites.
             </p>
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${mechanical})` }}
-          ></div>
+          >
+            
+          <button 
+            className="explore-btn-image"
+           onClick={() => navigate('/website-design')}
+          >
+            Explore More →
+          </button>
+          </div>
 
         </div>
       </div>
@@ -553,16 +610,24 @@ backgroundImage:`url(${bgaImge})`
         <div className="flip-card-inner">
 
           <div className="flip-card-front">
-            <h3>Internship Programs</h3>
+            <h3>Interior Designing</h3>
             <p>
-              Live projects, mentorship, certifications & placement support.
+              Residential and commercial interior design services.
             </p>
           </div>
 
           <div
             className="flip-card-back"
             style={{ backgroundImage: `url(${internship})` }}
-          ></div>
+          >
+            
+          <button 
+            className="explore-btn-image"
+             onClick={() => navigate('/interior-designing')}
+          >
+            Explore More →
+          </button>
+          </div>
 
         </div>
       </div>
@@ -600,7 +665,7 @@ backgroundImage:`url(${bgaImge})`
         rgba(60,59,75,.88),
         rgba(90,85,95,.88)
       ),
-      url(${custom})
+      url(${process})
     `,
   }}
 >
@@ -706,7 +771,14 @@ backgroundImage:`url(${bgaImge})`
 </section>
 
 
-
+{/* ================= COURSES SECTION ================= */}
+<section 
+ ref={coursesRef} 
+className="courses-section">
+  <div className="courses-container">
+    <DomainsCourses />
+  </div>
+</section>
 
 
 
