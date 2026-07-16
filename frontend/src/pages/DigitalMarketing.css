@@ -1,0 +1,360 @@
+/* src/pages/DigitalMarketing.css */
+
+/* ============ CONTAINER ============ */
+.dm-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* ============ SERVICES SECTION ============ */
+.dm-services {
+  padding: 80px 0 40px;
+  background: #ffffff;
+}
+
+.dm-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.dm-section-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.dm-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.dm-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dm-section-header p {
+  color: #475569;
+  font-size: 16px;
+}
+
+.dm-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dm-service-card {
+  padding: 32px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.dm-service-card:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.dm-service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.dm-service-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ============ PLATFORMS SECTION ============ */
+.dm-platforms {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dm-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.dm-platform-item {
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.dm-platform-item:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.dm-platform-name {
+  color: #1e293b;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============ PROCESS SECTION ============ */
+.dm-process {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.dm-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.dm-process-step {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.dm-process-step:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.dm-step-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.dm-step-content h4 {
+  color: #0a0f1e;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.dm-step-content p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ STATS SECTION ============ */
+.dm-stats {
+  padding: 60px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dm-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.dm-stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.dm-stat-card h3 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #4F46E5;
+  margin-bottom: 4px;
+}
+
+.dm-stat-card p {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ============ CTA SECTION ============ */
+.dm-cta {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.dm-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.dm-cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.dm-cta-content p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.dm-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.dm-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+.dm-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.dm-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .dm-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dm-platforms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dm-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dm-services {
+    padding: 60px 0 30px;
+  }
+
+  .dm-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dm-platforms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dm-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .dm-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dm-section-header h2 {
+    font-size: 28px;
+  }
+
+  .dm-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .dm-cta-buttons {
+    flex-direction: column;
+  }
+
+  .dm-cta-buttons .dm-btn-primary,
+  .dm-cta-buttons .dm-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dm-stat-card h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dm-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dm-service-card {
+    padding: 24px 16px;
+  }
+
+  .dm-step-number {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .dm-section-header h2 {
+    font-size: 24px;
+  }
+
+  .dm-stat-card h3 {
+    font-size: 24px;
+  }
+
+  .dm-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

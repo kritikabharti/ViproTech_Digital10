@@ -1,0 +1,260 @@
+/* src/pages/WebsiteDesign.css */
+
+/* ============ CONTAINER ============ */
+.ws-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* ============ SERVICES SECTION ============ */
+.ws-services {
+  padding: 80px 0 40px;
+  background: #ffffff;
+}
+
+.ws-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.ws-section-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.ws-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ws-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ws-section-header p {
+  color: #475569;
+  font-size: 16px;
+}
+
+.ws-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ws-service-card {
+  padding: 32px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ws-service-card:hover {
+  border-color: rgba(79, 70, 229, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.ws-service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.ws-service-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ============ PROCESS SECTION ============ */
+.ws-process {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.ws-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ws-process-step {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.ws-process-step:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ws-step-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.ws-step-content h4 {
+  color: #0a0f1e;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ws-step-content p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ CTA SECTION ============ */
+.ws-cta {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ws-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ws-cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.ws-cta-content p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.ws-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ws-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ws-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+.ws-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.ws-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .ws-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ws-services {
+    padding: 60px 0 30px;
+  }
+
+  .ws-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ws-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ws-section-header h2 {
+    font-size: 28px;
+  }
+
+  .ws-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .ws-cta-buttons {
+    flex-direction: column;
+  }
+
+  .ws-cta-buttons .ws-btn-primary,
+  .ws-cta-buttons .ws-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ws-service-card {
+    padding: 24px 16px;
+  }
+
+  .ws-step-number {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .ws-section-header h2 {
+    font-size: 24px;
+  }
+}

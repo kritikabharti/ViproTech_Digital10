@@ -1,0 +1,647 @@
+/* src/pages/DomainsCourses.css */
+
+/* ============ MAIN SECTION ============ */
+.dc-section {
+  padding: 100px 0 60px;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+.dc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============ HEADER ============ */
+.dc-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.dc-tag {
+  display: inline-block;
+  color: #4F46E5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.dc-header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 12px;
+}
+
+.dc-gradient {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dc-header p {
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* ============ DOMAIN TABS ============ */
+.dc-domains {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.dc-domain-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dc-domain-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.dc-domain-btn.active {
+  background: #4F46E5;
+  color: #fff;
+  border-color: #4F46E5;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+}
+
+.domain-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* ============ COURSES GRID ============ */
+.dc-courses-wrapper {
+  min-height: 400px;
+  margin-bottom: 60px;
+}
+
+.dc-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ============ COURSE CARD ============ */
+.dc-course-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 2px solid #f1f5f9;
+  border-radius: 14px;
+  cursor: default;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* Animated Gradient Border */
+.dc-course-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  padding: 2px;
+  background: var(--card-color);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Background Glow on Hover */
+.dc-course-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, var(--card-color), transparent 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: all 0.5s ease;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.dc-course-card:hover::after {
+  opacity: 0.08;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.dc-course-card:hover::before {
+  opacity: 1;
+}
+
+.dc-course-card:hover {
+  border-color: var(--card-color);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.dc-course-card:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.dc-course-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-color);
+  color: #fff;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.dc-course-card:hover .dc-course-icon {
+  transform: rotate(-8deg) scale(1.05);
+  box-shadow: 0 4px 15px rgba(var(--card-color), 0.4);
+}
+
+.dc-course-info {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.dc-course-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.dc-course-card:hover .dc-course-info h3 {
+  color: var(--card-color);
+}
+
+.dc-course-info p {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+
+.dc-course-card:hover .dc-course-info p {
+  color: #475569;
+}
+
+.dc-course-number {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: #cbd5e1;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.dc-course-card:hover .dc-course-number {
+  color: var(--card-color);
+}
+
+.dc-course-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--card-color), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.dc-course-card:hover .dc-course-glow {
+  opacity: 0.1;
+}
+
+/* ============ CTA SECTION ============ */
+.dc-cta {
+  text-align: center;
+  padding: 48px;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+}
+
+.dc-cta h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.dc-cta p {
+  color: #64748b;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.dc-cta-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.dc-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .dc-courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dc-section {
+    padding: 80px 0 40px;
+  }
+
+  .dc-header h1 {
+    font-size: 32px;
+  }
+
+  .dc-domains {
+    gap: 8px;
+  }
+
+  .dc-domain-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .dc-courses-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .dc-course-card {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .dc-course-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dc-course-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .dc-course-info h3 {
+    font-size: 15px;
+  }
+
+  .dc-course-info p {
+    font-size: 12px;
+  }
+
+  .dc-cta {
+    padding: 32px 20px;
+  }
+
+  .dc-cta h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dc-domain-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .dc-header h1 {
+    font-size: 26px;
+  }
+
+  .dc-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dc-course-card {
+    padding: 14px 16px;
+  }
+
+  .dc-course-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dc-course-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dc-course-number {
+    font-size: 10px;
+  }
+}
+
+
+/* Add these to DomainsCourses.css */
+
+/* ============ CLICK HINT ============ */
+.dc-click-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 11px;
+  color: #94a3b8;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 2;
+}
+
+.dc-course-card:hover .dc-click-hint {
+  opacity: 1;
+  transform: translateX(-4px);
+}
+
+/* ============ MODAL ============ */
+.dc-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.dc-modal-content {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+.dc-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dc-modal-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.dc-modal-content::-webkit-scrollbar-thumb {
+  background: var(--modal-color);
+  border-radius: 3px;
+}
+
+.dc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.dc-modal-close:hover {
+  background: #e2e8f0;
+  transform: rotate(90deg);
+}
+
+.dc-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid;
+}
+
+.dc-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.dc-modal-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin: 0;
+}
+
+.dc-modal-header p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 4px 0 0;
+}
+
+.dc-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dc-modal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.dc-modal-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dc-modal-stat svg {
+  color: var(--modal-color);
+}
+
+.dc-modal-section h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 8px;
+}
+
+.dc-modal-section p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.dc-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.dc-modal-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.dc-modal-list li svg {
+  color: var(--modal-color);
+  flex-shrink: 0;
+}
+
+.dc-modal-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.dc-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.dc-modal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.3);
+}
+
+/* ============ RESPONSIVE MODAL ============ */
+@media (max-width: 768px) {
+  .dc-modal-content {
+    padding: 24px;
+    margin: 16px;
+  }
+
+  .dc-modal-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dc-modal-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dc-modal-list {
+    grid-template-columns: 1fr;
+  }
+
+  .dc-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .dc-modal-header h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dc-modal-content {
+    padding: 16px;
+  }
+
+  .dc-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .dc-modal-stat {
+    font-size: 13px;
+  }
+}
