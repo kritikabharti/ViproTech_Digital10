@@ -4,7 +4,7 @@
   max-width: 1500px;
   margin: 0 auto;
   padding: 40px 24px;
-  background: #0a0f1e;
+  background: white;
   border-radius: 0px;
   color: #e2e8f0;
 }
@@ -22,12 +22,12 @@
 .reviews-header-left h2 {
   font-size: 32px;
   font-weight: 800;
-  color: white;
+  color: black;
   margin-bottom: 4px;
 }
 
 .reviews-header-left p {
-  color: #94a3b8;
+  color: #080808;
   font-size: 16px;
 }
 
@@ -37,7 +37,7 @@
   gap: 8px;
   padding: 12px 24px;
   background: linear-gradient(135deg, #4F46E5, #1E3A8A);
-  color: white;
+  color: rgb(16, 15, 15);
   border: none;
   border-radius: 12px;
   font-weight: 600;
@@ -76,7 +76,7 @@
   display: block;
   font-size: 48px;
   font-weight: 800;
-  color: white;
+  color: rgb(7, 7, 7);
   line-height: 1;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .rating-total {
-  color: #94a3b8;
+  color: #0b0b0b;
   font-size: 14px;
 }
 
@@ -111,7 +111,7 @@
 
 .bar-label {
   font-size: 13px;
-  color: #94a3b8;
+  color: #0c0c0c;
   width: 40px;
   flex-shrink: 0;
 }
@@ -133,7 +133,7 @@
 
 .bar-count {
   font-size: 13px;
-  color: #94a3b8;
+  color: #0d0e0e;
   width: 30px;
   text-align: right;
   flex-shrink: 0;
@@ -161,12 +161,12 @@
 .highlight-number {
   font-size: 20px;
   font-weight: 700;
-  color: white;
+  color: rgb(11, 10, 10);
 }
 
 .highlight-label {
   font-size: 12px;
-  color: #94a3b8;
+  color: #101111;
 }
 
 /* Filters */
@@ -191,7 +191,7 @@
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(255, 255, 255, 0.03);
-  color: white;
+  color: rgb(14, 12, 12);
   font-size: 14px;
   width: 200px;
   outline: none;
@@ -204,7 +204,7 @@
 }
 
 .search-box input::placeholder {
-  color: #64748b;
+  color: #101011;
 }
 
 .filter-buttons {
@@ -218,7 +218,7 @@
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: transparent;
-  color: #94a3b8;
+  color: #090a0a;
   font-size: 13px;
   cursor: pointer;
   transition: all 0.3s;
@@ -230,7 +230,7 @@
 
 .filter-btn.active {
   background: #4F46E5;
-  color: white;
+  color: rgb(10, 9, 9);
   border-color: #4F46E5;
 }
 
@@ -241,7 +241,7 @@
 }
 
 .sort-select label {
-  color: #94a3b8;
+  color: #0b0c0c;
   font-size: 14px;
 }
 
@@ -250,7 +250,7 @@
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(255, 255, 255, 0.03);
-  color: white;
+  color: rgb(15, 12, 12);
   font-size: 14px;
   cursor: pointer;
   outline: none;
@@ -316,14 +316,14 @@
   justify-content: center;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: rgb(12, 12, 12);
   background: linear-gradient(135deg, #4F46E5, #1E3A8A);
 }
 
 .reviewer-name {
   font-size: 16px;
   font-weight: 600;
-  color: white;
+  color: rgb(6, 5, 5);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -357,7 +357,7 @@
   align-items: center;
   gap: 4px;
   font-size: 13px;
-  color: #94a3b8;
+  color: #0a0c0e;
 }
 
 .review-location {
@@ -365,13 +365,13 @@
   align-items: center;
   gap: 4px;
   font-size: 13px;
-  color: #94a3b8;
+  color: #111113;
 }
 
 .review-text {
   font-size: 15px;
   line-height: 1.8;
-  color: #e2e8f0;
+  color: #0b0c0d;
   margin-bottom: 12px;
 }
 
@@ -389,7 +389,7 @@
   border: none;
   border-radius: 6px;
   background: transparent;
-  color: #94a3b8;
+  color: #0e1012;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s;
@@ -425,14 +425,14 @@
 
 .star.empty {
   fill: none;
-  color: #CBD5E1;
+  color: #0c0d0f;
 }
 
 /* No reviews */
 .no-reviews {
   text-align: center;
   padding: 40px;
-  color: #94a3b8;
+  color: #0a0b0c;
 }
 
 /* Write Review Modal */
@@ -472,13 +472,13 @@
 .modal-header h3 {
   font-size: 24px;
   font-weight: 700;
-  color: white;
+  color: rgb(17, 13, 13);
 }
 
 .modal-close {
   background: none;
   border: none;
-  color: #94a3b8;
+  color: #0a0a0b;
   cursor: pointer;
   padding: 4px;
   transition: all 0.3s;
@@ -502,7 +502,7 @@
 }
 
 .write-review-form .form-group label {
-  color: #e2e8f0;
+  color: #0c0d0e;
   font-weight: 600;
   font-size: 14px;
 }
@@ -513,7 +513,7 @@
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(255, 255, 255, 0.03);
-  color: white;
+  color: rgb(15, 14, 14);
   font-size: 14px;
   outline: none;
   transition: all 0.3s;
@@ -528,7 +528,7 @@
 
 .write-review-form .form-group input::placeholder,
 .write-review-form .form-group textarea::placeholder {
-  color: #64748b;
+  color: #0f1012;
 }
 
 .rating-select {
@@ -539,7 +539,7 @@
 }
 
 .rating-text {
-  color: #94a3b8;
+  color: #0c0d0e;
   font-size: 14px;
 }
 
@@ -555,7 +555,7 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   background: transparent;
-  color: #94a3b8;
+  color: #0d0e0f;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
@@ -573,7 +573,7 @@
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg, #4F46E5, #1E3A8A);
-  color: white;
+  color: rgb(11, 10, 10);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
@@ -714,13 +714,13 @@
 }
 
 .image-upload-area p {
-  color: #e2e8f0;
+  color: #0a0b0c;
   font-size: 14px;
   margin-bottom: 4px;
 }
 
 .image-upload-area span {
-  color: #64748b;
+  color: #08090b;
   font-size: 12px;
 }
 
@@ -746,7 +746,7 @@
   border-radius: 50%;
   border: none;
   background: #ef4444;
-  color: white;
+  color: rgb(24, 22, 22);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -783,7 +783,7 @@
   justify-content: center;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: rgb(9, 9, 9);
   background: linear-gradient(135deg, #4F46E5, #1E3A8A);
 }
 
@@ -833,7 +833,7 @@
   justify-content: center;
   font-size: 24px;
   font-weight: 700;
-  color: white;
+  color: rgb(14, 12, 12);
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -855,5 +855,5 @@
   justify-content: center;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: rgb(14, 12, 12);
 }

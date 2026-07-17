@@ -354,7 +354,7 @@ export default function ContactForm() {
 
           <h2 style={styles.heading}>
             Let's Discuss Your
-            <span style={styles.highlight}> Project</span>
+            <span style={styles.highlight}> Concern</span>
           </h2>
 
           <p style={styles.description}>

@@ -358,13 +358,7 @@ export default function Reviews() {
               <span className="highlight-label">Average Rating</span>
             </div>
           </div>
-          <div className="highlight-item">
-            <Users size={20} color="#4F46E5" />
-            <div>
-              <span className="highlight-number">{totalReviews}</span>
-              <span className="highlight-label">Total Reviews</span>
-            </div>
-          </div>
+          
           <div className="highlight-item">
             <TrendingUp size={20} color="#4F46E5" />
             <div>
@@ -378,14 +372,7 @@ export default function Reviews() {
       {/* Filters */}
       <div className="reviews-filters">
         <div className="filter-left">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search reviews..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+         
           <div className="filter-buttons">
             <button 
               className={`filter-btn ${filterRating === 0 ? 'active' : ''}`}
