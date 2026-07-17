@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://vipro-tech-digital10-huc42zmbj-kritikabhartis-projects.vercel.app/"
+    "https://viprotech-digital10-1.onrender.com"
   ],
   credentials: true,
 }));
