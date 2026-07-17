@@ -7,6 +7,8 @@ import {
   createBlog,
   updateBlog,
   deleteBlog,
+  uploadImage,
+  deleteImage,
   togglePublish,
   likeBlog,
   getBlogStats,
@@ -27,5 +29,7 @@ router.post("/", protect, admin, createBlog);
 router.put("/:id", protect, admin, updateBlog);
 router.delete("/:id", protect, admin, deleteBlog);
 router.put("/:id/toggle-publish", protect, admin, togglePublish);
+router.post("/upload", protect, admin, uploadImage);
+router.delete("/image", protect, admin, deleteImage);
 
 export default router;
