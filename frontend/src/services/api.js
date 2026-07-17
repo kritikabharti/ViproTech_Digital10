@@ -192,7 +192,7 @@
 // src/services/api.js
 import axios from "axios";
 
-const API_URL = "https://viprotech-digital10-3fwz.onrender.com";
+const API_URL = "https://viprotech-digital10-3fwz.onrender.com/api";
 
 // Create axios instance
 const api = axios.create({
