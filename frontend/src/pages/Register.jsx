@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
+import Footer from "../components/Footer";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -126,6 +127,7 @@ export default function Register() {
   // If verification message is shown
   if (showVerificationMessage) {
     return (
+       <div className="register-page">
       <div className="auth-container">
         <Toaster position="top-right" />
         
@@ -170,6 +172,8 @@ export default function Register() {
             </div>
           </div>
         </motion.div>
+        
+      </div>
       </div>
     );
   }
@@ -184,9 +188,27 @@ export default function Register() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="auth-title">Student Registration</h2>
-        <p className="auth-subtitle">Create your account and start learning today</p>
+        <h2
+ 
+  className="auth-title"
+  style={{
+    fontSize: "42px",
+    fontWeight: "700",
+    paddingTop: "20px",      // Top padding
+    paddingBottom: "10px",   // Bottom padding
+    paddingLeft: "10px",     // Left padding
+    paddingRight: "10px"     // Right padding
+  }}
+>
+  Student Registration
+</h2>
 
+<p
+  className="auth-subtitle"
+  style={{ fontSize: "20px" }}
+>
+  Create your account and start learning today
+</p>
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
             <input
@@ -278,6 +300,8 @@ export default function Register() {
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </motion.div>
+    
     </div>
+    
   );
 }
