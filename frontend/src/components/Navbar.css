@@ -255,126 +255,150 @@ display:block;
 }
 
 /* ===========================
-   MOBILE MENU ICON
+   MOBILE VIEW
 =========================== */
 
-.mobile-menu-icon{
+@media (max-width:768px){
 
-display:none;
+  .navbar{
+    padding: 15px 20px;
+  }
 
-cursor:pointer;
+  .logo{
+    width:75px;
+  }
 
-font-size:32px;
 
-color:#111;
+  /* Hamburger Icon */
 
-z-index:10001;
+  .mobile-menu-icon{
+    display:block;
+    font-size:30px;
+    cursor:pointer;
+    color:#111;
+  }
+
+
+  /* Mobile Navigation */
+
+  .nav-links{
+
+    display:none;
+
+    position:absolute;
+
+    top:80px;
+    left:0;
+
+    width:100%;
+
+    height:auto;
+    max-height:calc(100vh - 80px);
+
+    overflow-y:auto;
+
+    background:#ffffff;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    padding:25px 20px;
+
+    gap:12px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.15);
+
+    z-index:9999;
+
+  }
+
+
+  .nav-links.active{
+
+    display:flex;
+
+  }
+
+
+
+  /* Links */
+
+  .nav-link{
+
+    width:100%;
+
+    padding:12px 10px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    border-radius:8px;
+
+  }
+
+
+  .nav-link:hover,
+  .nav-link.active{
+
+    background:#eef2ff;
+
+    color:#4F46E5;
+
+  }
+
+
+  /* Services */
+
+  .services-wrapper{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+  }
+
+
+  .services-wrapper .nav-link{
+
+    height:auto;
+
+  }
+
+
+  /* Hide Desktop Mega Menu */
+
+  .mega-menu{
+
+    display:none;
+
+  }
+
+
+
+  /* Logout Button */
+
+  .logout-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:10px;
+
+  }
 
 }
 
-/* ===========================
-   LARGE TABLET
-=========================== */
 
-@media(max-width:1200px){
-
-.mega-menu{
-
-width:960px;
-
-grid-template-columns:240px 1fr 240px;
-
-}
-
-}
-
-/* ===========================
-   TABLET
-=========================== */
-
-@media(max-width:992px){
-
-.mega-menu{
-
-display:none;
-
-}
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media(max-width:768px){
-
-.logo{
-
-width:75px;
-
-}
-
-.mobile-menu-icon{
-
-display:block;
-
-}
-
-.nav-links{
-
-display:none;
-
-position:absolute;
-
-top:90px;
-
-left:0;
-
-width:100%;
-
-background:#fff;
-
-flex-direction:column;
-
-align-items:flex-start;
-
-padding:25px;
-
-gap:18px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-z-index:9999;
-
-}
-
-.nav-links.active{
-
-display:flex;
-
-}
-
-.nav-link{
-
-width:100%;
-
-padding:10px 0;
-
-font-size:17px;
-
-}
-
-.services-wrapper{
-
-height:auto;
-
-width:100%;
-
-display:block;
-
-}
-
-}
 
 /* ===========================
    SMALL MOBILE
@@ -382,53 +406,48 @@ display:block;
 
 @media(max-width:480px){
 
-.logo{
 
-width:65px;
+  .navbar{
 
-}
+    padding:12px 15px;
 
-.nav-links{
-
-padding:20px;
-
-gap:15px;
-
-}
-
-.nav-link{
-
-font-size:16px;
-
-}
-
-}
-
-
-/* Navbar.css - Add logout button styles */
-
-.logout-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.logout-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .logout-btn {
-    width: 100%;
-    padding: 12px;
-    text-align: center;
   }
+
+
+  .logo{
+
+    width:65px;
+
+  }
+
+
+  .mobile-menu-icon{
+
+    font-size:27px;
+
+  }
+
+
+  .nav-links{
+
+    top:70px;
+
+    padding:20px 15px;
+
+  }
+
+
+  .nav-link{
+
+    font-size:16px;
+
+  }
+
+
+  .logout-btn{
+
+    font-size:15px;
+
+  }
+
 }
