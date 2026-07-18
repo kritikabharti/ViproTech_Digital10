@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -48,9 +48,9 @@ return <Loader/>
 
 
   return (
-    <BrowserRouter>
+   <AuthProvider>
      <ScrollToTop />
-      <AuthProvider>
+      
         <Navbar />
         <CustomCursor />
         
@@ -103,7 +103,7 @@ return <Loader/>
         </Routes>
         <Footer />
       </AuthProvider>
-    </BrowserRouter>
+   
   );
 }
 
