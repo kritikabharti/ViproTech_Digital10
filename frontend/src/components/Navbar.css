@@ -47,22 +47,18 @@
 }
 
 @keyframes blink {
-
-  0%{
-    color:#000;
-    opacity:1;
+  0% {
+    color: #000;
+    opacity: 1;
   }
-
-  50%{
-    color:#4F46E5;
-    opacity:.4;
+  50% {
+    color: #4F46E5;
+    opacity: .4;
   }
-
-  100%{
-    color:#000;
-    opacity:1;
+  100% {
+    color: #000;
+    opacity: 1;
   }
-
 }
 
 /* ===========================
@@ -87,367 +83,374 @@
 =========================== */
 
 .mega-menu {
-
   position: fixed;
-
   top: 90px;
   left: 50%;
-
   transform: translateX(-50%);
-
   width: 1200px;
-
   min-height: 520px;
-
   display: grid;
-
   grid-template-columns: 300px 1fr 300px;
-
-  background: rgba(33,32,32,.94);
-
+  background: rgba(33, 32, 32, .94);
   backdrop-filter: blur(18px);
-
   border-radius: 22px;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
-
-  overflow:hidden;
-
-  z-index:9999;
-
-  animation:megaMenu .25s ease;
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  z-index: 9999;
+  animation: megaMenu .25s ease;
 }
 
-@keyframes megaMenu{
-
-from{
-opacity:0;
-transform:translate(-50%,20px);
-}
-
-to{
-opacity:1;
-transform:translate(-50%,0);
-}
-
+@keyframes megaMenu {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 /* ===========================
    LEFT PANEL
 =========================== */
 
-.domains{
-
-background:#252525;
-
-padding:0;
-
+.domains {
+  background: #252525;
+  padding: 0;
 }
 
-.mega-column{
-
-padding:28px;
-
+.mega-column {
+  padding: 28px;
 }
 
-.mega-heading{
-
-font-size:20px;
-
-font-weight:700;
-
-color:white;
-
-margin-bottom:25px;
-
+.mega-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 25px;
 }
 
 /* ===========================
    DOMAIN ITEMS
 =========================== */
 
-.domain-item{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:15px 18px;
-
-border-radius:12px;
-
-margin-bottom:8px;
-
-cursor:pointer;
-
-transition:.3s;
-
-color:#ddd;
-
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 18px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: .3s;
+  color: #ddd;
 }
 
-.domain-item:hover{
-
-background:#eef2ff;
-
-color:#4F46E5;
-
+.domain-item:hover {
+  background: #eef2ff;
+  color: #4F46E5;
 }
 
-.active-domain{
-
-background:#4F46E5;
-
-color:white;
-
+.active-domain {
+  background: #4F46E5;
+  color: white;
 }
 
-.active-domain:hover{
-
-background:#4F46E5;
-
-color:white;
-
+.active-domain:hover {
+  background: #4F46E5;
+  color: white;
 }
 
 /* ===========================
    ITEMS
 =========================== */
 
-.mega-item{
-
-padding:12px 0;
-
-color:#ddd;
-
-font-size:15px;
-
-cursor:pointer;
-
-transition:.25s;
-
+.mega-item {
+  padding: 12px 0;
+  color: #ddd;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .25s;
 }
 
-.mega-item:hover{
-
-padding-left:8px;
-
-color:#4F46E5;
-
+.mega-item:hover {
+  padding-left: 8px;
+  color: #4F46E5;
 }
 
 /* ===========================
    LOGO
 =========================== */
 
-.logo{
-
-width:100px;
-
-height:auto;
-
-display:block;
-
+.logo {
+  width: 100px;
+  height: auto;
+  display: block;
 }
 
 /* ===========================
-   MOBILE VIEW
+   MOBILE VIEW - FIXED
 =========================== */
 
-@media (max-width:768px){
-
-  .navbar{
+@media (max-width: 768px) {
+  /* Navbar base */
+  .navbar {
     padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(246, 227, 227, 0.95);
+    backdrop-filter: blur(10px);
   }
 
-  .logo{
-    width:75px;
+  .logo {
+    width: 75px;
   }
 
-
-  /* Hamburger Icon */
-
-  .mobile-menu-icon{
-    display:block;
-    font-size:30px;
-    cursor:pointer;
-    color:#111;
+  /* ========================================
+     HAMBURGER ICON - FIXED
+  ======================================== */
+  .mobile-menu-icon {
+    display: block !important;
+    font-size: 30px;
+    cursor: pointer;
+    color: #111;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    z-index: 1001;
+    position: relative;
+    transition: all 0.3s ease;
   }
 
-
-  /* Mobile Navigation */
-
-  .nav-links{
-
-    display:none;
-
-    position:absolute;
-
-    top:80px;
-    left:0;
-
-    width:100%;
-
-    height:auto;
-    max-height:calc(100vh - 80px);
-
-    overflow-y:auto;
-
-    background:#ffffff;
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-    padding:25px 20px;
-
-    gap:12px;
-
-    box-shadow:
-    0 15px 35px rgba(0,0,0,.15);
-
-    z-index:9999;
-
+  .mobile-menu-icon:hover {
+    color: #4F46E5;
   }
 
-
-  .nav-links.active{
-
-    display:flex;
-
+  /* ========================================
+     MOBILE NAVIGATION - FIXED (No White Gap)
+  ======================================== */
+  .nav-links {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen to the right */
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 90px 25px 30px;
+    gap: 8px;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0;
+    border: none;
   }
 
-
-
-  /* Links */
-
-  .nav-link{
-
-    width:100%;
-
-    padding:12px 10px;
-
-    font-size:17px;
-
-    font-weight:600;
-
-    border-radius:8px;
-
+  .nav-links.active {
+    right: 0; /* Slide in from right */
   }
 
+  /* Links inside mobile menu */
+  .nav-link {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #131313;
+    transition: all 0.2s ease;
+    white-space: normal;
+  }
 
   .nav-link:hover,
-  .nav-link.active{
-
-    background:#eef2ff;
-
-    color:#4F46E5;
-
+  .nav-link.active {
+    background: #eef2ff;
+    color: #4F46E5;
   }
 
-
-  /* Services */
-
-  .services-wrapper{
-
-    width:100%;
-
-    height:auto;
-
-    display:block;
-
+  /* Services wrapper in mobile */
+  .services-wrapper {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-
-  .services-wrapper .nav-link{
-
-    height:auto;
-
+  .services-wrapper .nav-link {
+    height: auto;
   }
-
 
   /* Hide Desktop Mega Menu */
-
-  .mega-menu{
-
-    display:none;
-
+  .mega-menu {
+    display: none !important;
   }
 
-
-
-  /* Logout Button */
-
-  .logout-btn{
-
-    width:100%;
-
-    margin-top:10px;
-
-    padding:12px;
-
-    text-align:center;
-
-    border-radius:10px;
-
+  /* Logout Button in mobile */
+  .logout-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    text-align: center;
+    border-radius: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
+  .logout-btn:hover {
+    background: #c82333;
+    transform: scale(1.02);
+  }
+
+  /* Mobile list items */
+  .nav-links li {
+    width: 100%;
+    list-style: none;
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
 }
 
+/* ===========================
+   OVERLAY - Add this to fix white gap
+=========================== */
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===========================
+   BODY OVERFLOW FIX
+=========================== */
+
+body.menu-open {
+  overflow: hidden;
+}
 
 /* ===========================
    SMALL MOBILE
 =========================== */
 
-@media(max-width:480px){
-
-
-  .navbar{
-
-    padding:12px 15px;
-
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 15px;
   }
 
-
-  .logo{
-
-    width:65px;
-
+  .logo {
+    width: 65px;
   }
 
-
-  .mobile-menu-icon{
-
-    font-size:27px;
-
+  .mobile-menu-icon {
+    font-size: 27px;
   }
 
-
-  .nav-links{
-
-    top:70px;
-
-    padding:20px 15px;
-
+  .nav-links {
+    width: 85%;
+    padding: 80px 20px 25px;
   }
 
-
-  .nav-link{
-
-    font-size:16px;
-
+  .nav-link {
+    font-size: 16px;
+    padding: 12px 14px;
   }
 
-
-  .logout-btn{
-
-    font-size:15px;
-
+  .logout-btn {
+    font-size: 15px;
+    padding: 12px;
   }
+}
 
+/* ===========================
+   FIX FOR WHITE GAP ON RIGHT
+=========================== */
+
+html,
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ===========================
+   ANIMATION FOR MOBILE MENU
+=========================== */
+
+@keyframes slideIn {
+  from {
+    right: -100%;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+.nav-links.active {
+  animation: slideIn 0.3s ease forwards;
+}
+
+
+
+/* ===========================
+   HIDE HAMBURGER ON DESKTOP
+=========================== */
+
+/* Hide hamburger icon on desktop (screens larger than 768px) */
+@media (min-width: 769px) {
+  .mobile-menu-icon {
+    display: none !important;
+  }
+}
+
+/* Show hamburger only on mobile (screens 768px and below) */
+@media (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block !important;
+    font-size: 30px;
+    cursor: pointer;
+    color: #111;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    z-index: 1001;
+    position: relative;
+    transition: all 0.3s ease;
+  }
 }

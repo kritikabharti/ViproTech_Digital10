@@ -36,6 +36,29 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+   // Handle body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("menu-open");
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("menu-open");
+    };
+  }, [menuOpen]);
+
+  // ✅ Function to close menu
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+
   // Handle logout
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -59,13 +82,16 @@ export default function Navbar() {
         <Link to="/">
           <img src={logo} alt="VProTech Digital" style={styles.logo} />
         </Link>
+        
 
-        <div
-          className="mobile-menu-icon"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </div>
+          {/* Hamburger Menu Icon */}
+          <button
+            className="mobile-menu-icon"
+           onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FiX /> : <FiMenu />}
+          </button>
 
         {/* Navigation */}
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
@@ -103,6 +129,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 `nav-link blink-link ${isActive ? "active" : ""}`
               }
+               onClick={closeMenu} 
             >
               Register For Internship
             </NavLink>
@@ -114,6 +141,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
+               onClick={closeMenu} 
             >
               Home
             </NavLink>
@@ -125,6 +153,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
+               onClick={closeMenu} 
             >
               About
             </NavLink>
@@ -136,6 +165,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
+               onClick={closeMenu} 
             >
               Blogs
             </NavLink>
@@ -147,6 +177,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
+               onClick={closeMenu} 
             >
               Careers
             </NavLink>
@@ -158,6 +189,7 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
+               onClick={closeMenu} 
             >
               Contact
             </NavLink>
