@@ -29,6 +29,7 @@ import WebsiteDesign from './pages/WebsiteDesign';
 import InteriorDesigning from './pages/InteriorDesigning';
 import DomainsCourses from './pages/DomainsCourses';
 
+
 function App() {
   const [loading,setLoading]=useState(true);
 

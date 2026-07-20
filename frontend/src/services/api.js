@@ -273,4 +273,140 @@ export const contactService = {
   },
 };
 
+
+
+// Add to existing api.js
+
+// ============ TEAM SERVICES ============
+export const teamService = {
+  // Get all team members (public)
+  getTeamMembers: async () => {
+    const response = await api.get("/team");
+    return response.data;
+  },
+
+  // Get team member by ID (public)
+  getTeamMemberById: async (id) => {
+    const response = await api.get(`/team/${id}`);
+    return response.data;
+  },
+
+  // Get all team members (admin only)
+  getAdminTeamMembers: async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/team/admin/all", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Get team statistics (admin only)
+  getTeamStats: async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/team/admin/stats", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Create team member (admin only)
+  createTeamMember: async (data) => {
+    const token = localStorage.getItem("token");
+    
+    // If there's an image file, use FormData
+    if (data.imageFile) {
+      const formData = new FormData();
+      Object.keys(data).forEach(key => {
+        if (key === 'skills' && Array.isArray(data[key])) {
+          formData.append(key, JSON.stringify(data[key]));
+        } else if (key === 'socialLinks' && typeof data[key] === 'object') {
+          formData.append(key, JSON.stringify(data[key]));
+        } else if (key !== 'imageFile') {
+          formData.append(key, data[key]);
+        }
+      });
+      formData.append('image', data.imageFile);
+      
+      const response = await api.post("/team", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    }
+    
+    // Regular JSON post
+    const response = await api.post("/team", data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Update team member (admin only)
+  updateTeamMember: async (id, data) => {
+    const token = localStorage.getItem("token");
+    
+    if (data.imageFile) {
+      const formData = new FormData();
+      Object.keys(data).forEach(key => {
+        if (key === 'skills' && Array.isArray(data[key])) {
+          formData.append(key, JSON.stringify(data[key]));
+        } else if (key === 'socialLinks' && typeof data[key] === 'object') {
+          formData.append(key, JSON.stringify(data[key]));
+        } else if (key !== 'imageFile') {
+          formData.append(key, data[key]);
+        }
+      });
+      formData.append('image', data.imageFile);
+      
+      const response = await api.put(`/team/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    }
+    
+    const response = await api.put(`/team/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Delete team member (admin only)
+  deleteTeamMember: async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await api.delete(`/team/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Toggle team member status (admin only)
+  toggleTeamMemberStatus: async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await api.put(`/team/${id}/toggle-status`, {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
+
+  // Upload team member image (admin only)
+  uploadTeamImage: async (imageFile) => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    
+    const response = await api.post("/team/upload", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
+};
+
 export default api;
