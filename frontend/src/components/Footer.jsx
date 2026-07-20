@@ -1,4 +1,5 @@
 import React from "react";
+import logoImage from "../assets/images (2.png";
 
 export default function Footer() {
   return (
@@ -6,7 +7,14 @@ export default function Footer() {
       <div style={styles.footerContainer}>
         {/* Company */}
         <div style={styles.footerColumn}>
-          <h2 style={styles.logo}>VProTech Digital</h2>
+         <div style={styles.logoContainer}>
+            <img 
+              src={logoImage} 
+              alt="VProTech Digital" 
+              style={styles.logoImage}
+            />
+           
+          </div>
 
           <p style={styles.footerText}>
             Empowering students and businesses with innovative IT training,
@@ -118,6 +126,24 @@ footerColumn: {
   flex: "1",
   minWidth: "220px",
 },
+ logoContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    marginBottom: "20px",
+  },
+
+  logoImage: {
+    width: "150px",
+    height: "65px",
+    objectFit: "contain",
+    // If your logo has a dark background, add:
+    // background: "white",
+    // padding: "4px",
+    // borderRadius: "8px",
+  },
+
+
 
 logo: {
   fontSize: "32px",
