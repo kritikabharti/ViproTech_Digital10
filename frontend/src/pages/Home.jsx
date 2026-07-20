@@ -1,6 +1,7 @@
+import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from 'react-router-dom';
-import {motion} from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -28,7 +29,7 @@ import {
   FaAward,
 } from "react-icons/fa";
 import "./Home.css";
-import { ArrowRight, Users, ChevronRight, Briefcase } from 'lucide-react';
+import { ArrowRight, Users, ChevronRight,  ChevronLeft, Briefcase } from 'lucide-react';
 import { HiArrowLongRight } from "react-icons/hi2";
 
 import Footer from "../components/Footer";
@@ -130,6 +131,55 @@ export default function Home() {
 useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
+ const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  
+  const images = [img1, img2, img3, img4, img5, img6, img7];
+
+  // Auto-slide every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const goToPrevious = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const goToSlide = (index) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 1,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 1,
+    }),
+  };
+
 
  const titleText = "Shaping the Future Through Technology and Purpose";
   const subtitleText = "Innovation. Sustainability. Impact.";
@@ -788,18 +838,20 @@ className="courses-section">
 
 
 
-
 {/* ================= OUR JOURNEY ================= */}
-
-<section
-  className="gallery-section"
+<section 
+  className="sliding-gallery"
   style={{
     backgroundImage: `url(${sectionBg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
   }}
 >
+  {/* Overlay */}
   <div className="gallery-overlay"></div>
-
-  <div className="gallery-content">
+  
+  <div className="gallery-container">
     <motion.h2
       className="gallery-title"
       initial={{ opacity: 0, y: 40 }}
@@ -811,31 +863,54 @@ className="courses-section">
     </motion.h2>
 
     <div className="slider-wrapper">
-      <motion.div
-        className="slider"
-        animate={{
-          x: ["0%", "-50%"],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 20,
-          ease: "linear",
-        }}
-      >
-        {[img1, img2, img3, img4, img5, img6, img7, img8].map(
-          (img, index) => (
-            <div className="image-card" key={index}>
-              <img src={img} alt="" className="gallery-image" />
-            </div>
-          )
-        )}
-      </motion.div>
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+        <motion.div
+          key={currentIndex}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: 'tween', duration: 0.6, ease: 'easeInOut' },
+            opacity: { duration: 0.4 },
+          }}
+          className="slide-container"
+        >
+          <img
+            src={images[currentIndex]}
+            alt={`Slide ${currentIndex + 1}`}
+            className="slide-image"
+          />
+          
+          {/* Image Counter */}
+          <div className="slide-counter">
+            {String(currentIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Buttons */}
+      <button className="slide-btn prev" onClick={goToPrevious}>
+        <ChevronLeft size={28} />
+      </button>
+      <button className="slide-btn next" onClick={goToNext}>
+        <ChevronRight size={28} />
+      </button>
+
+      {/* Dots Navigation */}
+      <div className="slider-dots">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => goToSlide(index)}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
-
-
- {/* <Footer /> */}
 
 </>
     
