@@ -16,10 +16,12 @@ import visionImg from "../assets/ourvalues.jpg";
 import bottomImg from "../assets/photo.jpg";
 import TeamSection from '../components/TeamSection';
 
+// pages/About.jsx
 import { 
   Quote, 
   Award, 
   Target, 
+
   Users, 
   TrendingUp,
   Calendar,
@@ -27,6 +29,8 @@ import {
   Briefcase,
   ChevronRight
 } from 'lucide-react';
+
+
 import founderImage from '../assets/Rajat Vprotech.png';
 
 export default function About() {

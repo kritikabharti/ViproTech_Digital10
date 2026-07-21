@@ -33,4 +33,5 @@ router.put("/:id/toggle-status", protect, admin, toggleTeamMemberStatus);
 router.post("/upload", protect, admin, uploadSingle, uploadTeamImage);
 router.delete("/image", protect, admin, deleteTeamImage);
 
+
 export default router;

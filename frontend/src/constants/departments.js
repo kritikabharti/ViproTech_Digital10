@@ -24,7 +24,7 @@ export const DESIGNATIONS = [
   "Social Media Manager",
   "Content Writer",
   "Mechanical Engineer",
-  
+   "AI & Python",
   "CAD Designer",
   "Project Manager",
   "Intern",

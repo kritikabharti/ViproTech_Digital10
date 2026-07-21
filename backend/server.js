@@ -8,6 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
+import { parseFormData } from "./middleware/parseFormData.js"; 
 
 dotenv.config();
 
@@ -25,11 +26,14 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(parseFormData); 
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
-app.use("/api/team", teamRoutes);
+app.use("/api/team", teamRoutes); 
 
 // Test route
 app.get("/api/test", (req, res) => {

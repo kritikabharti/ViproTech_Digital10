@@ -29,6 +29,7 @@ const teamSchema = new mongoose.Schema(
         "Social Media Manager",
         "Content Writer",
         "Mechanical Engineer",
+      
         "CAD Designer",
         "Project Manager",
         "Intern",
