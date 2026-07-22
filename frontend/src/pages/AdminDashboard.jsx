@@ -1418,45 +1418,44 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Cards - Only ONE set */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-icon blue">
-              <Users size={24} />
-            </div>
-            <div className="stat-info">
-              <h3>{stats?.totalUsers || 0}</h3>
-              <p>Total Users</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon green">
-              <UserCheck size={24} />
-            </div>
-            <div className="stat-info">
-              <h3>{stats?.totalActive || 0}</h3>
-              <p>Active Users</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon purple">
-              <Users size={24} />
-            </div>
-            <div className="stat-info">
-              <h3>{totalTeamMembers}</h3>
-              <p>Team Members</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon orange">
-              <MessageSquare size={24} />
-            </div>
-            <div className="stat-info">
-              <h3>{contactStats?.totalMessages || 0}</h3>
-              <p>Total Messages</p>
-            </div>
-          </div>
-        </div>
-
+<div className="stats-grid">
+  <div className="stat-card">
+    <div className="stat-icon blue">
+      <Users size={24} />
+    </div>
+    <div className="stat-info">
+      <h3 className="stat-number-blue">{stats?.totalUsers || 0}</h3>
+      <p>Total Users</p>
+    </div>
+  </div>
+  <div className="stat-card">
+    <div className="stat-icon green">
+      <UserCheck size={24} />
+    </div>
+    <div className="stat-info">
+      <h3 className="stat-number-green">{stats?.totalActive || 0}</h3>
+      <p>Active Users</p>
+    </div>
+  </div>
+  <div className="stat-card">
+    <div className="stat-icon purple">
+      <Users size={24} />
+    </div>
+    <div className="stat-info">
+      <h3 className="stat-number-purple">{totalTeamMembers}</h3>
+      <p>Team Members</p>
+    </div>
+  </div>
+  <div className="stat-card">
+    <div className="stat-icon orange">
+      <MessageSquare size={24} />
+    </div>
+    <div className="stat-info">
+      <h3 className="stat-number-orange">{contactStats?.totalMessages || 0}</h3>
+      <p>Total Messages</p>
+    </div>
+  </div>
+</div>
         {/* Quick Actions - Only ONE set */}
         <div className="quick-actions">
           <h2>Quick Actions</h2>

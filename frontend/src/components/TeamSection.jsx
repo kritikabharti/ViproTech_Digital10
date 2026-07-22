@@ -248,9 +248,9 @@ export default function TeamSection() {
                         <Globe size={16} />
                       </a>
                     )}
-                    <a href={`mailto:${member.email}`}>
+                    {/* <a href={`mailto:${member.email}`}>
                       <Mail size={16} />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </motion.div>
