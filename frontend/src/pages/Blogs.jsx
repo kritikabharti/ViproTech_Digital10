@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import blogsBg from "../assets/blog.jpg";
 import { 
   Search, 
   Calendar, 
@@ -87,8 +88,12 @@ export default function Blogs() {
     <div className="blogs-container">
       <Toaster position="top-right" />
 
-      {/* Hero Section */}
+      {/* ===== HERO SECTION WITH BACKGROUND IMAGE ===== */}
       <section className="blogs-hero">
+        {/* Background Image */}
+        <div className="blogs-hero-bg">
+          <img src={blogsBg} alt="Blogs Background" />
+        </div>
         <div className="blogs-hero-overlay"></div>
         <motion.div 
           className="blogs-hero-content"
@@ -96,24 +101,18 @@ export default function Blogs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <span className="hero-badge">📚 Latest Articles</span>
           <h1>Our <span className="highlight">Blogs</span></h1>
           <p>Discover expert articles, technology trends, and insights from our team</p>
         </motion.div>
       </section>
 
+
       {/* Search and Filter */}
       <section className="blogs-filters">
         <div className="container">
           <div className="filter-row">
-            <div className="search-box">
-              <Search size={20} />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
+           
             <div className="category-filters">
               {categories.map((cat) => (
                 <button

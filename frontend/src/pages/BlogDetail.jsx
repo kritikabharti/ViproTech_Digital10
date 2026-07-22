@@ -257,23 +257,23 @@ export default function BlogDetail() {
               <div className="category-list">
                 <Link to="/blogs?category=Artificial Intelligence" className="category-item">
                   <span>🤖 Artificial Intelligence</span>
-                  <span className="category-count">8</span>
+                  <span className="category-count"></span>
                 </Link>
                 <Link to="/blogs?category=Web Development" className="category-item">
                   <span>💻 Web Development</span>
-                  <span className="category-count">12</span>
+                  <span className="category-count"></span>
                 </Link>
                 <Link to="/blogs?category=Cloud Computing" className="category-item">
                   <span>☁️ Cloud Computing</span>
-                  <span className="category-count">6</span>
+                  <span className="category-count"></span>
                 </Link>
                 <Link to="/blogs?category=Cyber Security" className="category-item">
                   <span>🔒 Cyber Security</span>
-                  <span className="category-count">9</span>
+                  <span className="category-count"></span>
                 </Link>
                 <Link to="/blogs?category=Digital Marketing" className="category-item">
                   <span>📊 Digital Marketing</span>
-                  <span className="category-count">7</span>
+                  <span className="category-count"></span>
                 </Link>
               </div>
             </div>
