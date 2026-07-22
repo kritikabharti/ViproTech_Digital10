@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 
+
 .blogs-loading {
   min-height: 100vh;
   display: flex;
@@ -427,3 +428,5 @@
     font-size: 28px;
   }
 }
+
+

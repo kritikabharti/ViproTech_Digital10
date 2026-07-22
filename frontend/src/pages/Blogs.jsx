@@ -179,7 +179,7 @@ export default function Blogs() {
                     </div>
                     <Link to={`/blog/${featuredBlog._id}`} className="read-more-btn">
                       Read Full Article
-                      <ChevronRight size={18} />
+                      <ChevronRight size={28} />
                     </Link>
                   </div>
                 </motion.div>
@@ -218,7 +218,7 @@ export default function Blogs() {
                       </div>
                       <Link to={`/blog/${blog._id}`} className="blog-card-link">
                         Read More
-                        <ChevronRight size={16} />
+                        <ChevronRight size={26} />
                       </Link>
                     </div>
                   </motion.div>
