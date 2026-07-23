@@ -107,7 +107,6 @@ export default function Blogs() {
         </motion.div>
       </section>
 
-
       {/* Search and Filter */}
       <section className="blogs-filters">
         <div className="container">
@@ -122,6 +121,7 @@ export default function Blogs() {
                 >
                   {cat}
                 </button>
+                
               ))}
             </div>
           </div>
