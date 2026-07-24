@@ -34,23 +34,28 @@ export default function CareerHero() {
             JOIN OUR TEAM
           </motion.p>
 
-          <motion.h1
-            style={styles.heading}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: .4,
-              duration: .9,
-            }}
-          >
-            Build Your Career
-            <br />
-
-            With
-            <span style={styles.highlight}>
-              {" "}VProTech Digital
-            </span>
-          </motion.h1>
+     <motion.h1
+  style={styles.heading}
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    delay: .4,
+    duration: .9,
+  }}
+>
+  Build Your Career
+  <br />
+  With
+  <span style={{
+    background: 'linear-gradient(135deg, #DAA520, #B8860B)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    ...styles.highlight
+  }}>
+    VProTech Digital
+  </span>
+</motion.h1>
 
           <motion.p
             style={styles.description}

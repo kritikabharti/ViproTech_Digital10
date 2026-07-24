@@ -102,7 +102,7 @@ export default function Blogs() {
           transition={{ duration: 0.8 }}
         >
           <span className="hero-badge">📚 Latest Articles</span>
-          <h1>Our <span className="highlight">Blogs</span></h1>
+        <h1>Our <span style={{ color: '#e6bf5b' }}>Blogs</span></h1>
           <p>Discover expert articles, technology trends, and insights from our team</p>
         </motion.div>
       </section>
