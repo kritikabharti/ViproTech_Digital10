@@ -27,16 +27,22 @@ export default function ContactHero() {
           GET IN TOUCH
         </motion.p>
 
-        <motion.h1
-          style={styles.title}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          Let's Build Something
-          <br />
-          <span style={styles.highlight}>Amazing Together</span>
-        </motion.h1>
+       <motion.h1
+  style={styles.title}
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4, duration: 0.8 }}
+>
+  Let's Build Something
+  <br />
+  <span style={{
+    background: 'linear-gradient(135deg, #DAA520, #B8860B)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    ...styles.highlight
+  }}>Amazing Together</span>
+</motion.h1>
 
         <motion.p
           style={styles.description}

@@ -148,8 +148,7 @@ export default function About() {
     }}
   />
 
-  {/* Overlay */}
-  <div className="about-overlay"></div>
+ <div className="about-overlay"></div>
 
   {/* Content */}
   <motion.div
@@ -160,9 +159,10 @@ export default function About() {
       duration: 1,
       ease: "easeOut",
     }}
+    
   >
     <motion.h1
-      className="about-title"
+      className="about-heading"
       initial={{ opacity: 0, x: -80 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{
@@ -170,22 +170,32 @@ export default function About() {
         delay: 0.2,
       }}
     >
-      About <span>VProTech Digital</span>
+     <span style={{ color: '#ffffff' }}>About</span> <span style={{ color: '#B8860B' }}>VProTech Digital</span>
     </motion.h1>
 
     <motion.p
-      className="about-description"
-      initial={{ opacity: 0, x: -80 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        duration: 0.8,
-        delay: 0.5,
-      }}
-    >
-      Empowering businesses and students with innovative software,
-      website development, AI solutions, digital marketing, and
-      industry-leading IT training.
-    </motion.p>
+  className="about-paragraph"
+  initial={{ opacity: 0, x: -80 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{
+    duration: 0.8,
+    delay: 0.5,
+  }}
+  style={{
+    fontSize: '20px',
+    lineHeight: '1.9',
+    color: '#ffffff',
+    maxWidth: '620px',
+    margin: '0',
+    fontWeight: '400',
+    letterSpacing: '0.3px',
+    textShadow: '0 2px 20px rgba(0, 0, 0, 0.2)',
+  }}
+>
+  Empowering businesses and students with innovative software,
+  website development, AI solutions, digital marketing, and
+  industry-leading IT training.
+</motion.p>
   </motion.div>
 </section>
 
