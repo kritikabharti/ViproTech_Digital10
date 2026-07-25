@@ -158,6 +158,7 @@ import DomainsCourses from './pages/DomainsCourses';
 import TeamForm from './pages/admin/TeamForm';
 import TeamSection from './components/TeamSection';
 import AdminTeamManagement from './pages/admin/AdminTeamManagement'; 
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -177,6 +178,12 @@ function App() {
     <AuthProvider>
       <TeamProvider>
         <ScrollToTop />
+
+  <Helmet>
+        <meta name="description" content="VProTech Digital builds fast, accessible web and mobile apps to help businesses scale with purpose through innovation and sustainability." />
+        <meta name="theme-color" content="#4F46E5" />
+      </Helmet>
+
         <Navbar />
         <CustomCursor />
         
