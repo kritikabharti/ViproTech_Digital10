@@ -289,10 +289,10 @@ export default function About() {
         <span>About Us</span>
       </motion.div>
 
-      <motion.h2 className="golden-title">
+      <motion.h1 className="golden-title">
         <span className="golden-text">Golden</span> Standard of
         <span className="golden-highlight"> Digital Excellence</span>
-      </motion.h2>
+      </motion.h1>
 
       <motion.p className="golden-subtitle">
         Discover our comprehensive suite of premium digital services designed
