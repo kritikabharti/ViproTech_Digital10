@@ -429,36 +429,6 @@ body {
 
 
 
-/* Add to Navbar.css */
-
-/* Ensure mobile menu button is touch-friendly */
-.mobile-menu-icon {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-/* Ensure all nav links are touch-friendly */
-.nav-links li a,
-.nav-links li button {
-  padding: 12px 16px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Logout button touch target */
-.logout-btn {
-  min-height: 44px;
-  padding: 10px 20px;
-}
-
 /* ===========================
    HIDE HAMBURGER ON DESKTOP
 =========================== */

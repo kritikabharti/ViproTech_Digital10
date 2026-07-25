@@ -80,7 +80,7 @@ export default function Navbar() {
       <div style={styles.container}>
         {/* Logo */}
         <Link to="/">
-         <img src={logo} alt="VProTech Digital Home" style={styles.logo} />
+          <img src={logo} alt="VProTech Digital" style={styles.logo} />
         </Link>
         
 
@@ -198,7 +198,7 @@ export default function Navbar() {
           {/* Logout Button - Only visible when logged in */}
           {isSuperAdmin && (
             <li>
-              <button onClick={handleLogout} className="logout-btn" aria-label="Logout">
+              <button onClick={handleLogout} className="logout-btn">
                 Logout
               </button>
             </li>
