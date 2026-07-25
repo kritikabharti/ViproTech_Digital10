@@ -18,6 +18,8 @@ import "../components/Reviews.css";
 export default function Careers() {
   return (
     <>
+
+    
       <Navbar />
 
       <CareerHero />

@@ -10,7 +10,13 @@ import {
   Clock, 
   User,
   ChevronRight,
-  Eye
+  Eye,
+   Sparkles,
+   BookOpen,
+   Users,
+   TrendingUp,
+   Star
+   
 } from "lucide-react";
 import { blogService } from "../services/api";
 import "./Blogs.css";
@@ -75,6 +81,13 @@ export default function Blogs() {
   const featuredBlog = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
   const remainingBlogs = filteredBlogs.length > 1 ? filteredBlogs.slice(1) : [];
 
+    const blogStats = [
+    { icon: <BookOpen size={24} />, value: "50+", label: "Articles Published" },
+    { icon: <Users size={24} />, value: "10K+", label: "Readers" },
+    { icon: <TrendingUp size={24} />, value: "30+", label: "Categories" },
+    { icon: <Star size={24} />, value: "4.8", label: "Reader Rating" },
+  ];
+
   if (loading) {
     return (
       <div className="blogs-loading">
@@ -85,27 +98,197 @@ export default function Blogs() {
   }
 
   return (
+
     <div className="blogs-container">
       <Toaster position="top-right" />
+{/* ===== DREAMLIKE ANIMATED BACKGROUND SECTION ===== */}
+<section className="blog-dream-section">
+  {/* Animated Dreamscape Background */}
+  <div className="dream-bg">
+    {/* Soft Gradient Orbs */}
+    <motion.div
+      className="dream-orb orb-1"
+      animate={{
+        x: ["0%", "10%", "-5%", "0%"],
+        y: ["0%", "-10%", "5%", "0%"],
+        scale: [1, 1.1, 0.9, 1],
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+    <motion.div
+      className="dream-orb orb-2"
+      animate={{
+        x: ["0%", "-8%", "12%", "0%"],
+        y: ["0%", "15%", "-5%", "0%"],
+        scale: [1, 0.9, 1.1, 1],
+      }}
+      transition={{
+        duration: 25,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 2,
+      }}
+    />
+    <motion.div
+      className="dream-orb orb-3"
+      animate={{
+        x: ["0%", "15%", "-10%", "0%"],
+        y: ["0%", "-5%", "15%", "0%"],
+        scale: [1, 0.8, 1.2, 1],
+      }}
+      transition={{
+        duration: 30,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 4,
+      }}
+    />
+    <motion.div
+      className="dream-orb orb-4"
+      animate={{
+        x: ["0%", "-12%", "8%", "0%"],
+        y: ["0%", "10%", "-10%", "0%"],
+        scale: [1, 1.15, 0.85, 1],
+      }}
+      transition={{
+        duration: 22,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 1,
+      }}
+    />
 
-      {/* ===== HERO SECTION WITH BACKGROUND IMAGE ===== */}
-      <section className="blogs-hero">
-        {/* Background Image */}
-        <div className="blogs-hero-bg">
-          <img src={blogsBg} alt="Blogs Background" />
-        </div>
-        <div className="blogs-hero-overlay"></div>
-        <motion.div 
-          className="blogs-hero-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="hero-badge">📚 Latest Articles</span>
-        <h1>Our <span style={{ color: '#e6bf5b' }}>Blogs</span></h1>
-          <p>Discover expert articles, technology trends, and insights from our team</p>
-        </motion.div>
-      </section>
+    {/* Floating Particles - More Visible */}
+    <div className="dream-particles">
+      {[...Array(40)].map((_, i) => {
+        const size = 4 + Math.random() * 8;
+        const colors = [
+          'rgba(212, 175, 55, 0.8)',
+          'rgba(251, 191, 36, 0.7)',
+          'rgba(79, 70, 229, 0.7)',
+          'rgba(255, 255, 255, 0.6)',
+          'rgba(212, 175, 55, 0.5)',
+        ];
+        const color = colors[i % colors.length];
+        
+        return (
+          <motion.div
+            key={i}
+            className="dream-particle"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight + 100,
+              scale: 0,
+              opacity: 0,
+            }}
+            animate={{
+              y: [null, -150, -300],
+              x: [null, Math.random() * 200 - 100, Math.random() * 200 - 100],
+              opacity: [0, 0.8, 0],
+              scale: [0, 1.2, 0.5],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 12,
+              repeat: Infinity,
+              delay: Math.random() * 6,
+              ease: "easeOut",
+            }}
+            style={{
+              width: size,
+              height: size,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle at 30% 30%, ${color}, transparent)`,
+              borderRadius: '50%',
+              position: 'absolute',
+              boxShadow: `0 0 ${size * 3}px ${color}`,
+              border: `1px solid ${color.replace('0.8', '0.3').replace('0.7', '0.2')}`,
+            }}
+          />
+        );
+      })}
+    </div>
+
+    {/* Additional Glowing Stars - Static but with glow */}
+    <div className="dream-stars">
+      {[...Array(30)].map((_, i) => (
+        <motion.div
+          key={`star-${i}`}
+          className="dream-star"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+          style={{
+            width: 2 + Math.random() * 3,
+            height: 2 + Math.random() * 3,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            background: `radial-gradient(circle, 
+              ${['#D4AF37', '#fbbf24', '#4F46E5', '#ffffff'][i % 4]}, 
+              transparent)`,
+            borderRadius: '50%',
+            position: 'absolute',
+            boxShadow: `0 0 ${10 + Math.random() * 20}px rgba(212, 175, 55, 0.3)`,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+
+  {/* Content */}
+  <div className="dream-content">
+    <motion.div
+      className="dream-header"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <motion.div
+        className="dream-badge"
+        animate={{
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <span>✦</span>
+        <span>Knowledge Hub</span>
+      </motion.div>
+
+      <motion.h1 className="dream-heading">
+        Our <span className="dream-highlight">Blogs</span>
+      </motion.h1>
+
+      <motion.p className="dream-description">
+        Explore expert insights, latest technology trends, and in-depth articles 
+        curated by our team of industry professionals. Stay ahead with our 
+        comprehensive knowledge base.
+      </motion.p>
+
+      <motion.p className="dream-description-2">
+        From AI and Web Development to Digital Marketing and Career Growth — 
+        discover content that inspires, educates, and transforms.
+      </motion.p>
+    </motion.div>
+  </div>
+</section>
+
+
+
 
       {/* Search and Filter */}
       <section className="blogs-filters">

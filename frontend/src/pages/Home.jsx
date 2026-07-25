@@ -155,12 +155,6 @@ const cardVariants = {
     { number: "6+", label: "Training Programs", icon: GraduationCap },
   ];
 
-  const services = [
-    { icon: Code, title: "Web Development", desc: "Custom websites & applications" },
-    { icon: Smartphone, title: "Mobile Apps", desc: "iOS & Android solutions" },
-    { icon: Search, title: "SEO Services", desc: "Targeted search optimization" },
-    { icon: GraduationCap, title: "Industrial Training", desc: "6-week & 6-month programs" },
-  ];
 
 
 
@@ -181,11 +175,65 @@ const logos = [
   logo14,
 ];
 
+
+
+
 export default function Home() {
   const navigate = useNavigate();
 useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
+const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [enterDirection, setEnterDirection] = useState('left');
+
+  const services = [
+    {
+      icon: Code,
+      title: "Web Development",
+      description: "Modern responsive websites",
+      color: "#6366f1"
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile Apps",
+      description: "iOS & Android solutions",
+      color: "#8b5cf6"
+    },
+    {
+      icon: Globe,
+      title: "Digital Marketing",
+      description: "Grow your online presence",
+      color: "#ec4899"
+    },
+    {
+      icon: Cpu,
+      title: "AI Solutions",
+      description: "Intelligent automation",
+      color: "#06b6d4"
+    }
+  ];
+
+  const handleMouseEnter = (e, index) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+    
+    // Determine direction based on cursor position
+    if (x < width / 2) {
+      setEnterDirection('left');
+    } else {
+      setEnterDirection('right');
+    }
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
 
 
  const [currentIndex, setCurrentIndex] = useState(0);
@@ -387,67 +435,65 @@ const scrollToCourses = () => {
           </motion.div>
         </motion.div>
 
-        {/* ===== RIGHT CONTENT - Services Grid ===== */}
-        <motion.div 
-          className="home-right"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon">
-                <Code size={22} />
+         {/* ===== RIGHT CONTENT - Services Grid ===== */}
+      <motion.div 
+        className="home-right"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`service-card ${hoveredIndex === index ? 'hovered' : ''}`}
+              onMouseEnter={(e) => handleMouseEnter(e, index)}
+              onMouseLeave={handleMouseLeave}
+              data-direction={enterDirection}
+            >
+              <div className="service-card-inner">
+                <div 
+                  className="service-icon"
+                  style={{ backgroundColor: `${service.color}15` }}
+                >
+                  <service.icon 
+                    size={22} 
+                    style={{ color: service.color }}
+                  />
+                </div>
+                <h4>{service.title}</h4>
+                <p>{service.description}</p>
               </div>
-              <h4>Web Development</h4>
-              <p>Modern responsive websites</p>
+              
+              {/* Direction-based border indicator */}
+              <div className={`border-indicator ${enterDirection}`} />
             </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <Smartphone size={22} />
-              </div>
-              <h4>Mobile Apps</h4>
-              <p>iOS & Android solutions</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <Globe size={22} />
-              </div>
-              <h4>Digital Marketing</h4>
-              <p>Grow your online presence</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <Cpu size={22} />
-              </div>
-              <h4>AI Solutions</h4>
-              <p>Intelligent automation</p>
-            </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Floating elements */}
-          <motion.div 
-            className="float-element float-1"
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Star size={14} color="#F59E0B" />
-          </motion.div>
-          <motion.div 
-            className="float-element float-2"
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Rocket size={14} color="#F59E0B" />
-          </motion.div>
-          <motion.div 
-            className="float-element float-3"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Target size={14} color="#F59E0B" />
-          </motion.div>
+        {/* Floating elements */}
+        <motion.div 
+          className="float-element float-1"
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Star size={14} color="#F59E0B" />
         </motion.div>
+        <motion.div 
+          className="float-element float-2"
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Rocket size={14} color="#F59E0B" />
+        </motion.div>
+        <motion.div 
+          className="float-element float-3"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Target size={14} color="#F59E0B" />
+        </motion.div>
+      </motion.div>        
       </div>
     </section>
 
@@ -601,31 +647,6 @@ const scrollToCourses = () => {
               <span>Trusted</span>
             </motion.div>
           </div>
-
-          {/* Services Mini Grid */}
-          {/* <motion.div
-            className="about-services-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {services.map((service, i) => (
-              <motion.div
-                key={i}
-                className="about-service-card"
-                custom={i}
-                variants={cardVariants}
-                whileHover={{ y: -4 }}
-              >
-                <div className="service-icon-wrapper">
-                  <service.icon size={18} />
-                </div>
-                <h4>{service.title}</h4>
-                <p>{service.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div> */}
         </motion.div>
       </div>
     </section>

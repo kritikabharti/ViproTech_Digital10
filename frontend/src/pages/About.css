@@ -1,3 +1,376 @@
+/* ========================================
+   GOLDEN SECTION WITH WAVY BACKGROUND
+   ======================================== */
+.golden-section {
+  padding: 100px 20px 120px;
+  background: linear-gradient(135deg, #0a0f1e 0%, #1a1a2e 50%, #0a0f1e 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.golden-section.golden-active {
+  background: linear-gradient(135deg, #0a0f1e 0%, #1a1a2e 40%, #2d1f0a 70%, #0a0f1e 100%);
+}
+
+/* ===== WAVY BACKGROUND ===== */
+.golden-wavy-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wavy-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.wavy-svg.wavy-2 {
+  opacity: 0.4;
+  animation-delay: 2s;
+}
+
+.wavy-svg.wavy-3 {
+  opacity: 0.3;
+  animation-delay: 4s;
+}
+
+/* ===== CONTAINER ===== */
+.golden-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px;
+}
+
+/* ===== GOLDEN TOGGLE BUTTON ===== */
+.golden-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid #D4AF37;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0f1e;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 30px rgba(212, 175, 55, 0.15);
+}
+
+.golden-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.25);
+}
+
+.golden-toggle.active {
+  background: linear-gradient(135deg, #D4AF37, #fbbf24);
+  border-color: #B8860B;
+  color: #ffffff;
+  box-shadow: 0 4px 30px rgba(212, 175, 55, 0.4);
+}
+
+.golden-toggle .toggle-icon {
+  font-size: 20px;
+}
+
+.golden-toggle .toggle-text {
+  font-weight: 500;
+}
+
+/* ===== GOLDEN HEADER ===== */
+.golden-header {
+  text-align: center;
+}
+
+.golden-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #D4AF37, #fbbf24);
+  border-radius: 30px;
+  color: #0a0f1e;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 30px rgba(212, 175, 55, 0.3);
+}
+
+.golden-badge svg {
+  color: #0a0f1e;
+}
+
+.golden-title {
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.golden-text {
+  color: #D4AF37;
+  position: relative;
+}
+
+.golden-text::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #D4AF37, #fbbf24, #D4AF37);
+  border-radius: 4px;
+  animation: goldenLine 3s ease-in-out infinite;
+}
+
+@keyframes goldenLine {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.5);
+    opacity: 0.5;
+  }
+}
+
+.golden-highlight {
+  background: linear-gradient(135deg, #D4AF37, #fbbf24, #B8860B, #D4AF37);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldenShine 4s ease-in-out infinite;
+}
+
+@keyframes goldenShine {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.golden-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto 16px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.golden-subtitle-2 {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ===== GOLDEN ORBS ===== */
+.golden-orbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.golden-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  width: 300px;
+  height: 300px;
+}
+
+.orb-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  bottom: 10%;
+  right: 5%;
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  animation-delay: 4s;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1024px) {
+  .golden-title {
+    font-size: 44px;
+  }
+  
+  .golden-subtitle {
+    font-size: 18px;
+  }
+  
+  .golden-orb {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .orb-3 {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .golden-section {
+    padding: 80px 16px 100px;
+    min-height: 500px;
+  }
+  
+  .golden-title {
+    font-size: 34px;
+  }
+  
+  .golden-subtitle {
+    font-size: 16px;
+  }
+  
+  .golden-subtitle-2 {
+    font-size: 15px;
+  }
+  
+  .golden-badge {
+    font-size: 12px;
+    padding: 8px 18px;
+  }
+  
+  .golden-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .golden-orb {
+    width: 150px;
+    height: 150px;
+    filter: blur(60px);
+  }
+  
+  .orb-3 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .golden-toggle {
+    top: 70px;
+    right: 10px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .golden-toggle .toggle-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .golden-section {
+    padding: 60px 12px 80px;
+    min-height: 400px;
+  }
+  
+  .golden-title {
+    font-size: 26px;
+  }
+  
+  .golden-subtitle {
+    font-size: 14px;
+  }
+  
+  .golden-subtitle-2 {
+    font-size: 13px;
+  }
+  
+  .golden-badge {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+  
+  .golden-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .golden-orb {
+    width: 100px;
+    height: 100px;
+    filter: blur(50px);
+  }
+  
+  .orb-3 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .golden-toggle {
+    top: 65px;
+    right: 8px;
+    padding: 6px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+  
+  .golden-toggle .toggle-icon {
+    font-size: 14px;
+  }
+  
+  .golden-toggle .toggle-text {
+    font-size: 10px;
+  }
+}
+
+
+
+
+
+
+
 /* ===========================
    HERO SECTION
 =========================== */

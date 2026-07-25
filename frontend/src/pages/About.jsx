@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import aboutBg from "../assets/about.jpg";
 import { motion } from "framer-motion";
-import React from "react";
 import "./About.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -21,19 +21,90 @@ import {
   Quote, 
   Award, 
   Target, 
-
   Users, 
   TrendingUp,
   Calendar,
   MapPin,
   Briefcase,
-  ChevronRight
+  ChevronRight,
+  Sparkles,
+  Star,
+  Zap,
+  Crown,
+  Gem,
+  Shield,
+  Rocket,
+  Code,
+  Smartphone,
+  Globe,
+  Cpu,
+  Layers,
+  Play,
+  CheckCircle,
+  ArrowRight,
+   Handshake 
 } from 'lucide-react';
 
 
 import founderImage from '../assets/Rajat Vprotech.png';
 
 export default function About() {
+
+ const [isGoldenMode, setIsGoldenMode] = useState(false);
+
+
+  // Golden services data
+  const goldenServices = [
+    {
+      icon: <Code size={28} />,
+      title: "Custom Software Development",
+      description: "Tailored solutions built with cutting-edge technology to streamline your business operations.",
+      color: "#D4AF37"
+    },
+    {
+      icon: <Smartphone size={28} />,
+      title: "Mobile App Development",
+      description: "Native and cross-platform mobile applications with intuitive user experiences.",
+      color: "#C9A832"
+    },
+    {
+      icon: <Globe size={28} />,
+      title: "Web Development",
+      description: "Responsive, high-performance websites that captivate audiences and drive conversions.",
+      color: "#B8960F"
+    },
+    {
+      icon: <Cpu size={28} />,
+      title: "AI & Machine Learning",
+      description: "Intelligent automation and data-driven solutions that transform business processes.",
+      color: "#A8850C"
+    },
+    {
+      icon: <Layers size={28} />,
+      title: "Digital Marketing",
+      description: "Strategic campaigns across SEO, social media, and content marketing for measurable growth.",
+      color: "#D4AF37"
+    },
+    {
+      icon: <Shield size={28} />,
+      title: "Cybersecurity",
+      description: "Enterprise-grade security solutions protecting your digital assets and customer data.",
+      color: "#C9A832"
+    }
+  ];
+
+  const goldenStats = [
+    { value: "150+", label: "Projects Delivered", icon: <CheckCircle size={24} /> },
+    { value: "98%", label: "Client Satisfaction", icon: <Star size={24} /> },
+    { value: "200+", label: "Students Trained", icon: <Users size={24} /> },
+    { value: "50+", label: "Business Partners", icon: <Handshake size={24} /> },
+  ];
+
+
+
+
+
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -127,77 +198,173 @@ export default function About() {
   return (
     
     <>
-
-    
       <Navbar />
 
-     <section className="about-hero">
-  {/* Animated Background */}
-  <motion.div
-    className="about-bg"
-    style={{
-      backgroundImage: `url(${aboutBg})`,
-    }}
-    animate={{
-      scale: [1, 1.08, 1],
-    }}
-    transition={{
-      duration: 12,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  />
+{/* ===== NEW GOLDEN SECTION ===== */}
+<section className={`golden-section ${isGoldenMode ? 'golden-active' : ''}`}>
+  {/* Wavy Background Animation */}
+  <div className="golden-wavy-bg">
+    <svg className="wavy-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <motion.path
+        fill="rgba(79, 70, 229, 0.05)"
+        d="M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        animate={{
+          d: [
+            "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,160L48,165.3C96,171,192,181,288,186.7C384,192,480,192,576,181.3C672,171,768,149,864,138.7C960,128,1056,128,1152,138.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,224L48,218.7C96,213,192,203,288,202.7C384,203,480,213,576,208C672,203,768,181,864,176C960,171,1056,181,1152,192C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </svg>
 
- <div className="about-overlay"></div>
+    <svg className="wavy-svg wavy-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <motion.path
+        fill="rgba(212, 175, 55, 0.08)"
+        d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        animate={{
+          d: [
+            "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,288L48,277.3C96,267,192,245,288,234.7C384,224,480,224,576,234.7C672,245,768,267,864,277.3C960,288,1056,288,1152,277.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </svg>
 
-  {/* Content */}
-  <motion.div
-    className="about-content"
-    initial={{ opacity: 0, x: -120 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{
-      duration: 1,
-      ease: "easeOut",
-    }}
-    
-  >
-    <motion.h1
-      className="about-heading"
-      initial={{ opacity: 0, x: -80 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        duration: 0.8,
-        delay: 0.2,
-      }}
+    <svg className="wavy-svg wavy-3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <motion.path
+        fill="rgba(79, 70, 229, 0.03)"
+        d="M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        animate={{
+          d: [
+            "M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,224L48,213.3C96,203,192,181,288,170.7C384,160,480,160,576,170.7C672,181,768,203,864,213.3C960,224,1056,224,1152,213.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,117.3C672,107,768,85,864,74.7C960,64,1056,64,1152,74.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+            "M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </svg>
+  </div>
+
+  <div className="golden-container">
+    {/* Section Header */}
+    <motion.div
+      className="golden-header"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
     >
-     <span style={{ color: '#ffffff' }}>About</span> <span style={{ color: '#B8860B' }}>VProTech Digital</span>
-    </motion.h1>
+      <motion.div
+        className="golden-badge"
+        animate={{
+          scale: isGoldenMode ? [1, 1.1, 1] : 1,
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <Sparkles size={20} />
+        <span>About Us</span>
+      </motion.div>
 
-    <motion.p
-  className="about-paragraph"
-  initial={{ opacity: 0, x: -80 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{
-    duration: 0.8,
-    delay: 0.5,
-  }}
-  style={{
-    fontSize: '20px',
-    lineHeight: '1.9',
-    color: '#ffffff',
-    maxWidth: '620px',
-    margin: '0',
-    fontWeight: '400',
-    letterSpacing: '0.3px',
-    textShadow: '0 2px 20px rgba(0, 0, 0, 0.2)',
-  }}
->
-  Empowering businesses and students with innovative software,
-  website development, AI solutions, digital marketing, and
-  industry-leading IT training.
-</motion.p>
-  </motion.div>
+      <motion.h2 className="golden-title">
+        <span className="golden-text">Golden</span> Standard of
+        <span className="golden-highlight"> Digital Excellence</span>
+      </motion.h2>
+
+      <motion.p className="golden-subtitle">
+        Discover our comprehensive suite of premium digital services designed
+        to elevate your business to new heights of success. We combine 
+        innovation, expertise, and cutting-edge technology to deliver 
+        exceptional results that drive growth and transformation.
+      </motion.p>
+
+      <motion.p className="golden-subtitle-2">
+        From custom software development to AI-powered solutions, our team 
+        of experts is dedicated to helping you achieve your digital goals 
+        with precision and excellence.
+      </motion.p>
+    </motion.div>
+
+    {/* Floating Golden Orbs */}
+    <div className="golden-orbs">
+      <motion.div
+        className="golden-orb orb-1"
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 20, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3), rgba(79, 70, 229, 0.1))',
+        }}
+      />
+      <motion.div
+        className="golden-orb orb-2"
+        animate={{
+          y: [0, 30, 0],
+          x: [0, -20, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: 'radial-gradient(circle, rgba(79, 70, 229, 0.3), rgba(212, 175, 55, 0.1))',
+        }}
+      />
+      <motion.div
+        className="golden-orb orb-3"
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 30, 0],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(79, 70, 229, 0.15))',
+        }}
+      />
+    </div>
+  </div>
 </section>
+
+
+
+
+
+
+
 
 
 {/* Next section */}

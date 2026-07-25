@@ -1,3 +1,323 @@
+/* ========================================
+   DREAMLIKE ANIMATED BACKGROUND SECTION
+   ======================================== */
+.blog-dream-section {
+  padding: 120px 20px 140px;
+  background: linear-gradient(165deg, #070b15 0%, #0f1629 40%, #141b2d 70%, #0a0f1e 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== DREAM BACKGROUND ===== */
+.dream-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Soft Gradient Orbs */
+.dream-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+}
+
+.dream-orb.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.dream-orb.orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.2), transparent 70%);
+  bottom: -150px;
+  left: -150px;
+}
+
+.dream-orb.orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.dream-orb.orb-4 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 70%);
+  bottom: 20%;
+  right: 20%;
+}
+
+/* ===== FLOATING PARTICLES ===== */
+.dream-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dream-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: blur(2px);
+}
+
+/* ===== STATIC GLOWING STARS ===== */
+.dream-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dream-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ===== CONTENT ===== */
+.dream-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.dream-header {
+  margin-bottom: 0;
+}
+
+.dream-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(212, 175, 55, 0.05);
+}
+
+.dream-badge span:first-child {
+  color: #D4AF37;
+  font-size: 16px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.dream-heading {
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.dream-highlight {
+  background: linear-gradient(135deg, #D4AF37, #fbbf24, #B8860B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: dreamShine 4s ease-in-out infinite;
+  position: relative;
+}
+
+.dream-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  border-radius: 3px;
+  animation: dreamUnderline 3s ease-in-out infinite;
+}
+
+@keyframes dreamShine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes dreamUnderline {
+  0%, 100% { transform: scaleX(1); opacity: 0.5; }
+  50% { transform: scaleX(0.5); opacity: 0.1; }
+}
+
+.dream-description {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 750px;
+  margin: 0 auto 16px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.dream-description-2 {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1024px) {
+  .dream-heading {
+    font-size: 44px;
+  }
+  
+  .dream-description {
+    font-size: 18px;
+  }
+  
+  .dream-orb.orb-1 {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .dream-orb.orb-2 {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-dream-section {
+    padding: 80px 16px 100px;
+    min-height: 450px;
+  }
+  
+  .dream-heading {
+    font-size: 34px;
+  }
+  
+  .dream-description {
+    font-size: 16px;
+  }
+  
+  .dream-description-2 {
+    font-size: 15px;
+  }
+  
+  .dream-badge {
+    font-size: 12px;
+    padding: 8px 18px;
+  }
+  
+  .dream-orb.orb-1 {
+    width: 250px;
+    height: 250px;
+    filter: blur(80px);
+  }
+  
+  .dream-orb.orb-2 {
+    width: 300px;
+    height: 300px;
+    filter: blur(80px);
+  }
+  
+  .dream-orb.orb-3 {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+  }
+  
+  .dream-orb.orb-4 {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-dream-section {
+    padding: 60px 12px 80px;
+    min-height: 350px;
+  }
+  
+  .dream-heading {
+    font-size: 26px;
+  }
+  
+  .dream-description {
+    font-size: 14px;
+  }
+  
+  .dream-description-2 {
+    font-size: 13px;
+  }
+  
+  .dream-badge {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+  
+  .dream-orb.orb-1 {
+    width: 180px;
+    height: 180px;
+    filter: blur(60px);
+  }
+  
+  .dream-orb.orb-2 {
+    width: 200px;
+    height: 200px;
+    filter: blur(60px);
+  }
+  
+  .dream-orb.orb-3 {
+    width: 150px;
+    height: 150px;
+    filter: blur(60px);
+  }
+  
+  .dream-orb.orb-4 {
+    width: 150px;
+    height: 150px;
+    filter: blur(60px);
+  }
+}
+
+
+
 /* src/pages/Blogs.css */
 .blogs-container {
   background: #ffffff;
