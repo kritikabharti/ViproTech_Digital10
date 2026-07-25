@@ -158,7 +158,7 @@ import DomainsCourses from './pages/DomainsCourses';
 import TeamForm from './pages/admin/TeamForm';
 import TeamSection from './components/TeamSection';
 import AdminTeamManagement from './pages/admin/AdminTeamManagement'; 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [loading, setLoading] = useState(true);

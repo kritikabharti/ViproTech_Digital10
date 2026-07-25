@@ -251,7 +251,7 @@ export default function CareerHero() {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         /* ========================================
            CAREER HERO SECTION
            ======================================== */
