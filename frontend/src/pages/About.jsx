@@ -668,19 +668,6 @@ students for their bright future.
     </motion.div>
 
   </div>
-
-  {/* Bottom Image */}
-
-  <motion.div
-    className="bottom-image-box"
-    variants={fadeUp}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-  >
-    <img src={bottomImg} alt="" className="bottom-image" />
-  </motion.div>
-
 </section>
 
 
