@@ -217,7 +217,7 @@ export default function ContactHero() {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         /* ========================================
            CONTACT HERO SECTION
            ======================================== */
