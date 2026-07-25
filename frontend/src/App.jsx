@@ -182,6 +182,8 @@ function App() {
   <Helmet>
         <meta name="description" content="VProTech Digital builds fast, accessible web and mobile apps to help businesses scale with purpose through innovation and sustainability." />
         <meta name="theme-color" content="#4F46E5" />
+ <title>VProTech Digital - Web & Mobile App Development</title>
+
       </Helmet>
 
         <Navbar />
