@@ -343,7 +343,7 @@ export default function Blogs() {
                   </div>
                   <div className="featured-blog-content">
                     <span className="blog-category">{featuredBlog.category}</span>
-                    <h2>{featuredBlog.title}</h2>
+                    <h1>{featuredBlog.title}</h1>
                     <p>{featuredBlog.description}</p>
                     <div className="blog-meta">
                       <span>
