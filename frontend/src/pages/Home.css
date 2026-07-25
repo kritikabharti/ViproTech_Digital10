@@ -271,6 +271,7 @@ padding: 10px 20px;
   height: 500px;
 }
 
+/* ===== SERVICE CARD WITH DIRECTIONAL BORDER ===== */
 .service-card {
   background: rgba(122, 92, 41, 0.03);
   border: 1px solid rgba(175, 135, 67, 0.06);
@@ -283,22 +284,199 @@ padding: 10px 20px;
   overflow: hidden;
 }
 
+/* Animated border that stretches from direction */
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #a87d34, transparent);
+  inset: -1px;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #F59E0B, #fbbf24, #f59e0b, #d97706);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s ease;
+  transform-origin: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Stretch from LEFT */
+.service-card[data-direction="left"]::before {
   transform: scaleX(0);
-  transition: transform 0.4s ease;
+  transform-origin: left;
 }
 
-.service-card:hover::before {
+.service-card[data-direction="left"].hovered::before {
   transform: scaleX(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
 }
 
+/* Stretch from RIGHT */
+.service-card[data-direction="right"]::before {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.service-card[data-direction="right"].hovered::before {
+  transform: scaleX(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from TOP */
+.service-card[data-direction="top"]::before {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.service-card[data-direction="top"].hovered::before {
+  transform: scaleY(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from BOTTOM */
+.service-card[data-direction="bottom"]::before {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.service-card[data-direction="bottom"].hovered::before {
+  transform: scaleY(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from TOP-LEFT */
+.service-card[data-direction="top-left"]::before {
+  transform: scale(0);
+  transform-origin: top left;
+}
+
+.service-card[data-direction="top-left"].hovered::before {
+  transform: scale(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from TOP-RIGHT */
+.service-card[data-direction="top-right"]::before {
+  transform: scale(0);
+  transform-origin: top right;
+}
+
+.service-card[data-direction="top-right"].hovered::before {
+  transform: scale(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from BOTTOM-LEFT */
+.service-card[data-direction="bottom-left"]::before {
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+
+.service-card[data-direction="bottom-left"].hovered::before {
+  transform: scale(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Stretch from BOTTOM-RIGHT */
+.service-card[data-direction="bottom-right"]::before {
+  transform: scale(0);
+  transform-origin: bottom right;
+}
+
+.service-card[data-direction="bottom-right"].hovered::before {
+  transform: scale(1);
+  opacity: 1;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Border indicator dot (shows direction) */
+.service-card .border-indicator {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #F59E0B;
+  opacity: 0;
+  z-index: 3;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.service-card .border-indicator.left {
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.service-card .border-indicator.right {
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.service-card .border-indicator.top {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.service-card .border-indicator.bottom {
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.service-card .border-indicator.top-left {
+  top: 8px;
+  left: 8px;
+}
+
+.service-card .border-indicator.top-right {
+  top: 8px;
+  right: 8px;
+}
+
+.service-card .border-indicator.bottom-left {
+  bottom: 8px;
+  left: 8px;
+}
+
+.service-card .border-indicator.bottom-right {
+  bottom: 8px;
+  right: 8px;
+}
+
+.service-card.hovered .border-indicator {
+  opacity: 1;
+}
+
+/* Hover Effects */
 .service-card:hover {
   transform: translateY(-4px);
   border-color: rgba(245, 158, 11, 0.2);
@@ -306,6 +484,18 @@ padding: 10px 20px;
   box-shadow: 0 10px 30px rgba(245, 158, 11, 0.08);
 }
 
+.service-card:hover .service-card-inner {
+  transform: scale(1.02);
+}
+
+/* Inner content wrapper */
+.service-card-inner {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+/* Icon Styles */
 .service-icon {
   display: inline-flex;
   align-items: center;
@@ -321,7 +511,7 @@ padding: 10px 20px;
 
 .service-card:hover .service-icon {
   background: rgba(245, 158, 11, 0.18);
-  transform: scale(1.05);
+  transform: scale(1.05) rotate(-5deg);
 }
 
 .service-icon svg {
@@ -329,11 +519,13 @@ padding: 10px 20px;
   height: 20px;
 }
 
+/* Text Styles */
 .service-card h4 {
   font-size: 14px;
   font-weight: 600;
   color: #0a0f1e;
   margin: 0 0 4px 0;
+  transition: color 0.3s ease;
 }
 
 .service-card p {
@@ -341,6 +533,7 @@ padding: 10px 20px;
   color: #6b7280;
   margin: 0;
   line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
 /* Floating Elements */
@@ -524,7 +717,7 @@ padding: 10px 20px;
 
   .home-left {
     gap: 12px;
-  padding: 50px 10px;
+    padding: 50px 10px;
   }
 
   .home-title {
@@ -622,8 +815,6 @@ padding: 10px 20px;
     height: 10px;
   }
 }
-
-
 
 
 
