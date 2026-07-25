@@ -99,9 +99,7 @@ export default function TeamSection() {
     return (
       <div className="team-error">
         <p>{error}</p>
-      <button onClick={() => fetchTeamMembers()} aria-label="Retry loading team members">
-  Retry
-</button>
+        <button onClick={() => fetchTeamMembers()}>Retry</button>
       </div>
     );
   }
@@ -191,22 +189,20 @@ export default function TeamSection() {
                       >
                         <Edit size={16} />
                       </Link>
-                     <button
-  className="admin-action-btn toggle"
-  onClick={() => setShowStatusModal(member._id)}
-  title={member.isActive ? 'Deactivate' : 'Activate'}
-  aria-label={member.isActive ? 'Deactivate team member' : 'Activate team member'}
->
-  {member.isActive ? '🔴' : '🟢'}
-</button>
-<button
-  className="admin-action-btn delete"
-  onClick={() => setShowDeleteModal(member._id)}
-  title="Delete Member"
-  aria-label="Delete team member"
->
-  <Trash2 size={16} />
-</button>
+                      <button
+                        className="admin-action-btn toggle"
+                        onClick={() => setShowStatusModal(member._id)}
+                        title={member.isActive ? 'Deactivate' : 'Activate'}
+                      >
+                        {member.isActive ? '🔴' : '🟢'}
+                      </button>
+                      <button
+                        className="admin-action-btn delete"
+                        onClick={() => setShowDeleteModal(member._id)}
+                        title="Delete Member"
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   )}
                 </div>
@@ -266,29 +262,18 @@ export default function TeamSection() {
         {showDeleteModal && (
           <div className="modal-overlay" onClick={() => setShowDeleteModal(null)}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-             <button 
-  className="modal-close" 
-  onClick={() => setShowDeleteModal(null)}
-  aria-label="Close delete confirmation dialog"
->
-  <X size={24} />
-</button>
+              <button className="modal-close" onClick={() => setShowDeleteModal(null)}>
+                <X size={24} />
+              </button>
               <h3>Delete Team Member</h3>
               <p>Are you sure you want to delete this team member? This action cannot be undone.</p>
               <div className="modal-actions">
-                <button 
-  className="cancel-btn" 
-  onClick={() => setShowDeleteModal(null)}
-  aria-label="Cancel delete action"
->
-  Cancel
-</button><button 
-  className="delete-btn" 
-  onClick={() => handleDelete(showDeleteModal)}
-  aria-label="Confirm delete team member"
->
-  Delete
-</button>
+                <button className="cancel-btn" onClick={() => setShowDeleteModal(null)}>
+                  Cancel
+                </button>
+                <button className="delete-btn" onClick={() => handleDelete(showDeleteModal)}>
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -310,13 +295,9 @@ export default function TeamSection() {
                 <button className="cancel-btn" onClick={() => setShowStatusModal(null)}>
                   Cancel
                 </button>
-              <button 
-  className="confirm-btn" 
-  onClick={() => handleToggleStatus(showStatusModal)}
-  aria-label="Confirm status change"
->
-  Confirm
-</button>
+                <button className="confirm-btn" onClick={() => handleToggleStatus(showStatusModal)}>
+                  Confirm
+                </button>
               </div>
             </div>
           </div>
