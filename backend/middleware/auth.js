@@ -39,6 +39,10 @@ const protect = async (req, res, next) => {
   }
 };
 
+
+
+
+
 // Admin middleware
 const admin = (req, res, next) => {
   if (req.user && req.user.role === "admin") {
@@ -48,5 +52,7 @@ const admin = (req, res, next) => {
     throw new Error("Not authorized as admin");
   }
 };
+
+
 
 export { protect, admin };
