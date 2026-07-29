@@ -1,4 +1,5 @@
 // server.js
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -9,6 +10,7 @@ import blogRoutes from "./routes/blogRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
 import { parseFormData } from "./middleware/parseFormData.js"; 
+import jobRoutes from './routes/jobRoutes.js';
 
 dotenv.config();
 
@@ -34,6 +36,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/team", teamRoutes); 
+app.use('/api/jobs', jobRoutes);
 
 // Test route
 app.get("/api/test", (req, res) => {
@@ -73,7 +76,7 @@ const startServer = async () => {
       console.log(`📝 Blogs: http://localhost:${PORT}/api/blogs`);
     });
   } catch (error) {
-    console.error("❌ MongoDB connection error:", error.message);
+    console.error("MongoDB connection error:", error.message);
     process.exit(1);
   }
 };

@@ -11,6 +11,7 @@ import AboutContentSection from '../components/sections/AboutContentSection';
 import TeamVisionSection from '../components/sections/TeamVisionSection';
 import WhyChooseSection from '../components/sections/WhyChooseSection';
 
+
 // Import CSS
 import "./About.css";
 
@@ -24,7 +25,6 @@ export default function About() {
       <AboutContentSection />
       <TeamVisionSection />
       <WhyChooseSection />
-    
     </>
   );
 }

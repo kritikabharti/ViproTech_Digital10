@@ -11,6 +11,7 @@ import JobCards from "../components/career/JobCards";
 import InternshipSection from "../components/career/InternshipSection";
 import FAQ from "../components/career/FAQ";
 import CareerCTA from "../components/career/CareerCTA";
+import JobOpenings from "../components/career/JobOpenings";
 
 import Reviews from "../components/Reviews";
 import "../components/Reviews.css";
@@ -25,6 +26,8 @@ export default function Careers() {
       <CareerHero />
 
       <Benefits />
+
+       <JobOpenings />
 
       <HiringProcess />
 

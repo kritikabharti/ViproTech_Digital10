@@ -120,6 +120,7 @@ export default function Navbar() {
                   Add Blog
                 </NavLink>
               </li>
+              
             </>
           )}
 
@@ -194,6 +195,8 @@ export default function Navbar() {
               Contact
             </NavLink>
           </li>
+
+
 
           {/* Logout Button - Only visible when logged in */}
           {isSuperAdmin && (
