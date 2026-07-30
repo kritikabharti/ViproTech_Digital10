@@ -138,7 +138,7 @@ export default function ApplyJob() {
 
       // Send application - Replace with your actual API endpoint
       // In ApplyJob.jsx, update the submit URL
-const response = await fetch('http://localhost:5000/api/applications', {
+const response = await fetch(`${API_URL}/applications`, {
   method: 'POST',
   body: submitData
 });

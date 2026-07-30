@@ -1,7 +1,9 @@
 // services/testimonialService.js
 import axios from 'axios';
+import { API_URL } from '../services/api';
 
-const API_URL = 'http://localhost:5000/api'; // Change to your API URL
+// ✅ Use environment variable
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api"; // Change to your API URL
 
 // Get all active testimonials (public)
 export const getTestimonials = async () => {

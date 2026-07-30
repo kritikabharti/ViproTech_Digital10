@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_URL } from '../services/api';
 
-const API = "http://localhost:5000/api/blogs";
-
+const API = `${API_URL}/blogs`;
 export const getBlogs = () => axios.get(API);
 
 export const getFeaturedBlog = () =>

@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { Mail, Lock, ArrowRight, LogIn, Sparkles } from 'lucide-react';
 import "./Login.css";
+import { API_URL } from '../services/api';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ export default function Login() {
     }
 
     setResending(true);
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/resend-verification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: unverifiedEmail }),
-      });
+   try {
+  const response = await fetch(`${API_URL}/auth/resend-verification`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: unverifiedEmail }),
+  });
 
       const data = await response.json();
       

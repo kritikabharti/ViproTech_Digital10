@@ -11,6 +11,8 @@ const resetUserPassword = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('✅ Connected to MongoDB\n');
 
+    const API_URL = process.env.API_URL || 'http://localhost:5000/api';
+
     const email = "bkritika015@gmail.com";
     const newPassword = "Test@123";
 
@@ -43,10 +45,10 @@ const resetUserPassword = async () => {
     console.log(`🔑 New Password: ${newPassword}`);
     console.log(`🔐 Password test: ${isMatch ? '✅ PASSED' : '❌ FAILED'}`);
 
-    if (isMatch) {
-      console.log(`\n🎉 Now test login with:`);
-      console.log(`curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/json" -d "{\"email\":\"${email}\",\"password\":\"${newPassword}\""}`);
-    }
+  if (isMatch) {
+  console.log(`\n🎉 Now test login with:`);
+  console.log(`curl -X POST ${API_URL}/auth/login -H "Content-Type: application/json" -d "{\"email\":\"${email}\",\"password\":\"${newPassword}\""}`);
+}
 
     process.exit(0);
   } catch (error) {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from '../services/api';
 import { 
   User, 
   Mail, 
@@ -76,14 +77,14 @@ export default function Register() {
     setLoading(true);
     const { confirmPassword, ...registerData } = formData;
     
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerData),
-      });
+  try {
+  const response = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(registerData),
+  });
 
       const data = await response.json();
       
@@ -111,14 +112,14 @@ export default function Register() {
   };
 
   const resendVerification = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/resend-verification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: registeredEmail }),
-      });
+   try {
+  const response = await fetch(`${API_URL}/auth/resend-verification`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: registeredEmail }),
+  });
 
       const data = await response.json();
       

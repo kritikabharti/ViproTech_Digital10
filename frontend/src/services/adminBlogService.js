@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/admin/blogs";
+const API = "http:///api/admin/blogs";
 
 export const createBlog = (data) =>
   axios.post(API, data);
