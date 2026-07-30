@@ -95,6 +95,52 @@ const [appStats, setAppStats] = useState({
 });
 
 
+
+// ===== BLOG MANAGEMENT STATES =====
+const [blogs, setBlogs] = useState([]);
+const [blogsLoading, setBlogsLoading] = useState(false);
+const [blogStats, setBlogStats] = useState({
+  total: 0,
+  published: 0,
+  views: 0
+});
+
+
+// ===== BLOG FUNCTIONS =====
+const fetchBlogs = async () => {
+  try {
+    setBlogsLoading(true);
+    const token = localStorage.getItem('token');
+    
+    // Fetch all blogs (admin)
+    const response = await fetch(`${API_URL}/blogs/admin/all`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    
+    if (data.success) {
+      setBlogs(data.data);
+      // Update stats
+      const published = data.data.filter(b => b.isPublished).length;
+      const views = data.data.reduce((sum, b) => sum + (b.views || 0), 0);
+      setBlogStats({
+        total: data.data.length,
+        published: published,
+        views: views
+      });
+    }
+  } catch (error) {
+    console.error('Failed to fetch blogs:', error);
+    toast.error('Failed to load blogs');
+  } finally {
+    setBlogsLoading(false);
+  }
+};
+
+
 // ===== JOB APPLICATIONS FUNCTIONS =====
 const fetchApplications = async () => {
   try {
@@ -168,6 +214,7 @@ const filteredApplications = applications.filter(app => {
     fetchData();
     fetchTeamData();
      fetchApplications();
+       fetchBlogs(); 
   }, []);
 
   const fetchData = async () => {
@@ -189,6 +236,10 @@ const filteredApplications = applications.filter(app => {
       setLoading(false);
     }
   };
+
+
+
+  
 
   // ===== TEAM DATA FETCHING =====
   const fetchTeamData = async () => {
@@ -962,55 +1013,90 @@ const filteredApplications = applications.filter(app => {
         )}
 
         {/* ===== BLOGS TAB ===== */}
-        {activeTab === "blogs" && (
-          <div className="blogs-section">
-            <div className="section-header">
-              <h2>Blog Management</h2>
-              <button className="add-blog-btn" onClick={navigateToAddBlog}>
-                <PlusCircle size={18} />
-                Add New Blog
-              </button>
-            </div>
-            <div className="blog-stats-grid">
-              <div className="blog-stat-card">
-                <div className="blog-stat-icon">
-                  <FileText size={24} />
-                </div>
-                <div>
-                  <h4>Total Blogs</h4>
-                  <p>0</p>
+{activeTab === "blogs" && (
+  <div className="blogs-section">
+    <div className="section-header">
+      <h2>Blog Management</h2>
+      <button className="add-blog-btn" onClick={navigateToAddBlog}>
+        <PlusCircle size={18} />
+        Add New Blog
+      </button>
+    </div>
+
+    {/* Blog Stats */}
+    <div className="blog-stats-grid">
+      <div className="blog-stat-card">
+        <div className="blog-stat-icon">
+          <FileText size={24} />
+        </div>
+        <div>
+          <h4>Total Blogs</h4>
+          <p>{blogStats.total}</p>
+        </div>
+      </div>
+      <div className="blog-stat-card">
+        <div className="blog-stat-icon green">
+          <CheckCircle size={24} />
+        </div>
+        <div>
+          <h4>Published</h4>
+          <p>{blogStats.published}</p>
+        </div>
+      </div>
+      <div className="blog-stat-card">
+        <div className="blog-stat-icon yellow">
+          <Eye size={24} />
+        </div>
+        <div>
+          <h4>Total Views</h4>
+          <p>{blogStats.views}</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Blogs List */}
+    {blogsLoading ? (
+      <div className="blog-loading">Loading blogs...</div>
+    ) : blogs.length === 0 ? (
+      <div className="blog-placeholder">
+        <FileText size={48} />
+        <h3>No blogs yet</h3>
+        <p>Create your first blog post</p>
+        <button className="add-blog-btn" onClick={navigateToAddBlog}>
+          <PlusCircle size={18} />
+          Add New Blog
+        </button>
+      </div>
+    ) : (
+      <div className="blog-list">
+        {blogs.map((blog) => (
+          <div key={blog._id} className="blog-card">
+            <div className="blog-card-header">
+              <div className="blog-info">
+                <h4>{blog.title}</h4>
+                <div className="blog-meta">
+                  <span><Calendar size={14} /> {new Date(blog.createdAt).toLocaleDateString()}</span>
+                  <span><Eye size={14} /> {blog.views || 0} views</span>
+                  <span className={`status-badge ${blog.isPublished ? 'active' : 'draft'}`}>
+                    {blog.isPublished ? 'Published' : 'Draft'}
+                  </span>
                 </div>
               </div>
-              <div className="blog-stat-card">
-                <div className="blog-stat-icon green">
-                  <CheckCircle size={24} />
-                </div>
-                <div>
-                  <h4>Published</h4>
-                  <p>0</p>
-                </div>
+              <div className="blog-actions">
+                <Link to={`/admin/edit-blog/${blog._id}`} className="action-btn edit">
+                  <Edit size={16} />
+                </Link>
+                <button className="action-btn delete">
+                  <Trash2 size={16} />
+                </button>
               </div>
-              <div className="blog-stat-card">
-                <div className="blog-stat-icon yellow">
-                  <Eye size={24} />
-                </div>
-                <div>
-                  <h4>Total Views</h4>
-                  <p>0</p>
-                </div>
-              </div>
-            </div>
-            <div className="blog-placeholder">
-              <FileText size={48} />
-              <h3>No blogs yet</h3>
-              <p>Create your first blog post</p>
-              <button className="add-blog-btn" onClick={navigateToAddBlog}>
-                <PlusCircle size={18} />
-                Add New Blog
-              </button>
             </div>
           </div>
-        )}
+        ))}
+      </div>
+    )}
+  </div>
+)}
 
 
         {/* ===== APPLICATIONS TAB ===== */}
