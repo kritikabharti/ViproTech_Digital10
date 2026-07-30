@@ -3,8 +3,25 @@ import { useEffect, useState } from "react";
 export default function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [trail, setTrail] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768 || ('ontouchstart' in window);
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Don't add mouse events on mobile
+    if (isMobile) return;
+
     const move = (e) => {
       setPosition({
         x: e.clientX,
@@ -14,10 +31,12 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
-  }, []);
+  }, [isMobile]);
 
   // smooth trailing animation
   useEffect(() => {
+    if (isMobile) return;
+
     const follow = () => {
       setTrail((prev) => ({
         x: prev.x + (position.x - prev.x) * 0.15,
@@ -27,7 +46,10 @@ export default function CustomCursor() {
     };
 
     follow();
-  }, [position]);
+  }, [position, isMobile]);
+
+  // Don't render on mobile
+  if (isMobile) return null;
 
   return (
     <>

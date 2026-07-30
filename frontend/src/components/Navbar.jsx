@@ -5,6 +5,7 @@ import "./Navbar.css";
 import logo from "../assets/imagesss.png";
 import { FiMenu, FiX } from "react-icons/fi";
 import { serviceDomains } from "../data/servicesData";
+import { Briefcase } from 'lucide-react';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -121,6 +122,19 @@ export default function Navbar() {
                 </NavLink>
               </li>
               
+ <li>
+    <NavLink 
+      to="/admin/jobs" 
+      className={({ isActive }) => 
+        `nav-link ${isActive ? "active" : ""}`
+      }
+    >
+      <Briefcase size={18} />
+      Manage Jobs
+    </NavLink>
+  </li>
+
+
             </>
           )}
 

@@ -213,37 +213,53 @@ const login = asyncHandler(async (req, res) => {
   console.log("🔐 Login:", email);
 
   if (!email || !password) {
-    res.status(400);
-    throw new Error("Please provide email and password");
+    return res.status(400).json({
+      success: false,
+      message: "Please provide email and password"
+    });
   }
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: email.toLowerCase() });
   if (!user) {
-    res.status(401);
-    throw new Error("Invalid email or password");
+    console.log("❌ User not found:", email);
+    return res.status(401).json({
+      success: false,
+      message: "Invalid email or password"
+    });
   }
 
   // Check if email is verified
   if (!user.isVerified) {
-    res.status(401);
-    throw new Error("Please verify your email first. Check your inbox for the verification link.");
+    console.log("❌ User not verified:", email);
+    return res.status(401).json({
+      success: false,
+      message: "Please verify your email first. Check your inbox for the verification link."
+    });
   }
 
   if (!user.isActive) {
-    res.status(401);
-    throw new Error("Your account has been deactivated");
+    console.log("❌ User inactive:", email);
+    return res.status(401).json({
+      success: false,
+      message: "Your account has been deactivated"
+    });
   }
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
   console.log("✅ Password match:", isPasswordMatch);
 
   if (!isPasswordMatch) {
-    res.status(401);
-    throw new Error("Invalid email or password");
+    console.log("❌ Password mismatch:", email);
+    return res.status(401).json({
+      success: false,
+      message: "Invalid email or password"
+    });
   }
 
   user.lastLogin = new Date();
   await user.save();
+
+  console.log("✅ Login successful:", email);
 
   res.status(200).json({
     success: true,
@@ -260,8 +276,6 @@ const login = asyncHandler(async (req, res) => {
     token: generateToken(user._id),
   });
 });
-
-
 
 
 

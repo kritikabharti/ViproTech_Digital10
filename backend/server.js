@@ -11,6 +11,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
 import { parseFormData } from "./middleware/parseFormData.js"; 
 import jobRoutes from './routes/jobRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/team", teamRoutes); 
 app.use('/api/jobs', jobRoutes);
+app.use('/api/applications', applicationRoutes);
 
 // Test route
 app.get("/api/test", (req, res) => {

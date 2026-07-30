@@ -6,6 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { userService, contactAdminService } from "../services/api";
 import { teamService } from "../services/api";
 import ConfirmDialog from "../components/common/ConfirmDialog"; 
+// Add these to your existing imports
+import { 
+  Briefcase as JobIcon, 
+  Users as ApplicantsIcon, 
+  CheckCircle as ApprovedIcon,
+  XCircle as RejectedIcon,
+  Clock as PendingIcon,
+  Eye as ViewIcon
+} from "lucide-react";
 
 import { 
   Users, 
@@ -67,9 +76,97 @@ export default function AdminDashboard() {
   const [showToggleDialog, setShowToggleDialog] = useState({ open: false, id: null });
   const [teamStats, setTeamStats] = useState(null);
 
+
+// ===== JOB APPLICATIONS STATES =====
+const [applications, setApplications] = useState([]);
+const [applicationsLoading, setApplicationsLoading] = useState(false);
+const [appFilterStatus, setAppFilterStatus] = useState('all');
+const [appSearchTerm, setAppSearchTerm] = useState('');
+const [selectedApp, setSelectedApp] = useState(null);
+const [showAppDetailsModal, setShowAppDetailsModal] = useState(false);
+const [appStats, setAppStats] = useState({
+  total: 0,
+  pending: 0,
+  reviewed: 0,
+  shortlisted: 0,
+  rejected: 0,
+  hired: 0
+});
+
+
+// ===== JOB APPLICATIONS FUNCTIONS =====
+const fetchApplications = async () => {
+  try {
+    setApplicationsLoading(true);
+    const token = localStorage.getItem('token');
+    
+    const response = await fetch('http://localhost:5000/api/applications/all', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    
+    if (data.success) {
+      setApplications(data.data);
+      updateAppStats(data.data);
+    }
+  } catch (error) {
+    console.error('Failed to fetch applications:', error);
+    toast.error('Failed to load applications');
+  } finally {
+    setApplicationsLoading(false);
+  }
+};
+
+const updateAppStats = (apps) => {
+  setAppStats({
+    total: apps.length,
+    pending: apps.filter(a => a.status === 'pending').length,
+    reviewed: apps.filter(a => a.status === 'reviewed').length,
+    shortlisted: apps.filter(a => a.status === 'shortlisted').length,
+    rejected: apps.filter(a => a.status === 'rejected').length,
+    hired: apps.filter(a => a.status === 'hired').length
+  });
+};
+
+const updateApplicationStatus = async (id, newStatus) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:5000/api/applications/${id}/status`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ status: newStatus })
+    });
+    
+    const data = await response.json();
+    if (data.success) {
+      toast.success(`Application ${newStatus}`);
+      fetchApplications();
+      setShowAppDetailsModal(false);
+    }
+  } catch (error) {
+    toast.error('Failed to update status');
+  }
+};
+
+// Get filtered applications
+const filteredApplications = applications.filter(app => {
+  const matchesSearch = app.name?.toLowerCase().includes(appSearchTerm.toLowerCase()) ||
+                        app.email?.toLowerCase().includes(appSearchTerm.toLowerCase()) ||
+                        app.jobId?.title?.toLowerCase().includes(appSearchTerm.toLowerCase());
+  const matchesStatus = appFilterStatus === 'all' || app.status === appFilterStatus;
+  return matchesSearch && matchesStatus;
+});
+
   useEffect(() => {
     fetchData();
     fetchTeamData();
+     fetchApplications();
   }, []);
 
   const fetchData = async () => {
@@ -390,6 +487,16 @@ export default function AdminDashboard() {
             <FileText size={20} />
             <span>Blogs</span>
           </button>
+
+
+          <button 
+  className={`nav-item ${activeTab === "applications" ? "active" : ""}`}
+  onClick={() => setActiveTab("applications")}
+>
+  <ApplicantsIcon size={20} />
+  <span>Applications</span>
+  {appStats.pending > 0 && <span className="badge">{appStats.pending}</span>}
+</button>
         </nav>
 
         <button className="sidebar-logout" onClick={handleLogout}>
@@ -903,6 +1010,203 @@ export default function AdminDashboard() {
             </div>
           </div>
         )}
+
+
+        {/* ===== APPLICATIONS TAB ===== */}
+{activeTab === "applications" && (
+  <div className="applications-section">
+    <div className="section-header">
+      <h2>Job Applications</h2>
+      <div className="app-stats-summary">
+        <span>Total: {appStats.total}</span>
+        <span className="pending-count">Pending: {appStats.pending}</span>
+        <span className="shortlisted-count">Shortlisted: {appStats.shortlisted}</span>
+      </div>
+    </div>
+
+    {/* Application Stats */}
+    <div className="app-stats-grid">
+      <div className="app-stat-card total">
+        <ApplicantsIcon size={24} />
+        <div>
+          <h4>Total</h4>
+          <p>{appStats.total}</p>
+        </div>
+      </div>
+      <div className="app-stat-card pending">
+        <PendingIcon size={24} />
+        <div>
+          <h4>Pending</h4>
+          <p>{appStats.pending}</p>
+        </div>
+      </div>
+      <div className="app-stat-card shortlisted">
+        <ApprovedIcon size={24} />
+        <div>
+          <h4>Shortlisted</h4>
+          <p>{appStats.shortlisted}</p>
+        </div>
+      </div>
+      <div className="app-stat-card hired">
+        <Award size={24} />
+        <div>
+          <h4>Hired</h4>
+          <p>{appStats.hired}</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Search & Filter */}
+    <div className="app-filters">
+      <div className="search-wrapper">
+        <Search size={18} className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search by name, email, or job..."
+          value={appSearchTerm}
+          onChange={(e) => setAppSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        {appSearchTerm && (
+          <button onClick={() => setAppSearchTerm('')} className="clear-search">
+            <XCircle size={16} />
+          </button>
+        )}
+      </div>
+      <select
+        value={appFilterStatus}
+        onChange={(e) => setAppFilterStatus(e.target.value)}
+        className="filter-select"
+      >
+        <option value="all">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="reviewed">Reviewed</option>
+        <option value="shortlisted">Shortlisted</option>
+        <option value="rejected">Rejected</option>
+        <option value="hired">Hired</option>
+      </select>
+    </div>
+
+    {/* Applications List */}
+    <div className="app-list">
+      {applicationsLoading ? (
+        <div className="app-loading">Loading applications...</div>
+      ) : filteredApplications.length === 0 ? (
+        <div className="empty-state">
+          <ApplicantsIcon size={48} />
+          <h3>No applications found</h3>
+          <p>No job applications have been submitted yet</p>
+        </div>
+      ) : (
+        filteredApplications.map((app) => (
+          <div key={app._id} className="app-card">
+            <div className="app-card-header">
+              <div className="app-info">
+                <div className="app-avatar">
+                  {app.name?.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <h4>{app.name}</h4>
+                  <div className="app-meta">
+                    <span><Mail size={14} /> {app.email}</span>
+                    <span><Phone size={14} /> {app.phone}</span>
+                    <span><Briefcase size={14} /> {app.jobId?.title || 'N/A'}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="app-actions">
+                <span className={`status-badge ${app.status}`}>
+                  {app.status}
+                </span>
+                <button 
+                  className="action-btn view"
+                  onClick={() => {
+                    setSelectedApp(app);
+                    setShowAppDetailsModal(true);
+                  }}
+                  title="View Details"
+                >
+                  <Eye size={18} />
+                </button>
+              </div>
+            </div>
+            <div className="app-card-footer">
+              <span><Calendar size={14} /> Applied: {new Date(app.createdAt).toLocaleDateString()}</span>
+              <span><Clock size={14} /> Available: {app.availableTime}</span>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+)}
+
+
+{/* Application Details Modal */}
+{showAppDetailsModal && selectedApp && (
+  <div className="modal-overlay" onClick={() => setShowAppDetailsModal(false)}>
+    <div className="modal-content app-details-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-header">
+        <h2>Application Details</h2>
+        <button className="modal-close" onClick={() => setShowAppDetailsModal(false)}>
+          <XCircle size={24} />
+        </button>
+      </div>
+
+      <div className="app-details">
+        <div className="app-detail-section">
+          <h3>Applicant Information</h3>
+          <div className="app-detail-grid">
+            <div><label>Name:</label> <p>{selectedApp.name}</p></div>
+            <div><label>Email:</label> <p>{selectedApp.email}</p></div>
+            <div><label>Phone:</label> <p>{selectedApp.phone}</p></div>
+            <div><label>Available Time:</label> <p>{selectedApp.availableTime}</p></div>
+            <div><label>Experience:</label> <p>{selectedApp.experience || 'Not specified'}</p></div>
+            <div><label>Status:</label> <p className={`status-badge ${selectedApp.status}`}>{selectedApp.status}</p></div>
+          </div>
+        </div>
+
+        {selectedApp.coverLetter && (
+          <div className="app-detail-section">
+            <h3>Cover Letter</h3>
+            <p className="cover-letter-text">{selectedApp.coverLetter}</p>
+          </div>
+        )}
+
+        {selectedApp.resume && (
+          <div className="app-detail-section">
+            <h3>Resume</h3>
+            <a href={`http://localhost:5000/${selectedApp.resume}`} target="_blank" className="resume-link">
+              <FileText size={18} />
+              Download Resume
+            </a>
+          </div>
+        )}
+
+        <div className="app-detail-section">
+          <h3>Update Status</h3>
+          <div className="status-update-buttons">
+            {['pending', 'reviewed', 'shortlisted', 'rejected', 'hired'].map((status) => (
+              <button
+                key={status}
+                className={`status-btn ${status === selectedApp.status ? 'active' : ''}`}
+                onClick={() => updateApplicationStatus(selectedApp._id, status)}
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="modal-actions">
+        <button className="cancel-btn" onClick={() => setShowAppDetailsModal(false)}>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
         {/* ===== DASHBOARD OVERVIEW ===== */}
         {activeTab === "dashboard" && (

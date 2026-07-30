@@ -2,8 +2,21 @@
 
 // src/services/api.js
 import axios from "axios";
+// const LOCAL_API = "http://localhost:5000/api";
+// const API_URL = "https://viprotech-digital10-3fwz.onrender.com/api";
 
-const API_URL = "https://viprotech-digital10-3fwz.onrender.com/api";
+// / ✅ Both URLs defined
+const LOCAL_API = "http://localhost:5000/api";
+const PRODUCTION_API = "https://viprotech-digital10-3fwz.onrender.com/api";
+
+// ✅ Toggle between local and production (change this to switch)
+const USE_LOCAL = false; // 👈 Set to true for local, false for production
+
+// ✅ The actual URL being used
+const API_URL = USE_LOCAL ? LOCAL_API : PRODUCTION_API;
+
+console.log(`🔗 API URL: ${API_URL}`); // ✅ Shows which URL is active
+
 
 // Create axios instance
 const api = axios.create({
@@ -399,5 +412,58 @@ export const teamService = {
     return response.data;
   },
 };
+
+
+// ============ JOB SERVICES ============
+export const jobService = {
+  // Get all active jobs (public)
+  getJobs: async () => {
+    const response = await api.get("/jobs");
+    return response.data;
+  },
+
+  // Get job by ID (public)
+  getJobById: async (id) => {
+    const response = await api.get(`/jobs/${id}`);
+    return response.data;
+  },
+
+  // Get all jobs (admin only)
+  getAdminJobs: async () => {
+    const response = await api.get("/jobs/admin/all");
+    return response.data;
+  },
+
+  // Get job statistics (admin only)
+  getJobStats: async () => {
+    const response = await api.get("/jobs/admin/stats");
+    return response.data;
+  },
+
+  // Create job (admin only)
+  createJob: async (data) => {
+    const response = await api.post("/jobs", data);
+    return response.data;
+  },
+
+  // Update job (admin only)
+  updateJob: async (id, data) => {
+    const response = await api.put(`/jobs/${id}`, data);
+    return response.data;
+  },
+
+  // Delete job (admin only)
+  deleteJob: async (id) => {
+    const response = await api.delete(`/jobs/${id}`);
+    return response.data;
+  },
+
+  // Toggle job status (admin only)
+  toggleJobStatus: async (id) => {
+    const response = await api.put(`/jobs/${id}/toggle-status`);
+    return response.data;
+  },
+};
+
 
 export default api;
