@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { Mail, Lock, ArrowRight, LogIn, Sparkles } from 'lucide-react';
+import { API_URL } from "../services/api";
 import "./Login.css";
-import { API_URL } from '../services/api';
+
 
 export default function Login() {
   const navigate = useNavigate();

@@ -1,6 +1,7 @@
 // frontend/src/pages/ApplyJob.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from "../services/api";
 import { motion } from 'framer-motion';
 import { 
   Briefcase, 
