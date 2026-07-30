@@ -95,7 +95,6 @@ const [appStats, setAppStats] = useState({
 });
 
 
-
 // ===== BLOG MANAGEMENT STATES =====
 const [blogs, setBlogs] = useState([]);
 const [blogsLoading, setBlogsLoading] = useState(false);
@@ -112,29 +111,68 @@ const fetchBlogs = async () => {
     setBlogsLoading(true);
     const token = localStorage.getItem('token');
     
-    // Fetch all blogs (admin)
+    if (!token) {
+      console.log('No token found, skipping blog fetch');
+      setBlogs([]);
+      setBlogStats({ total: 0, published: 0, views: 0 });
+      setBlogsLoading(false);
+      return;
+    }
+    
     const response = await fetch(`${API_URL}/blogs/admin/all`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.json();
     
-    if (data.success) {
-      setBlogs(data.data);
-      // Update stats
-      const published = data.data.filter(b => b.isPublished).length;
-      const views = data.data.reduce((sum, b) => sum + (b.views || 0), 0);
+    console.log('📊 Blogs Response Status:', response.status);
+    
+    if (response.status === 401) {
+      console.log('Unauthorized, skipping blog fetch');
+      setBlogs([]);
+      setBlogStats({ total: 0, published: 0, views: 0 });
+      setBlogsLoading(false);
+      return;
+    }
+    
+    const data = await response.json();
+    console.log('📊 Blogs Data:', data);
+    
+    // ✅ FIX: Use "blogs" instead of "data"
+    if (data.success && Array.isArray(data.blogs)) {
+      setBlogs(data.blogs);
+      
+      // Calculate stats safely
+      const published = data.blogs.filter(b => b.isPublished).length || 0;
+      const views = data.blogs.reduce((sum, b) => sum + (b.views || 0), 0) || 0;
+      
       setBlogStats({
-        total: data.data.length,
+        total: data.blogs.length || 0,
         published: published,
         views: views
       });
+    } else {
+      // If no blogs or error, set empty state
+      setBlogs([]);
+      setBlogStats({
+        total: 0,
+        published: 0,
+        views: 0
+      });
+      if (data.message) {
+        console.log('Blogs message:', data.message);
+      }
     }
   } catch (error) {
     console.error('Failed to fetch blogs:', error);
     toast.error('Failed to load blogs');
+    setBlogs([]);
+    setBlogStats({
+      total: 0,
+      published: 0,
+      views: 0
+    });
   } finally {
     setBlogsLoading(false);
   }
@@ -214,7 +252,7 @@ const filteredApplications = applications.filter(app => {
     fetchData();
     fetchTeamData();
      fetchApplications();
-       fetchBlogs(); 
+      fetchBlogs(); 
   }, []);
 
   const fetchData = async () => {
@@ -1012,7 +1050,7 @@ const filteredApplications = applications.filter(app => {
           </div>
         )}
 
-        {/* ===== BLOGS TAB ===== */}
+       {/* ===== BLOGS TAB ===== */}
 {activeTab === "blogs" && (
   <div className="blogs-section">
     <div className="section-header">
@@ -1071,22 +1109,55 @@ const filteredApplications = applications.filter(app => {
       <div className="blog-list">
         {blogs.map((blog) => (
           <div key={blog._id} className="blog-card">
-            <div className="blog-card-header">
+            <div className="blog-card-content">
+              {/* ✅ Blog Image */}
+              {blog.image ? (
+                <img 
+                  src={blog.image} 
+                  alt={blog.title}
+                  className="blog-thumbnail"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              ) : (
+                <div className="blog-thumbnail-placeholder">
+                  <FileText size={24} />
+                </div>
+              )}
+              
               <div className="blog-info">
-                <h4>{blog.title}</h4>
+                <h4 className="blog-title">{blog.title}</h4>
                 <div className="blog-meta">
-                  <span><Calendar size={14} /> {new Date(blog.createdAt).toLocaleDateString()}</span>
-                  <span><Eye size={14} /> {blog.views || 0} views</span>
-                  <span className={`status-badge ${blog.isPublished ? 'active' : 'draft'}`}>
-                    {blog.isPublished ? 'Published' : 'Draft'}
+                  <span>
+                    <Calendar size={14} /> 
+                    {new Date(blog.createdAt).toLocaleDateString('en-IN', {
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric'
+                    })}
+                  </span>
+                  <span>
+                    <Eye size={14} /> {blog.views || 0} views
+                  </span>
+                  <span className={`blog-status ${blog.isPublished ? 'published' : 'draft'}`}>
+                    {blog.isPublished ? '✅ Published' : '📝 Draft'}
                   </span>
                 </div>
               </div>
               <div className="blog-actions">
-                <Link to={`/admin/edit-blog/${blog._id}`} className="action-btn edit">
+                <Link to={`/admin/edit-blog/${blog._id}`} className="action-btn edit" title="Edit">
                   <Edit size={16} />
                 </Link>
-                <button className="action-btn delete">
+                <button 
+                  className="action-btn delete" 
+                  title="Delete"
+                  onClick={() => {
+                    if (window.confirm(`Delete "${blog.title}"?`)) {
+                      // Add delete function here
+                    }
+                  }}
+                >
                   <Trash2 size={16} />
                 </button>
               </div>
@@ -1097,7 +1168,6 @@ const filteredApplications = applications.filter(app => {
     )}
   </div>
 )}
-
 
         {/* ===== APPLICATIONS TAB ===== */}
 {activeTab === "applications" && (
