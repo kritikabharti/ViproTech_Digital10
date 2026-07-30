@@ -1,6 +1,7 @@
 
 // src/pages/AdminDashboard.jsx
 import React, { useState, useEffect } from "react";
+import { API_URL } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { userService, contactAdminService } from "../services/api";
@@ -100,12 +101,12 @@ const fetchApplications = async () => {
     setApplicationsLoading(true);
     const token = localStorage.getItem('token');
     
-    const response = await fetch('http:///api/applications/all', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
+  const response = await fetch(`${API_URL}/applications/all`, {
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  }
+});
     const data = await response.json();
     
     if (data.success) {
@@ -134,7 +135,7 @@ const updateAppStats = (apps) => {
 const updateApplicationStatus = async (id, newStatus) => {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http:///api/applications/${id}/status`, {
+   const response = await fetch(`${API_URL}/applications/${id}/status`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
