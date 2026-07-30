@@ -1,10 +1,12 @@
 // src/pages/Register.jsx
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from '../services/api';
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import { API_URL } from '../services/api';
+
 import { 
   User, 
   Mail, 
