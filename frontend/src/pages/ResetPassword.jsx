@@ -29,7 +29,7 @@ export default function ResetPassword() {
       console.log("🔍 Validating token:", token);
       
       const response = await fetch(
-        `http://localhost:5000/api/auth/validate-reset-token/${token}`
+        `http:///api/auth/validate-reset-token/${token}`
       );
       
       const data = await response.json();
@@ -66,7 +66,7 @@ export default function ResetPassword() {
       console.log("🔐 Resetting password with token:", token);
       
       const response = await fetch(
-        `http://localhost:5000/api/auth/reset-password/${token}`,
+        `http:///api/auth/reset-password/${token}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

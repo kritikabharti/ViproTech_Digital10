@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// ✅ Import API_URL from your config
+import { API_URL } from '../services/api';
+
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/auth", // Change after deployment
+  baseURL: `${API_URL}/auth`, // ✅ Uses dynamic URL
 });
 
 export const register = (data) => API.post("/register", data);

@@ -100,7 +100,7 @@ const fetchApplications = async () => {
     setApplicationsLoading(true);
     const token = localStorage.getItem('token');
     
-    const response = await fetch('http://localhost:5000/api/applications/all', {
+    const response = await fetch('http:///api/applications/all', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -134,7 +134,7 @@ const updateAppStats = (apps) => {
 const updateApplicationStatus = async (id, newStatus) => {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:5000/api/applications/${id}/status`, {
+    const response = await fetch(`http:///api/applications/${id}/status`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -1176,7 +1176,7 @@ const filteredApplications = applications.filter(app => {
         {selectedApp.resume && (
           <div className="app-detail-section">
             <h3>Resume</h3>
-            <a href={`http://localhost:5000/${selectedApp.resume}`} target="_blank" className="resume-link">
+            <a href={`http:///${selectedApp.resume}`} target="_blank" className="resume-link">
               <FileText size={18} />
               Download Resume
             </a>

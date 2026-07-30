@@ -18,7 +18,7 @@ export default function VerifyEmail() {
   const verifyEmail = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/verify-email/${token}`
+        `http:///api/auth/verify-email/${token}`
       );
       const data = await response.json();
       

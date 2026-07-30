@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import "./Auth.css";
+import { API_URL } from '../services/api';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -19,17 +20,17 @@ export default function ForgotPassword() {
     }
 
     setLoading(true);
-    try {
-      console.log("📧 Sending request to:", "http://localhost:5000/api/auth/forgot-password");
-      console.log("📧 Email:", email);
-      
-      const response = await fetch("http://localhost:5000/api/auth/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+   try {
+  console.log("📧 Sending request to:", `${API_URL}/auth/forgot-password`);
+  console.log("📧 Email:", email);
+  
+  const response = await fetch(`${API_URL}/auth/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
 
       console.log("📧 Response status:", response.status);
       
