@@ -17,7 +17,7 @@ const API_URL = USE_LOCAL ? LOCAL_API : PRODUCTION_API;
 
 console.log(`🔗 API URL: ${API_URL}`); // ✅ Shows which URL is active
 
-
+export { API_URL }; 
 // Create axios instance
 const api = axios.create({
   baseURL: API_URL,
