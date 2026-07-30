@@ -2,8 +2,8 @@
 import axios from "axios";
 import { API_URL } from '../services/api';
 
-// ✅ Use environment variable
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+// // ✅ Use environment variable
+// const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 export const sendContactMessage = async (formData) => {
   try {
