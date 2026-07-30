@@ -1,0 +1,372 @@
+/* HiringProcess.css - Mobile-First Design */
+
+/* ===== SECTION ===== */
+.hiring-process-section {
+  padding: 90px 8%;
+  background: #F9FAFB;
+  overflow: hidden;
+}
+
+/* ===== HEADING CONTAINER ===== */
+.hiring-process-heading-container {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hiring-process-small {
+  color: #4F46E5;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.hiring-process-heading {
+  font-size: 54px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.hiring-process-desc {
+  font-size: 18px;
+  color: #6B7280;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ===== TIMELINE ===== */
+.hiring-process-timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 60px auto 0;
+}
+
+.hiring-process-center-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4F46E5;
+  transform: translateX(-50%);
+}
+
+/* ===== ROW ===== */
+.hiring-process-row {
+  display: flex;
+  margin-bottom: 70px;
+  position: relative;
+}
+
+.hiring-process-row.left {
+  justify-content: flex-start;
+}
+
+.hiring-process-row.right {
+  justify-content: flex-end;
+}
+
+/* ===== CARD ===== */
+.hiring-process-card {
+  width: 43%;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hiring-process-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== NUMBER ===== */
+.hiring-process-number {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #4F46E5;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+/* ===== TITLE ===== */
+.hiring-process-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+/* ===== TEXT ===== */
+.hiring-process-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6B7280;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1024px)
+   ======================================== */
+@media (max-width: 1024px) {
+  .hiring-process-section {
+    padding: 70px 5%;
+  }
+
+  .hiring-process-heading {
+    font-size: 42px;
+  }
+
+  .hiring-process-card {
+    width: 48%;
+    padding: 28px;
+  }
+
+  .hiring-process-title {
+    font-size: 24px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (480px - 768px)
+   ======================================== */
+@media (max-width: 768px) {
+  .hiring-process-section {
+    padding: 60px 5%;
+  }
+
+  .hiring-process-heading-container {
+    margin-bottom: 50px;
+  }
+
+  .hiring-process-small {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .hiring-process-heading {
+    font-size: 34px;
+  }
+
+  .hiring-process-desc {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .hiring-process-timeline {
+    margin: 40px auto 0;
+  }
+
+  .hiring-process-center-line {
+    left: 30px;
+    transform: none;
+  }
+
+  .hiring-process-row {
+    justify-content: flex-start !important;
+    margin-bottom: 35px;
+    padding-left: 20px;
+  }
+
+  .hiring-process-card {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+    padding: 22px;
+  }
+
+  .hiring-process-number {
+    position: absolute;
+    left: -88px;
+    top: 18px;
+    width: 55px;
+    height: 55px;
+    font-size: 18px;
+  }
+
+  .hiring-process-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .hiring-process-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE SMALL (320px - 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  .hiring-process-section {
+    padding: 50px 4%;
+  }
+
+  .hiring-process-heading-container {
+    margin-bottom: 35px;
+  }
+
+  .hiring-process-small {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .hiring-process-heading {
+    font-size: 28px;
+  }
+
+  .hiring-process-desc {
+    font-size: 15px;
+    padding: 0 5px;
+  }
+
+  .hiring-process-timeline {
+    margin: 30px auto 0;
+  }
+
+  .hiring-process-center-line {
+    left: 20px;
+  }
+
+  .hiring-process-row {
+    margin-bottom: 28px;
+    padding-left: 10px;
+  }
+
+  .hiring-process-card {
+    width: calc(100% - 50px);
+    margin-left: 50px;
+    padding: 18px 20px;
+  }
+
+  .hiring-process-number {
+    left: -75px;
+    top: 14px;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .hiring-process-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .hiring-process-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - EXTRA SMALL (under 320px)
+   ======================================== */
+@media (max-width: 360px) {
+  .hiring-process-section {
+    padding: 40px 3%;
+  }
+
+  .hiring-process-heading {
+    font-size: 24px;
+  }
+
+  .hiring-process-desc {
+    font-size: 14px;
+  }
+
+  .hiring-process-center-line {
+    left: 16px;
+    width: 3px;
+  }
+
+  .hiring-process-row {
+    margin-bottom: 22px;
+    padding-left: 6px;
+  }
+
+  .hiring-process-card {
+    width: calc(100% - 40px);
+    margin-left: 40px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .hiring-process-number {
+    left: -65px;
+    top: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .hiring-process-title {
+    font-size: 18px;
+  }
+
+  .hiring-process-text {
+    font-size: 13px;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hiring-process-row.left .hiring-process-card {
+  animation: fadeInLeft 0.6s ease forwards;
+  opacity: 0;
+}
+
+.hiring-process-row.right .hiring-process-card {
+  animation: fadeInRight 0.6s ease forwards;
+  opacity: 0;
+}
+
+.hiring-process-row:nth-child(1) .hiring-process-card {
+  animation-delay: 0.1s;
+}
+.hiring-process-row:nth-child(2) .hiring-process-card {
+  animation-delay: 0.2s;
+}
+.hiring-process-row:nth-child(3) .hiring-process-card {
+  animation-delay: 0.3s;
+}
+.hiring-process-row:nth-child(4) .hiring-process-card {
+  animation-delay: 0.4s;
+}
+.hiring-process-row:nth-child(5) .hiring-process-card {
+  animation-delay: 0.5s;
+}

@@ -36,6 +36,7 @@ import TeamSection from './components/TeamSection';
 import AdminTeamManagement from './pages/admin/AdminTeamManagement'; 
 import { Helmet } from "react-helmet-async";
 import AdminJobs from './pages/admin/AdminJobs';
+import ApplyJob from './pages/ApplyJob';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -114,6 +115,7 @@ function App() {
           <Route path="/website-design" element={<WebsiteDesign />} />
           <Route path="/interior-designing" element={<InteriorDesigning />} />
           <Route path="/courses" element={<DomainsCourses />} />
+          <Route path="/apply/:id" element={<ApplyJob />} />
           
           {/* Admin Routes - Protected */}
           <Route 
@@ -175,6 +177,16 @@ function App() {
     </ProtectedRoute>
   } 
 />
+
+<Route 
+  path="/admin/jobs" 
+  element={
+    <ProtectedRoute adminOnly>
+      <AdminJobs />
+    </ProtectedRoute>
+  } 
+/>
+
 
         </Routes>
 

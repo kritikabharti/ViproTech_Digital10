@@ -1,5 +1,6 @@
 // components/career/JobOpenings.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Briefcase, 
@@ -16,159 +17,55 @@ import {
   TrendingUp,
   Zap,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Loader
 } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { jobService } from '../../services/api'; // ✅ Import jobService
 import './JobOpenings.css';
 
-// Sample job data - Replace with your actual data from backend
-const jobData = [
-  {
-    id: 1,
-    title: "Senior Full Stack Developer",
-    department: "Engineering",
-    location: "Mohali, Punjab",
-    type: "Full-Time",
-    experience: "5-8 years",
-    salary: "₹12L - ₹18L PA",
-    posted: "2 days ago",
-    deadline: "2026-08-30",
-    description: "We're looking for a Senior Full Stack Developer with expertise in React, Node.js, and MongoDB to lead our development team.",
-    requirements: [
-      "5+ years of experience in Full Stack Development",
-      "Expertise in React, Node.js, and MongoDB",
-      "Experience with cloud platforms (AWS/Azure)",
-      "Leadership and mentoring skills"
-    ],
-    benefits: [
-      "Competitive salary",
-      "Health insurance",
-      "Flexible working hours",
-      "Professional development budget"
-    ],
-    status: "Active",
-    isUrgent: true
-  },
-  {
-    id: 2,
-    title: "UI/UX Designer",
-    department: "Design",
-    location: "Mohali, Punjab",
-    type: "Full-Time",
-    experience: "2-4 years",
-    salary: "₹6L - ₹10L PA",
-    posted: "5 days ago",
-    deadline: "2026-09-15",
-    description: "Join our design team to create beautiful, intuitive user interfaces for web and mobile applications.",
-    requirements: [
-      "2+ years of UI/UX design experience",
-      "Proficiency in Figma, Adobe XD, or Sketch",
-      "Strong portfolio showcasing design work",
-      "Understanding of user-centered design principles"
-    ],
-    benefits: [
-      "Competitive salary",
-      "Health insurance",
-      "Creative work environment",
-      "Learning and development opportunities"
-    ],
-    status: "Active",
-    isUrgent: false
-  },
-  {
-    id: 3,
-    title: "Digital Marketing Specialist",
-    department: "Marketing",
-    location: "Mohali, Punjab",
-    type: "Full-Time",
-    experience: "3-5 years",
-    salary: "₹6L - ₹12L PA",
-    posted: "1 week ago",
-    deadline: "2026-09-10",
-    description: "Drive digital growth through SEO, social media, content marketing, and paid advertising strategies.",
-    requirements: [
-      "3+ years in digital marketing",
-      "Expertise in SEO, SEM, and social media marketing",
-      "Experience with Google Analytics and Ads",
-      "Content strategy and creation skills"
-    ],
-    benefits: [
-      "Competitive salary",
-      "Performance bonuses",
-      "Health insurance",
-      "Work-life balance"
-    ],
-    status: "Active",
-    isUrgent: false
-  },
-  {
-    id: 4,
-    title: "DevOps Engineer",
-    department: "Engineering",
-    location: "Mohali, Punjab",
-    type: "Full-Time",
-    experience: "3-6 years",
-    salary: "₹10L - ₹16L PA",
-    posted: "3 days ago",
-    deadline: "2026-08-25",
-    description: "Build and maintain our cloud infrastructure, CI/CD pipelines, and ensure system reliability and scalability.",
-    requirements: [
-      "3+ years in DevOps or Site Reliability Engineering",
-      "Expertise in AWS, Docker, and Kubernetes",
-      "Experience with CI/CD pipelines",
-      "Strong scripting and automation skills"
-    ],
-    benefits: [
-      "Competitive salary",
-      "Health insurance",
-      "Remote work options",
-      "Professional development budget"
-    ],
-    status: "Active",
-    isUrgent: true
-  },
-  {
-    id: 5,
-    title: "React Native Developer",
-    department: "Engineering",
-    location: "Mohali, Punjab",
-    type: "Full-Time",
-    experience: "2-4 years",
-    salary: "₹7L - ₹12L PA",
-    posted: "4 days ago",
-    deadline: "2026-09-05",
-    description: "Develop cross-platform mobile applications using React Native for iOS and Android.",
-    requirements: [
-      "2+ years in React Native development",
-      "Experience with mobile app architecture",
-      "Knowledge of native iOS/Android is a plus",
-      "Strong problem-solving skills"
-    ],
-    benefits: [
-      "Competitive salary",
-      "Health insurance",
-      "Flexible working hours",
-      "Career growth opportunities"
-    ],
-    status: "Active",
-    isUrgent: false
-  }
-];
-
 export default function JobOpenings() {
+const navigate = useNavigate();
+
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
   const [expandedJob, setExpandedJob] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
 
-  const departments = ['All', 'Engineering', 'Design', 'Marketing', 'HR', 'Management'];
-  const jobTypes = ['All', 'Full-Time', 'Part-Time', 'Internship', 'Contract'];
+  const departments = ['All', 'Engineering', 'Design', 'Marketing', 'HR', 'Management', 'Finance', 'Sales'];
+  const jobTypes = ['All', 'Full-Time', 'Part-Time', 'Internship', 'Contract', 'Remote'];
+
+  // ✅ Fetch jobs from API using jobService
+  const fetchJobs = async () => {
+    try {
+      setLoading(true);
+      const response = await jobService.getJobs(); // ✅ Use jobService
+      
+      if (response.success) {
+        setJobs(response.data);
+      } else {
+        toast.error('Failed to load jobs');
+      }
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      toast.error(error.response?.data?.message || 'Failed to load jobs');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
 
   // Filter jobs based on search and filters
-  const filteredJobs = jobData.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          job.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          job.location.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredJobs = jobs.filter(job => {
+    const matchesSearch = job.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          job.department?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          job.location?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesDepartment = selectedDepartment === 'All' || job.department === selectedDepartment;
     const matchesType = selectedType === 'All' || job.type === selectedType;
     return matchesSearch && matchesDepartment && matchesType;
@@ -183,6 +80,23 @@ export default function JobOpenings() {
     setSelectedDepartment('All');
     setSelectedType('All');
   };
+
+  // Calculate stats
+  const totalJobs = jobs.length;
+  const urgentJobs = jobs.filter(job => job.isUrgent).length;
+
+  if (loading) {
+    return (
+      <section className="job-openings-section">
+        <div className="job-openings-container">
+          <div className="loading-container">
+            <Loader size={48} className="spinning" />
+            <p>Loading jobs...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="job-openings-section">
@@ -215,8 +129,14 @@ export default function JobOpenings() {
         >
           <div className="stat-item">
             <Briefcase size={22} />
-            <span className="stat-number">{jobData.length}</span>
+            <span className="stat-number">{totalJobs}</span>
             <span className="stat-label">Open Positions</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <Zap size={22} />
+            <span className="stat-number">{urgentJobs}</span>
+            <span className="stat-label">Urgent Hiring</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
@@ -229,12 +149,6 @@ export default function JobOpenings() {
             <Award size={22} />
             <span className="stat-number">95%</span>
             <span className="stat-label">Employee Satisfaction</span>
-          </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <TrendingUp size={22} />
-            <span className="stat-number">150+</span>
-            <span className="stat-label">Projects Delivered</span>
           </div>
         </motion.div>
 
@@ -321,7 +235,7 @@ export default function JobOpenings() {
 
         {/* Results Count */}
         <div className="results-count">
-          <span>Showing {filteredJobs.length} of {jobData.length} positions</span>
+          <span>Showing {filteredJobs.length} of {totalJobs} positions</span>
         </div>
 
         {/* Job Cards */}
@@ -335,14 +249,14 @@ export default function JobOpenings() {
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job, index) => (
               <motion.div
-                key={job.id}
-                className={`job-card ${expandedJob === job.id ? 'expanded' : ''}`}
+                key={job._id}
+                className={`job-card ${expandedJob === job._id ? 'expanded' : ''}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="job-card-header" onClick={() => toggleJobExpand(job.id)}>
+                <div className="job-card-header" onClick={() => toggleJobExpand(job._id)}>
                   <div className="job-info">
                     <div className="job-title-wrapper">
                       <h3 className="job-title">{job.title}</h3>
@@ -352,8 +266,8 @@ export default function JobOpenings() {
                           Urgent
                         </span>
                       )}
-                      <span className={`status-badge ${job.status.toLowerCase()}`}>
-                        {job.status}
+                      <span className={`status-badge ${job.status?.toLowerCase() || 'active'}`}>
+                        {job.status || 'Active'}
                       </span>
                     </div>
                     <div className="job-meta">
@@ -371,17 +285,17 @@ export default function JobOpenings() {
                       </span>
                       <span className="meta-item">
                         <DollarSign size={16} />
-                        {job.salary}
+                        {job.salary || 'Negotiable'}
                       </span>
                     </div>
                   </div>
                   <div className="job-expand-icon">
-                    <ChevronRight size={24} className={expandedJob === job.id ? 'rotate' : ''} />
+                    <ChevronRight size={24} className={expandedJob === job._id ? 'rotate' : ''} />
                   </div>
                 </div>
 
                 <AnimatePresence>
-                  {expandedJob === job.id && (
+                  {expandedJob === job._id && (
                     <motion.div
                       className="job-card-body"
                       initial={{ opacity: 0, height: 0 }}
@@ -397,7 +311,7 @@ export default function JobOpenings() {
                         <div className="detail-section">
                           <h4>Requirements</h4>
                           <ul>
-                            {job.requirements.map((req, idx) => (
+                            {job.requirements?.map((req, idx) => (
                               <li key={idx}>{req}</li>
                             ))}
                           </ul>
@@ -405,7 +319,7 @@ export default function JobOpenings() {
                         <div className="detail-section">
                           <h4>Benefits</h4>
                           <ul>
-                            {job.benefits.map((benefit, idx) => (
+                            {job.benefits?.map((benefit, idx) => (
                               <li key={idx}>{benefit}</li>
                             ))}
                           </ul>
@@ -415,12 +329,16 @@ export default function JobOpenings() {
                       <div className="job-footer">
                         <div className="job-deadline">
                           <Clock size={16} />
-                          <span>Apply by: {new Date(job.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                          <span>Apply by: {job.deadline ? new Date(job.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Open until filled'}</span>
                         </div>
-                        <button className="apply-btn">
-                          Apply Now
-                          <ArrowRight size={18} />
-                        </button>
+                     
+<button 
+  className="apply-btn"
+  onClick={() => navigate(`/apply/${job._id}`)}
+>
+  Apply Now
+  <ArrowRight size={18} />
+</button>
                       </div>
                     </motion.div>
                   )}
@@ -439,21 +357,6 @@ export default function JobOpenings() {
           )}
         </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          className="job-openings-cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h3>Don't see the right role?</h3>
-          <p>We're always looking for talented people. Send us your resume and we'll reach out!</p>
-          <button className="cta-btn">
-            <Sparkles size={18} />
-            Submit Your Resume
-          </button>
-        </motion.div>
       </div>
     </section>
   );
