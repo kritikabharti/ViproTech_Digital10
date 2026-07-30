@@ -14,72 +14,140 @@ const generateToken = (id) => {
 };
 
 
-// ============ REGISTER WITH EMAIL VERIFICATION ============
+// // ============ REGISTER WITH EMAIL VERIFICATION ============
+// const register = asyncHandler(async (req, res) => {
+//   const { name, email, phone, domain, password } = req.body;
+
+//   console.log("📝 Register:", email);
+
+//   if (!name || !email || !phone || !domain || !password) {
+//     res.status(400);
+//     throw new Error("Please fill all required fields");
+//   }
+
+//   const userExists = await User.findOne({ email });
+//   if (userExists) {
+//     res.status(400);
+//     throw new Error("User already exists with this email");
+//   }
+
+//   // Check if user exists but not verified (clean up old unverified)
+//   await User.deleteOne({ email, isVerified: false });
+
+//   const phoneExists = await User.findOne({ phone });
+//   if (phoneExists) {
+//     res.status(400);
+//     throw new Error("Phone number already registered");
+//   }
+
+//   const salt = await bcrypt.genSalt(10);
+//   const hashedPassword = await bcrypt.hash(password, salt);
+
+//   // Generate verification token
+//   const verificationToken = crypto.randomBytes(32).toString("hex");
+//   const verificationTokenHash = crypto
+//     .createHash("sha256")
+//     .update(verificationToken)
+//     .digest("hex");
+
+//   const user = await User.create({
+//     name,
+//     email,
+//     phone,
+//     domain,
+//     password: hashedPassword,
+//     isActive: false,
+//     isVerified: false,
+//     verificationToken: verificationTokenHash,
+//     verificationTokenExpires: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
+//   });
+
+//   // Create verification URL
+//   const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`;
+
+//   // Send verification email
+//   const emailResult = await sendVerificationEmail(email, verificationUrl, user.name);
+
+//   if (!emailResult.success) {
+//     // Delete user if email fails
+//     await User.deleteOne({ _id: user._id });
+//     res.status(500);
+//     throw new Error("Failed to send verification email. Please try again.");
+//   }
+
+//   console.log("✅ User registered. Verification email sent to:", user.email);
+
+//   res.status(201).json({
+//     success: true,
+//     message: "Registration successful! Please check your email to verify your account.",
+//     user: {
+//       id: user._id,
+//       name: user.name,
+//       email: user.email,
+//       phone: user.phone,
+//       domain: user.domain,
+//       role: user.role,
+//       isVerified: user.isVerified,
+//     },
+//   });
+// });
+
+
+
+
+
+// ============ REGISTER WITH AUTO-VERIFICATION ============
 const register = asyncHandler(async (req, res) => {
   const { name, email, phone, domain, password } = req.body;
 
   console.log("📝 Register:", email);
 
   if (!name || !email || !phone || !domain || !password) {
-    res.status(400);
-    throw new Error("Please fill all required fields");
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all required fields"
+    });
   }
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ email: email.toLowerCase() });
   if (userExists) {
-    res.status(400);
-    throw new Error("User already exists with this email");
+    return res.status(400).json({
+      success: false,
+      message: "User already exists with this email"
+    });
   }
 
   // Check if user exists but not verified (clean up old unverified)
-  await User.deleteOne({ email, isVerified: false });
+  await User.deleteOne({ email: email.toLowerCase(), isVerified: false });
 
   const phoneExists = await User.findOne({ phone });
   if (phoneExists) {
-    res.status(400);
-    throw new Error("Phone number already registered");
+    return res.status(400).json({
+      success: false,
+      message: "Phone number already registered"
+    });
   }
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  // Generate verification token
-  const verificationToken = crypto.randomBytes(32).toString("hex");
-  const verificationTokenHash = crypto
-    .createHash("sha256")
-    .update(verificationToken)
-    .digest("hex");
-
+  // ✅ AUTO-VERIFY USER (NO EMAIL REQUIRED)
   const user = await User.create({
     name,
-    email,
+    email: email.toLowerCase(),
     phone,
     domain,
     password: hashedPassword,
-    isActive: false,
-    isVerified: false,
-    verificationToken: verificationTokenHash,
-    verificationTokenExpires: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
+    isActive: true,
+    isVerified: true, // ✅ Auto-verified
+    // No verification token needed
   });
 
-  // Create verification URL
-  const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`;
-
-  // Send verification email
-  const emailResult = await sendVerificationEmail(email, verificationUrl, user.name);
-
-  if (!emailResult.success) {
-    // Delete user if email fails
-    await User.deleteOne({ _id: user._id });
-    res.status(500);
-    throw new Error("Failed to send verification email. Please try again.");
-  }
-
-  console.log("✅ User registered. Verification email sent to:", user.email);
+  console.log("✅ User registered and auto-verified:", user.email);
 
   res.status(201).json({
     success: true,
-    message: "Registration successful! Please check your email to verify your account.",
+    message: "Registration successful!",
     user: {
       id: user._id,
       name: user.name,
