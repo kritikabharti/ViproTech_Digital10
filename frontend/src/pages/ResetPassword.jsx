@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
+import { API_URL } from "../services/api";
 
 export default function ResetPassword() {
   const { token } = useParams();
