@@ -57,6 +57,7 @@ export default function ServicesSection({ servicesRef, navigate }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          style={{ color: "#ebbb44" }}
         >
           WHAT WE OFFER
         </motion.h5>
@@ -68,7 +69,7 @@ export default function ServicesSection({ servicesRef, navigate }) {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Serv<span style={{ color: "#B8860B" }}>ices</span>
+        <span style={{ color: "#FFFFFF" }}>Serv</span><span style={{ color: "#ebbb44" }}>ices</span>
         </motion.h2>
 
         <motion.p
