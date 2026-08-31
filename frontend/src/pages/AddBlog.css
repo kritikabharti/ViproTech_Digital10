@@ -1,13 +1,24 @@
-/* src/pages/AddBlog.css - Complete Updated Version */
+
+/* =========================================================
+   src/pages/AddBlog.css
+   Complete Updated Version
+   ========================================================= */
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
 
 .addblog-container {
   min-height: 100vh;
   background: #0a0f1e;
   padding: 40px;
-  padding-top: 100px; /* Add padding-top to account for navbar */
+  padding-top: 100px;
 }
 
-/* ============ HEADER ============ */
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .addblog-header {
   display: flex;
   justify-content: space-between;
@@ -26,7 +37,7 @@
 }
 
 .addblog-header h1 {
-  color: #fff;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
   margin: 0;
@@ -45,23 +56,28 @@
   flex-wrap: wrap;
 }
 
-/* ============ CREATE BUTTON ============ */
+/* =========================================================
+   CREATE BUTTON
+   ========================================================= */
+
 .create-btn {
+  position: relative;
+  top: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
-  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #1e3a8a);
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   white-space: nowrap;
   z-index: 10;
-  position: relative;
 }
 
 .create-btn:hover {
@@ -78,94 +94,10 @@
   background: rgba(239, 68, 68, 0.3);
 }
 
-/* Make sure button is visible on all screen sizes */
-@media (max-width: 768px) {
-  .addblog-container {
-    padding: 20px 16px;
-    padding-top: 80px;
-  }
+/* =========================================================
+   STATS
+   ========================================================= */
 
-  .addblog-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .header-left {
-    text-align: center;
-  }
-
-  .header-actions {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .create-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .addblog-container {
-    padding: 16px 12px;
-    padding-top: 70px;
-  }
-
-  .addblog-header h1 {
-    font-size: 24px;
-  }
-
-  .subtitle {
-    font-size: 13px;
-  }
-
-  .create-btn {
-    font-size: 13px;
-    padding: 12px 20px;
-  }
-}
-.header-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* ============ CREATE BUTTON ============ */
-.create-btn {
-  top: 0%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-
-.create-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-}
-
-.create-btn.cancel-btn {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-}
-
-.create-btn.cancel-btn:hover {
-  background: rgba(239, 68, 68, 0.3);
-}
-
-/* ============ STATS ============ */
 .bloglist-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -183,7 +115,7 @@
 
 .stat-number {
   display: block;
-  color: #fff;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
 }
@@ -193,7 +125,10 @@
   font-size: 14px;
 }
 
-/* ============ FILTERS ============ */
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
 .bloglist-filters {
   display: flex;
   flex-wrap: wrap;
@@ -219,7 +154,7 @@
   flex: 1;
   background: none;
   border: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 14px;
   outline: none;
 }
@@ -244,7 +179,7 @@
 
 .filter-toggle:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-toggle .rotated {
@@ -264,11 +199,14 @@
 
 .refresh-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #ffffff;
   transform: rotate(180deg);
 }
 
-/* ============ EXPANDED FILTERS ============ */
+/* =========================================================
+   EXPANDED FILTERS
+   ========================================================= */
+
 .filter-expanded {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -317,12 +255,12 @@
 }
 
 .filter-tab:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .filter-tab.active {
   background: rgba(79, 70, 229, 0.2);
-  color: #4F46E5;
+  color: #818cf8;
 }
 
 .category-tabs {
@@ -345,13 +283,13 @@
 
 .category-tab:hover {
   border-color: rgba(79, 70, 229, 0.3);
-  color: #fff;
+  color: #ffffff;
 }
 
 .category-tab.active {
   background: rgba(79, 70, 229, 0.2);
-  border-color: #4F46E5;
-  color: #4F46E5;
+  border-color: #4f46e5;
+  color: #818cf8;
 }
 
 .results-count {
@@ -360,7 +298,10 @@
   margin-bottom: 16px;
 }
 
-/* ============ BLOG GRID ============ */
+/* =========================================================
+   BLOG GRID
+   ========================================================= */
+
 .bloglist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -401,7 +342,7 @@
   gap: 4px;
   padding: 4px 12px;
   background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
+  color: #ffffff;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 600;
@@ -419,12 +360,12 @@
 
 .blog-status.published {
   background: rgba(16, 185, 129, 0.9);
-  color: #fff;
+  color: #ffffff;
 }
 
 .blog-status.draft {
   background: rgba(245, 158, 11, 0.9);
-  color: #fff;
+  color: #ffffff;
 }
 
 .blog-category {
@@ -435,7 +376,7 @@
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  color: #fff;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 500;
 }
@@ -445,7 +386,7 @@
 }
 
 .blog-card-content h3 {
-  color: #fff;
+  color: #ffffff;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 8px;
@@ -487,7 +428,10 @@
   font-style: italic;
 }
 
-/* ============ CARD ACTIONS ============ */
+/* =========================================================
+   CARD ACTIONS
+   ========================================================= */
+
 .blog-card-actions {
   display: flex;
   gap: 6px;
@@ -540,25 +484,21 @@
   background: rgba(16, 185, 129, 0.25);
 }
 
-.action-btn.unpublish {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-}
-
-.action-btn.unpublish:hover {
-  background: rgba(239, 68, 68, 0.25);
-}
-
+.action-btn.unpublish,
 .action-btn.delete {
   background: rgba(239, 68, 68, 0.15);
   color: #ef4444;
 }
 
+.action-btn.unpublish:hover,
 .action-btn.delete:hover {
   background: rgba(239, 68, 68, 0.25);
 }
 
-/* ============ NO BLOGS ============ */
+/* =========================================================
+   NO BLOGS / LOADING
+   ========================================================= */
+
 .no-blogs {
   text-align: center;
   padding: 80px 20px;
@@ -573,7 +513,7 @@
 }
 
 .no-blogs h3 {
-  color: #fff;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 8px;
@@ -594,18 +534,26 @@
   width: 40px;
   height: 40px;
   border: 3px solid rgba(79, 70, 229, 0.2);
-  border-top: 3px solid #4F46E5;
+  border-top: 3px solid #4f46e5;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 16px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* ============ FORM ============ */
+/* =========================================================
+   FORM CONTAINER
+   ========================================================= */
+
 .addblog-form-container {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -625,14 +573,14 @@
 }
 
 .form-header h2 {
-  color: #fff;
+  color: #ffffff;
   font-size: 22px;
   font-weight: 700;
   margin: 0;
 }
 
 .form-status {
-  color: #94a3b8;
+  color: #e2e5ea;
   font-size: 14px;
 }
 
@@ -658,48 +606,113 @@
   gap: 6px;
 }
 
+/* =========================================================
+   FORM LABEL COLORS
+   ========================================================= */
+
+/* Default labels */
 .form-group label {
   display: flex;
   align-items: center;
   gap: 6px;
   color: #e2e8f0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
+
+/* Title */
+.form-group label[for="title"],
+.form-group label:has(+ input[name="title"]) {
+  color: #60a5fa !important;
+}
+
+/* Category */
+.form-group label:has(+ select[name="category"]) {
+  color: #a78bfa !important;
+}
+
+/* Read Time */
+.form-group label:has(+ input[name="readTime"]) {
+  color: #22d3ee !important;
+}
+
+/* Description */
+.form-group label:has(+ textarea[name="description"]) {
+  color: #34d399 !important;
+}
+
+/* Content */
+.form-group label:has(+ .quill-editor-wrapper) {
+  color: #f472b6 !important;
+}
+
+/* Author */
+.form-group label:has(+ input[name="author"]) {
+  color: #fbbf24 !important;
+}
+
+/* Tags */
+.form-group label:has(+ .tags-input-container) {
+  color: #c084fc !important;
+}
+
+/* Upload Image */
+.form-group label:has(+ .image-upload-area) {
+  color: #fb7185 !important;
+}
+
+/* =========================================================
+   FORM INPUTS
+   ========================================================= */
 
 .form-group input,
 .form-group select,
 .form-group textarea {
+  width: 100%;
   padding: 12px 16px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  color: #ffffff !important;
   font-size: 14px;
   outline: none;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   font-family: inherit;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #4F46E5;
+  border-color: #4f46e5;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  color: #ffffff !important;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #64748b;
+  color: #94a3b8;
+}
+
+.form-group select {
+  color: #ffffff !important;
+}
+
+.form-group select option {
+  background: #1a1a2e;
+  color: #ffffff;
 }
 
 .form-group textarea {
+  color: #ffffff !important;
   resize: vertical;
   min-height: 100px;
 }
 
-/* ============ IMAGE UPLOAD ============ */
+/* =========================================================
+   IMAGE UPLOAD
+   ========================================================= */
+
 .image-upload-area {
   border: 2px dashed rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -718,7 +731,8 @@
   background: rgba(79, 70, 229, 0.05);
 }
 
-.image-upload-input {
+.image-upload-input,
+.image-upload-input-hidden {
   display: none;
 }
 
@@ -728,20 +742,21 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #94a3b8;
+  color: #ffffff;
 }
 
 .image-upload-label svg {
-  color: #4F46E5;
+  color: #4f46e5;
 }
 
 .image-upload-label span {
   font-size: 14px;
+  color: #ffffff;
 }
 
 .image-upload-label .upload-hint {
   font-size: 12px;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .image-preview-container {
@@ -770,26 +785,7 @@
   justify-content: center;
 }
 
-.change-image-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(79, 70, 229, 0.8);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.change-image-btn:hover {
-  background: rgba(79, 70, 229, 1);
-  transform: scale(1.05);
-}
-
+.change-image-btn,
 .remove-image-btn {
   display: flex;
   align-items: center;
@@ -797,24 +793,35 @@
   padding: 6px 16px;
   border: none;
   border-radius: 8px;
-  background: rgba(239, 68, 68, 0.8);
-  color: #fff;
+  color: #ffffff;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.remove-image-btn:hover {
-  background: rgba(239, 68, 68, 1);
+.change-image-btn {
+  background: rgba(79, 70, 229, 0.8);
+}
+
+.change-image-btn:hover {
+  background: #4f46e5;
   transform: scale(1.05);
 }
 
-.image-upload-input-hidden {
-  display: none;
+.remove-image-btn {
+  background: rgba(239, 68, 68, 0.8);
 }
 
-/* ============ TAGS ============ */
+.remove-image-btn:hover {
+  background: #ef4444;
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
 .tags-input-container {
   display: flex;
   gap: 8px;
@@ -822,6 +829,11 @@
 
 .tags-input-container input {
   flex: 1;
+  color: #ffffff !important;
+}
+
+.tags-input-container input::placeholder {
+  color: #94a3b8;
 }
 
 .add-tag-btn {
@@ -829,7 +841,7 @@
   border-radius: 10px;
   border: 1px solid rgba(79, 70, 229, 0.3);
   background: rgba(79, 70, 229, 0.15);
-  color: #4F46E5;
+  color: #818cf8;
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
@@ -854,7 +866,7 @@
   gap: 6px;
   padding: 4px 12px;
   background: rgba(79, 70, 229, 0.15);
-  color: #4F46E5;
+  color: #ffffff !important;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
@@ -876,50 +888,109 @@
   color: #ef4444;
 }
 
-/* ============ CHECKBOX GROUP ============ */
+/* =========================================================
+   PUBLISH / FEATURE CHECKBOXES
+   ========================================================= */
+
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  padding-top: 4px;
 }
 
-.checkbox-label {
+/* Base checkbox label */
+.checkbox-group .checkbox-label {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #e2e8f0;
   font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.checkbox-label input[type="checkbox"] {
+/* Publish Immediately */
+.checkbox-group .checkbox-label.publish-label {
+  color: #22c55e !important;
+}
+
+/* Feature this blog */
+.checkbox-group .checkbox-label.feature-label {
+  color: #f59e0b !important;
+}
+
+/* Fallback based on position */
+.checkbox-group .checkbox-label:first-child {
+  color: #22c55e !important;
+}
+
+.checkbox-group .checkbox-label:nth-child(2) {
+  color: #f59e0b !important;
+}
+
+/* Checkbox */
+.checkbox-group .checkbox-label input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #4F46E5;
+  margin: 0;
   cursor: pointer;
+  accent-color: #4f46e5;
 }
+
+/* Publish checkbox */
+.checkbox-group .checkbox-label:first-child input[type="checkbox"] {
+  accent-color: #22c55e;
+}
+
+/* Feature checkbox */
+.checkbox-group .checkbox-label:nth-child(2) input[type="checkbox"] {
+  accent-color: #f59e0b;
+}
+
+/* Star icon */
+.checkbox-group .checkbox-label:nth-child(2) svg {
+  color: #f59e0b !important;
+  stroke: #f59e0b !important;
+  flex-shrink: 0;
+}
+
+/* Checkbox hover */
+.checkbox-group .checkbox-label:hover {
+  filter: brightness(1.15);
+}
+
+/* =========================================================
+   DELETE BLOG BUTTON
+   ========================================================= */
 
 .delete-blog-btn-form {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 11px 18px;
   border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  margin-top: 8px;
 }
 
 .delete-blog-btn-form:hover {
   background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
 }
 
-/* ============ FORM ACTIONS ============ */
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
 .form-actions {
   display: flex;
   gap: 12px;
@@ -943,18 +1014,19 @@
 
 .cancel-btn:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  color: #ffffff;
 }
 
 .submit-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 12px 32px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #4F46E5, #1E3A8A);
-  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #1e3a8a);
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -971,13 +1043,13 @@
   cursor: not-allowed;
 }
 
-/* ============ DELETE MODAL ============ */
+/* =========================================================
+   DELETE MODAL
+   ========================================================= */
+
 .delete-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
   z-index: 1000;
@@ -1004,7 +1076,7 @@
 }
 
 .delete-modal-header h3 {
-  color: #fff;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 700;
   margin: 0;
@@ -1020,7 +1092,7 @@
 }
 
 .close-modal-btn:hover {
-  color: #fff;
+  color: #ffffff;
   transform: rotate(90deg);
 }
 
@@ -1059,7 +1131,7 @@
 
 .cancel-delete-btn:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  color: #ffffff;
 }
 
 .confirm-delete-btn {
@@ -1067,7 +1139,7 @@
   border: none;
   border-radius: 8px;
   background: #ef4444;
-  color: #fff;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -1084,10 +1156,218 @@
   cursor: not-allowed;
 }
 
-/* ============ RESPONSIVE ============ */
+/* =========================================================
+   QUILL EDITOR
+   ========================================================= */
+
+.quill-editor-wrapper {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 0;
+  position: relative;
+  display: block;
+  clear: both;
+  z-index: 1;
+}
+
+/* Toolbar */
+.quill-editor-wrapper .ql-toolbar {
+  width: 100%;
+  min-height: 48px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 10px 10px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Toolbar buttons */
+.quill-editor-wrapper .ql-toolbar button {
+  color: #f8fafc;
+}
+
+.quill-editor-wrapper .ql-toolbar button:hover {
+  color: #818cf8;
+}
+
+.quill-editor-wrapper .ql-toolbar .ql-stroke {
+  stroke: #e2e8f0;
+}
+
+.quill-editor-wrapper .ql-toolbar .ql-fill {
+  fill: #e2e8f0;
+}
+
+.quill-editor-wrapper .ql-toolbar .ql-picker-label {
+  color: #e2e8f0;
+}
+
+.quill-editor-wrapper .ql-toolbar .ql-picker-options {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #ffffff;
+  z-index: 100;
+}
+
+/* Editor container */
+.quill-editor-wrapper .ql-container {
+  width: 100%;
+  min-height: 350px;
+  height: auto;
+  border: 1px solid #475569;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-size: 16px;
+  overflow: visible;
+}
+
+/* Editable area */
+.quill-editor-wrapper .ql-editor {
+  width: 100%;
+  min-height: 350px;
+  height: auto;
+  padding: 18px;
+  box-sizing: border-box;
+  line-height: 1.7;
+  color: #1f2937;
+  background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Placeholder */
+.quill-editor-wrapper .ql-editor.ql-blank::before {
+  color: #94a3b8;
+  font-style: normal;
+  left: 18px;
+  right: 18px;
+}
+
+/* Headings */
+.quill-editor-wrapper .ql-editor h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 16px 0;
+}
+
+.quill-editor-wrapper .ql-editor h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 14px 0;
+}
+
+.quill-editor-wrapper .ql-editor h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 12px 0;
+}
+
+/* Normal text */
+.quill-editor-wrapper .ql-editor p {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+/* Links */
+.quill-editor-wrapper .ql-editor a {
+  color: #4f46e5;
+  text-decoration: underline;
+}
+
+/* Images */
+.quill-editor-wrapper .ql-editor img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+/* Blockquote */
+.quill-editor-wrapper .ql-editor blockquote {
+  border-left: 4px solid #4f46e5;
+  padding: 10px 15px;
+  margin: 15px 0;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Code */
+.quill-editor-wrapper .ql-editor pre.ql-syntax {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Lists */
+.quill-editor-wrapper .ql-editor ul,
+.quill-editor-wrapper .ql-editor ol {
+  padding-left: 30px;
+  margin-bottom: 12px;
+}
+
+/* Prevent overlap */
+.quill-editor-wrapper + * {
+  margin-top: 24px;
+}
+
+.quill-editor-wrapper ~ .form-group {
+  position: relative;
+  z-index: 2;
+}
+
+.form-row .quill-editor-wrapper {
+  width: 100%;
+}
+
+/* =========================================================
+   BLOG DETAIL PAGE
+   ========================================================= */
+
+.blog-detail .blog-heading {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 30px 0 20px;
+  line-height: 1.2;
+  background: linear-gradient(
+    135deg,
+    #4f46e5 0%,
+    #7c3aed 50%,
+    #ec4899 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-detail .blog-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 20px 0 16px;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
 @media (max-width: 768px) {
   .addblog-container {
     padding: 20px 16px;
+    padding-top: 80px;
   }
 
   .addblog-header {
@@ -1101,11 +1381,11 @@
 
   .header-actions {
     justify-content: center;
+    width: 100%;
   }
 
   .create-btn {
     width: 100%;
-    justify-content: center;
   }
 
   .bloglist-stats {
@@ -1187,9 +1467,70 @@
     width: 100%;
     justify-content: center;
   }
+
+  .checkbox-group {
+    margin-top: 10px;
+  }
+
+  .quill-editor-wrapper {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+
+  .quill-editor-wrapper .ql-toolbar {
+    min-height: 48px;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .quill-editor-wrapper .ql-container {
+    min-height: 280px;
+  }
+
+  .quill-editor-wrapper .ql-editor {
+    min-height: 280px;
+    font-size: 15px;
+    padding: 15px;
+  }
+
+  .quill-editor-wrapper .ql-editor h1 {
+    font-size: 1.7rem;
+  }
+
+  .quill-editor-wrapper .ql-editor h2 {
+    font-size: 1.4rem;
+  }
+
+  .quill-editor-wrapper .ql-editor h3 {
+    font-size: 1.2rem;
+  }
 }
 
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 480px) {
+  .addblog-container {
+    padding: 16px 12px;
+    padding-top: 70px;
+  }
+
+  .addblog-header h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .create-btn {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+
   .bloglist-stats {
     grid-template-columns: 1fr 1fr;
   }
@@ -1203,151 +1544,30 @@
     gap: 8px;
   }
 
-  .addblog-header h1 {
-    font-size: 24px;
+  .addblog-form-container {
+    padding: 16px;
+  }
+
+  .checkbox-group .checkbox-label {
+    font-size: 13px;
+  }
+
+  .quill-editor-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .quill-editor-wrapper .ql-toolbar {
+    padding: 6px;
+  }
+
+  .quill-editor-wrapper .ql-container,
+  .quill-editor-wrapper .ql-editor {
+    min-height: 250px;
+  }
+
+  .quill-editor-wrapper .ql-editor {
+    padding: 12px;
+    font-size: 14px;
   }
 }
-
-/* ============ FORM FIELDS - WHITE TEXT ============ */
-
-/* ===== ALL INPUTS, SELECTS, TEXTAREAS ===== */
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff !important;  /* 👈 WHITE TEXT */
-  font-size: 14px;
-  outline: none;
-  transition: all 0.3s;
-  font-family: inherit;
-}
-
-/* ===== PLACEHOLDER TEXT ===== */
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #e0e4ea;  /* Light gray placeholder */
-}
-
-/* ===== SELECT DROPDOWN ===== */
-.form-group select {
-  color: #ffffff !important;
-  background: rgba(216, 212, 212, 0.05);
-}
-
-.form-group select option {
-  background: #1a1a2e;
-  color: #ffffff;
-}
-
-/* ===== TEXTAREA ===== */
-.form-group textarea {
-  color: #ffffff !important;
-}
-
-/* ===== INPUT FOCUS ===== */
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #4F46E5;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-  color: #ffffff !important;
-}
-
-/* ===== INPUT WITH VALUE ===== */
-.form-group input:not(:placeholder-shown),
-.form-group textarea:not(:placeholder-shown) {
-  color: #ffffff !important;
-}
-
-/* ===== TAGS INPUT ===== */
-.tags-input-container input {
-  color: #ffffff !important;
-}
-
-.tags-input-container input::placeholder {
-  color: #94a3b8;
-}
-
-/* ===== TAG ITEMS ===== */
-.tag-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  background: rgba(79, 70, 229, 0.15);
-  color: #ffffff !important;  /* 👈 WHITE TEXT FOR TAGS */
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-/* ===== CHECKBOX LABELS ===== */
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  color: #ffffff !important;  /* 👈 WHITE TEXT FOR CHECKBOXES */
-  font-size: 14px;
-}
-
-/* ===== FILE INPUT LABEL ===== */
-.image-upload-label span {
-  font-size: 14px;
-  color: #ffffff !important;  /* 👈 WHITE TEXT FOR UPLOAD LABEL */
-}
-
-.image-upload-label .upload-hint {
-  font-size: 12px;
-  color: #94a3b8 !important;  /* Keep hint gray */
-}
-
-/* ===== FORM LABELS ===== */
-.form-group label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #e2e8f0 !important;  /* 👈 LIGHT WHITE FOR LABELS */
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* ===== FORM STATUS ===== */
-.form-status {
-  color: #e2e5ea;
-  font-size: 14px;
-}
-
-/* ===== FORM HEADER ===== */
-.form-header h2 {
-  color: #ffffff !important;  /* 👈 WHITE HEADER */
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-}
-
-/* Blog Detail Page */
-.blog-detail .blog-heading {
-  font-size: 42px;
-  font-weight: 700;
-  color: #fff;
-  margin: 30px 0 20px 0;
-  line-height: 1.2;
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.blog-detail .blog-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: #e2e8f0;
-  margin: 20px 0 16px 0;
-}
-
 
