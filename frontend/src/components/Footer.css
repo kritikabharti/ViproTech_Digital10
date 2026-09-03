@@ -1,0 +1,530 @@
+
+/* =========================================================
+   VPROTECH DIGITAL - PROFESSIONAL FOOTER
+   ========================================================= */
+
+.footer {
+  width: 100%;
+  background: #08111f;
+  color: #ffffff;
+  padding: 70px 7% 25px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN FOOTER CONTAINER
+   ========================================================= */
+
+.footer-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    2fr
+    1fr
+    1.3fr
+    1.5fr;
+
+  gap: 55px;
+}
+
+
+/* =========================================================
+   BRAND SECTION
+   ========================================================= */
+
+.footer-brand {
+  max-width: 390px;
+}
+
+
+/* Logo */
+
+.footer-logo {
+  width: 175px;
+  height: 70px;
+
+  object-fit: contain;
+  object-position: left center;
+
+  display: block;
+
+  margin-bottom: 18px;
+}
+
+
+/* Description */
+
+.footer-description {
+  color: #aeb9c8;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  margin: 0 0 25px;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA
+   ========================================================= */
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c8d1de;
+
+  text-decoration: none;
+
+  font-size: 18px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* Social Hover */
+
+.social-icon:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  border-color: rgba(255, 255, 255, 0.3);
+
+  transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   FOOTER COLUMNS
+   ========================================================= */
+
+.footer-column {
+  min-width: 180px;
+}
+
+
+/* Column Heading */
+
+.footer-column h3 {
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  margin: 5px 0 25px;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   QUICK LINKS
+   ========================================================= */
+
+.footer-link {
+  width: 150px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  color: #aeb9c8;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  margin-bottom: 15px;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* Arrow */
+
+.footer-link svg {
+  font-size: 14px;
+
+  opacity: 0;
+
+  transform: translate(0, 0);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* Link Hover */
+
+.footer-link:hover {
+  color: #ffffff;
+
+  transform: translateX(3px);
+}
+
+
+/* Arrow Hover */
+
+.footer-link:hover svg {
+  opacity: 1;
+
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   SERVICES LINKS
+   ========================================================= */
+
+.footer-simple-link {
+  display: block;
+
+  color: #aeb9c8;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  margin-bottom: 15px;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.footer-simple-link:hover {
+  color: #ffffff;
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   CONTACT SECTION
+   ========================================================= */
+
+.contact-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  color: #aeb9c8;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  margin-bottom: 18px;
+
+  transition: color 0.3s ease;
+}
+
+
+/* Contact Hover */
+
+.contact-item:hover {
+  color: #ffffff;
+}
+
+
+/* Contact Icon */
+
+.contact-icon {
+  min-width: 32px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.contact-item:hover .contact-icon {
+  background: rgba(255, 255, 255, 0.12);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   BOTTOM FOOTER
+   ========================================================= */
+
+.footer-bottom {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 55px auto 0;
+
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+
+/* Copyright */
+
+.footer-bottom p {
+  margin: 0;
+
+  color: #7f8a99;
+
+  font-size: 13px;
+}
+
+
+/* Bottom Links */
+
+.footer-bottom-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.footer-bottom-links a {
+  color: #8d98a8;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  transition: color 0.3s ease;
+}
+
+
+.footer-bottom-links a:hover {
+  color: #ffffff;
+}
+
+
+.footer-bottom-links span {
+  color: #394454;
+}
+
+
+/* =========================================================
+   TABLET - 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .footer-container {
+    grid-template-columns:
+      1.5fr
+      1fr
+      1fr;
+
+    gap: 40px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET - 800px
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .footer {
+    padding: 55px 6% 25px;
+  }
+
+
+  .footer-container {
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap: 40px 30px;
+  }
+
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE - 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .footer {
+    padding: 50px 6% 20px;
+  }
+
+
+  .footer-container {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+  }
+
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+
+  .footer-logo {
+    width: 160px;
+
+    height: 65px;
+  }
+
+
+  .footer-description {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+
+  .footer-column {
+    min-width: 100%;
+  }
+
+
+  .footer-column h3 {
+    font-size: 17px;
+
+    margin-bottom: 20px;
+  }
+
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    margin-top: 40px;
+  }
+
+
+  .footer-bottom-links {
+    flex-wrap: wrap;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE - 400px
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .footer {
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+
+
+  .footer-logo {
+    width: 150px;
+  }
+
+
+  .footer-description {
+    font-size: 14px;
+  }
+
+
+  .footer-link {
+    font-size: 14px;
+  }
+
+
+  .footer-simple-link {
+    font-size: 14px;
+  }
+
+
+  .contact-item {
+    font-size: 13px;
+  }
+
+
+  .footer-bottom {
+    gap: 15px;
+  }
+
+
+  .footer-bottom-links {
+    gap: 8px;
+  }
+
+}
+
