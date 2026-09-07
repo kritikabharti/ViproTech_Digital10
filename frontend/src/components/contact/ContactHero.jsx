@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Moon, Sun, Sparkles } from "lucide-react";
+import contactImage from "../../assets/contact.jpg";
 
 export default function ContactHero() {
   const [isGoldenMode, setIsGoldenMode] = useState(false);
@@ -12,7 +13,12 @@ export default function ContactHero() {
   return (
     <section className={`contact-hero-section ${isGoldenMode ? "golden-mode" : ""}`}>
       {/* ===== ANIMATED BACKGROUND ===== */}
-      <div className="contact-bg">
+    <div
+  className="contact-bg"
+  style={{
+    backgroundImage: `url(${contactImage})`,
+  }}
+>
         {/* Floating Gradient Orbs */}
         <motion.div
           className="floating-orb orb-1"
@@ -217,583 +223,1131 @@ export default function ContactHero() {
         </motion.div>
       </div>
 
-      <style>{`
-        /* ========================================
-           CONTACT HERO SECTION
-           ======================================== */
-        .contact-hero-section {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 100px 40px 80px;
-          position: relative;
-          overflow: hidden;
-          background: linear-gradient(165deg, #070b15 0%, #0f1629 40%, #141b2d 70%, #0a0f1e 100%);
-          transition: all 0.6s ease;
-        }
-
-        .contact-hero-section.golden-mode {
-          background: linear-gradient(165deg, #1a1205 0%, #2d1f0a 40%, #3d2b10 70%, #1a1205 100%);
-        }
-
-        /* ===== BACKGROUND ===== */
-        .contact-bg {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 0;
-          overflow: hidden;
-        }
-
-        /* Floating Gradient Orbs */
-        .floating-orb {
-          position: absolute;
-          border-radius: 60%;
-          filter: blur(50px);
-          pointer-events: none;
-        }
-
-        .orb-1 {
-          width: 200px;
-          height: 200px;
-          background: radial-gradient(circle, rgba(238, 236, 228, 0.25), rgba(216, 215, 240, 0.1) 70%);
-          top: 15%;
-          left: 8%;
-        }
-
-        .golden-mode .orb-1 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.4), rgba(184, 134, 11, 0.15) 70%);
-        }
-
-        .orb-2 {
-          width: 250px;
-          height: 250px;
-          background: radial-gradient(circle, rgba(79, 70, 229, 0.2), rgba(212, 175, 55, 0.08) 70%);
-          bottom: 20%;
-          right: 10%;
-        }
-
-        .golden-mode .orb-2 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.35), rgba(184, 134, 11, 0.12) 70%);
-        }
-
-        .orb-3 {
-          width: 180px;
-          height: 180px;
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(79, 70, 229, 0.08) 70%);
-          top: 45%;
-          left: 25%;
-        }
-
-        .golden-mode .orb-3 {
-          background: radial-gradient(circle, rgba(251, 191, 36, 0.35), rgba(212, 175, 55, 0.12) 70%);
-        }
-
-        .orb-4 {
-          width: 220px;
-          height: 220px;
-          background: radial-gradient(circle, rgba(79, 70, 229, 0.18), rgba(212, 175, 55, 0.08) 70%);
-          bottom: 30%;
-          right: 25%;
-        }
-
-        .golden-mode .orb-4 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.3), rgba(184, 134, 11, 0.1) 70%);
-        }
-
-        /* Rotating Light Rings */
-        .light-ring {
-          position: absolute;
-          border-radius: 50%;
-          border: 1px solid rgba(217, 202, 155, 0.08);
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          pointer-events: none;
-        }
-
-        .ring-1 {
-          width: 500px;
-          height: 500px;
-          border-color: rgba(235, 219, 164, 0.06);
-        }
-
-        .golden-mode .ring-1 {
-          border-color: rgba(229, 217, 177, 0.12);
-        }
-
-        .ring-2 {
-          width: 700px;
-          height: 700px;
-          border-color: rgba(194, 192, 227, 0.05);
-        }
-
-        .golden-mode .ring-2 {
-          border-color: rgba(235, 223, 183, 0.1);
-        }
-
-        .ring-3 {
-          width: 350px;
-          height: 350px;
-          border-color: rgba(203, 192, 154, 0.04);
-          border-width: 2px;
-        }
-
-        .golden-mode .ring-3 {
-          border-color: rgba(216, 202, 156, 0.1);
-        }
-
-        /* Glowing Gradient Blobs */
-        .gradient-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(80px);
-          pointer-events: none;
-        }
-
-        .blob-1 {
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
-          top: -150px;
-          right: -100px;
-        }
-
-        .golden-mode .blob-1 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 70%);
-        }
-
-        .blob-2 {
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(79, 70, 229, 0.08), transparent 70%);
-          bottom: -200px;
-          left: -150px;
-        }
-
-        .golden-mode .blob-2 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
-        }
-
-        .blob-3 {
-          width: 400px;
-          height: 400px;
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 70%);
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-
-        .golden-mode .blob-3 {
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%);
-        }
-
-        /* Ambient Layer */
-        .ambient-layer {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.02), transparent 70%);
-          pointer-events: none;
-        }
-
-        .golden-mode .ambient-layer {
-          background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05), transparent 70%);
-        }
-
-        /* ===== TOGGLE BUTTON ===== */
-        .mode-toggle-btn {
-          position: fixed;
-          top: 90px;
-          right: 20px;
-          z-index: 1000;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 20px;
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(212, 175, 55, 0.2);
-          border-radius: 30px;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 500;
-          color: rgba(255, 255, 255, 0.8);
-          transition: all 0.4s ease;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .mode-toggle-btn:hover {
-          transform: translateY(-2px);
-          border-color: rgba(212, 175, 55, 0.4);
-          box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
-        }
-
-        .mode-toggle-btn.golden {
-          background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(184, 134, 11, 0.2));
-          border-color: #D4AF37;
-          color: #D4AF37;
-          box-shadow: 0 4px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        .toggle-icon {
-          display: flex;
-          align-items: center;
-        }
-
-        .toggle-text {
-          font-size: 13px;
-        }
-
-        /* ===== CONTENT ===== */
-        .contact-content {
-          max-width: 900px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 2;
-          text-align: center;
-          width: 100%;
-        }
-
-        .contact-header {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-        }
-
-        .contact-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 10px 24px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(212, 175, 55, 0.15);
-          border-radius: 30px;
-          color: rgba(255, 255, 255, 0.7);
-          font-weight: 600;
-          font-size: 13px;
-          letter-spacing: 2px;
-          margin-bottom: 24px;
-          backdrop-filter: blur(10px);
-          text-transform: uppercase;
-        }
-
-        .golden-mode .contact-badge {
-          background: rgba(212, 175, 55, 0.08);
-          border-color: rgba(212, 175, 55, 0.3);
-          color: #D4AF37;
-        }
-
-        .contact-badge svg {
-          color: #D4AF37;
-        }
-
-        .contact-heading {
-          font-size: 64px;
-          font-weight: 700;
-          color: #ffffff;
-          margin: 0 0 8px 0;
-          line-height: 1.15;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .heading-line1 {
-          display: block;
-        }
-
-        .heading-line2 {
-          display: block;
-        }
-
-        .contact-heading .highlight-text {
-          background: linear-gradient(135deg, #D4AF37, #fbbf24, #B8860B);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          background-size: 200% 200%;
-          animation: headingShine 4s ease-in-out infinite;
-        }
-
-        .golden-mode .contact-heading .highlight-text {
-          background: linear-gradient(135deg, #fbbf24, #D4AF37, #f59e0b);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        @keyframes headingShine {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-
-        .heading-underline {
-          width: 80px;
-          height: 3px;
-          background: linear-gradient(90deg, #D4AF37, #4F46E5, #D4AF37);
-          border-radius: 3px;
-          margin: 16px auto 24px;
-          background-size: 200% 100%;
-          animation: underlineMove 3s ease-in-out infinite;
-        }
-
-        .golden-mode .heading-underline {
-          background: linear-gradient(90deg, #D4AF37, #fbbf24, #D4AF37);
-        }
-
-        @keyframes underlineMove {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-
-        .contact-description {
-          font-size: 20px;
-          color: rgba(255, 255, 255, 0.75);
-          max-width: 750px;
-          margin: 0 auto 16px;
-          line-height: 1.8;
-          font-weight: 300;
-        }
-
-        .golden-mode .contact-description {
-          color: rgba(255, 255, 255, 0.85);
-        }
-
-        .contact-description-secondary {
-          font-size: 18px;
-          color: rgba(255, 255, 255, 0.45);
-          max-width: 650px;
-          margin: 0 auto;
-          line-height: 1.8;
-          font-weight: 300;
-        }
-
-        .golden-mode .contact-description-secondary {
-          color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ========================================
-           RESPONSIVE
-           ======================================== */
-        @media (max-width: 1024px) {
-          .contact-hero-section {
-            min-height: 80vh;
-            padding: 100px 30px 70px;
-          }
-
-          .contact-heading {
-            font-size: 52px;
-          }
-
-          .contact-description {
-            font-size: 18px;
-          }
-
-          .floating-orb {
-            width: 150px;
-            height: 150px;
-            filter: blur(40px);
-          }
-
-          .orb-2 {
-            width: 180px;
-            height: 180px;
-          }
-
-          .light-ring {
-            width: 400px;
-            height: 400px;
-          }
-
-          .ring-2 {
-            width: 550px;
-            height: 550px;
-          }
-
-          .gradient-blob {
-            width: 350px;
-            height: 350px;
-            filter: blur(60px);
-          }
-
-          .blob-2 {
-            width: 400px;
-            height: 400px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .contact-hero-section {
-            min-height: 70vh;
-            padding: 80px 16px 60px;
-          }
-
-          .contact-heading {
-            font-size: 38px;
-          }
-
-          .contact-description {
-            font-size: 16px;
-          }
-
-          .contact-description-secondary {
-            font-size: 15px;
-          }
-
-          .contact-badge {
-            font-size: 11px;
-            padding: 8px 18px;
-            letter-spacing: 1.5px;
-          }
-
-          .mode-toggle-btn {
-            top: 80px;
-            right: 10px;
-            padding: 8px 14px;
-            font-size: 12px;
-          }
-
-          .toggle-text {
-            font-size: 11px;
-          }
-
-          .heading-underline {
-            width: 60px;
-            height: 2px;
-            margin: 12px auto 20px;
-          }
-
-          .floating-orb {
-            width: 120px;
-            height: 120px;
-            filter: blur(30px);
-          }
-
-          .orb-2 {
-            width: 140px;
-            height: 140px;
-          }
-
-          .light-ring {
-            width: 300px;
-            height: 300px;
-          }
-
-          .ring-2 {
-            width: 400px;
-            height: 400px;
-          }
-
-          .ring-3 {
-            width: 200px;
-            height: 200px;
-          }
-
-          .gradient-blob {
-            width: 250px;
-            height: 250px;
-            filter: blur(50px);
-          }
-
-          .blob-2 {
-            width: 300px;
-            height: 300px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .contact-hero-section {
-            min-height: 60vh;
-            padding: 60px 12px 50px;
-          }
-
-          .contact-heading {
-            font-size: 28px;
-            gap: 2px;
-          }
-
-          .contact-description {
-            font-size: 14px;
-          }
-
-          .contact-description-secondary {
-            font-size: 13px;
-          }
-
-          .contact-badge {
-            font-size: 10px;
-            padding: 6px 14px;
-            letter-spacing: 1px;
-          }
-
-          .contact-badge svg {
-            width: 16px;
-            height: 16px;
-          }
-
-          .mode-toggle-btn {
-            top: 75px;
-            right: 8px;
-            padding: 6px 12px;
-            font-size: 11px;
-          }
-
-          .toggle-text {
-            font-size: 10px;
-          }
-
-          .heading-underline {
-            width: 50px;
-            height: 2px;
-            margin: 10px auto 16px;
-          }
-
-          .floating-orb {
-            width: 80px;
-            height: 80px;
-            filter: blur(20px);
-          }
-
-          .orb-2 {
-            width: 100px;
-            height: 100px;
-          }
-
-          .light-ring {
-            width: 200px;
-            height: 200px;
-          }
-
-          .ring-2 {
-            width: 280px;
-            height: 280px;
-          }
-
-          .ring-3 {
-            width: 150px;
-            height: 150px;
-          }
-
-          .gradient-blob {
-            width: 180px;
-            height: 180px;
-            filter: blur(40px);
-          }
-
-          .blob-2 {
-            width: 200px;
-            height: 200px;
-          }
-        }
-      `}</style>
+     <style>{`
+  /* ========================================
+     CONTACT HERO SECTION
+     ======================================== */
+
+  .contact-hero-section {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 100px 40px 80px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    background:
+      linear-gradient(
+        165deg,
+        #070b15 0%,
+        #0f1629 40%,
+        #141b2d 70%,
+        #0a0f1e 100%
+      );
+
+    transition: all 0.6s ease;
+  }
+
+
+  /* ========================================
+     GOLDEN MODE BACKGROUND
+     ======================================== */
+
+  .contact-hero-section.golden-mode {
+    background:
+      linear-gradient(
+        165deg,
+        #1a1205 0%,
+        #2d1f0a 40%,
+        #3d2b10 70%,
+        #1a1205 100%
+      );
+  }
+
+
+  /* ========================================
+     BACKGROUND IMAGE
+     ======================================== */
+
+  .contact-bg {
+    position: absolute;
+
+    top: -5%;
+    left: -5%;
+
+    width: 110%;
+    height: 100%;
+
+    z-index: 0;
+
+    overflow: hidden;
+
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    pointer-events: none;
+
+    will-change: transform;
+
+    transition: background-image 0.5s ease;
+  }
+
+
+  /* ========================================
+     IMAGE DARK OVERLAY
+     ======================================== */
+
+  .contact-bg::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(5, 8, 20, 0.88) 0%,
+        rgba(8, 12, 27, 0.76) 30%,
+        rgba(10, 14, 30, 0.62) 55%,
+        rgba(8, 11, 24, 0.78) 100%
+      );
+
+    pointer-events: none;
+  }
+
+
+  /* ========================================
+     GOLDEN MODE IMAGE OVERLAY
+     ======================================== */
+
+  .golden-mode .contact-bg::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(20, 13, 3, 0.86) 0%,
+        rgba(38, 25, 7, 0.74) 30%,
+        rgba(45, 30, 9, 0.62) 55%,
+        rgba(20, 13, 3, 0.80) 100%
+      );
+  }
+
+
+  /* ========================================
+     FLOATING GRADIENT ORBS
+     ======================================== */
+
+  .floating-orb {
+    position: absolute;
+
+    border-radius: 60%;
+
+    filter: blur(50px);
+
+    pointer-events: none;
+
+    z-index: 2;
+  }
+
+
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(238, 236, 228, 0.25),
+        rgba(216, 215, 240, 0.1) 70%
+      );
+
+    top: 15%;
+    left: 8%;
+  }
+
+
+  .golden-mode .orb-1 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.4),
+        rgba(184, 134, 11, 0.15) 70%
+      );
+  }
+
+
+  .orb-2 {
+    width: 250px;
+    height: 250px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.2),
+        rgba(212, 175, 55, 0.08) 70%
+      );
+
+    bottom: 20%;
+    right: 10%;
+  }
+
+
+  .golden-mode .orb-2 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.35),
+        rgba(184, 134, 11, 0.12) 70%
+      );
+  }
+
+
+  .orb-3 {
+    width: 180px;
+    height: 180px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.2),
+        rgba(79, 70, 229, 0.08) 70%
+      );
+
+    top: 45%;
+    left: 25%;
+  }
+
+
+  .golden-mode .orb-3 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(251, 191, 36, 0.35),
+        rgba(212, 175, 55, 0.12) 70%
+      );
+  }
+
+
+  .orb-4 {
+    width: 220px;
+    height: 220px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.18),
+        rgba(212, 175, 55, 0.08) 70%
+      );
+
+    bottom: 30%;
+    right: 25%;
+  }
+
+
+  .golden-mode .orb-4 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.3),
+        rgba(184, 134, 11, 0.1) 70%
+      );
+  }
+
+
+  /* ========================================
+     ROTATING LIGHT RINGS
+     ======================================== */
+
+  .light-ring {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(217, 202, 155, 0.08);
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    z-index: 2;
+  }
+
+
+  .ring-1 {
+    width: 500px;
+    height: 500px;
+
+    border-color: rgba(235, 219, 164, 0.06);
+  }
+
+
+  .golden-mode .ring-1 {
+    border-color: rgba(229, 217, 177, 0.12);
+  }
+
+
+  .ring-2 {
+    width: 700px;
+    height: 700px;
+
+    border-color: rgba(194, 192, 227, 0.05);
+  }
+
+
+  .golden-mode .ring-2 {
+    border-color: rgba(235, 223, 183, 0.1);
+  }
+
+
+  .ring-3 {
+    width: 350px;
+    height: 350px;
+
+    border-color: rgba(203, 192, 154, 0.04);
+
+    border-width: 2px;
+  }
+
+
+  .golden-mode .ring-3 {
+    border-color: rgba(216, 202, 156, 0.1);
+  }
+
+
+  /* ========================================
+     GRADIENT BLOBS
+     ======================================== */
+
+  .gradient-blob {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    pointer-events: none;
+
+    z-index: 2;
+  }
+
+
+  .blob-1 {
+    width: 500px;
+    height: 500px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.1),
+        transparent 70%
+      );
+
+    top: -150px;
+    right: -100px;
+  }
+
+
+  .golden-mode .blob-1 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.2),
+        transparent 70%
+      );
+  }
+
+
+  .blob-2 {
+    width: 600px;
+    height: 600px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.08),
+        transparent 70%
+      );
+
+    bottom: -200px;
+    left: -150px;
+  }
+
+
+  .golden-mode .blob-2 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.15),
+        transparent 70%
+      );
+  }
+
+
+  .blob-3 {
+    width: 400px;
+    height: 400px;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.07),
+        transparent 70%
+      );
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+  }
+
+
+  .golden-mode .blob-3 {
+    background:
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.12),
+        transparent 70%
+      );
+  }
+
+
+  /* ========================================
+     AMBIENT LAYER
+     ======================================== */
+
+  .ambient-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(212, 175, 55, 0.02),
+        transparent 70%
+      );
+
+    pointer-events: none;
+  }
+
+
+  .golden-mode .ambient-layer {
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(212, 175, 55, 0.05),
+        transparent 70%
+      );
+  }
+
+
+  /* ========================================
+     CONTENT
+     ======================================== */
+
+  .contact-content {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    z-index: 10;
+
+    text-align: center;
+
+    width: 100%;
+  }
+
+
+  .contact-header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
+
+    position: relative;
+
+    z-index: 11;
+  }
+
+
+  /* ========================================
+     TOGGLE BUTTON
+     ======================================== */
+
+  .mode-toggle-btn {
+    position: fixed;
+
+    top: 90px;
+    right: 20px;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 20px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(212, 175, 55, 0.2);
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    transition: all 0.4s ease;
+
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .mode-toggle-btn:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(212, 175, 55, 0.4);
+
+    box-shadow:
+      0 8px 30px rgba(212, 175, 55, 0.15);
+  }
+
+
+  .mode-toggle-btn.golden {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(212, 175, 55, 0.2),
+        rgba(184, 134, 11, 0.2)
+      );
+
+    border-color: #D4AF37;
+
+    color: #D4AF37;
+
+    box-shadow:
+      0 4px 30px rgba(212, 175, 55, 0.2);
+  }
+
+
+  .toggle-icon {
+    display: flex;
+    align-items: center;
+  }
+
+
+  .toggle-text {
+    font-size: 13px;
+  }
+
+
+  /* ========================================
+     BADGE
+     ======================================== */
+
+  .contact-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 24px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(212, 175, 55, 0.15);
+
+    border-radius: 30px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 24px;
+
+    backdrop-filter: blur(10px);
+
+    text-transform: uppercase;
+  }
+
+
+  .golden-mode .contact-badge {
+    background: rgba(212, 175, 55, 0.08);
+
+    border-color: rgba(212, 175, 55, 0.3);
+
+    color: #D4AF37;
+  }
+
+
+  .contact-badge svg {
+    color: #D4AF37;
+  }
+
+
+  /* ========================================
+     HEADING
+     ======================================== */
+
+  .contact-heading {
+    font-size: 64px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    margin: 0 0 8px 0;
+
+    line-height: 1.15;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    position: relative;
+
+    z-index: 12;
+  }
+
+
+  .heading-line1 {
+    display: block;
+  }
+
+
+  .heading-line2 {
+    display: block;
+  }
+
+
+  .contact-heading .highlight-text {
+    background:
+      linear-gradient(
+        135deg,
+        #D4AF37,
+        #fbbf24,
+        #B8860B
+      );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+
+    background-size: 200% 200%;
+
+    animation:
+      headingShine 4s ease-in-out infinite;
+  }
+
+
+  .golden-mode .contact-heading .highlight-text {
+    background:
+      linear-gradient(
+        135deg,
+        #fbbf24,
+        #D4AF37,
+        #f59e0b
+      );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+  }
+
+
+  @keyframes headingShine {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+
+  /* ========================================
+     UNDERLINE
+     ======================================== */
+
+  .heading-underline {
+    width: 80px;
+
+    height: 3px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #D4AF37,
+        #4F46E5,
+        #D4AF37
+      );
+
+    border-radius: 3px;
+
+    margin: 16px auto 24px;
+
+    background-size: 200% 100%;
+
+    animation:
+      underlineMove 3s ease-in-out infinite;
+  }
+
+
+  .golden-mode .heading-underline {
+    background:
+      linear-gradient(
+        90deg,
+        #D4AF37,
+        #fbbf24,
+        #D4AF37
+      );
+  }
+
+
+  @keyframes underlineMove {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+
+  /* ========================================
+     DESCRIPTION
+     ======================================== */
+
+  .contact-description {
+    font-size: 20px;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    max-width: 750px;
+
+    margin: 0 auto 16px;
+
+    line-height: 1.8;
+
+    font-weight: 300;
+
+    position: relative;
+
+    z-index: 12;
+  }
+
+
+  .golden-mode .contact-description {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+
+  .contact-description-secondary {
+    font-size: 18px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    line-height: 1.8;
+
+    font-weight: 300;
+
+    position: relative;
+
+    z-index: 12;
+  }
+
+
+  .golden-mode .contact-description-secondary {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+
+  /* ========================================
+     RESPONSIVE
+     ======================================== */
+
+  @media (max-width: 1024px) {
+
+    .contact-hero-section {
+      min-height: 80vh;
+
+      padding: 100px 30px 70px;
+    }
+
+
+    .contact-heading {
+      font-size: 52px;
+    }
+
+
+    .contact-description {
+      font-size: 18px;
+    }
+
+
+    .floating-orb {
+      width: 150px;
+      height: 150px;
+
+      filter: blur(40px);
+    }
+
+
+    .orb-2 {
+      width: 180px;
+      height: 180px;
+    }
+
+
+    .light-ring {
+      width: 400px;
+      height: 400px;
+    }
+
+
+    .ring-2 {
+      width: 550px;
+      height: 550px;
+    }
+
+
+    .gradient-blob {
+      width: 350px;
+      height: 350px;
+
+      filter: blur(60px);
+    }
+
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+
+  /* ========================================
+     TABLET / MOBILE
+     ======================================== */
+
+  @media (max-width: 768px) {
+
+    .contact-hero-section {
+      min-height: 70vh;
+
+      padding: 80px 16px 60px;
+    }
+
+
+    .contact-bg {
+      top: -3%;
+      left: -3%;
+
+      width: 106%;
+      height: 106%;
+
+      background-position: center center;
+    }
+
+
+    .contact-bg::before {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(5, 8, 20, 0.84) 0%,
+          rgba(8, 12, 27, 0.70) 50%,
+          rgba(8, 11, 24, 0.84) 100%
+        );
+    }
+
+
+    .golden-mode .contact-bg::before {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(20, 13, 3, 0.84) 0%,
+          rgba(38, 25, 7, 0.70) 50%,
+          rgba(20, 13, 3, 0.84) 100%
+        );
+    }
+
+
+    .contact-heading {
+      font-size: 38px;
+    }
+
+
+    .contact-description {
+      font-size: 16px;
+    }
+
+
+    .contact-description-secondary {
+      font-size: 15px;
+    }
+
+
+    .contact-badge {
+      font-size: 11px;
+
+      padding: 8px 18px;
+
+      letter-spacing: 1.5px;
+    }
+
+
+    .mode-toggle-btn {
+      top: 80px;
+
+      right: 10px;
+
+      padding: 8px 14px;
+
+      font-size: 12px;
+    }
+
+
+    .toggle-text {
+      font-size: 11px;
+    }
+
+
+    .heading-underline {
+      width: 60px;
+
+      height: 2px;
+
+      margin: 12px auto 20px;
+    }
+
+
+    .floating-orb {
+      width: 120px;
+      height: 120px;
+
+      filter: blur(30px);
+    }
+
+
+    .orb-2 {
+      width: 140px;
+      height: 140px;
+    }
+
+
+    .light-ring {
+      width: 300px;
+      height: 300px;
+    }
+
+
+    .ring-2 {
+      width: 400px;
+      height: 400px;
+    }
+
+
+    .ring-3 {
+      width: 200px;
+      height: 200px;
+    }
+
+
+    .gradient-blob {
+      width: 250px;
+      height: 250px;
+
+      filter: blur(50px);
+    }
+
+
+    .blob-2 {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+
+  /* ========================================
+     SMALL MOBILE
+     ======================================== */
+
+  @media (max-width: 480px) {
+
+    .contact-hero-section {
+      min-height: 60vh;
+
+      padding: 60px 12px 50px;
+    }
+
+
+    .contact-bg {
+      top: -2%;
+      left: -2%;
+
+      width: 104%;
+      height: 104%;
+
+      background-position: center center;
+    }
+
+
+    .contact-heading {
+      font-size: 28px;
+
+      gap: 2px;
+    }
+
+
+    .contact-description {
+      font-size: 14px;
+    }
+
+
+    .contact-description-secondary {
+      font-size: 13px;
+    }
+
+
+    .contact-badge {
+      font-size: 10px;
+
+      padding: 6px 14px;
+
+      letter-spacing: 1px;
+    }
+
+
+    .contact-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+
+    .mode-toggle-btn {
+      top: 75px;
+
+      right: 8px;
+
+      padding: 6px 12px;
+
+      font-size: 11px;
+    }
+
+
+    .toggle-text {
+      font-size: 10px;
+    }
+
+
+    .heading-underline {
+      width: 50px;
+
+      height: 2px;
+
+      margin: 10px auto 16px;
+    }
+
+
+    .floating-orb {
+      width: 80px;
+      height: 80px;
+
+      filter: blur(20px);
+    }
+
+
+    .orb-2 {
+      width: 100px;
+      height: 100px;
+    }
+
+
+    .light-ring {
+      width: 200px;
+      height: 200px;
+    }
+
+
+    .ring-2 {
+      width: 280px;
+      height: 280px;
+    }
+
+
+    .ring-3 {
+      width: 150px;
+      height: 150px;
+    }
+
+
+    .gradient-blob {
+      width: 180px;
+      height: 180px;
+
+      filter: blur(40px);
+    }
+
+
+    .blob-2 {
+      width: 200px;
+      height: 200px;
+    }
+  }
+`}</style>
     </section>
   );
 }

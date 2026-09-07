@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { sendContactMessage } from "../../services/contactService";
 import officeImage from "../../assets/vvv.png";
 
@@ -8,58 +9,64 @@ import officeImage from "../../assets/vvv.png";
 const toastStyles = {
   success: {
     style: {
-      background: '#10b981',
-      color: '#fff',
-      padding: '16px 24px',
-      borderRadius: '12px',
-      fontSize: '15px',
-      fontWeight: '600',
-      boxShadow: '0 8px 25px rgba(16, 185, 129, 0.3)',
+      background: "#10b981",
+      color: "#fff",
+      padding: "16px 24px",
+      borderRadius: "12px",
+      fontSize: "15px",
+      fontWeight: "600",
+      boxShadow: "0 8px 25px rgba(16, 185, 129, 0.3)",
     },
-    icon: '✅',
+    icon: "✅",
     duration: 4000,
   },
+
   error: {
     style: {
-      background: '#ef4444',
-      color: '#fff',
-      padding: '16px 24px',
-      borderRadius: '12px',
-      fontSize: '15px',
-      fontWeight: '600',
-      boxShadow: '0 8px 25px rgba(239, 68, 68, 0.3)',
+      background: "#ef4444",
+      color: "#fff",
+      padding: "16px 24px",
+      borderRadius: "12px",
+      fontSize: "15px",
+      fontWeight: "600",
+      boxShadow: "0 8px 25px rgba(239, 68, 68, 0.3)",
     },
-    icon: '❌',
+    icon: "❌",
     duration: 5000,
   },
+
   loading: {
     style: {
-      background: '#3b82f6',
-      color: '#fff',
-      padding: '16px 24px',
-      borderRadius: '12px',
-      fontSize: '15px',
-      fontWeight: '600',
+      background: "#3b82f6",
+      color: "#fff",
+      padding: "16px 24px",
+      borderRadius: "12px",
+      fontSize: "15px",
+      fontWeight: "600",
     },
   },
+
   info: {
     style: {
-      background: '#8b5cf6',
-      color: '#fff',
-      padding: '16px 24px',
-      borderRadius: '12px',
-      fontSize: '15px',
-      fontWeight: '600',
-      boxShadow: '0 8px 25px rgba(139, 92, 246, 0.3)',
+      background: "#8b5cf6",
+      color: "#fff",
+      padding: "16px 24px",
+      borderRadius: "12px",
+      fontSize: "15px",
+      fontWeight: "600",
+      boxShadow: "0 8px 25px rgba(139, 92, 246, 0.3)",
     },
-    icon: 'ℹ️',
+    icon: "ℹ️",
     duration: 3000,
-  }
+  },
 };
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth <= 768
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,7 +75,9 @@ export default function ContactForm() {
 
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const [formData, setFormData] = useState({
@@ -79,7 +88,10 @@ export default function ContactForm() {
     message: "",
   });
 
-  // Notification helper functions
+  // =========================
+  // NOTIFICATION HELPERS
+  // =========================
+
   const showSuccess = (message) => {
     toast.success(message, {
       style: toastStyles.success.style,
@@ -110,6 +122,10 @@ export default function ContactForm() {
     });
   };
 
+  // =========================
+  // HANDLE CHANGE
+  // =========================
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -117,7 +133,10 @@ export default function ContactForm() {
     });
   };
 
-  // Form validation
+  // =========================
+  // FORM VALIDATION
+  // =========================
+
   const validateForm = () => {
     if (!formData.fullname.trim()) {
       showError("Please enter your full name.");
@@ -135,6 +154,7 @@ export default function ContactForm() {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(formData.email)) {
       showError("Please enter a valid email address.");
       return false;
@@ -168,6 +188,10 @@ export default function ContactForm() {
     return true;
   };
 
+  // =========================
+  // SUBMIT
+  // =========================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -183,8 +207,10 @@ export default function ContactForm() {
       // Dismiss loading toast
       toast.dismiss(loadingToast);
 
-      // Show success
-      showSuccess("✅ Message sent successfully! Our team will contact you within 24 hours.");
+      // Success message
+      showSuccess(
+        "Message sent successfully! Our team will contact you within 24 hours."
+      );
 
       // Reset form
       setFormData({
@@ -195,27 +221,34 @@ export default function ContactForm() {
         message: "",
       });
 
-      // Show info notification after success
+      // Information notification
       setTimeout(() => {
         showInfo("📧 Check your email for confirmation.");
       }, 3000);
-
     } catch (error) {
-      // Dismiss loading toast
       toast.dismiss(loadingToast);
-      
-      // Show error
-      const errorMessage = error.response?.data?.message || "Something went wrong. Please try again.";
+
+      const errorMessage =
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
+
       showError(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
+  // =========================
+  // STYLES
+  // =========================
+
   const styles = {
     section: {
-      background: "#081120",
+      background:
+        "linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f8faff 100%)",
       padding: isMobile ? "70px 20px" : "120px 8%",
+      position: "relative",
+      overflow: "hidden",
     },
 
     container: {
@@ -223,7 +256,7 @@ export default function ContactForm() {
       margin: "auto",
       display: "grid",
       gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-      gap: isMobile ? "40px" : "70px",
+      gap: isMobile ? "50px" : "80px",
       alignItems: "center",
     },
 
@@ -234,20 +267,20 @@ export default function ContactForm() {
     right: {
       display: "flex",
       justifyContent: "center",
-      
+      width: "100%",
     },
 
     tag: {
-      color: "#FFD700",
+      color: "#4F46E5",
       letterSpacing: "3px",
-      fontWeight: "700",
+      fontWeight: "800",
       marginBottom: "15px",
       fontSize: isMobile ? "13px" : "15px",
       textAlign: isMobile ? "center" : "left",
     },
 
     heading: {
-      color: "#fff",
+      color: "#172033",
       fontSize: isMobile ? "34px" : "50px",
       fontWeight: "800",
       marginBottom: "20px",
@@ -259,11 +292,12 @@ export default function ContactForm() {
     },
 
     description: {
-      color: "#CBD5E1",
+      color: "#64748B",
       lineHeight: "1.8",
       marginBottom: "35px",
       fontSize: isMobile ? "16px" : "18px",
       textAlign: isMobile ? "center" : "left",
+      maxWidth: "650px",
     },
 
     form: {
@@ -274,30 +308,32 @@ export default function ContactForm() {
 
     input: {
       width: "100%",
-      padding: isMobile ? "15px" : "18px",
+      padding: isMobile ? "15px 17px" : "17px 20px",
       borderRadius: "12px",
-      border: "1px solid rgba(255,255,255,.12)",
-      background: "rgba(255,255,255,.05)",
-      color: "#fff",
+      border: "1px solid #E2E8F0",
+      background: "#ffffff",
+      color: "#172033",
       fontSize: isMobile ? "15px" : "16px",
       outline: "none",
       boxSizing: "border-box",
       transition: "all 0.3s ease",
+      boxShadow: "0 4px 15px rgba(15, 23, 42, 0.04)",
     },
 
     textarea: {
       width: "100%",
-      padding: isMobile ? "15px" : "18px",
+      padding: isMobile ? "15px 17px" : "17px 20px",
       borderRadius: "12px",
-      border: "1px solid rgba(255,255,255,.12)",
-      background: "rgba(255,255,255,.05)",
-      color: "#fff",
+      border: "1px solid #E2E8F0",
+      background: "#ffffff",
+      color: "#172033",
       fontSize: isMobile ? "15px" : "16px",
       outline: "none",
       resize: "none",
       fontFamily: "inherit",
       boxSizing: "border-box",
       transition: "all 0.3s ease",
+      boxShadow: "0 4px 15px rgba(15, 23, 42, 0.04)",
     },
 
     button: {
@@ -306,29 +342,33 @@ export default function ContactForm() {
       padding: isMobile ? "16px" : "18px",
       border: "none",
       borderRadius: "50px",
-      background: "linear-gradient(135deg,#4F46E5,#6366F1)",
+      background:
+        "linear-gradient(135deg, #4F46E5, #6366F1)",
       color: "#fff",
       fontWeight: "700",
       fontSize: isMobile ? "16px" : "17px",
-      cursor: "pointer",
-      boxShadow: "0 12px 30px rgba(79,70,229,.35)",
+      cursor: loading ? "not-allowed" : "pointer",
+      boxShadow:
+        "0 12px 30px rgba(79, 70, 229, 0.25)",
       transition: "all 0.3s ease",
       opacity: loading ? 0.7 : 1,
     },
 
     image: {
       width: "100%",
-      maxWidth: isMobile ? "320px" : "600px",
+      maxWidth: isMobile ? "340px" : "600px",
       height: isMobile ? "350px" : "650px",
       objectFit: "cover",
       borderRadius: "25px",
-      boxShadow: "0 25px 60px rgba(0,0,0,.35)",
+      boxShadow:
+        "0 25px 60px rgba(15, 23, 42, 0.15)",
+      border: "1px solid #E2E8F0",
     },
   };
 
   return (
     <section style={styles.section}>
-      {/* Toaster Component */}
+      {/* TOASTER */}
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -336,13 +376,16 @@ export default function ContactForm() {
         toastOptions={{
           duration: 4000,
           style: {
-            maxWidth: '450px',
+            maxWidth: "450px",
           },
         }}
       />
 
       <div style={styles.container}>
-        {/* LEFT - FORM */}
+        {/* =========================
+            LEFT - FORM
+        ========================= */}
+
         <motion.div
           style={styles.left}
           initial={{ opacity: 0, x: -80 }}
@@ -416,15 +459,32 @@ export default function ContactForm() {
               type="submit"
               style={styles.button}
               disabled={loading}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={
+                !loading
+                  ? {
+                      scale: 1.03,
+                      boxShadow:
+                        "0 16px 35px rgba(79, 70, 229, 0.35)",
+                    }
+                  : {}
+              }
+              whileTap={
+                !loading
+                  ? {
+                      scale: 0.97,
+                    }
+                  : {}
+              }
             >
               {loading ? "Sending..." : "Send Message"}
             </motion.button>
           </form>
         </motion.div>
 
-        {/* RIGHT IMAGE */}
+        {/* =========================
+            RIGHT - IMAGE
+        ========================= */}
+
         <motion.div
           style={styles.right}
           initial={{ opacity: 0, x: 80 }}

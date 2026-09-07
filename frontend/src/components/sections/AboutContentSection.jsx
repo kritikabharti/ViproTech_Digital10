@@ -60,7 +60,6 @@ export default function AboutContentSection() {
             src={officeImg}
             alt="VProTech Digital Office"
             className="about-image"
-            loading="lazy"
             initial={{ opacity: 0, x: 80, scale: 0.9 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}

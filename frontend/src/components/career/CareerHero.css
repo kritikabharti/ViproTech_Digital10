@@ -1,0 +1,321 @@
+/* =========================================================
+   CAREER HERO
+========================================================= */
+
+.career-hero {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.career-hero-bg {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* =========================================================
+   LIGHT OVERLAY
+   Keeps the image clearly visible
+========================================================= */
+
+.career-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 4, 4, 0.25);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTENT CONTAINER
+========================================================= */
+
+.career-hero-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 720px;
+  margin: 0 auto;
+  padding: 100px 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.career-hero-content {
+  width: 100%;
+  max-width: 720px;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.career-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  margin-bottom: 25px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #2563eb;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.career-hero-title {
+  margin: 0;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #ffffff;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.35);
+}
+
+.career-hero-title span {
+  color: #22c55e;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.career-hero-description {
+  max-width: 650px;
+  margin: 25px 0 0;
+  font-size: 19px;
+  line-height: 1.8;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.career-hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.career-hero-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 15px 28px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.career-hero-primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+}
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.career-hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3a8a;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.career-hero-secondary-btn:hover {
+  transform: translateY(-3px);
+  background: #ffffff;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .career-hero {
+    min-height: 650px;
+  }
+
+  .career-hero-container {
+    min-height: 650px;
+    padding: 80px 35px;
+  }
+
+  .career-hero-content {
+    max-width: 650px;
+  }
+
+  .career-hero-title {
+    font-size: clamp(40px, 7vw, 62px);
+  }
+
+  .career-hero-description {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .career-hero {
+    min-height: 620px;
+  }
+
+  .career-hero-bg {
+    top: -3%;
+    left: -8%;
+    width: 116%;
+    height: 106%;
+    background-position: center;
+  }
+
+  .career-hero-container {
+    min-height: 620px;
+    padding: 70px 22px;
+    align-items: center;
+  }
+
+  .career-hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .career-hero-badge {
+    font-size: 13px;
+    padding: 10px 19px;
+    margin-bottom: 20px;
+  }
+
+  .career-hero-title {
+    font-size: 38px;
+    line-height: 1.12;
+    letter-spacing: -1px;
+  }
+
+  .career-hero-description {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  .career-hero-buttons {
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .career-hero-primary-btn,
+  .career-hero-secondary-btn {
+    padding: 13px 22px;
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .career-hero {
+    min-height: 580px;
+  }
+
+  .career-hero-container {
+    min-height: 580px;
+    padding: 55px 18px;
+  }
+
+  .career-hero-title {
+    font-size: 32px;
+  }
+
+  .career-hero-description {
+    font-size: 15px;
+  }
+
+  .career-hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .career-hero-primary-btn,
+  .career-hero-secondary-btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .career-hero-bg {
+    transform: scale(1) !important;
+  }
+}

@@ -4,36 +4,33 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
-  FaClock,
 } from "react-icons/fa";
 
 const contactInfo = [
   {
     icon: <FaMapMarkerAlt />,
     title: "Office Address",
-    value: "SCF-116 A, Second Floor, Phase 5, Industrial Area, Sector 58, Sahibzada Ajit Singh Nagar, Punjab 160055",
+    value:
+      "SCF-116 A, Second Floor, Phase 5, Industrial Area, Sector 58, Sahibzada Ajit Singh Nagar, Punjab 160055",
   },
   {
-     icon: <FaPhoneAlt />,
+    icon: <FaPhoneAlt />,
     title: "Call Us",
-    value: ["+91 8894110026"   ,
-        "+91 8146759497"],
+    value: ["+91 8894110026", "+91 8146759497"],
     type: "phone",
   },
   {
     icon: <FaEnvelope />,
     title: "Email Address",
     value: "vprotechdigitalmohali@gmail.com",
+    type: "email",
   },
-
 ];
-
-
-
 
 export default function ContactInfo() {
   return (
     <section style={styles.section}>
+      {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -52,6 +49,7 @@ export default function ContactInfo() {
         </p>
       </motion.div>
 
+      {/* CONTACT CARDS */}
       <div style={styles.grid}>
         {contactInfo.map((item, index) => (
           <motion.div
@@ -60,57 +58,65 @@ export default function ContactInfo() {
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0,
-              delay: 0,
+              duration: 0.6,
+              delay: index * 0.12,
             }}
             viewport={{ once: true }}
             whileHover={{
-              y: -12,
-              scale: 1.04,
+              y: -10,
+              scale: 1.02,
             }}
           >
+            {/* ICON */}
             <div style={styles.icon}>{item.icon}</div>
 
+            {/* TITLE */}
             <h3 style={styles.title}>{item.title}</h3>
 
-           <div style={styles.value}>
-  {Array.isArray(item.value) ? (
-    item.value.map((val, i) => {
-      if (item.type === "phone") {
-        return (
-          <a
-            key={i}
-            href={`tel:${val}`}
-            style={styles.link}
-          >
-            {val}
-          </a>
-        );
-      }
+            {/* VALUE */}
+            <div style={styles.value}>
+              {Array.isArray(item.value) ? (
+                item.value.map((val, i) => {
+                  if (item.type === "phone") {
+                    return (
+                      <a
+                        key={i}
+                        href={`tel:${val}`}
+                        style={styles.link}
+                      >
+                        {val}
+                      </a>
+                    );
+                  }
 
-      if (item.type === "email") {
-        return (
-          <a
-            key={i}
-            href={`mailto:${val}`}
-            style={styles.link}
-          >
-            {val}
-          </a>
-        );
-      }
+                  if (item.type === "email") {
+                    return (
+                      <a
+                        key={i}
+                        href={`mailto:${val}`}
+                        style={styles.link}
+                      >
+                        {val}
+                      </a>
+                    );
+                  }
 
-      return <p key={i}>{val}</p>;
-    })
-  ) : (
-    <p>{item.value}</p>
-  )}
-</div>
+                  return <p key={i}>{val}</p>;
+                })
+              ) : item.type === "email" ? (
+                <a
+                  href={`mailto:${item.value}`}
+                  style={styles.link}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p style={styles.address}>{item.value}</p>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>
-
-      
     </section>
   );
 }
@@ -118,22 +124,27 @@ export default function ContactInfo() {
 const styles = {
   section: {
     padding: "110px 8%",
-    background: "#0F172A",
-    color: "#fff",
+    background: "#ffffff",
+    color: "#172033",
     textAlign: "center",
+    position: "relative",
+    overflow: "hidden",
   },
 
   tag: {
-    color: "#FFD700",
+    color: "#4F46E5",
     letterSpacing: "4px",
-    fontWeight: "700",
+    fontWeight: "800",
+    fontSize: "13px",
     marginBottom: "18px",
   },
 
   heading: {
     fontSize: "48px",
     fontWeight: "800",
-    marginBottom: "20px",
+    margin: "0 0 20px",
+    color: "#172033",
+    lineHeight: "1.2",
   },
 
   highlight: {
@@ -141,7 +152,7 @@ const styles = {
   },
 
   subHeading: {
-    color: "#CBD5E1",
+    color: "#64748B",
     fontSize: "18px",
     lineHeight: "1.8",
     maxWidth: "760px",
@@ -150,51 +161,66 @@ const styles = {
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(270px,1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
     gap: "30px",
+    maxWidth: "1250px",
+    margin: "0 auto",
   },
 
   card: {
-    background: "rgba(255,255,255,.06)",
-    backdropFilter: "blur(15px)",
-    border: "1px solid rgba(255,255,255,.12)",
-    borderRadius: "24px",
-    padding: "40px 30px",
-    transition: ".35s",
+    background: "#ffffff",
+    border: "1px solid #E2E8F0",
+    borderRadius: "20px",
+    padding: "42px 30px",
+    transition: "all .35s ease",
     cursor: "pointer",
+    boxShadow: "0 10px 35px rgba(15, 23, 42, 0.07)",
+    minHeight: "250px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 
   icon: {
-    width: "75px",
-    height: "75px",
-    borderRadius: "50%",
-    margin: "0 auto 25px",
-    background: "linear-gradient(135deg,#4F46E5,#6366F1)",
+    width: "72px",
+    height: "72px",
+    borderRadius: "18px",
+    margin: "0 auto 24px",
+    background: "linear-gradient(135deg, #4F46E5, #6366F1)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "28px",
-    color: "#fff",
-    boxShadow: "0 12px 30px rgba(79,70,229,.35)",
+    fontSize: "26px",
+    color: "#ffffff",
+    boxShadow: "0 12px 25px rgba(79, 70, 229, 0.22)",
   },
 
   title: {
-    fontSize: "22px",
-    fontWeight: "700",
-    marginBottom: "15px",
+    fontSize: "21px",
+    fontWeight: "750",
+    margin: "0 0 15px",
+    color: "#172033",
   },
 
   value: {
-    color: "#CBD5E1",
+    color: "#64748B",
     lineHeight: "1.7",
-    fontSize: "17px",
+    fontSize: "16px",
+    width: "100%",
+  },
+
+  address: {
+    margin: "0 auto",
+    maxWidth: "330px",
   },
 
   link: {
-  display: "block",
-  color: "#CBD5E1",
-  textDecoration: "none",
-  margin: "6px 0",
-  transition: ".2s",
-},
+    display: "block",
+    color: "#64748B",
+    textDecoration: "none",
+    margin: "7px 0",
+    transition: "all .25s ease",
+    fontWeight: "500",
+  },
 };

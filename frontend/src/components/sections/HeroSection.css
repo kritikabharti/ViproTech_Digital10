@@ -1,0 +1,1325 @@
+/* ============================================================
+   VPROTECH DIGITAL
+   HERO SECTION
+============================================================ */
+
+.vpro-hero {
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding:
+    110px 5% 40px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  isolation: isolate;
+}
+
+
+/* ============================================================
+   BACKGROUND IMAGE
+   backk.png
+============================================================ */
+
+.vpro-background-image {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -10;
+
+  background-size: cover;
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+
+}
+
+
+/* ============================================================
+   BACKGROUND OVERLAY
+============================================================ */
+
+.vpro-background-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -9;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      rgba(255, 255, 255, 0.94) 0%,
+
+      rgba(255, 255, 255, 0.82) 35%,
+
+      rgba(255, 255, 255, 0.48) 68%,
+
+      rgba(255, 255, 255, 0.25) 100%
+    );
+
+}
+
+
+/* ============================================================
+   DECORATIVE GLOW
+============================================================ */
+
+.vpro-glow {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  z-index: -7;
+
+}
+
+
+.vpro-glow-blue {
+
+  width: 320px;
+
+  height: 320px;
+
+  right: -120px;
+
+  top: 5%;
+
+  background:
+    rgba(21, 87, 214, 0.08);
+
+}
+
+
+.vpro-glow-green {
+
+  width: 280px;
+
+  height: 280px;
+
+  left: -120px;
+
+  bottom: 5%;
+
+  background:
+    rgba(32, 180, 134, 0.08);
+
+}
+
+
+/* ============================================================
+   MAIN CONTAINER
+============================================================ */
+
+.vpro-hero-container {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 1450px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    minmax(0, 1.05fr);
+
+  align-items: center;
+
+  gap: 25px;
+
+}
+
+
+/* ============================================================
+   LEFT CONTENT
+============================================================ */
+
+.vpro-hero-content {
+
+  position: relative;
+
+  z-index: 10;
+
+  max-width: 690px;
+
+}
+
+
+/* ============================================================
+   COMPANY TAG
+============================================================ */
+
+.vpro-welcome-tag {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    9px 17px;
+
+  margin-bottom: 23px;
+
+  border:
+    1px solid
+    rgba(21, 87, 214, 0.14);
+
+  border-radius: 100px;
+
+  background:
+    rgba(255, 255, 255, 0.78);
+
+  backdrop-filter: blur(12px);
+
+  color: #172033;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 30px
+    rgba(15, 23, 42, 0.06);
+
+}
+
+
+.vpro-tag-dot {
+
+  width: 8px;
+
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #20b486;
+
+  box-shadow:
+    0 0 0 5px
+    rgba(32, 180, 134, 0.11);
+
+}
+
+
+/* ============================================================
+   HERO HEADING
+============================================================ */
+
+.vpro-hero-title {
+
+  margin: 0;
+
+  max-width: 720px;
+
+  color: #101828;
+
+  font-size:
+    clamp(44px, 5vw, 70px);
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+
+  font-weight: 800;
+
+}
+
+
+.vpro-title-word {
+
+  display: inline-block;
+
+  margin-right: 11px;
+
+}
+
+
+.vpro-title-word:nth-child(6),
+.vpro-title-word:nth-child(7) {
+
+  color: #1557D6;
+
+}
+
+
+.vpro-title-word:nth-child(8) {
+
+  color: #20B486;
+
+}
+
+
+/* ============================================================
+   SUBTITLE
+============================================================ */
+
+.vpro-hero-subtitle {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin:
+    24px 0 15px;
+
+  font-size: 22px;
+
+  line-height: 1.4;
+
+  font-weight: 700;
+
+}
+
+
+.vpro-hero-subtitle span:nth-child(1) {
+
+  color: #1557D6;
+
+}
+
+
+.vpro-hero-subtitle span:nth-child(2) {
+
+  color: #20B486;
+
+}
+
+
+.vpro-hero-subtitle span:nth-child(3) {
+
+  color: #1557D6;
+
+}
+
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.vpro-hero-description {
+
+  max-width: 620px;
+
+  margin: 0;
+
+  color: #596579;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+
+}
+
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.vpro-hero-buttons {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 30px;
+
+}
+
+
+.vpro-primary-btn,
+.vpro-secondary-btn {
+
+  min-height: 53px;
+
+  padding:
+    0 23px;
+
+  border-radius: 100px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    all 0.3s ease;
+
+}
+
+
+/* ============================================================
+   PRIMARY BUTTON
+============================================================ */
+
+.vpro-primary-btn {
+
+  border: none;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1557D6,
+      #2563EB
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(21, 87, 214, 0.25);
+
+}
+
+
+.vpro-primary-btn:hover {
+
+  box-shadow:
+    0 17px 35px
+    rgba(21, 87, 214, 0.34);
+
+}
+
+
+/* ============================================================
+   SECONDARY BUTTON
+============================================================ */
+
+.vpro-secondary-btn {
+
+  border:
+    1px solid
+    rgba(21, 87, 214, 0.18);
+
+  color: #172033;
+
+  background:
+    rgba(255, 255, 255, 0.82);
+
+  backdrop-filter: blur(10px);
+
+}
+
+
+.vpro-secondary-btn:hover {
+
+  color: #1557D6;
+
+  border-color:
+    rgba(21, 87, 214, 0.4);
+
+  background: #ffffff;
+
+}
+
+
+/* ============================================================
+   TRUST ROW
+============================================================ */
+
+.vpro-trust-row {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  margin-top: 25px;
+
+}
+
+
+.vpro-trust-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #667085;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+}
+
+
+.vpro-trust-item svg {
+
+  color: #20B486;
+
+}
+
+
+/* ============================================================
+   RIGHT VISUAL
+============================================================ */
+
+.vpro-hero-visual {
+
+  position: relative;
+
+  min-height: 560px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 4;
+
+}
+
+
+/* ============================================================
+   ITEMS IMAGE
+   items.png
+============================================================ */
+
+.vpro-items-wrapper {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 700px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 5;
+
+  will-change: transform;
+
+}
+
+
+/*
+   IMPORTANT:
+
+   items.png should already have
+   transparent background.
+*/
+
+.vpro-items-image {
+
+  display: block;
+
+  width: 100%;
+
+  max-width: 680px;
+
+  height: auto;
+
+  object-fit: contain;
+
+  background: transparent;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 25px 35px
+      rgba(15, 23, 42, 0.13)
+    );
+
+}
+
+
+/* ============================================================
+   ROTATING RING
+============================================================ */
+
+.vpro-ring {
+
+  position: absolute;
+
+  width: 330px;
+
+  height: 330px;
+
+  right: 2%;
+
+  top: 8%;
+
+  border:
+    1px dashed
+    rgba(21, 87, 214, 0.18);
+
+  border-radius: 50%;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+}
+
+
+.vpro-ring::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 28px;
+
+  border:
+    1px solid
+    rgba(32, 180, 134, 0.12);
+
+  border-radius: 50%;
+
+}
+
+
+.vpro-ring span {
+
+  position: absolute;
+
+  width: 12px;
+
+  height: 12px;
+
+  right: 27px;
+
+  top: 27px;
+
+  border-radius: 50%;
+
+  background: #20B486;
+
+  box-shadow:
+    0 0 0 6px
+    rgba(32, 180, 134, 0.10);
+
+}
+
+
+/* ============================================================
+   FLOATING DOTS
+============================================================ */
+
+.vpro-floating-dot {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  z-index: 8;
+
+  pointer-events: none;
+
+}
+
+
+.dot-blue {
+
+  width: 14px;
+
+  height: 14px;
+
+  right: 7%;
+
+  top: 22%;
+
+  background: #1557D6;
+
+  box-shadow:
+    0 0 0 7px
+    rgba(21, 87, 214, 0.08);
+
+}
+
+
+.dot-green {
+
+  width: 11px;
+
+  height: 11px;
+
+  left: 11%;
+
+  bottom: 15%;
+
+  background: #20B486;
+
+  box-shadow:
+    0 0 0 6px
+    rgba(32, 180, 134, 0.08);
+
+}
+
+
+/* ============================================================
+   STRATEGY SECTION
+============================================================ */
+
+.vpro-strategy-section {
+
+  position: relative;
+
+  z-index: 15;
+
+  max-width: 1280px;
+
+  margin:
+    10px auto 0;
+
+  padding:
+    24px 25px 18px;
+
+  border:
+    1px solid
+    rgba(21, 87, 214, 0.09);
+
+  border-radius: 25px;
+
+  background:
+    rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 20px 60px
+    rgba(15, 23, 42, 0.08);
+
+}
+
+
+/* ============================================================
+   STRATEGY HEADING
+============================================================ */
+
+.vpro-strategy-heading {
+
+  text-align: center;
+
+  margin-bottom: 20px;
+
+}
+
+
+.strategy-small-title {
+
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #20B486;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  font-weight: 800;
+
+}
+
+
+.vpro-strategy-heading h3 {
+
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 23px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.vpro-strategy-heading h3 span {
+
+  color: #1557D6;
+
+}
+
+
+/* ============================================================
+   STRATEGY GRID
+============================================================ */
+
+.vpro-strategy-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 0;
+
+}
+
+
+/* ============================================================
+   STRATEGY CARD
+============================================================ */
+
+.vpro-strategy-card {
+
+  position: relative;
+
+  min-height: 80px;
+
+  padding:
+    14px 19px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  border-right:
+    1px solid
+    rgba(15, 23, 42, 0.07);
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+}
+
+
+.vpro-strategy-card:last-child {
+
+  border-right: none;
+
+}
+
+
+.vpro-strategy-card:hover {
+
+  background:
+    rgba(246, 249, 255, 0.9);
+
+  border-radius: 15px;
+
+}
+
+
+/* ============================================================
+   STRATEGY ICON
+============================================================ */
+
+.strategy-icon {
+
+  width: 46px;
+
+  height: 46px;
+
+  min-width: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 13px;
+
+}
+
+
+/* ============================================================
+   STRATEGY CONTENT
+============================================================ */
+
+.strategy-content {
+
+  min-width: 0;
+
+}
+
+
+.strategy-content h4 {
+
+  margin:
+    0 0 4px;
+
+  color: #172033;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+}
+
+
+.strategy-content p {
+
+  margin: 0;
+
+  color: #7A8699;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+
+}
+
+
+/* ============================================================
+   STRATEGY ARROW
+============================================================ */
+
+.strategy-arrow {
+
+  margin-left: auto;
+
+  min-width: 18px;
+
+  opacity: 0;
+
+  transform:
+    translateX(-5px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+}
+
+
+.vpro-strategy-card:hover
+.strategy-arrow {
+
+  opacity: 1;
+
+  transform:
+    translateX(0);
+
+}
+
+
+/* ============================================================
+   DESKTOP
+============================================================ */
+
+@media (max-width: 1250px) {
+
+  .vpro-hero {
+
+    padding-left: 4%;
+
+    padding-right: 4%;
+
+  }
+
+
+  .vpro-hero-title {
+
+    font-size: 54px;
+
+  }
+
+
+  .vpro-hero-visual {
+
+    min-height: 500px;
+
+  }
+
+
+  .vpro-items-wrapper {
+
+    max-width: 620px;
+
+  }
+
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+
+  .vpro-hero {
+
+    padding-top: 100px;
+
+  }
+
+
+  .vpro-hero-container {
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+  }
+
+
+  .vpro-hero-content {
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+  }
+
+
+  .vpro-hero-title {
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+  }
+
+
+  .vpro-hero-description {
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+  }
+
+
+  .vpro-hero-subtitle {
+
+    justify-content: center;
+
+  }
+
+
+  .vpro-hero-buttons {
+
+    justify-content: center;
+
+  }
+
+
+  .vpro-trust-row {
+
+    justify-content: center;
+
+  }
+
+
+  .vpro-hero-visual {
+
+    min-height: 420px;
+
+    margin-top: 0;
+
+  }
+
+
+  .vpro-items-wrapper {
+
+    max-width: 630px;
+
+  }
+
+
+  .vpro-strategy-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+
+  .vpro-strategy-card {
+
+    border-right: none;
+
+    border-bottom:
+      1px solid
+      rgba(15, 23, 42, 0.06);
+
+  }
+
+
+  .vpro-strategy-card:nth-child(2),
+  .vpro-strategy-card:nth-child(4) {
+
+    border-left:
+      1px solid
+      rgba(15, 23, 42, 0.06);
+
+  }
+
+
+  .vpro-strategy-card:nth-last-child(-n + 2) {
+
+    border-bottom: none;
+
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+
+  .vpro-hero {
+
+    padding:
+      90px 18px 30px;
+
+  }
+
+
+  .vpro-background-overlay {
+
+    background:
+      rgba(255, 255, 255, 0.86);
+
+  }
+
+
+  .vpro-welcome-tag {
+
+    padding:
+      8px 13px;
+
+    font-size: 11px;
+
+  }
+
+
+  .vpro-hero-title {
+
+    font-size: 39px;
+
+    line-height: 1.08;
+
+    letter-spacing: -1.8px;
+
+  }
+
+
+  .vpro-title-word {
+
+    margin-right: 7px;
+
+  }
+
+
+  .vpro-hero-subtitle {
+
+    font-size: 18px;
+
+    margin-top: 20px;
+
+  }
+
+
+  .vpro-hero-description {
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+  }
+
+
+  .vpro-hero-buttons {
+
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-top: 25px;
+
+  }
+
+
+  .vpro-primary-btn,
+  .vpro-secondary-btn {
+
+    width: 100%;
+
+    max-width: 280px;
+
+  }
+
+
+  .vpro-trust-row {
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-top: 20px;
+
+  }
+
+
+  .vpro-hero-visual {
+
+    min-height: 300px;
+
+    margin-top: 5px;
+
+  }
+
+
+  .vpro-items-wrapper {
+
+    width: 115%;
+
+    max-width: 500px;
+
+  }
+
+
+  .vpro-ring {
+
+    width: 180px;
+
+    height: 180px;
+
+    right: 0;
+
+  }
+
+
+  .vpro-floating-dot {
+
+    display: none;
+
+  }
+
+
+  .vpro-strategy-section {
+
+    padding:
+      20px 12px 12px;
+
+    border-radius: 20px;
+
+  }
+
+
+  .vpro-strategy-heading h3 {
+
+    font-size: 19px;
+
+  }
+
+
+  .vpro-strategy-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .vpro-strategy-card {
+
+    border-left: none !important;
+
+    border-right: none;
+
+    border-bottom:
+      1px solid
+      rgba(15, 23, 42, 0.06);
+
+    padding:
+      14px 10px;
+
+  }
+
+
+  .vpro-strategy-card:last-child {
+
+    border-bottom: none;
+
+  }
+
+
+  .strategy-arrow {
+
+    opacity: 1;
+
+    transform: none;
+
+  }
+
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vpro-items-wrapper,
+  .vpro-ring,
+  .vpro-floating-dot {
+
+    animation: none !important;
+
+    transition: none !important;
+
+  }
+
+}

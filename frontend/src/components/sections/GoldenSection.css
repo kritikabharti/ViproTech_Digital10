@@ -1,0 +1,694 @@
+/* =========================================================
+   GOLDEN / ABOUT SECTION
+========================================================= */
+
+.golden-section {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Fallback background */
+  background: #0b0d1d;
+
+  padding: 90px 20px;
+}
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.golden-background-image {
+  position: absolute;
+
+  top: -6%;
+  left: -6%;
+
+  width: 112%;
+  height: 112%;
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /*
+    IMPORTANT:
+    Keep background above the section background,
+    but below overlay and content.
+  */
+  z-index: 0;
+
+  will-change: transform;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.golden-background-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  /*
+    Overlay sits above image
+    but below content.
+  */
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 10, 25, 0.82) 0%,
+      rgba(10, 12, 30, 0.72) 30%,
+      rgba(10, 12, 30, 0.60) 60%,
+      rgba(10, 12, 30, 0.72) 100%
+    );
+
+  backdrop-filter: blur(1px);
+}
+
+
+/* =========================================================
+   CONTENT CONTAINER
+========================================================= */
+
+.golden-container {
+  position: relative;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  /*
+    Content stays above background + overlay.
+  */
+  z-index: 2;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.golden-header {
+  position: relative;
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  z-index: 3;
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.golden-badge {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 14px 28px;
+
+  margin-bottom: 35px;
+
+  border-radius: 50px;
+
+  background: linear-gradient(
+    135deg,
+    #f5c542,
+    #d4af37
+  );
+
+  color: #111322;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  box-shadow:
+    0 10px 30px rgba(212, 175, 55, 0.25),
+    0 0 30px rgba(212, 175, 55, 0.12);
+
+  cursor: default;
+
+  will-change: transform;
+
+  position: relative;
+  z-index: 5;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.golden-title {
+  margin: 0 auto 35px;
+
+  max-width: 1050px;
+
+  font-size: clamp(
+    42px,
+    5.5vw,
+    76px
+  );
+
+  line-height: 1.08;
+
+  font-weight: 700;
+
+  letter-spacing: -2px;
+
+  color: #ffffff;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   GOLDEN TEXT
+========================================================= */
+
+.golden-text {
+  color: #d4af37;
+
+  position: relative;
+
+  display: inline-block;
+}
+
+
+/* =========================================================
+   GOLDEN UNDERLINE
+========================================================= */
+
+.golden-text::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: -10px;
+
+  height: 4px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #d4af37,
+    #f5c542,
+    #d4af37
+  );
+
+  box-shadow:
+    0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+
+/* =========================================================
+   GOLDEN HIGHLIGHT
+========================================================= */
+
+.golden-highlight {
+  color: #d4af37;
+}
+
+
+/* =========================================================
+   FIRST PARAGRAPH
+========================================================= */
+
+.golden-subtitle {
+  max-width: 920px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 255, 255, 0.90);
+
+  font-size: clamp(
+    18px,
+    2vw,
+    23px
+  );
+
+  line-height: 1.9;
+
+  font-weight: 400;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   SECOND PARAGRAPH
+========================================================= */
+
+.golden-subtitle-2 {
+  max-width: 820px;
+
+  margin: 28px auto 0;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: clamp(
+    16px,
+    1.7vw,
+    20px
+  );
+
+  line-height: 1.9;
+
+  font-weight: 400;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   FLOATING ORBS
+========================================================= */
+
+.golden-orbs {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  /*
+    Orbs stay behind content,
+    but remain visible over the image.
+  */
+  z-index: 2;
+}
+
+
+.golden-orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(2px);
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+
+/* =========================================================
+   ORB 1
+========================================================= */
+
+.golden-orb.orb-1 {
+  width: 180px;
+  height: 180px;
+
+  top: 8%;
+  left: 3%;
+
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   ORB 2
+========================================================= */
+
+.golden-orb.orb-2 {
+  width: 220px;
+  height: 220px;
+
+  right: 4%;
+  top: 15%;
+
+  opacity: 0.4;
+}
+
+
+/* =========================================================
+   ORB 3
+========================================================= */
+
+.golden-orb.orb-3 {
+  width: 150px;
+  height: 150px;
+
+  bottom: 5%;
+  left: 15%;
+
+  opacity: 0.35;
+}
+
+
+/* =========================================================
+   GOLDEN ACTIVE
+========================================================= */
+
+.golden-active .golden-badge {
+  box-shadow:
+    0 10px 40px rgba(212, 175, 55, 0.4),
+    0 0 50px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+  .golden-section {
+    min-height: 650px;
+
+    padding: 80px 25px;
+  }
+
+
+  .golden-background-image {
+    top: -5%;
+    left: -5%;
+
+    width: 110%;
+    height: 110%;
+
+    background-position: center center;
+  }
+
+
+  .golden-title {
+    font-size: clamp(
+      40px,
+      7vw,
+      60px
+    );
+
+    line-height: 1.1;
+  }
+
+
+  .golden-subtitle {
+    font-size: 19px;
+
+    line-height: 1.75;
+  }
+
+
+  .golden-subtitle-2 {
+    font-size: 17px;
+
+    line-height: 1.75;
+  }
+
+
+  .golden-badge {
+    padding: 13px 25px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .golden-section {
+    min-height: 650px;
+
+    padding: 70px 18px;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE BACKGROUND
+  ------------------------------------------------------- */
+
+  .golden-background-image {
+    top: -4%;
+    left: -4%;
+
+    width: 108%;
+    height: 108%;
+
+    background-size: cover;
+    background-position: center center;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE OVERLAY
+  ------------------------------------------------------- */
+
+  .golden-background-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 10, 25, 0.82) 0%,
+        rgba(10, 12, 30, 0.72) 50%,
+        rgba(10, 12, 30, 0.82) 100%
+      );
+
+    backdrop-filter: blur(1px);
+  }
+
+
+  /* -------------------------------------------------------
+     BADGE
+  ------------------------------------------------------- */
+
+  .golden-badge {
+    padding: 11px 22px;
+
+    margin-bottom: 28px;
+
+    font-size: 15px;
+
+    gap: 8px;
+  }
+
+
+  /* -------------------------------------------------------
+     TITLE
+  ------------------------------------------------------- */
+
+  .golden-title {
+    font-size: 40px;
+
+    line-height: 1.12;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 28px;
+  }
+
+
+  /* -------------------------------------------------------
+     UNDERLINE
+  ------------------------------------------------------- */
+
+  .golden-text::after {
+    bottom: -7px;
+
+    height: 3px;
+  }
+
+
+  /* -------------------------------------------------------
+     FIRST PARAGRAPH
+  ------------------------------------------------------- */
+
+  .golden-subtitle {
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    max-width: 100%;
+  }
+
+
+  /* -------------------------------------------------------
+     SECOND PARAGRAPH
+  ------------------------------------------------------- */
+
+  .golden-subtitle-2 {
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-top: 22px;
+
+    max-width: 100%;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE ORBS
+  ------------------------------------------------------- */
+
+  .golden-orb.orb-1 {
+    width: 100px;
+    height: 100px;
+
+    left: -30px;
+  }
+
+
+  .golden-orb.orb-2 {
+    width: 120px;
+    height: 120px;
+
+    right: -40px;
+  }
+
+
+  .golden-orb.orb-3 {
+    width: 90px;
+    height: 90px;
+
+    left: 10%;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .golden-section {
+    padding: 60px 15px;
+
+    min-height: 620px;
+  }
+
+
+  .golden-badge {
+    padding: 10px 18px;
+
+    font-size: 14px;
+
+    margin-bottom: 24px;
+  }
+
+
+  .golden-title {
+    font-size: 34px;
+
+    line-height: 1.12;
+
+    letter-spacing: -0.8px;
+
+    margin-bottom: 24px;
+  }
+
+
+  .golden-subtitle {
+    font-size: 15px;
+
+    line-height: 1.75;
+  }
+
+
+  .golden-subtitle-2 {
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    margin-top: 18px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .golden-background-image,
+  .golden-orb,
+  .golden-badge,
+  .golden-title,
+  .golden-subtitle,
+  .golden-subtitle-2 {
+    animation: none !important;
+
+    transition: none !important;
+
+    transform: none !important;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SAFETY FOR IMAGE VISIBILITY
+========================================================= */
+
+.golden-background-image::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   PREVENT CONTENT FROM BEING HIDDEN
+========================================================= */
+
+.golden-container,
+.golden-header,
+.golden-badge,
+.golden-title,
+.golden-subtitle,
+.golden-subtitle-2 {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   END
+========================================================= */
