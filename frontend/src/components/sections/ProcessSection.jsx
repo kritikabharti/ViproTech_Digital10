@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaCloudUploadAlt, FaUsers, FaAward } from "react-icons/fa";
 import { HiArrowLongRight } from "react-icons/hi2";
-import "./ProcessSection.css";
 
 export default function ProcessSection() {
   const steps = [

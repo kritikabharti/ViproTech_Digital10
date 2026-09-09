@@ -13,6 +13,7 @@ import GallerySection from '../components/sections/GallerySection';
 // Import CSS
 import "./Home.css";
 import "../App.css";
+import "../components/sections/ProcessSection.css";
 
 export default function Home() {
   const navigate = useNavigate();

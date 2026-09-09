@@ -54,7 +54,7 @@ export default function ServicesSection({ servicesRef, navigate }) {
       ref={servicesRef}
       className="services-section"
       style={{
-        background: "#f8fafc",
+        background: "#bfd1e3",
       }}
     >
       <div className="services-overlay"></div>

@@ -1,46 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import aboutImage from "../../assets/aboutt.jpg";
-import "./GoldenSection.css";
 
 export default function GoldenSection() {
-  const [isGoldenMode, setIsGoldenMode] = useState(false);
-
   return (
-    <section
-      className={`golden-section ${
-        isGoldenMode ? "golden-active" : ""
-      }`}
-    >
-      {/* =====================================================
-          ANIMATED ABOUT BACKGROUND IMAGE
-      ====================================================== */}
+    <section className="golden-section">
+
+      {/* Background */}
       <motion.div
         className="golden-background-image"
         style={{
           backgroundImage: `url(${aboutImage})`,
         }}
         animate={{
-          scale: [1, 1.06, 1],
+          scale: [1, 1.04, 1],
         }}
         transition={{
-          duration: 14,
+          duration: 16,
           repeat: Infinity,
-          repeatType: "loop",
           ease: "easeInOut",
         }}
       />
 
-      {/* Dark overlay so text remains readable */}
       <div className="golden-background-overlay" />
+      <div className="golden-light-overlay" />
 
-      {/* =====================================================
-          CONTENT
-      ====================================================== */}
+      {/* Decorative elements */}
+      <div className="golden-decoration golden-decoration-left" />
+      <div className="golden-decoration golden-decoration-right" />
+
       <div className="golden-container">
+
         <motion.div
-          className="golden-header"
+          className="golden-content-card"
           initial={{
             opacity: 0,
             y: 40,
@@ -50,37 +43,43 @@ export default function GoldenSection() {
             y: 0,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.9,
             ease: "easeOut",
           }}
           viewport={{
             once: true,
-            amount: 0.3,
+            amount: 0.2,
           }}
         >
-          {/* =================================================
-              ABOUT BADGE
-          ================================================= */}
+
+          {/* Badge */}
           <motion.div
             className="golden-badge"
-            animate={{
-              scale: isGoldenMode
-                ? [1, 1.1, 1]
-                : [1, 1.03, 1],
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
             }}
             transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
+              duration: 0.6,
+            }}
+            viewport={{
+              once: true,
             }}
           >
-            <Sparkles size={20} />
-            <span>About Us</span>
+            <span className="badge-line" />
+
+            <Sparkles size={16} />
+
+            <span>ABOUT US</span>
+
+            <span className="badge-line" />
           </motion.div>
 
-          {/* =================================================
-              TITLE
-          ================================================= */}
+          {/* Title */}
           <motion.h1
             className="golden-title"
             initial={{
@@ -93,28 +92,47 @@ export default function GoldenSection() {
             }}
             transition={{
               duration: 0.8,
-              delay: 0.15,
+              delay: 0.1,
               ease: "easeOut",
             }}
             viewport={{
               once: true,
             }}
           >
-            <span className="golden-text">Golden</span> Standard of
+            Building Digital
             <span className="golden-highlight">
-              {" "}
-              Digital Excellence
+              {" "}Excellence
             </span>
+            <br />
+            That Creates Real Impact
           </motion.h1>
 
-          {/* =================================================
-              FIRST PARAGRAPH
-          ================================================= */}
+          {/* Divider */}
+          <motion.div
+            className="golden-divider"
+            initial={{
+              width: 0,
+              opacity: 0,
+            }}
+            whileInView={{
+              width: 75,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+            }}
+            viewport={{
+              once: true,
+            }}
+          />
+
+          {/* Description */}
           <motion.p
             className="golden-subtitle"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 20,
             }}
             whileInView={{
               opacity: 1,
@@ -123,26 +141,21 @@ export default function GoldenSection() {
             transition={{
               duration: 0.8,
               delay: 0.3,
-              ease: "easeOut",
             }}
             viewport={{
               once: true,
             }}
           >
-            Discover our comprehensive suite of premium digital services designed
-            to elevate your business to new heights of success. We combine
-            innovation, expertise, and cutting-edge technology to deliver
-            exceptional results that drive growth and transformation.
+            We create premium digital experiences that help businesses
+            grow, connect with their customers, and move confidently
+            into the future.
           </motion.p>
 
-          {/* =================================================
-              SECOND PARAGRAPH
-          ================================================= */}
           <motion.p
             className="golden-subtitle-2"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 20,
             }}
             whileInView={{
               opacity: 1,
@@ -151,73 +164,97 @@ export default function GoldenSection() {
             transition={{
               duration: 0.8,
               delay: 0.45,
-              ease: "easeOut",
             }}
             viewport={{
               once: true,
             }}
           >
-            From custom software development to AI-powered solutions, our team
-            of experts is dedicated to helping you achieve your digital goals
-            with precision and excellence.
+            From custom software and modern web applications to
+            AI-powered solutions, our team combines creativity,
+            technology, and strategy to turn ambitious ideas into
+            meaningful digital products.
           </motion.p>
+
+          {/* Features */}
+          <motion.div
+            className="golden-features"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.6,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
+
+            <div className="golden-feature">
+              <span className="feature-number">01</span>
+
+              <div>
+                <strong>Innovation</strong>
+                <small>
+                  Ideas that move businesses forward
+                </small>
+              </div>
+            </div>
+
+            <div className="golden-feature">
+              <span className="feature-number">02</span>
+
+              <div>
+                <strong>Technology</strong>
+                <small>
+                  Modern solutions built to perform
+                </small>
+              </div>
+            </div>
+
+            <div className="golden-feature">
+              <span className="feature-number">03</span>
+
+              <div>
+                <strong>Excellence</strong>
+                <small>
+                  Quality in every digital experience
+                </small>
+              </div>
+            </div>
+
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            className="golden-cta"
+            initial={{
+              opacity: 0,
+            }}
+            whileInView={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.75,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
+            <span>
+              Let's build something exceptional
+            </span>
+
+            <ArrowRight size={18} />
+          </motion.div>
+
         </motion.div>
-
-        {/* =====================================================
-            FLOATING GOLDEN ORBS
-        ====================================================== */}
-        <div className="golden-orbs">
-          <motion.div
-            className="golden-orb orb-1"
-            animate={{
-              y: [0, -30, 0],
-              x: [0, 20, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              background:
-                "radial-gradient(circle, rgba(212, 175, 55, 0.3), rgba(79, 70, 229, 0.1))",
-            }}
-          />
-
-          <motion.div
-            className="golden-orb orb-2"
-            animate={{
-              y: [0, 30, 0],
-              x: [0, -20, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              background:
-                "radial-gradient(circle, rgba(79, 70, 229, 0.3), rgba(212, 175, 55, 0.1))",
-            }}
-          />
-
-          <motion.div
-            className="golden-orb orb-3"
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 30, 0],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              background:
-                "radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(79, 70, 229, 0.15))",
-            }}
-          />
-        </div>
       </div>
     </section>
   );

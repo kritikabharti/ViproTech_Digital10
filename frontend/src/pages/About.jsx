@@ -14,6 +14,7 @@ import WhyChooseSection from '../components/sections/WhyChooseSection';
 
 // Import CSS
 import "./About.css";
+import "../components/sections/GoldenSection.css";
 
 export default function About() {
   return (

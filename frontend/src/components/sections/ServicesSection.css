@@ -1,5 +1,6 @@
+
 /* =========================================================
-   SERVICES SECTION - PREMIUM COLOR THEME
+   SERVICES SECTION - PREMIUM CORPORATE THEME
 ========================================================= */
 
 .services-section {
@@ -7,8 +8,12 @@
   width: 100%;
   padding: 100px 40px;
   overflow: hidden;
-  background: #f1f5ff !important;
+  background: #eef4f9 !important;
 }
+
+/* =========================================================
+   SERVICES OVERLAY
+========================================================= */
 
 .services-overlay {
   position: absolute;
@@ -17,19 +22,19 @@
 
   background:
     radial-gradient(
-      circle at 10% 15%,
-      rgba(99, 102, 241, 0.16),
-      transparent 35%
+      circle at 0% 10%,
+      rgba(15, 76, 129, 0.08),
+      transparent 30%
     ),
     radial-gradient(
-      circle at 90% 85%,
-      rgba(6, 182, 212, 0.13),
-      transparent 35%
+      circle at 100% 90%,
+      rgba(178, 138, 46, 0.07),
+      transparent 30%
     );
 }
 
 /* =========================================================
-   HEADING
+   SECTION CONTENT
 ========================================================= */
 
 .section-content {
@@ -40,37 +45,47 @@
   text-align: center;
 }
 
+/* =========================================================
+   SMALL TITLE
+========================================================= */
+
 .small-title {
   margin: 0 0 12px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-
-  color: #6366f1 !important;
+  color: #8f6d20 !important;
 }
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
 
 .section-title {
   margin: 0;
-
   font-size: clamp(40px, 5vw, 62px);
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: -1.5px;
+  color: #0f172a;
 }
 
 .services-title-dark {
-  color: #171b3b;
+  color: #0f172a;
 }
+
+/* =========================================================
+   SECTION DESCRIPTION
+========================================================= */
 
 .section-text {
   max-width: 650px;
   margin: 18px auto 55px;
-
-  color: #59627a;
-
-  font-size: 17px;
+  color: #344054;
+  font-size: 16px;
   line-height: 1.7;
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -80,13 +95,16 @@
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 38px 28px;
+  gap: 34px 28px;
   align-items: start;
 }
 
+/* =========================================================
+   CARD WRAPPER
+========================================================= */
+
 .service-card-wrapper {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,16 +117,13 @@
 .flip-card {
   width: 100%;
   height: 310px;
-
   perspective: 1200px;
 }
 
 .flip-card-inner {
   position: relative;
-
   width: 100%;
   height: 100%;
-
   transform-style: preserve-3d;
 
   transition:
@@ -120,24 +135,25 @@
 }
 
 /* =========================================================
-   FRONT
+   FRONT + BACK
 ========================================================= */
 
 .flip-card-front,
 .flip-card-back {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
 
-  border-radius: 22px;
+  border-radius: 18px;
 
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-/* FRONT CARD */
+/* =========================================================
+   FRONT CARD
+========================================================= */
 
 .flip-card-front {
   position: relative;
@@ -149,26 +165,49 @@
 
   padding: 35px 30px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff 0%,
-      #f8f9ff 55%,
-      #eef2ff 100%
-    );
+  background: #ffffff;
 
-  border: 1px solid rgba(99, 102, 241, 0.20);
+  border: 1px solid #d8e0e8;
 
   box-shadow:
-    0 15px 35px rgba(44, 50, 100, 0.10),
-    0 3px 10px rgba(44, 50, 100, 0.05);
+    0 10px 30px rgba(15, 23, 42, 0.08);
 
   overflow: hidden;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-/* Decorative glow */
+/* =========================================================
+   TOP ACCENT LINE
+========================================================= */
 
 .flip-card-front::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0f172a,
+      #1d5d9b,
+      #b28a2e
+    );
+}
+
+/* =========================================================
+   DECORATIVE CIRCLE
+========================================================= */
+
+.flip-card-front::after {
   content: "";
 
   position: absolute;
@@ -176,44 +215,30 @@
   width: 180px;
   height: 180px;
 
-  top: -100px;
-  right: -80px;
-
-  border-radius: 50%;
-
-  background: rgba(99, 102, 241, 0.13);
-
-  filter: blur(5px);
-}
-
-/* Bottom glow */
-
-.flip-card-front::after {
-  content: "";
-
-  position: absolute;
-
-  width: 150px;
-  height: 150px;
-
+  right: -100px;
   bottom: -100px;
-  left: -70px;
 
   border-radius: 50%;
 
-  background: rgba(6, 182, 212, 0.12);
+  background: rgba(15, 23, 42, 0.035);
 
-  filter: blur(5px);
+  transition:
+    transform 0.5s ease;
 }
 
-/* Hover */
+.flip-card:hover .flip-card-front::after {
+  transform: scale(1.4);
+}
+
+/* =========================================================
+   FRONT HOVER
+========================================================= */
 
 .flip-card:hover .flip-card-front {
-  border-color: rgba(99, 102, 241, 0.45);
+  border-color: rgba(29, 93, 155, 0.25);
 
   box-shadow:
-    0 22px 50px rgba(79, 70, 229, 0.18),
-    0 5px 15px rgba(44, 50, 100, 0.08);
+    0 22px 45px rgba(15, 23, 42, 0.14);
 }
 
 /* =========================================================
@@ -226,12 +251,11 @@
   top: 20px;
   right: 24px;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
+  letter-spacing: 1.5px;
 
-  letter-spacing: 1px;
-
-  color: #818cf8;
+  color: #8f6d20;
 }
 
 /* =========================================================
@@ -242,13 +266,38 @@
   position: relative;
   z-index: 2;
 
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 
-  font-size: 23px;
+  font-size: 22px;
   line-height: 1.3;
+
   font-weight: 800;
 
-  color: #27245f !important;
+  color: #0f172a !important;
+}
+
+/* =========================================================
+   TITLE UNDERLINE
+========================================================= */
+
+.flip-card-front h3::after {
+  content: "";
+
+  display: block;
+
+  width: 35px;
+  height: 2px;
+
+  margin: 10px auto 0;
+
+  background: #b28a2e;
+
+  transition:
+    width 0.3s ease;
+}
+
+.flip-card:hover .flip-card-front h3::after {
+  width: 65px;
 }
 
 /* =========================================================
@@ -263,10 +312,12 @@
 
   max-width: 330px;
 
-  color: #5b6380;
+  color: #475467;
 
   font-size: 14px;
   line-height: 1.75;
+
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -281,21 +332,21 @@
 
   display: flex;
   align-items: center;
+
   gap: 7px;
 
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 800;
 
-  letter-spacing: 0.8px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 
-  color: #7c83a3;
+  color: #667085;
 }
 
 .flip-hint span {
   font-size: 17px;
-
-  color: #6366f1;
+  color: #8f6d20;
 }
 
 /* =========================================================
@@ -316,10 +367,10 @@
 
   transform: rotateY(180deg);
 
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   box-shadow:
-    0 20px 45px rgba(44, 50, 100, 0.20);
+    0 20px 45px rgba(15, 23, 42, 0.20);
 }
 
 /* =========================================================
@@ -330,15 +381,15 @@
   position: absolute;
   inset: 0;
 
+  z-index: 1;
+
   background:
     linear-gradient(
       to top,
-      rgba(27, 24, 75, 0.94),
-      rgba(45, 42, 105, 0.55),
-      rgba(30, 27, 85, 0.12)
+      rgba(8, 20, 36, 0.94) 0%,
+      rgba(8, 20, 36, 0.68) 45%,
+      rgba(8, 20, 36, 0.15) 100%
     );
-
-  z-index: 1;
 }
 
 /* =========================================================
@@ -357,9 +408,9 @@
 
   margin-bottom: 8px;
 
-  color: #a5f3fc;
+  color: #e1c56f;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
 
   letter-spacing: 2px;
@@ -370,7 +421,7 @@
 
   color: #ffffff;
 
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 800;
 }
 
@@ -385,7 +436,8 @@
   max-width: 210px;
 
   margin-top: 17px;
-  padding: 13px 20px;
+
+  padding: 12px 20px;
 
   display: flex;
   align-items: center;
@@ -393,27 +445,27 @@
 
   gap: 12px;
 
-  border: none;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
 
   background:
     linear-gradient(
       135deg,
-      #6366f1,
-      #7c3aed
+      #1d5d9b,
+      #143f6b
     );
 
   color: #ffffff;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
 
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
 
   cursor: pointer;
 
   box-shadow:
-    0 8px 20px rgba(99, 102, 241, 0.28);
+    0 8px 20px rgba(20, 63, 107, 0.30);
 
   transition:
     transform 0.3s ease,
@@ -421,28 +473,77 @@
     background 0.3s ease;
 }
 
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
 .explore-btn:hover {
   background:
     linear-gradient(
       135deg,
-      #4f46e5,
-      #6d28d9
+      #b28a2e,
+      #8f6d20
     );
 
   transform: translateY(-3px);
 
   box-shadow:
-    0 14px 28px rgba(99, 102, 241, 0.38);
+    0 12px 25px rgba(178, 138, 46, 0.30);
 }
 
-.explore-arrow {
-  font-size: 19px;
+/* =========================================================
+   BUTTON ARROW
+========================================================= */
 
-  transition: transform 0.3s ease;
+.explore-arrow {
+  font-size: 18px;
+
+  transition:
+    transform 0.3s ease;
 }
 
 .explore-btn:hover .explore-arrow {
   transform: translateX(5px);
+}
+
+/* =========================================================
+   CARD SUBTLE FLOAT
+========================================================= */
+
+@keyframes serviceFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.flip-card {
+  animation:
+    serviceFloat 5s ease-in-out infinite;
+}
+
+.flip-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.flip-card:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.flip-card:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+.flip-card:nth-child(5) {
+  animation-delay: 1.6s;
+}
+
+.flip-card:nth-child(6) {
+  animation-delay: 2s;
 }
 
 /* =========================================================
@@ -456,7 +557,7 @@
 
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 35px 24px;
+    gap: 32px 24px;
   }
 }
 
@@ -476,7 +577,7 @@
 
   .card-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 30px;
   }
 
   .flip-card {
@@ -529,3 +630,4 @@
     max-width: 100%;
   }
 }
+
