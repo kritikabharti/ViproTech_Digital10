@@ -206,16 +206,7 @@ export default function Services() {
 
         <div className="services-hero-content">
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="services-eyebrow">
-              <Sparkles size={15} />
-              OUR SERVICES
-            </span>
-          </motion.div>
+          
 
           <motion.h1
             initial={{ opacity: 0, y: 35 }}

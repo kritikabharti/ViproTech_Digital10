@@ -52,10 +52,7 @@ export default function CoursesPage() {
             }}
           >
 
-            <div className="courses-page-label">
-              <Sparkles size={15} />
-              <span>LEARN • BUILD • GROW</span>
-            </div>
+           
 
             <h1>
               Build Skills.
