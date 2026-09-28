@@ -201,7 +201,7 @@ export default function AndroidDevelopment() {
               </Link>
               <button 
                 className="ad-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

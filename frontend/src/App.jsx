@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from 'react-hot-toast'; 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -30,16 +30,24 @@ import DigitalMarketing from './pages/DigitalMarketing';
 import LogoDesigning from './pages/LogoDesigning';
 import WebsiteDesign from './pages/WebsiteDesign';
 import InteriorDesigning from './pages/InteriorDesigning';
-import DomainsCourses from './pages/DomainsCourses';
 import TeamForm from './pages/admin/TeamForm';
 import TeamSection from './components/TeamSection';
 import AdminTeamManagement from './pages/admin/AdminTeamManagement'; 
 import { Helmet } from "react-helmet-async";
 import AdminJobs from './pages/admin/AdminJobs';
 import ApplyJob from './pages/ApplyJob';
+import Services from "./pages/Services";
+import DigitalGrowth from "./pages/DigitalGrowth";
+import Innovation from "./pages/Innovation";
+import SmartStrategy from "./pages/SmartStrategy";
+import TrustedTechnology from "./pages/TrustedTechnology";
+import CoursesPage from "./pages/CoursesPage";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+ const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  const isAdminPage = location.pathname.startsWith("/admin");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -114,9 +122,34 @@ function App() {
           <Route path="/logo-designing" element={<LogoDesigning />} />
           <Route path="/website-design" element={<WebsiteDesign />} />
           <Route path="/interior-designing" element={<InteriorDesigning />} />
-          <Route path="/courses" element={<DomainsCourses />} />
           <Route path="/apply/:id" element={<ApplyJob />} />
-          
+          <Route path="/services" element={<Services />} />
+
+          <Route
+  path="/digital-growth"
+  element={<DigitalGrowth />}
+/>
+
+<Route
+  path="/innovation"
+  element={<Innovation />}
+/>
+
+<Route
+  path="/smart-strategy"
+  element={<SmartStrategy />}
+/>
+        <Route
+  path="/trusted-technology"
+  element={<TrustedTechnology />}
+/>
+
+
+<Route path="/courses" element={<CoursesPage />} />
+
+
+
+
           {/* Admin Routes - Protected */}
           <Route 
             path="/admin" 
@@ -186,14 +219,12 @@ function App() {
     </ProtectedRoute>
   } 
 />
-
-
         </Routes>
 
    
 
 
-        <Footer />
+      {!isAdminPage && <Footer />}
       </TeamProvider>
     </AuthProvider>
   );

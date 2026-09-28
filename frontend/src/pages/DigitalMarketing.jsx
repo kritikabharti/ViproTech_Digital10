@@ -169,7 +169,7 @@ export default function DigitalMarketing() {
               </Link>
               <button 
                 className="dm-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

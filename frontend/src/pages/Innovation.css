@@ -1,0 +1,1587 @@
+/* ============================================================
+   INNOVATION PAGE
+   VProTech Digital
+============================================================ */
+
+.innovation-page {
+  --in-blue: #1769aa;
+  --in-blue-dark: #10213d;
+  --in-blue-light: #eaf3ff;
+  --in-green: #16b894;
+  --in-green-light: #eaf9f5;
+  --in-text: #10213d;
+  --in-muted: #65748b;
+  --in-border: rgba(16, 33, 61, 0.09);
+  --in-bg: #f7fafc;
+  --in-white: #ffffff;
+
+  min-height: 100vh;
+  background: var(--in-bg);
+  color: var(--in-text);
+  overflow: hidden;
+}
+
+.innovation-page *,
+.innovation-page *::before,
+.innovation-page *::after {
+  box-sizing: border-box;
+}
+
+.innovation-page a {
+  text-decoration: none;
+}
+
+.innovation-container {
+  width: min(1240px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.innovation-hero {
+  position: relative;
+  min-height: 720px;
+  padding: 120px 0 100px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(23, 105, 170, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(22, 184, 148, 0.1),
+      transparent 28%
+    ),
+    #f7fafc;
+}
+
+.innovation-hero-grid {
+  position: relative;
+  z-index: 3;
+
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  align-items: center;
+  gap: 80px;
+}
+
+/* ============================================================
+   HERO TEXT
+============================================================ */
+
+.innovation-hero-content {
+  max-width: 660px;
+}
+
+.innovation-eyebrow,
+.innovation-small-title {
+  display: inline-block;
+
+  color: var(--in-green);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.innovation-eyebrow {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 20px;
+}
+
+.innovation-eyebrow::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: var(--in-green);
+
+  transform: translateY(-50%);
+
+  box-shadow:
+    0 0 0 5px rgba(22, 184, 148, 0.1);
+}
+
+.innovation-hero h1 {
+  margin: 0;
+
+  color: var(--in-blue-dark);
+
+  font-size: clamp(46px, 5vw, 73px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+  font-weight: 800;
+}
+
+.innovation-hero h1 span {
+  color: var(--in-blue);
+}
+
+.innovation-hero-content > p {
+  max-width: 610px;
+
+  margin: 28px 0 0;
+
+  color: var(--in-muted);
+
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.innovation-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  margin-top: 34px;
+}
+
+.innovation-primary-btn,
+.innovation-secondary-btn {
+  min-height: 54px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 0 25px;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.innovation-primary-btn {
+  color: #fff;
+  background: var(--in-blue);
+
+  box-shadow:
+    0 14px 30px rgba(23, 105, 170, 0.2);
+}
+
+.innovation-primary-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 18px 35px rgba(23, 105, 170, 0.28);
+}
+
+.innovation-secondary-btn {
+  color: var(--in-blue-dark);
+  background: #fff;
+
+  border: 1px solid var(--in-border);
+}
+
+.innovation-secondary-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 28px rgba(16, 33, 61, 0.08);
+}
+
+/* ============================================================
+   TRUST
+============================================================ */
+
+.innovation-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+
+  margin-top: 30px;
+}
+
+.innovation-trust-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #62728a;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.innovation-trust-row svg {
+  color: var(--in-green);
+}
+
+/* ============================================================
+   HERO VISUAL
+============================================================ */
+
+.innovation-visual {
+  position: relative;
+
+  min-height: 520px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innovation-core {
+  position: relative;
+  z-index: 4;
+
+  width: 270px;
+  height: 270px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(23, 105, 170, 0.15);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.98),
+      rgba(234, 243, 255, 0.92)
+    );
+
+  box-shadow:
+    0 35px 80px rgba(23, 105, 170, 0.14),
+    inset 0 0 40px rgba(22, 184, 148, 0.06);
+}
+
+.innovation-core-small {
+  color: #8090a4;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.innovation-core strong {
+  margin: 9px 0;
+
+  color: var(--in-blue);
+
+  font-size: 29px;
+  letter-spacing: -1px;
+}
+
+.innovation-core-line {
+  width: 50px;
+  height: 2px;
+
+  margin: 4px 0 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--in-blue),
+      var(--in-green)
+    );
+}
+
+/* ============================================================
+   LIGHTBULB
+============================================================ */
+
+.innovation-lightbulb {
+  position: absolute;
+  z-index: 5;
+
+  top: 42px;
+  left: 50%;
+
+  width: 88px;
+  height: 88px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  color: var(--in-green);
+
+  background: #fff;
+
+  box-shadow:
+    0 18px 40px rgba(22, 184, 148, 0.17);
+
+  transform: translateX(-50%);
+}
+
+.innovation-lightbulb::before {
+  content: "";
+
+  position: absolute;
+  inset: -8px;
+
+  border: 1px dashed rgba(22, 184, 148, 0.3);
+  border-radius: 30px;
+}
+
+/* ============================================================
+   RINGS
+============================================================ */
+
+.innovation-visual-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(23, 105, 170, 0.13);
+}
+
+.ring-one {
+  width: 390px;
+  height: 390px;
+
+  animation: innovationRotate 22s linear infinite;
+}
+
+.ring-two {
+  width: 500px;
+  height: 500px;
+
+  border-color: rgba(22, 184, 148, 0.1);
+
+  animation: innovationRotateReverse 30s linear infinite;
+}
+
+.ring-one::after,
+.ring-two::after {
+  content: "";
+
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+}
+
+.ring-one::after {
+  top: 10%;
+  right: 14%;
+
+  background: var(--in-blue);
+}
+
+.ring-two::after {
+  left: 11%;
+  bottom: 18%;
+
+  background: var(--in-green);
+}
+
+@keyframes innovationRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes innovationRotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* ============================================================
+   FLOATING CARDS
+============================================================ */
+
+.innovation-floating-card {
+  position: absolute;
+  z-index: 7;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 175px;
+
+  padding: 14px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  box-shadow:
+    0 18px 45px rgba(16, 33, 61, 0.11);
+
+  backdrop-filter: blur(12px);
+}
+
+.innovation-floating-card svg {
+  flex-shrink: 0;
+  color: var(--in-green);
+}
+
+.innovation-floating-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.innovation-floating-card strong {
+  color: var(--in-blue-dark);
+  font-size: 12px;
+}
+
+.innovation-floating-card span {
+  color: #7a899c;
+  font-size: 10px;
+}
+
+.innovation-card-one {
+  left: -15px;
+  top: 105px;
+}
+
+.innovation-card-two {
+  right: -20px;
+  bottom: 105px;
+}
+
+.innovation-card-three {
+  left: 5px;
+  bottom: 45px;
+}
+
+/* ============================================================
+   GRID PATTERN
+============================================================ */
+
+.innovation-grid-pattern {
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  width: 48%;
+  height: 100%;
+
+  opacity: 0.3;
+
+  background-image:
+    linear-gradient(
+      rgba(23, 105, 170, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(23, 105, 170, 0.06) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent,
+      #000 45%
+    );
+}
+
+/* ============================================================
+   ORBS
+============================================================ */
+
+.innovation-orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.innovation-orb-one {
+  width: 17px;
+  height: 17px;
+
+  right: 19%;
+  top: 29%;
+
+  background: var(--in-green);
+
+  box-shadow:
+    0 0 0 8px rgba(22, 184, 148, 0.1);
+}
+
+.innovation-orb-two {
+  width: 11px;
+  height: 11px;
+
+  right: 6%;
+  bottom: 19%;
+
+  background: var(--in-blue);
+
+  box-shadow:
+    0 0 0 7px rgba(23, 105, 170, 0.1);
+}
+
+/* ============================================================
+   INTRO
+============================================================ */
+
+.innovation-intro {
+  padding: 110px 0;
+  background: #fff;
+}
+
+.innovation-intro-grid {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+
+  gap: 100px;
+
+  align-items: center;
+}
+
+.innovation-intro-number {
+  padding-left: 20px;
+
+  border-left: 3px solid var(--in-green);
+}
+
+.innovation-intro-number span {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: var(--in-blue);
+
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -4px;
+}
+
+.innovation-intro-number div {
+  color: #8391a4;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.innovation-intro-content {
+  max-width: 780px;
+}
+
+.innovation-intro-content h2,
+.innovation-section-heading h2,
+.innovation-principles-heading h2 {
+  margin: 16px 0 20px;
+
+  color: var(--in-blue-dark);
+
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+.innovation-intro-content h2 span,
+.innovation-section-heading h2 span,
+.innovation-principles-heading h2 span {
+  color: var(--in-blue);
+}
+
+.innovation-intro-content p {
+  margin: 0 0 17px;
+
+  color: var(--in-muted);
+
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   INNOVATION AREAS
+============================================================ */
+
+.innovation-areas {
+  padding: 115px 0;
+
+  background: #f7fafc;
+}
+
+.innovation-section-heading {
+  max-width: 780px;
+  margin-bottom: 55px;
+}
+
+.innovation-section-heading p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--in-muted);
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.innovation-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid var(--in-border);
+  border-left: 1px solid var(--in-border);
+}
+
+.innovation-area {
+  position: relative;
+
+  min-height: 275px;
+
+  padding: 34px;
+
+  border-right: 1px solid var(--in-border);
+  border-bottom: 1px solid var(--in-border);
+
+  background: rgba(255, 255, 255, 0.7);
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.innovation-area:hover {
+  background: #fff;
+
+  box-shadow:
+    0 18px 45px rgba(16, 33, 61, 0.07);
+}
+
+.innovation-area-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.innovation-area-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  color: var(--in-blue);
+
+  background: var(--in-blue-light);
+}
+
+.innovation-area-top > span {
+  color: #b7c3d1;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.innovation-area h3 {
+  margin: 0 0 12px;
+
+  color: var(--in-blue-dark);
+
+  font-size: 20px;
+}
+
+.innovation-area p {
+  margin: 0;
+
+  color: var(--in-muted);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.innovation-area-arrow {
+  position: absolute;
+
+  left: 34px;
+  bottom: 25px;
+
+  color: var(--in-green);
+
+  opacity: 0;
+
+  transform: translateX(-8px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.innovation-area:hover .innovation-area-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   PROCESS
+============================================================ */
+
+.innovation-process {
+  padding: 115px 0;
+
+  background: #fff;
+}
+
+.innovation-process-track {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 25px;
+
+  margin-top: 70px;
+}
+
+.innovation-process-track::before {
+  content: "";
+
+  position: absolute;
+
+  left: 25px;
+  right: 25px;
+  top: 27px;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--in-blue),
+      var(--in-green)
+    );
+
+  opacity: 0.22;
+}
+
+.innovation-process-step {
+  position: relative;
+  z-index: 2;
+}
+
+.innovation-step-number {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 28px;
+
+  border: 2px solid #fff;
+  border-radius: 50%;
+
+  color: #fff;
+  background: var(--in-blue);
+
+  box-shadow:
+    0 8px 20px rgba(23, 105, 170, 0.2);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.innovation-process-step:nth-child(even)
+  .innovation-step-number {
+  background: var(--in-green);
+
+  box-shadow:
+    0 8px 20px rgba(22, 184, 148, 0.2);
+}
+
+.innovation-process-step h3 {
+  margin: 0 0 11px;
+
+  color: var(--in-blue-dark);
+
+  font-size: 20px;
+}
+
+.innovation-process-step p {
+  max-width: 210px;
+
+  margin: 0;
+
+  color: var(--in-muted);
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   PRINCIPLES
+============================================================ */
+
+.innovation-principles {
+  padding: 115px 0;
+
+  background: #f7fafc;
+}
+
+.innovation-principles-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+
+  gap: 100px;
+
+  align-items: center;
+}
+
+.innovation-principles-heading p {
+  max-width: 520px;
+
+  color: var(--in-muted);
+
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.innovation-principles-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.innovation-principle {
+  display: flex;
+  gap: 20px;
+
+  padding: 25px 0;
+
+  border-bottom: 1px solid var(--in-border);
+}
+
+.innovation-principle:first-child {
+  border-top: 1px solid var(--in-border);
+}
+
+.innovation-principle-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  color: var(--in-green);
+
+  background: var(--in-green-light);
+}
+
+.innovation-principle h3 {
+  margin: 0 0 7px;
+
+  color: var(--in-blue-dark);
+
+  font-size: 18px;
+}
+
+.innovation-principle p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: var(--in-muted);
+
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FLOW
+============================================================ */
+
+.innovation-flow {
+  padding: 80px 0;
+
+  background: #fff;
+}
+
+.innovation-flow-box {
+  position: relative;
+
+  padding: 55px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f3f8ff,
+      #f0fbf7
+    );
+
+  border: 1px solid var(--in-border);
+
+  box-shadow:
+    0 25px 60px rgba(16, 33, 61, 0.05);
+}
+
+.innovation-flow-heading > span {
+  color: var(--in-green);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.innovation-flow-heading h2 {
+  margin: 13px 0 40px;
+
+  color: var(--in-blue-dark);
+
+  font-size: clamp(32px, 4vw, 46px);
+
+  letter-spacing: -2px;
+}
+
+.innovation-flow-heading h2 strong {
+  color: var(--in-blue);
+}
+
+.innovation-flow-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.innovation-flow-steps > div {
+  min-width: 100px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.innovation-flow-steps > div > span {
+  color: #8795a8;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.innovation-flow-steps > div > strong {
+  color: var(--in-blue-dark);
+
+  font-size: 17px;
+}
+
+.innovation-flow-steps > svg {
+  flex-shrink: 0;
+
+  color: var(--in-blue);
+
+  opacity: 0.45;
+}
+
+.innovation-flow-result {
+  min-height: 75px;
+
+  align-items: center !important;
+  justify-content: center;
+
+  padding: 12px 20px;
+
+  border-radius: 14px;
+
+  color: #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--in-blue),
+      var(--in-green)
+    );
+
+  box-shadow:
+    0 12px 28px rgba(23, 105, 170, 0.18);
+}
+
+.innovation-flow-result svg {
+  color: #fff;
+}
+
+.innovation-flow-result strong {
+  color: #fff !important;
+}
+
+/* ============================================================
+   CTA
+============================================================ */
+
+.innovation-cta {
+  padding: 40px 0 110px;
+
+  background: #fff;
+}
+
+.innovation-cta-box {
+  position: relative;
+
+  min-height: 330px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  padding: 65px 70px;
+
+  overflow: hidden;
+
+  border-radius: 32px;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(255, 255, 255, 0.18),
+      transparent 25%
+    ),
+    linear-gradient(
+      120deg,
+      #1769aa,
+      #1679ba 55%,
+      #16a987
+    );
+
+  box-shadow:
+    0 30px 70px rgba(23, 105, 170, 0.2);
+}
+
+.innovation-cta-box::before {
+  content: "";
+
+  position: absolute;
+
+  width: 360px;
+  height: 360px;
+
+  right: -130px;
+  bottom: -220px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 50%;
+}
+
+.innovation-cta-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  right: 100px;
+  top: -170px;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+
+  border-radius: 50%;
+}
+
+.innovation-cta-box > div {
+  position: relative;
+  z-index: 2;
+
+  max-width: 650px;
+}
+
+.innovation-cta-box > div > span {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.innovation-cta-box h2 {
+  margin: 15px 0;
+
+  color: #fff;
+
+  font-size: clamp(40px, 5vw, 62px);
+
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.innovation-cta-box h2 strong {
+  color: #d7fff3;
+}
+
+.innovation-cta-box p {
+  max-width: 540px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.innovation-cta-button {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 56px;
+
+  padding: 0 25px;
+
+  border-radius: 14px;
+
+  color: var(--in-blue-dark);
+  background: #fff;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.innovation-cta-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.16);
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1100px) {
+
+  .innovation-container {
+    width: min(100% - 50px, 1100px);
+  }
+
+  .innovation-hero-grid {
+    gap: 50px;
+  }
+
+  .innovation-intro-grid,
+  .innovation-principles-grid {
+    gap: 60px;
+  }
+
+  .innovation-process-track {
+    grid-template-columns: repeat(3, 1fr);
+
+    row-gap: 50px;
+  }
+
+  .innovation-process-track::before {
+    display: none;
+  }
+
+  .innovation-flow-steps {
+    flex-wrap: wrap;
+  }
+}
+
+/* ============================================================
+   SMALL LAPTOP / TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+  .innovation-hero {
+    padding: 100px 0 80px;
+  }
+
+  .innovation-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .innovation-hero-content {
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .innovation-eyebrow {
+    padding-left: 0;
+  }
+
+  .innovation-eyebrow::before {
+    display: none;
+  }
+
+  .innovation-hero-content > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .innovation-hero-buttons,
+  .innovation-trust-row {
+    justify-content: center;
+  }
+
+  .innovation-visual {
+    min-height: 490px;
+  }
+
+  .innovation-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .innovation-intro-number {
+    max-width: 200px;
+  }
+
+  .innovation-areas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .innovation-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .innovation-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+
+  .innovation-container {
+    width: calc(100% - 32px);
+  }
+
+  .innovation-hero {
+    min-height: auto;
+
+    padding: 75px 0 65px;
+  }
+
+  .innovation-hero h1 {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .innovation-hero-content > p {
+    font-size: 15px;
+  }
+
+  .innovation-hero-buttons {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .innovation-primary-btn,
+  .innovation-secondary-btn {
+    width: 100%;
+  }
+
+  .innovation-trust-row {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: max-content;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    gap: 10px;
+  }
+
+  .innovation-visual {
+    min-height: 390px;
+
+    margin-top: 15px;
+  }
+
+  .innovation-core {
+    width: 210px;
+    height: 210px;
+  }
+
+  .innovation-core strong {
+    font-size: 24px;
+  }
+
+  .innovation-lightbulb {
+    top: 15px;
+
+    width: 68px;
+    height: 68px;
+  }
+
+  .innovation-lightbulb svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ring-one {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-two {
+    width: 370px;
+    height: 370px;
+  }
+
+  .innovation-floating-card {
+    min-width: 145px;
+
+    padding: 11px;
+  }
+
+  .innovation-card-one {
+    left: -5px;
+    top: 55px;
+  }
+
+  .innovation-card-two {
+    right: -5px;
+    bottom: 55px;
+  }
+
+  .innovation-card-three {
+    left: 0;
+    bottom: 10px;
+  }
+
+  .innovation-intro,
+  .innovation-areas,
+  .innovation-process,
+  .innovation-principles {
+    padding: 75px 0;
+  }
+
+  .innovation-intro-number span {
+    font-size: 58px;
+  }
+
+  .innovation-intro-content h2,
+  .innovation-section-heading h2,
+  .innovation-principles-heading h2 {
+    font-size: 34px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .innovation-intro-content p {
+    font-size: 15px;
+  }
+
+  .innovation-areas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .innovation-area {
+    min-height: 250px;
+
+    padding: 28px;
+  }
+
+  .innovation-process-track {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    margin-top: 45px;
+  }
+
+  .innovation-process-step p {
+    max-width: none;
+  }
+
+  .innovation-principles-grid {
+    gap: 45px;
+  }
+
+  .innovation-flow {
+    padding: 50px 0;
+  }
+
+  .innovation-flow-box {
+    padding: 30px 22px;
+
+    border-radius: 22px;
+  }
+
+  .innovation-flow-heading h2 {
+    font-size: 34px;
+  }
+
+  .innovation-flow-steps {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+  }
+
+  .innovation-flow-steps > svg {
+    display: none;
+  }
+
+  .innovation-flow-steps > div {
+    min-width: 0;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .innovation-flow-result {
+    background:
+      linear-gradient(
+        135deg,
+        var(--in-blue),
+        var(--in-green)
+      ) !important;
+  }
+
+  .innovation-cta {
+    padding: 20px 0 75px;
+  }
+
+  .innovation-cta-box {
+    min-height: auto;
+
+    padding: 42px 27px;
+
+    border-radius: 25px;
+  }
+
+  .innovation-cta-box h2 {
+    font-size: 42px;
+  }
+
+  .innovation-cta-box p {
+    font-size: 14px;
+  }
+
+  .innovation-cta-button {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   VERY SMALL
+============================================================ */
+
+@media (max-width: 380px) {
+
+  .innovation-container {
+    width: calc(100% - 24px);
+  }
+
+  .innovation-hero h1 {
+    font-size: 37px;
+  }
+
+  .innovation-visual {
+    min-height: 350px;
+  }
+
+  .innovation-floating-card {
+    transform: scale(0.84);
+  }
+
+  .innovation-card-one {
+    left: -18px;
+  }
+
+  .innovation-card-two {
+    right: -18px;
+  }
+
+  .innovation-card-three {
+    left: -15px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .innovation-page *,
+  .innovation-page *::before,
+  .innovation-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

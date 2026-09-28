@@ -52,33 +52,6 @@ export default function GoldenSection() {
           }}
         >
 
-          {/* Badge */}
-          <motion.div
-            className="golden-badge"
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.6,
-            }}
-            viewport={{
-              once: true,
-            }}
-          >
-            <span className="badge-line" />
-
-            <Sparkles size={16} />
-
-            <span>ABOUT US</span>
-
-            <span className="badge-line" />
-          </motion.div>
-
           {/* Title */}
           <motion.h1
             className="golden-title"
@@ -230,30 +203,7 @@ export default function GoldenSection() {
 
           </motion.div>
 
-          {/* CTA */}
-          <motion.div
-            className="golden-cta"
-            initial={{
-              opacity: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.75,
-            }}
-            viewport={{
-              once: true,
-            }}
-          >
-            <span>
-              Let's build something exceptional
-            </span>
-
-            <ArrowRight size={18} />
-          </motion.div>
-
+         
         </motion.div>
       </div>
     </section>

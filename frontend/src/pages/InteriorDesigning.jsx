@@ -136,7 +136,7 @@ export default function InteriorDesigning() {
               </Link>
               <button 
                 className="id-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

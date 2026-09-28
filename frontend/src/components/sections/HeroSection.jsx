@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   Sparkles,
@@ -57,14 +57,14 @@ const child = {
 ============================================================ */
 
 export default function HeroSection({
-  scrollToServices,
-  scrollToCourses,
+  
+
 }) {
 
   const [hoveredStrategy, setHoveredStrategy] =
     useState(null);
 
-
+const navigate = useNavigate();
   /* ==========================================================
      CURSOR MOVEMENT VALUES
   ========================================================== */
@@ -333,36 +333,9 @@ export default function HeroSection({
         >
 
 
-          {/* ==================================================
-              COMPANY TAG
-          ================================================== */}
 
-          <motion.div
-            className="vpro-welcome-tag"
-
-            initial={{
-              opacity: 0,
-              scale: 0.8,
-            }}
-
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-
-            transition={{
-              delay: 0.15,
-              duration: 0.5,
-            }}
-          >
-
-            <span className="vpro-tag-dot" />
-
-            <span>
-              VProTech Digital
-            </span>
-
-          </motion.div>
+           
+      
 
 
           {/* ==================================================
@@ -485,35 +458,25 @@ export default function HeroSection({
             }}
           >
 
-            <motion.button
-              type="button"
-              className="vpro-primary-btn"
-
-              onClick={scrollToServices}
-
-              whileHover={{
-                scale: 1.05,
-              }}
-
-              whileTap={{
-                scale: 0.96,
-              }}
-            >
-
-              <span>
-                Our Services
-              </span>
-
-              <ArrowRight size={18} />
-
-            </motion.button>
-
+           <motion.button
+  type="button"
+  className="vpro-primary-btn"
+  onClick={() => navigate("/services")}
+  whileHover={{
+    scale: 1.05,
+  }}
+  whileTap={{
+    scale: 0.96,
+  }}
+>
+  <span>Our Services</span>
+  <ArrowRight size={18} />
+</motion.button>
 
             <motion.button
               type="button"
               className="vpro-secondary-btn"
-
-              onClick={scrollToCourses}
+  onClick={() => navigate("/courses")}
 
               whileHover={{
                 scale: 1.05,
@@ -787,14 +750,33 @@ export default function HeroSection({
 
               return (
 
-                <motion.div
-                  key={strategy.title}
+               <motion.div
+  key={strategy.title}
+  className={`vpro-strategy-card ${
+    hoveredStrategy === index
+      ? "strategy-active"
+      : ""
+  }`}
+  onClick={() => {
+    if (strategy.title === "Digital Growth") {
+      navigate("/digital-growth");
+    }
 
-                  className={`vpro-strategy-card ${
-                    hoveredStrategy === index
-                      ? "strategy-active"
-                      : ""
-                  }`}
+  if (strategy.title === "Innovation") {
+    navigate("/innovation");
+  }
+   if (strategy.title === "Smart Strategy") {
+    navigate("/smart-strategy");
+  }
+
+   if (strategy.title === "Trusted Technology") {
+    navigate("/trusted-technology");
+  }
+
+  }}
+  style={{
+    cursor: "pointer",
+  }}
 
                   onMouseEnter={() =>
                     setHoveredStrategy(index)

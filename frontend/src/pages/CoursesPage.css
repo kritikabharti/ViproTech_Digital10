@@ -1,0 +1,946 @@
+/* =========================================================
+   COURSES PAGE
+========================================================= */
+
+.courses-page {
+  width: 100%;
+  overflow: hidden;
+  background: #f7f9fc;
+  color: #10213d;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.courses-hero {
+  position: relative;
+  min-height: 720px;
+  padding: 100px 6% 80px;
+  background:
+    radial-gradient(circle at 85% 25%, rgba(37, 99, 235, 0.14), transparent 30%),
+    radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.10), transparent 30%),
+    #f4f8fc;
+  overflow: hidden;
+}
+
+.courses-hero-container {
+  width: min(1250px, 100%);
+  margin: 0 auto;
+
+  min-height: 560px;
+
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: center;
+  gap: 70px;
+
+  position: relative;
+  z-index: 3;
+}
+
+
+/* =========================================================
+   HERO BACKGROUND
+========================================================= */
+
+.courses-hero-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(16, 33, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 33, 61, 0.035) 1px, transparent 1px);
+
+  background-size: 45px 45px;
+
+  pointer-events: none;
+}
+
+.courses-hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.glow-one {
+  width: 300px;
+  height: 300px;
+
+  top: 40px;
+  right: 8%;
+
+  background: rgba(37, 99, 235, 0.10);
+}
+
+.glow-two {
+  width: 250px;
+  height: 250px;
+
+  bottom: 20px;
+  left: 5%;
+
+  background: rgba(124, 58, 237, 0.08);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.courses-hero-content {
+  position: relative;
+  z-index: 5;
+}
+
+.courses-page-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 15px;
+
+  border-radius: 50px;
+
+  background: #ffffff;
+  border: 1px solid #dce5f0;
+
+  color: #1769aa;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  box-shadow: 0 8px 25px rgba(16, 33, 61, 0.07);
+}
+
+.courses-hero-content h1 {
+  margin: 22px 0 18px;
+
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 1.04;
+
+  font-weight: 800;
+  letter-spacing: -2px;
+
+  color: #10213d;
+}
+
+.courses-hero-content h1 span {
+  background: linear-gradient(
+    90deg,
+    #1769aa,
+    #4f46e5,
+    #7c3aed
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.courses-hero-content > p {
+  max-width: 600px;
+
+  margin: 0;
+
+  color: #596b82;
+
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.courses-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  margin-top: 32px;
+}
+
+.courses-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 22px;
+
+  border-radius: 12px;
+
+  background: #1769aa;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  box-shadow: 0 12px 30px rgba(23, 105, 170, 0.25);
+
+  transition: 0.3s ease;
+}
+
+.courses-primary-btn:hover {
+  transform: translateY(-3px);
+  background: #12578f;
+}
+
+.courses-hero-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #52647b;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.courses-hero-visual {
+  position: relative;
+
+  width: 100%;
+  height: 560px;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   HERO IMAGES
+========================================================= */
+
+.courses-photo {
+  position: absolute;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 7px solid #ffffff;
+
+  box-shadow:
+    0 25px 60px rgba(16, 33, 61, 0.16);
+
+  z-index: 3;
+}
+
+.courses-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  transition: transform 0.6s ease;
+}
+
+.courses-photo:hover img {
+  transform: scale(1.06);
+}
+
+
+/* Main image */
+
+.photo-main {
+  width: 430px;
+  height: 470px;
+
+  top: 45px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 35px;
+}
+
+
+/* Small image 1 */
+
+.photo-small-one {
+  width: 190px;
+  height: 145px;
+
+  left: 0;
+  top: 200px;
+
+  border-radius: 22px;
+
+  z-index: 5;
+}
+
+
+/* Small image 2 */
+
+.photo-small-two {
+  width: 190px;
+  height: 145px;
+
+  right: 0;
+  bottom: 80px;
+
+  border-radius: 22px;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   ORBITS
+========================================================= */
+
+.courses-orbit {
+  position: absolute;
+
+  border: 1px dashed rgba(23, 105, 170, 0.25);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 510px;
+  height: 510px;
+
+  top: 25px;
+  left: 50%;
+
+  transform: translateX(-50%) rotate(20deg);
+}
+
+.orbit-two {
+  width: 430px;
+  height: 300px;
+
+  top: 130px;
+  left: 50%;
+
+  transform: translateX(-50%) rotate(-25deg);
+
+  border-color: rgba(124, 58, 237, 0.18);
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+========================================================= */
+
+.courses-floating-card {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 16px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid #e0e7f0;
+
+  border-radius: 14px;
+
+  box-shadow: 0 15px 40px rgba(16, 33, 61, 0.12);
+
+  z-index: 10;
+}
+
+.floating-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #edf5ff;
+  color: #1769aa;
+}
+
+.courses-floating-card strong {
+  display: block;
+
+  font-size: 13px;
+
+  color: #10213d;
+}
+
+.courses-floating-card span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #718096;
+}
+
+.card-learning {
+  left: 10px;
+  bottom: 35px;
+}
+
+.card-career {
+  right: 5px;
+  top: 35px;
+}
+
+
+/* =========================================================
+   LEARNING JOURNEY
+========================================================= */
+
+.courses-journey {
+  padding: 100px 6%;
+
+  background: #ffffff;
+}
+
+.courses-journey-container {
+  width: min(1250px, 100%);
+  margin: 0 auto;
+}
+
+.courses-section-heading {
+  text-align: center;
+  max-width: 700px;
+
+  margin: 0 auto 55px;
+}
+
+.courses-section-heading > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #1769aa;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.courses-section-heading h2 {
+  margin: 15px 0;
+
+  color: #10213d;
+
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+}
+
+.courses-section-heading h2 strong {
+  color: #1769aa;
+}
+
+.courses-section-heading p {
+  margin: 0;
+
+  color: #65758b;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   IMAGE JOURNEY GRID
+========================================================= */
+
+.courses-image-track {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   JOURNEY IMAGE CARD
+========================================================= */
+
+.journey-photo {
+  position: relative;
+
+  width: 100%;
+  height: 270px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #e8edf4;
+
+  box-shadow:
+    0 12px 35px rgba(16, 33, 61, 0.10);
+
+  border: 1px solid #e3e9f1;
+}
+
+.journey-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  transition:
+    transform 0.6s ease,
+    filter 0.4s ease;
+}
+
+.journey-photo:hover img {
+  transform: scale(1.08);
+
+  filter: brightness(0.85);
+}
+
+
+/* Number */
+
+.journey-photo-number {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #10213d;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Different heights for visual effect */
+
+.journey-photo-2,
+.journey-photo-6 {
+  margin-top: 35px;
+}
+
+.journey-photo-4,
+.journey-photo-8 {
+  margin-top: 70px;
+}
+
+
+/* =========================================================
+   COURSE PROGRAMS
+========================================================= */
+
+.courses-programs {
+  padding: 0px 5% 110px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7f9fc 0%,
+      #ffffff 100%
+    );
+}
+
+.courses-programs-heading {
+  max-width: 850px;
+
+  margin: 0 auto 50px;
+
+  text-align: center;
+}
+
+.programs-label {
+  display: inline-block;
+
+  color: #1769aa;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.courses-programs-heading h2 {
+  margin: 14px 0;
+
+  color: #10213d;
+
+  font-size: clamp(32px, 4vw, 52px);
+}
+
+.courses-programs-heading h2 span {
+  color: #1769aa;
+}
+
+.courses-programs-heading p {
+  max-width: 650px;
+
+  margin: auto;
+
+  color: #68798f;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.courses-final-cta {
+  position: relative;
+
+  padding: 100px 6%;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf6ff,
+      #f5f1ff
+    );
+}
+
+.courses-final-glow {
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.08);
+
+  filter: blur(5px);
+
+  right: -100px;
+  top: -150px;
+}
+
+.courses-final-content {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 750px;
+
+  margin: auto;
+
+  text-align: center;
+}
+
+.final-cta-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 18px;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #1769aa;
+
+  box-shadow: 0 10px 30px rgba(16, 33, 61, 0.10);
+}
+
+.courses-final-content > span {
+  color: #1769aa;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.courses-final-content h2 {
+  margin: 15px 0;
+
+  color: #10213d;
+
+  font-size: clamp(36px, 5vw, 58px);
+
+  line-height: 1.1;
+}
+
+.courses-final-content p {
+  max-width: 600px;
+
+  margin: 0 auto 30px;
+
+  color: #63748b;
+
+  line-height: 1.7;
+}
+
+.final-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 23px;
+
+  border-radius: 12px;
+
+  background: #1769aa;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  box-shadow: 0 12px 30px rgba(23, 105, 170, 0.22);
+
+  transition: 0.3s ease;
+}
+
+.final-cta-button:hover {
+  transform: translateY(-3px);
+
+  background: #12578f;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .courses-hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    text-align: center;
+  }
+
+  .courses-hero-content > p {
+    margin: auto;
+  }
+
+  .courses-hero-actions {
+    justify-content: center;
+  }
+
+  .courses-hero-visual {
+    max-width: 650px;
+
+    margin: 0 auto;
+  }
+
+  .courses-image-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .journey-photo-2,
+  .journey-photo-4,
+  .journey-photo-6,
+  .journey-photo-8 {
+    margin-top: 0;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .courses-hero {
+    padding: 80px 20px 50px;
+  }
+
+  .courses-hero-container {
+    min-height: auto;
+  }
+
+  .courses-hero-content h1 {
+    font-size: 42px;
+    letter-spacing: -1px;
+  }
+
+  .courses-hero-content > p {
+    font-size: 15px;
+  }
+
+  .courses-hero-actions {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .courses-hero-visual {
+    height: 450px;
+
+    margin-top: 20px;
+  }
+
+  .photo-main {
+    width: 290px;
+    height: 350px;
+
+    top: 40px;
+  }
+
+  .photo-small-one {
+    width: 125px;
+    height: 100px;
+
+    left: 0;
+    top: 80px;
+  }
+
+  .photo-small-two {
+    width: 125px;
+    height: 100px;
+
+    right: 0;
+    bottom: 60px;
+  }
+
+  .orbit-one {
+    width: 340px;
+    height: 340px;
+
+    top: 45px;
+  }
+
+  .orbit-two {
+    width: 300px;
+    height: 220px;
+
+    top: 100px;
+  }
+
+  .courses-floating-card {
+    padding: 9px 11px;
+  }
+
+  .courses-floating-card strong {
+    font-size: 11px;
+  }
+
+  .courses-floating-card span {
+    font-size: 9px;
+  }
+
+  .floating-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .card-learning {
+    left: 0;
+    bottom: 15px;
+  }
+
+  .card-career {
+    right: 0;
+    top: 15px;
+  }
+
+
+  /* Journey */
+
+  .courses-journey {
+    padding: 75px 20px;
+  }
+
+  .courses-image-track {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+  }
+
+  .journey-photo {
+    height: 210px;
+
+    border-radius: 15px;
+  }
+
+  .journey-photo-2,
+  .journey-photo-4,
+  .journey-photo-6,
+  .journey-photo-8 {
+    margin-top: 0;
+  }
+
+
+  /* Programs */
+
+  .courses-programs {
+    padding: 75px 15px;
+  }
+
+
+  /* CTA */
+
+  .courses-final-cta {
+    padding: 80px 20px;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  .courses-image-track {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-photo {
+    height: 270px;
+  }
+
+  .courses-hero-visual {
+    height: 420px;
+  }
+
+  .photo-main {
+    width: 250px;
+    height: 310px;
+  }
+
+  .photo-small-one,
+  .photo-small-two {
+    width: 105px;
+    height: 85px;
+  }
+}

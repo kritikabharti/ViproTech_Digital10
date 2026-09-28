@@ -497,33 +497,7 @@ export default function Blogs() {
             }}
           >
 
-            {/* -----------------------------------------------
-                BADGE
-                ----------------------------------------------- */}
-
-            <motion.div
-              className="dream-badge"
-
-              animate={{
-                scale: [
-                  1,
-                  1.05,
-                  1,
-                ],
-              }}
-
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <span>✦</span>
-
-              <span>
-                Knowledge Hub
-              </span>
-            </motion.div>
+            
 
             {/* -----------------------------------------------
                 HEADING

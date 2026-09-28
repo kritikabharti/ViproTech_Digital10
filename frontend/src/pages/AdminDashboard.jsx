@@ -532,11 +532,8 @@ const filteredApplications = applications.filter(app => {
       {/* Sidebar */}
       <div className="admin-sidebar">
         <div className="sidebar-brand">
-          <div className="brand-icon">V</div>
-          <div>
-            <span className="brand-title">VproTech</span>
-            <span className="brand-sub">Digital</span>
-          </div>
+      
+          
         </div>
 
         <nav className="sidebar-nav">

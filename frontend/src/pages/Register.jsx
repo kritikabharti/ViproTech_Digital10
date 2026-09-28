@@ -1,32 +1,45 @@
 // src/pages/Register.jsx
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from '../services/api';
+import { Link } from "react-router-dom";
+import { API_URL } from "../services/api";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  Lock, 
-  CheckCircle, 
+import {
+  User,
+  Mail,
+  Phone,
+  Lock,
+  CheckCircle,
   ArrowRight,
   Sparkles,
   GraduationCap,
   Briefcase,
-  Send
-} from 'lucide-react';
+  Send,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  BookOpen,
+  Code2,
+  ChevronDown,
+} from "lucide-react";
+
 import "./Register.css";
 
 export default function Register() {
-  const navigate = useNavigate();
   const { register } = useAuth();
+
   const [loading, setLoading] = useState(false);
-  const [showVerificationMessage, setShowVerificationMessage] = useState(false);
+  const [showVerificationMessage, setShowVerificationMessage] =
+    useState(false);
+
   const [registeredEmail, setRegisteredEmail] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,7 +74,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.phone || !formData.domain || !formData.password) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.domain ||
+      !formData.password
+    ) {
       toast.error("Please fill all required fields");
       return;
     }
@@ -77,24 +96,28 @@ export default function Register() {
     }
 
     setLoading(true);
+
     const { confirmPassword, ...registerData } = formData;
-    
-  try {
-  const response = await fetch(`${API_URL}/auth/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(registerData),
-  });
+
+    try {
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerData),
+      });
 
       const data = await response.json();
-      
+
       if (data.success) {
         setRegisteredEmail(formData.email);
         setShowVerificationMessage(true);
-        toast.success("Registration successful! Please check your email.");
-        
+
+        toast.success(
+          "Registration successful! Please check your email."
+        );
+
         setFormData({
           name: "",
           email: "",
@@ -114,333 +137,548 @@ export default function Register() {
   };
 
   const resendVerification = async () => {
-   try {
-  const response = await fetch(`${API_URL}/auth/resend-verification`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email: registeredEmail }),
-  });
+    try {
+      const response = await fetch(
+        `${API_URL}/auth/resend-verification`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: registeredEmail,
+          }),
+        }
+      );
 
       const data = await response.json();
-      
+
       if (data.success) {
         toast.success("Verification email resent!");
       } else {
-        toast.error(data.message || "Failed to resend verification email");
+        toast.error(
+          data.message || "Failed to resend verification email"
+        );
       }
     } catch (error) {
       toast.error("Network error. Please try again.");
     }
   };
 
-  // Verification Message Screen
+  /* =========================================================
+     VERIFICATION SCREEN
+  ========================================================= */
+
   if (showVerificationMessage) {
     return (
       <div className="register-page">
         <Toaster position="top-right" />
-        
-        {/* Animated Wavy Background */}
-        <div className="register-wavy-bg">
-          <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <motion.path
-              fill="rgba(79, 70, 229, 0.06)"
-              d="M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,160L48,165.3C96,171,192,181,288,186.7C384,192,480,192,576,181.3C672,171,768,149,864,138.7C960,128,1056,128,1152,138.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,224L48,218.7C96,213,192,203,288,202.7C384,203,480,213,576,208C672,203,768,181,864,176C960,171,1056,181,1152,192C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                ],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </svg>
-          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="wavy-2">
-            <motion.path
-              fill="rgba(212, 175, 55, 0.05)"
-              d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,288L48,277.3C96,267,192,245,288,234.7C384,224,480,224,576,234.7C672,245,768,267,864,277.3C960,288,1056,288,1152,277.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                ],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </svg>
+
+        <div className="register-background">
+          <div className="register-gradient-orb register-gradient-one"></div>
+          <div className="register-gradient-orb register-gradient-two"></div>
+          <div className="register-grid-pattern"></div>
         </div>
 
-        <div className="register-container">
-          <motion.div 
-            className="register-card"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+        <motion.div
+          className="register-verification"
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+        >
+          <motion.div
+            className="register-verification-icon"
+            initial={{ scale: 0.7 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 180,
+              damping: 12,
+            }}
           >
-            <div className="verification-success">
-              <motion.div 
-                className="success-icon"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                📧
-              </motion.div>
-              <h2 className="auth-title">Verify Your Email</h2>
-              <p className="auth-subtitle">
-                We've sent a verification link to:
-              </p>
-              <p className="email-highlight">{registeredEmail}</p>
-              <p className="auth-subtitle" style={{ fontSize: "14px", color: "#94a3b8" }}>
-                Please check your inbox and spam folder.
-              </p>
-              
-              <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                <button 
-                  onClick={resendVerification}
-                  className="resend-btn"
-                >
-                  <Send size={18} />
-                  Resend Verification Email
-                </button>
-                
-                <Link to="/login" className="auth-btn primary">
-                  Go to Login
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
+            <CheckCircle size={38} />
           </motion.div>
-        </div>
+
+          <span className="register-mini-label">
+            ACCOUNT CREATED
+          </span>
+
+          <h2>
+            Verify Your <span>Email</span>
+          </h2>
+
+          <p>
+            We've sent a verification link to your registered email
+            address. Please verify your email before logging in.
+          </p>
+
+          <div className="register-verification-email">
+            <Mail size={16} />
+            {registeredEmail}
+          </div>
+
+          <p className="verification-small-text">
+            Please check your inbox and spam folder.
+          </p>
+
+          <div className="register-verification-actions">
+            <button
+              onClick={resendVerification}
+              className="register-resend-btn"
+            >
+              <Send size={17} />
+              Resend Verification
+            </button>
+
+            <Link
+              to="/login"
+              className="register-login-btn"
+            >
+              Go to Login
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     );
   }
 
+  /* =========================================================
+     REGISTER PAGE
+  ========================================================= */
+
   return (
     <div className="register-page">
       <Toaster position="top-right" />
-      
-      {/* Animated Wavy Background */}
-      <div className="register-wavy-bg">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <motion.path
-            fill="rgba(79, 70, 229, 0.05)"
-            d="M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            animate={{
-              d: [
-                "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,160L48,165.3C96,171,192,181,288,186.7C384,192,480,192,576,181.3C672,171,768,149,864,138.7C960,128,1056,128,1152,138.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,224L48,218.7C96,213,192,203,288,202.7C384,203,480,213,576,208C672,203,768,181,864,176C960,171,1056,181,1152,192C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,192L48,186.7C96,181,192,171,288,160C384,149,480,139,576,144C672,149,768,171,864,176C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              ],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </svg>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="wavy-2">
-          <motion.path
-            fill="rgba(212, 175, 55, 0.04)"
-            d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            animate={{
-              d: [
-                "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,288L48,277.3C96,267,192,245,288,234.7C384,224,480,224,576,234.7C672,245,768,267,864,277.3C960,288,1056,288,1152,277.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              ],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </svg>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="wavy-3">
-          <motion.path
-            fill="rgba(79, 70, 229, 0.03)"
-            d="M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            animate={{
-              d: [
-                "M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,224L48,213.3C96,203,192,181,288,170.7C384,160,480,160,576,170.7C672,181,768,203,864,213.3C960,224,1056,224,1152,213.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,117.3C672,107,768,85,864,74.7C960,64,1056,64,1152,74.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                "M0,96L48,106.7C96,117,192,139,288,149.3C384,160,480,160,576,149.3C672,139,768,117,864,106.7C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              ],
-            }}
-            transition={{
-              duration: 14,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </svg>
+
+      {/* Background */}
+      <div className="register-background">
+        <div className="register-gradient-orb register-gradient-one"></div>
+
+        <div className="register-gradient-orb register-gradient-two"></div>
+
+        <div className="register-grid-pattern"></div>
       </div>
 
-      {/* Floating Orbs */}
-      <div className="register-orbs">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
-      </div>
+      <div className="register-layout">
 
-      <div className="register-container">
-        <motion.div 
-          className="register-card"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        {/* =====================================================
+            LEFT SHOWCASE
+        ===================================================== */}
+
+        <motion.aside
+          className="register-showcase"
+          initial={{ opacity: 0, x: -35 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Header */}
-          <div className="register-header">
-            <div className="register-badge">
-              <Sparkles size={18} />
-              <span>Join VProTech</span>
+          <div className="register-showcase-top">
+
+            <div className="register-showcase-label">
+              <Sparkles size={13} />
+              CREATE YOUR ACCOUNT
             </div>
-            <h2 className="register-title">
-              Student <span className="gradient-text">Registration</span>
-            </h2>
-            <p className="register-subtitle">
-              Create your account and start your learning journey today
+
+            <h1>
+              Build your
+              <br />
+              <span>future.</span>
+            </h1>
+
+            <p>
+              Join VProTech Digital and start your learning
+              journey with practical skills, industry-focused
+              courses and modern technology.
             </p>
+
+            <div className="register-showcase-features">
+
+              <div className="register-showcase-feature">
+                <div className="register-showcase-feature-icon">
+                  <GraduationCap size={20} />
+                </div>
+
+                <div>
+                  <strong>Learn Practical Skills</strong>
+                  <span>
+                    Learn technologies used in real projects
+                  </span>
+                </div>
+              </div>
+
+              <div className="register-showcase-feature">
+                <div className="register-showcase-feature-icon">
+                  <Briefcase size={20} />
+                </div>
+
+                <div>
+                  <strong>Become Industry Ready</strong>
+                  <span>
+                    Build knowledge for your professional journey
+                  </span>
+                </div>
+              </div>
+
+              <div className="register-showcase-feature">
+                <div className="register-showcase-feature-icon">
+                  <Code2 size={20} />
+                </div>
+
+                <div>
+                  <strong>Choose Your Domain</strong>
+                  <span>
+                    Select the technology you want to explore
+                  </span>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="register-form">
-            <div className="form-group">
-              <div className="input-wrapper">
-              
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="auth-input"
-                  required
-                />
+          <div className="register-showcase-bottom">
+            <div className="register-showcase-line"></div>
+            START • LEARN • GROW
+          </div>
+        </motion.aside>
+
+        {/* =====================================================
+            RIGHT REGISTER PANEL
+        ===================================================== */}
+
+        <motion.main
+          className="register-panel"
+          initial={{ opacity: 0, x: 35 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="register-box">
+
+            {/* Header */}
+
+            <div className="register-header">
+
+              <div className="register-icon">
+                <User size={23} />
+              </div>
+
+              <div className="register-heading">
+
+                <span className="register-mini-label">
+                  VPROTECH DIGITAL
+                </span>
+
+                <h2>
+                  Create <span>Account</span>
+                </h2>
+
+                <p>
+                  Create your account and begin your learning
+                  journey today.
+                </p>
+
               </div>
             </div>
 
-            <div className="form-group">
-              <div className="input-wrapper">
+            {/* Form */}
 
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="auth-input"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-              
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="auth-input"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-              
-                <select
-                  name="domain"
-                  value={formData.domain}
-                  onChange={handleChange}
-                  className="auth-select"
-                  required
-                >
-                  <option value="">Select Your Domain</option>
-                  {domains.map((domain) => (
-                    <option key={domain} value={domain}>
-                      {domain}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-               
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password (min 6 characters)"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="auth-input"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-              
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className="auth-input"
-                  required
-                />
-              </div>
-            </div>
-
-            <button 
-              type="submit" 
-              className="register-btn"
-              disabled={loading}
+            <form
+              onSubmit={handleSubmit}
+              className="register-form"
             >
-              {loading ? (
-                <>
-                  <span className="spinner"></span>
-                  Creating Account...
-                </>
-              ) : (
-                <>
-                  <GraduationCap size={20} />
-                  Register Now
-                  <ArrowRight size={18} />
-                </>
-              )}
-            </button>
-          </form>
 
-          <p className="register-switch">
-            Already have an account? <Link to="/login">Login here</Link>
-          </p>
-        </motion.div>
+              {/* Name */}
+
+              <div className="register-field">
+
+                <label htmlFor="name">
+                  Full Name
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <User
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+
+                </div>
+              </div>
+
+              {/* Email */}
+
+              <div className="register-field">
+
+                <label htmlFor="email">
+                  Email Address
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <Mail
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+
+                </div>
+              </div>
+
+              {/* Phone */}
+
+              <div className="register-field">
+
+                <label htmlFor="phone">
+                  Phone Number
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <Phone
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter phone number"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+
+                </div>
+              </div>
+
+              {/* Domain */}
+
+              <div className="register-field">
+
+                <label htmlFor="domain">
+                  Learning Domain
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <BookOpen
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <select
+                    id="domain"
+                    name="domain"
+                    value={formData.domain}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">
+                      Select your domain
+                    </option>
+
+                    {domains.map((domain) => (
+                      <option
+                        key={domain}
+                        value={domain}
+                      >
+                        {domain}
+                      </option>
+                    ))}
+                  </select>
+
+                  <ChevronDown
+                    size={16}
+                    className="register-select-arrow"
+                  />
+
+                </div>
+              </div>
+
+              {/* Password */}
+
+              <div className="register-field">
+
+                <label htmlFor="password">
+                  Password
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <Lock
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <input
+                    id="password"
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
+                    name="password"
+                    placeholder="Minimum 6 characters"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    className="register-password-toggle"
+                    onClick={() =>
+                      setShowPassword(!showPassword)
+                    }
+                    aria-label={
+                      showPassword
+                        ? "Hide password"
+                        : "Show password"
+                    }
+                  >
+                    {showPassword ? (
+                      <EyeOff size={17} />
+                    ) : (
+                      <Eye size={17} />
+                    )}
+                  </button>
+
+                </div>
+
+                <div className="register-password-hint">
+                  Use at least 6 characters
+                </div>
+
+              </div>
+
+              {/* Confirm Password */}
+
+              <div className="register-field">
+
+                <label htmlFor="confirmPassword">
+                  Confirm Password
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <Lock
+                    size={17}
+                    className="register-input-icon"
+                  />
+
+                  <input
+                    id="confirmPassword"
+                    type={
+                      showConfirmPassword
+                        ? "text"
+                        : "password"
+                    }
+                    name="confirmPassword"
+                    placeholder="Re-enter your password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    className="register-password-toggle"
+                    onClick={() =>
+                      setShowConfirmPassword(
+                        !showConfirmPassword
+                      )
+                    }
+                    aria-label={
+                      showConfirmPassword
+                        ? "Hide password"
+                        : "Show password"
+                    }
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff size={17} />
+                    ) : (
+                      <Eye size={17} />
+                    )}
+                  </button>
+
+                </div>
+
+              </div>
+
+              {/* Security note */}
+
+              <div className="register-security-note">
+
+                <ShieldCheck size={15} />
+
+                <span>
+                  Your account information is securely protected.
+                </span>
+
+              </div>
+
+              {/* Register Button */}
+
+              <button
+                type="submit"
+                className="register-btn"
+                disabled={loading}
+              >
+
+                {loading ? (
+                  <>
+                    <span className="register-spinner"></span>
+                    Creating Account...
+                  </>
+                ) : (
+                  <>
+                    <GraduationCap size={19} />
+                    Create Account
+                    <ArrowRight size={18} />
+                  </>
+                )}
+
+              </button>
+
+            </form>
+
+            {/* Login */}
+
+            <div className="register-login">
+
+              <span>
+                Already have an account?
+              </span>
+
+              <Link to="/login">
+                Login here
+                <ArrowRight size={14} />
+              </Link>
+
+            </div>
+
+          </div>
+        </motion.main>
+
       </div>
     </div>
   );

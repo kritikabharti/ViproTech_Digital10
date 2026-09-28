@@ -1,23 +1,25 @@
-import React, { useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-// Import all section components
-import HeroSection from '../components/sections/HeroSection';
-import AboutSection from '../components/sections/AboutSection';
-import ServicesSection from '../components/sections/ServicesSection';
-import LogoSliderSection from '../components/sections/LogoSliderSection';
-import ProcessSection from '../components/sections/ProcessSection';
-import CoursesSection from '../components/sections/CoursesSection';
-import GallerySection from '../components/sections/GallerySection';
+// Existing sections
+import HeroSection from "../components/sections/HeroSection";
+import AboutSection from "../components/sections/AboutSection";
+import LogoSliderSection from "../components/sections/LogoSliderSection";
+import ProcessSection from "../components/sections/ProcessSection";
 
-// Import CSS
+// New sections
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection";
+import IndustriesSection from "../components/sections/IndustriesSection";
+import HomeCTASection from "../components/sections/HomeCTASection";
+
+// CSS
 import "./Home.css";
 import "../App.css";
 import "../components/sections/ProcessSection.css";
 
 export default function Home() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,27 +29,70 @@ export default function Home() {
 
   const scrollToCourses = () => {
     coursesRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      behavior: "smooth",
+      block: "start",
     });
   };
 
   const scrollToServices = () => {
-    servicesRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
+    servicesRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
     });
   };
 
   return (
-    <>
-      <HeroSection scrollToServices={scrollToServices} scrollToCourses={scrollToCourses} />
+    <main className="home-page">
+
+      {/* =====================================================
+          01 — HERO
+      ===================================================== */}
+
+      <HeroSection />
+
+
+      {/* =====================================================
+          02 — ABOUT
+      ===================================================== */}
+
       <AboutSection />
-      <ServicesSection servicesRef={servicesRef} navigate={navigate} />
-      <LogoSliderSection />
+
+
+
+      {/* =====================================================
+          04 — WHY CHOOSE US
+      ===================================================== */}
+
+      <WhyChooseUsSection />
+
+
+      {/* =====================================================
+          05 — OUR PROCESS
+      ===================================================== */}
+
       <ProcessSection />
-      <CoursesSection coursesRef={coursesRef} />
-      <GallerySection />
-    </>
+
+
+      {/* =====================================================
+          06 — INDUSTRIES WE SERVE
+      ===================================================== */}
+
+      <IndustriesSection />
+
+
+ {/* =====================================================
+          03 — LOGO / CLIENT SLIDER
+      ===================================================== */}
+
+      <LogoSliderSection />
+
+
+      {/* =====================================================
+          07 — FINAL CTA
+      ===================================================== */}
+
+      <HomeCTASection />
+
+    </main>
   );
 }

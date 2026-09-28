@@ -136,7 +136,7 @@ export default function WebsiteDesign() {
               </Link>
               <button 
                 className="ws-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

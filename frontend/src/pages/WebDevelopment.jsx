@@ -160,7 +160,7 @@ export default function WebDevelopment() {
               </Link>
               <button 
                 className="wd-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

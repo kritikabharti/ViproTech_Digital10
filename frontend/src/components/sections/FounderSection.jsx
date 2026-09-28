@@ -124,10 +124,7 @@ export default function FounderSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <motion.span className="founder-tag" variants={itemVariants}>
-              <span className="tag-dot"></span>
-              MEET THE FOUNDER
-            </motion.span>
+          
 
             <motion.h2 className="founder-title" variants={itemVariants}>
               The Vision Behind{' '}

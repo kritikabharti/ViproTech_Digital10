@@ -21,7 +21,7 @@ const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, lo
 export default function LogoSliderSection() {
   return (
     <section className="logo-section">
-      <h2>Recruiters We Work With</h2>
+      <h2>Our Partners</h2>
       <div className="logo-slider">
         <div className="logo-track">
           {/* Double the logos for seamless looping */}

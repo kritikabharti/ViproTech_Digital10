@@ -170,7 +170,7 @@ export default function LogoDesigning() {
               </Link>
               <button 
                 className="ld-btn-secondary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/services')}
               >
                 ← Back to Services
               </button>

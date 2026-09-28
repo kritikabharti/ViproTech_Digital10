@@ -43,19 +43,7 @@ export default function CareerHero() {
           }}
         >
 
-          {/* KEEP YOUR EXISTING CAREERHERO CONTENT HERE */}
-
-          <motion.span
-            className="career-hero-badge"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.2,
-            }}
-          >
-            Career Opportunities
-          </motion.span>
+          
 
           <motion.h1
             className="career-hero-title"
@@ -84,29 +72,7 @@ export default function CareerHero() {
             technology, creativity, and people.
           </motion.p>
 
-          <motion.div
-            className="career-hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.6,
-            }}
-          >
-            <a
-              href="#jobs"
-              className="career-hero-primary-btn"
-            >
-              Explore Jobs
-            </a>
-
-            <a
-              href="#about-careers"
-              className="career-hero-secondary-btn"
-            >
-              Learn More
-            </a>
-          </motion.div>
+         
 
         </motion.div>
       </div>

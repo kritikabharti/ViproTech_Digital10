@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   FiPhone,
@@ -17,10 +16,14 @@ export default function Footer() {
   return (
     <footer className="footer">
 
-      {/* Main Footer */}
+      {/* =====================================================
+          MAIN FOOTER
+          ===================================================== */}
+
       <div className="footer-container">
 
         {/* ================= BRAND ================= */}
+
         <div className="footer-brand">
 
           <img
@@ -36,6 +39,7 @@ export default function Footer() {
           </p>
 
           {/* Social Media */}
+
           <div className="footer-socials">
 
             <a
@@ -73,6 +77,7 @@ export default function Footer() {
 
 
         {/* ================= QUICK LINKS ================= */}
+
         <div className="footer-column">
 
           <h3>Quick Links</h3>
@@ -105,40 +110,14 @@ export default function Footer() {
         </div>
 
 
-        {/* ================= SERVICES ================= */}
-        <div className="footer-column">
-
-          <h3>Our Services</h3>
-
-          <Link to="/services" className="footer-simple-link">
-            IT Training
-          </Link>
-
-          <Link to="/services" className="footer-simple-link">
-            Software Development
-          </Link>
-
-          <Link to="/services" className="footer-simple-link">
-            Web Development
-          </Link>
-
-          <Link to="/services" className="footer-simple-link">
-            AI Solutions
-          </Link>
-
-          <Link to="/services" className="footer-simple-link">
-            Digital Marketing
-          </Link>
-
-        </div>
-
-
         {/* ================= CONTACT ================= */}
+
         <div className="footer-column">
 
           <h3>Contact Us</h3>
 
           {/* Phone 1 */}
+
           <a
             href="tel:+918894110026"
             className="contact-item"
@@ -154,6 +133,7 @@ export default function Footer() {
 
 
           {/* Phone 2 */}
+
           <a
             href="tel:+918146759497"
             className="contact-item"
@@ -169,6 +149,7 @@ export default function Footer() {
 
 
           {/* Email */}
+
           <a
             href="mailto:vprotechdigitalmohali@gmail.com"
             className="contact-item"
@@ -184,6 +165,7 @@ export default function Footer() {
 
 
           {/* Location */}
+
           <div className="contact-item">
 
             <span className="contact-icon">
@@ -201,14 +183,16 @@ export default function Footer() {
       </div>
 
 
-      {/* ================= BOTTOM FOOTER ================= */}
+      {/* =====================================================
+          BOTTOM FOOTER
+          ===================================================== */}
+
       <div className="footer-bottom">
 
         <p>
           © {new Date().getFullYear()} VProTech Digital.
           All Rights Reserved.
         </p>
-
 
         <div className="footer-bottom-links">
 
@@ -219,7 +203,7 @@ export default function Footer() {
           <span>|</span>
 
           <Link to="/terms">
-            Terms & Conditions
+            Terms &amp; Conditions
           </Link>
 
         </div>
