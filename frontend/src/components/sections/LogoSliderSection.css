@@ -1,120 +1,190 @@
-/* LogoSliderSection.css */
-
 .logo-section {
-  padding: 60px 20px;
-  background: #ffffff;
+  width: 100%;
+  padding: 60px 0;
+  background: #f7fafc;
   overflow: hidden;
-  text-align: center;
 }
 
 .logo-section h2 {
+  text-align: center;
+  margin: 0 0 35px;
+  color: #10213d;
   font-size: 32px;
   font-weight: 700;
-  color: #0a0f1e;
-  margin-bottom: 40px;
-  position: relative;
 }
 
-.logo-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #B8860B, #DAA520);
-  border-radius: 2px;
-}
-
+/* Slider container */
 .logo-slider {
   width: 100%;
   overflow: hidden;
-  position: relative;
-  padding: 20px 0;
 }
 
+/* Each row */
+.logo-row {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Moving track */
 .logo-track {
   display: flex;
-  animation: scrollLogos 20s linear infinite;
-  width: calc(200%);
+  width: max-content;
+  align-items: center;
+  gap: 25px;
 }
 
+/* Logo cards */
 .logo-item {
-  flex: 0 0 auto;
-  width: 150px;
-  margin: 0 20px;
+  width: 180px;
+  height: 100px;
+  flex: 0 0 180px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 15px rgba(16, 33, 61, 0.08);
 }
 
-.logo-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
+/* Images */
 .logo-item img {
-  max-width: 100%;
-  height: 60px;
+  max-width: 150px;
+  max-height: 75px;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  filter: grayscale(0%);
-  transition: filter 0.3s ease;
+  display: block;
 }
 
-.logo-item img:hover {
-  filter: grayscale(0%);
+/* TOP ROW */
+/* Right → Left */
+.logo-track-left {
+  animation: moveLeft 30s linear infinite;
 }
 
-/* Animation */
-@keyframes scrollLogos {
-  0% {
+/* BOTTOM ROW */
+/* Left → Right */
+.logo-track-right {
+  animation: moveRight 30s linear infinite;
+}
+
+/* Right → Left */
+@keyframes moveLeft {
+  from {
     transform: translateX(0);
   }
-  100% {
+
+  to {
     transform: translateX(-50%);
   }
 }
 
-/* Pause animation on hover */
-.logo-slider:hover .logo-track {
+/* Left → Right */
+@keyframes moveRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Pause when mouse is over the logos */
+.logo-row:hover .logo-track {
   animation-play-state: paused;
 }
 
-/* Responsive */
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 768px) {
   .logo-section {
-    padding: 40px 15px;
+    padding: 45px 0;
+  }
+
+  .logo-section h2 {
+    font-size: 27px;
+    margin-bottom: 25px;
+  }
+
+  .logo-item {
+    width: 150px;
+    height: 85px;
+    flex-basis: 150px;
+  }
+
+  .logo-item img {
+    max-width: 125px;
+    max-height: 60px;
+  }
+
+  .logo-track {
+    gap: 18px;
+  }
+
+  .logo-row {
+    margin-bottom: 15px;
+  }
+
+  .logo-track-left,
+  .logo-track-right {
+    animation-duration: 25s;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .logo-section {
+    padding: 35px 0;
   }
 
   .logo-section h2 {
     font-size: 24px;
+    margin-bottom: 22px;
   }
 
   .logo-item {
-    width: 120px;
-    margin: 0 12px;
-    padding: 10px;
-  }
-
-  .logo-item img {
-    height: 45px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo-item {
-    width: 100px;
-    margin: 0 8px;
+    width: 125px;
+    height: 75px;
+    flex-basis: 125px;
+    border-radius: 9px;
     padding: 8px;
   }
 
   .logo-item img {
-    height: 35px;
+    max-width: 105px;
+    max-height: 52px;
+  }
+
+  .logo-track {
+    gap: 12px;
+  }
+
+  .logo-row {
+    margin-bottom: 12px;
+  }
+
+  .logo-track-left,
+  .logo-track-right {
+    animation-duration: 20s;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
   }
 }
