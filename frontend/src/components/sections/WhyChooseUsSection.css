@@ -120,43 +120,6 @@
 
 
 /* =========================================================
-   SMALL DOTS
-========================================================= */
-
-.why-small-dot {
-  position: absolute;
-
-  width: 10px;
-  height: 10px;
-
-  border-radius: 50%;
-
-  background: #5b4df5;
-
-  box-shadow:
-    0 0 0 8px rgba(91, 77, 245, 0.07),
-    0 0 25px rgba(91, 77, 245, 0.25);
-
-  pointer-events: none;
-}
-
-.why-dot-one {
-  top: 18%;
-  left: 36%;
-}
-
-.why-dot-two {
-  right: 31%;
-  top: 52%;
-}
-
-.why-dot-three {
-  left: 8%;
-  bottom: 15%;
-}
-
-
-/* =========================================================
    MAIN CONTAINER
 ========================================================= */
 
@@ -233,7 +196,7 @@
 
 .why-main-title {
   margin: 0;
-
+ padding-top: 0%;
   max-width: 720px;
 
   font-size: clamp(
@@ -1005,6 +968,7 @@
     line-height: 1.02;
 
     letter-spacing: -2px;
+   
   }
 
   .why-main-description {

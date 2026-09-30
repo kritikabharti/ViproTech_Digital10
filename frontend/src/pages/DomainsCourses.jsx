@@ -1,3 +1,4 @@
+
 // src/pages/DomainsCourses.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,10 +34,61 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './DomainsCourses.css';
 
+// Load all course images from src/assets/images/courses
+const courseImages = import.meta.glob(
+  '../assets/images/courses/*.{jpg,jpeg,png,webp}',
+  {
+    eager: true,
+    query: '?url',
+    import: 'default'
+  }
+);
+
+// Convert the stored image path into the Vite-generated URL
+const getCourseImage = (imagePath, courseName) => {
+  // If an image path is already provided
+  if (imagePath) {
+    const fileName = imagePath.split('/').pop();
+
+    const foundImage = Object.entries(courseImages).find(
+      ([path]) => path.endsWith(`/${fileName}`)
+    );
+
+    if (foundImage) {
+      return foundImage[1];
+    }
+  }
+
+  // Automatic fallback based on course name
+  const fallbackName = courseName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+  for (const extension of extensions) {
+    const foundImage = Object.entries(courseImages).find(
+      ([path]) =>
+        path.endsWith(`/${fallbackName}.${extension}`)
+    );
+
+    if (foundImage) {
+      return foundImage[1];
+    }
+  }
+
+  return '';
+};
+
+
 export default function DomainsCourses() {
   const [selectedDomain, setSelectedDomain] = useState('cse');
   const [selectedCourse, setSelectedCourse] = useState(null); // Keep as null initially
   const [showModal, setShowModal] = useState(false);
+
+
+  
 
   const domains = [
     { id: 'cse', name: 'CSE/IT', icon: <Code size={20} /> },
@@ -49,6 +101,7 @@ export default function DomainsCourses() {
     cse: [
       { 
         name: 'C/C++', 
+        image: '/assets/images/courses/c-cpp.jpg',
         icon: <Code size={24} />, 
         desc: 'Programming fundamentals with C and C++', 
         color: '#4F46E5',
@@ -80,6 +133,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Web Designing', 
+        image: '/assets/images/courses/web-designing.jpg',
         icon: <Layout size={24} />, 
         desc: 'Create stunning websites with HTML, CSS, JavaScript', 
         color: '#7C3AED',
@@ -109,6 +163,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Digital Marketing', 
+        image: '/assets/images/courses/digital-marketing.jpg',
         icon: <Megaphone size={24} />, 
         desc: 'SEO, Social Media, and online marketing strategies', 
         color: '#EC4899',
@@ -137,6 +192,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Java/Python', 
+        image: '/assets/images/courses/java-python.jpg',
         icon: <Coffee size={24} />, 
         desc: 'Full-stack development with Java and Python', 
         color: '#EF4444',
@@ -166,6 +222,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'JavaScript', 
+        image: '/assets/images/courses/javascript.jpg',
         icon: <Globe size={24} />, 
         desc: 'Modern JavaScript for web and app development', 
         color: '#F59E0B',
@@ -194,6 +251,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Machine Learning', 
+        image: '/assets/images/courses/machine-learning.jpg',
         icon: <Brain size={24} />, 
         desc: 'AI and machine learning algorithms', 
         color: '#10B981',
@@ -222,6 +280,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'IoT Training', 
+        image: '/assets/images/courses/iot.jpg',
         icon: <Wifi size={24} />, 
         desc: 'Internet of Things and smart devices', 
         color: '#3B82F6',
@@ -249,6 +308,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Networking', 
+        image: '/assets/images/courses/networking.jpg',
         icon: <Network size={24} />, 
         desc: 'Computer networks and security fundamentals', 
         color: '#8B5CF6',
@@ -276,6 +336,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Data Science', 
+        image: '/assets/images/courses/data-science.jpg',
         icon: <Database size={24} />, 
         desc: 'Data analytics and visualization techniques', 
         color: '#14B8A6',
@@ -303,6 +364,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Artificial Intelligence', 
+        image: '/assets/images/courses/artificial-intelligence.jpg',
         icon: <Cpu size={24} />, 
         desc: 'AI concepts and real-world applications', 
         color: '#F472B6',
@@ -332,6 +394,7 @@ export default function DomainsCourses() {
     mechanical: [
       { 
         name: 'AutoCAD 2D, 3D', 
+        image: '/assets/images/courses/autocad-civil.jpg',
         icon: <Layout size={24} />, 
         desc: '2D drafting and 3D modeling with AutoCAD', 
         color: '#4F46E5',
@@ -360,6 +423,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'SolidWorks', 
+        image: '/assets/images/courses/solidworks.jpg',
         icon: <Box size={24} />, 
         desc: '3D CAD design and product modeling', 
         color: '#7C3AED',
@@ -388,6 +452,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'CATIA', 
+        image: '/assets/images/courses/catia.jpg',
         icon: <Settings size={24} />, 
         desc: 'Advanced 3D design and engineering', 
         color: '#EC4899',
@@ -415,6 +480,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Pro-E / Creo', 
+        image: '/assets/images/courses/pro-e-creo.jpg',
         icon: <Sparkles size={24} />, 
         desc: 'Parametric 3D modeling software', 
         color: '#EF4444',
@@ -441,6 +507,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'CNC Programming', 
+        image: '/assets/images/courses/cnc-programming.jpg',
         icon: <Zap size={24} />, 
         desc: 'Computer numerical control programming', 
         color: '#F59E0B',
@@ -467,6 +534,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'ANSYS', 
+        image: '/assets/images/courses/ansys.jpg',
         icon: <Shield size={24} />, 
         desc: 'Engineering simulation and analysis', 
         color: '#10B981',
@@ -494,6 +562,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Inventor / Fusion', 
+        image: '/assets/images/courses/inventor-fusion.jpg',
         icon: <Box size={24} />, 
         desc: '3D mechanical design and engineering', 
         color: '#3B82F6',
@@ -523,6 +592,7 @@ export default function DomainsCourses() {
     civil: [
       { 
         name: 'AutoCAD 2D, 3D', 
+        image: '/assets/images/courses/autocad-civil.jpg',
         icon: <Layout size={24} />, 
         desc: 'Architectural and structural drafting', 
         color: '#4F46E5',
@@ -549,6 +619,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Revit', 
+        image: '/assets/images/courses/revit.jpg',
         icon: <Layers size={24} />, 
         desc: 'Building Information Modeling (BIM)', 
         color: '#7C3AED',
@@ -576,6 +647,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'STAAD Pro', 
+        image: '/assets/images/courses/staad-pro.jpg',
         icon: <Shield size={24} />, 
         desc: 'Structural analysis and design', 
         color: '#EC4899',
@@ -603,6 +675,7 @@ export default function DomainsCourses() {
       },
       { 
         name: '3ds Max', 
+        image: '/assets/images/courses/3ds-max.jpg',
         icon: <Sparkles size={24} />, 
         desc: '3D visualization and rendering', 
         color: '#EF4444',
@@ -630,6 +703,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Google SketchUp', 
+        image: '/assets/images/courses/sketchup.jpg',
         icon: <Layout size={24} />, 
         desc: '3D modeling for architecture and design', 
         color: '#F59E0B',
@@ -659,6 +733,7 @@ export default function DomainsCourses() {
     ece: [
       { 
         name: 'Embedded System', 
+        image: '/assets/images/courses/embedded-system.jpg',
         icon: <Cpu size={24} />, 
         desc: 'Embedded hardware and software design', 
         color: '#4F46E5',
@@ -686,6 +761,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Automation', 
+        image: '/assets/images/courses/automation.jpg',
         icon: <Settings size={24} />, 
         desc: 'Industrial automation and control systems', 
         color: '#7C3AED',
@@ -713,6 +789,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'MATLAB', 
+        image: '/assets/images/courses/matlab.jpg',
         icon: <BarChart size={24} />, 
         desc: 'Technical computing and simulation', 
         color: '#EC4899',
@@ -740,6 +817,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Robotics', 
+        image: '/assets/images/courses/robotics.jpg',
         icon: <Bot size={24} />, 
         desc: 'Robotics design and programming', 
         color: '#EF4444',
@@ -767,6 +845,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Networking', 
+        image: '/assets/images/courses/networking.jpg',
         icon: <Network size={24} />, 
         desc: 'Computer and communication networks', 
         color: '#F59E0B',
@@ -794,6 +873,7 @@ export default function DomainsCourses() {
       },
       { 
         name: 'Android', 
+        image: '/assets/images/courses/android.jpg',
         icon: <Smartphone size={24} />, 
         desc: 'Android app development for mobile', 
         color: '#10B981',
@@ -871,56 +951,202 @@ export default function DomainsCourses() {
           </div>
 
           {/* Courses Grid */}
-          <div className="dc-courses-wrapper">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedDomain}
-                className="dc-courses-grid"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5 }}
+          {/* Courses Grid */}
+<div className="dc-courses-wrapper">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={selectedDomain}
+      className="dc-courses-grid"
+      initial={{ opacity: 0, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -25 }}
+      transition={{ duration: 0.45 }}
+    >
+      {courses[selectedDomain].map((course, index) => (
+        <motion.article
+          key={course.name}
+          className="dc-course-card"
+          onClick={() => openModal(course)}
+          initial={{
+            opacity: 0,
+            y: 30
+          }}
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+          transition={{
+            delay: index * 0.06,
+            duration: 0.45
+          }}
+          whileHover={{
+            y: -8
+          }}
+          style={{
+            '--card-color': course.color
+          }}
+        >
+
+          {/* =====================================
+              HOVER POPUP
+          ====================================== */}
+          <div className="dc-hover-popup">
+
+            <div className="dc-popup-top">
+              <span
+                className="dc-popup-number"
+                style={{
+                  background: course.color
+                }}
               >
-                {courses[selectedDomain].map((course, index) => (
-                  <motion.div
-                    key={course.name}
-                    className="dc-course-card"
-                    onClick={() => openModal(course)}
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1, 
-                      y: 0,
-                      transition: { 
-                        delay: index * 0.05,
-                        duration: 0.4,
-                        type: 'spring',
-                        stiffness: 200
-                      }
-                    }}
-                    whileHover={{ 
-                      scale: 1.03,
-                      y: -6,
-                      transition: { duration: 0.2 }
-                    }}
-                    style={{
-                      '--card-color': course.color,
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <div className="dc-course-icon">{course.icon}</div>
-                    <div className="dc-course-info">
-                      <h3>{course.name}</h3>
-                      <p>{course.desc}</p>
-                    </div>
-                    <div className="dc-course-number">{String(index + 1).padStart(2, '0')}</div>
-                    <div className="dc-course-glow"></div>
-                    <div className="dc-click-hint">Click to learn more →</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
+              <span className="dc-popup-category">
+                {domains.find(
+                  (domain) => domain.id === selectedDomain
+                )?.name}
+              </span>
+            </div>
+
+            <h4>{course.name}</h4>
+
+            <p className="dc-popup-overview">
+              {course.overview}
+            </p>
+
+            <div className="dc-popup-details">
+
+              <div>
+                <Clock size={15} />
+                <span>{course.duration}</span>
+              </div>
+
+              <div>
+                <Award size={15} />
+                <span>{course.level}</span>
+              </div>
+
+              <div>
+                <Users size={15} />
+                <span>{course.students} learners</span>
+              </div>
+
+            </div>
+
+            <div className="dc-popup-learning">
+
+              <strong>You'll learn</strong>
+
+              <ul>
+                {course.outcomes
+                  .slice(0, 3)
+                  .map((item, i) => (
+                    <li key={i}>
+                      <CheckCircle size={14} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+              </ul>
+
+            </div>
+
+            <div
+              className="dc-popup-arrow"
+              style={{
+                color: course.color
+              }}
+            >
+              Explore course
+              <span>→</span>
+            </div>
+
           </div>
+
+
+          {/* =====================================
+              COURSE IMAGE
+          ====================================== */}
+          <div className="dc-card-image">
+
+           <img
+  src={getCourseImage(course.image, course.name)}
+  alt={course.name}
+  loading="lazy"
+/>
+            <div className="dc-image-overlay"></div>
+
+            <span
+              className="dc-card-badge"
+              style={{
+                background: course.color
+              }}
+            >
+              {domains.find(
+                (domain) => domain.id === selectedDomain
+              )?.name}
+            </span>
+
+            <span className="dc-card-number">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+
+          </div>
+
+
+          {/* =====================================
+              CARD CONTENT
+          ====================================== */}
+          <div className="dc-card-content">
+
+            <div className="dc-card-icon">
+              {course.icon}
+            </div>
+
+            <h3>{course.name}</h3>
+
+            <p className="dc-card-description">
+              {course.desc}
+            </p>
+
+
+            {/* Course information */}
+            <div className="dc-card-meta">
+
+              <div className="dc-meta-item">
+                <Clock size={15} />
+                <span>{course.duration}</span>
+              </div>
+
+              <div className="dc-meta-item">
+                <Award size={15} />
+                <span>{course.level}</span>
+              </div>
+
+            </div>
+
+
+            {/* Explore */}
+            <div
+              className="dc-explore"
+              style={{
+                '--explore-color': course.color
+              }}
+            >
+              <span>Explore More</span>
+
+              <span className="dc-explore-arrow">
+                <span>→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </motion.article>
+      ))}
+    </motion.div>
+  </AnimatePresence>
+</div>
 
          
         </div>

@@ -127,9 +127,7 @@ export default function SmartStrategy() {
             transition={{ duration: 0.8 }}
           >
 
-            <span className="smart-strategy-eyebrow">
-              SMART STRATEGY
-            </span>
+     
 
             <h1>
               Turn Digital
@@ -548,10 +546,6 @@ export default function SmartStrategy() {
                     {area.text}
                   </p>
 
-                  <ArrowRight
-                    className="smart-strategy-area-arrow"
-                    size={19}
-                  />
 
                 </motion.article>
               );

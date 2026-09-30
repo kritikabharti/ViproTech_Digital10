@@ -114,16 +114,6 @@ export default function WhyChooseUsSection() {
           }}
         >
 
-          {/* LABEL */}
-
-          <div className="why-label">
-            <Sparkles size={15} />
-
-            <span>
-              WHY VPROTECH DIGITAL
-            </span>
-          </div>
-
 
           {/* MAIN HEADING */}
 

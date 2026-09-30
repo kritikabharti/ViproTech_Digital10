@@ -126,10 +126,7 @@ export default function Innovation() {
             transition={{ duration: 0.8 }}
           >
 
-            <span className="innovation-eyebrow">
-              INNOVATION
-            </span>
-
+          
             <h1>
               Ideas Into
               <span> Possibilities.</span>
@@ -461,11 +458,8 @@ export default function Innovation() {
                     {area.text}
                   </p>
 
-                  <ArrowRight
-                    className="innovation-area-arrow"
-                    size={19}
-                  />
-
+                
+                
                 </motion.article>
               );
             })}
@@ -660,31 +654,31 @@ export default function Innovation() {
                 <strong>Think</strong>
               </div>
 
-              <ArrowRight size={22} />
+             
 
               <div>
                 <span>02</span>
                 <strong>Explore</strong>
               </div>
 
-              <ArrowRight size={22} />
+          
 
               <div>
                 <span>03</span>
                 <strong>Prototype</strong>
               </div>
 
-              <ArrowRight size={22} />
+             
 
               <div>
                 <span>04</span>
                 <strong>Build</strong>
               </div>
 
-              <ArrowRight size={22} />
+       
 
               <div className="innovation-flow-result">
-                <Sparkles size={20} />
+              
                 <strong>Impact</strong>
               </div>
 

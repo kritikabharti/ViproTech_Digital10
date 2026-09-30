@@ -113,10 +113,8 @@ export default function DigitalGrowth() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="dg-eyebrow">
-              DIGITAL GROWTH
-            </span>
-
+           
+           
             <h1>
               Grow Smarter.
               <span> Scale Faster.</span>
@@ -212,37 +210,6 @@ export default function DigitalGrowth() {
               </div>
             </div>
 
-            <motion.div
-              className="dg-floating-card dg-floating-one"
-              animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <BarChart3 size={20} />
-              <div>
-                <strong>Performance</strong>
-                <span>Optimization</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="dg-floating-card dg-floating-two"
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <Target size={20} />
-              <div>
-                <strong>Strategy</strong>
-                <span>Driven Growth</span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -343,7 +310,7 @@ export default function DigitalGrowth() {
 
                   <p>{service.text}</p>
 
-                  <ArrowRight className="dg-service-arrow" size={19} />
+                  
                 </motion.article>
               );
             })}

@@ -188,10 +188,6 @@ export default function IndustriesSection() {
           }}
         >
 
-          <div className="industries-label">
-            <Sparkles size={15} />
-            <span>INDUSTRIES WE SERVE</span>
-          </div>
 
           <h2>
             Technology That

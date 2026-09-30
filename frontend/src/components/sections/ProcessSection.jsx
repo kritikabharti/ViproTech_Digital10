@@ -50,16 +50,7 @@ export default function ProcessSection() {
         How Can You Start?
       </motion.h2>
 
-      <motion.p
-        className="process-subtitle"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.7 }}
-        viewport={{ once: true }}
-      >
-        A simple and transparent process designed to turn your ideas into
-        successful digital solutions.
-      </motion.p>
+     
 
       {/* Process */}
       <div className="process-container">

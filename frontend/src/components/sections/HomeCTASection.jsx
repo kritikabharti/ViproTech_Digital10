@@ -44,12 +44,7 @@ export default function HomeCTASection() {
         }}
       >
 
-        {/* Label */}
-
-        <div className="home-cta-label">
-          <Sparkles size={15} />
-          <span>LET'S BUILD SOMETHING GREAT</span>
-        </div>
+       
 
 
         {/* Heading */}

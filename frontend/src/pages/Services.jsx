@@ -307,25 +307,25 @@ export default function Services() {
             <div>
               <span>01</span>
               <p>Web Development</p>
-              <ArrowUpRight size={16} />
+         
             </div>
 
             <div>
               <span>02</span>
               <p>Mobile Applications</p>
-              <ArrowUpRight size={16} />
+             
             </div>
 
             <div>
               <span>03</span>
               <p>Digital Marketing</p>
-              <ArrowUpRight size={16} />
+             
             </div>
 
             <div>
               <span>04</span>
               <p>Brand & Design</p>
-              <ArrowUpRight size={16} />
+          
             </div>
 
           </div>

@@ -42,12 +42,7 @@ export default function AboutSection() {
       icon: LockKeyhole,
       className: "node-security",
     },
-    {
-      title: "Users",
-      subtitle: "Connected Experience",
-      icon: Globe2,
-      className: "node-users",
-    },
+   
   ];
 
   return (
@@ -56,15 +51,7 @@ export default function AboutSection() {
       {/* HEADER */}
       <div className="technology-heading">
 
-        <motion.span
-          className="technology-eyebrow"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          TRUSTED DIGITAL ECOSYSTEM
-        </motion.span>
+      
 
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
@@ -130,14 +117,11 @@ export default function AboutSection() {
           </div>
 
           <div className="core-content">
-            <strong>VPROTECH</strong>
+            <strong>VPROTECH DIGITAL</strong>
             <span>Technology Core</span>
           </div>
 
-          <div className="core-status">
-            <span />
-            SYSTEM ACTIVE
-          </div>
+          
 
             <div className="core-visual">
     <img
@@ -185,58 +169,7 @@ export default function AboutSection() {
           );
         })}
 
-        {/* PERFORMANCE PANEL */}
-        <motion.div
-          className="technology-status-panel"
-          initial={{ opacity: 0, x: 25 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-
-          <div className="status-panel-header">
-            <div>
-              <span>TECHNOLOGY HEALTH</span>
-              <strong>System Performance</strong>
-            </div>
-
-            <Activity size={21} />
-          </div>
-
-          <div className="status-item">
-            <div>
-              <span>Security</span>
-              <strong>98%</strong>
-            </div>
-
-            <div className="status-bar">
-              <span style={{ width: "98%" }} />
-            </div>
-          </div>
-
-          <div className="status-item">
-            <div>
-              <span>Performance</span>
-              <strong>94%</strong>
-            </div>
-
-            <div className="status-bar">
-              <span style={{ width: "94%" }} />
-            </div>
-          </div>
-
-          <div className="status-item">
-            <div>
-              <span>Scalability</span>
-              <strong>96%</strong>
-            </div>
-
-            <div className="status-bar">
-              <span style={{ width: "96%" }} />
-            </div>
-          </div>
-
-        </motion.div>
+        
 
         {/* FLOATING CARDS */}
 

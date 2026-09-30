@@ -491,7 +491,7 @@ const navigate = useNavigate();
                 Explore Courses
               </span>
 
-              <Sparkles size={18} />
+            
 
             </motion.button>
 

@@ -1,495 +1,822 @@
 /* =========================================================
-   DOMAINS & COURSES PAGE
-   ========================================================= */
+   DOMAINS & COURSES
+   Full Card Hover Popup Design
+========================================================= */
+
+.dc-section,
+.dc-section * {
+  box-sizing: border-box;
+}
 
 .dc-section {
   width: 100%;
   min-height: 100vh;
-  padding: 120px 0 90px;
-  background: #f7f9fc;
+  padding: 90px 0 100px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.06), transparent 28%),
+    radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.05), transparent 30%),
+    #f8fafc;
+  color: #10213d;
   overflow: hidden;
 }
 
 .dc-container {
-  width: min(1380px, 92%);
+  width: min(1400px, calc(100% - 80px));
   margin: 0 auto;
 }
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .dc-header {
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto 50px;
+  margin-bottom: 42px;
 }
 
 .dc-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 8px 18px;
   border-radius: 50px;
-
-  background: #eaf2ff;
-  color: #1769aa;
-
+  background: #eef2ff;
+  color: #4f46e5;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  text-transform: uppercase;
-
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 
 .dc-header h1 {
   margin: 0;
-
-  font-size: clamp(38px, 5vw, 64px);
+  font-size: clamp(36px, 5vw, 62px);
   line-height: 1.05;
-
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -2px;
-
   color: #10213d;
 }
 
 .dc-gradient {
-  color: #1769aa;
+  background: linear-gradient(
+    90deg,
+    #4f46e5,
+    #7c3aed,
+    #ec4899
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .dc-header p {
-  margin: 18px 0 0;
-
-  color: #667085;
-
+  margin: 18px auto 0;
+  max-width: 650px;
+  color: #64748b;
   font-size: 17px;
   line-height: 1.7;
 }
 
-
 /* =========================================================
-   DOMAIN TABS
-   ========================================================= */
+   DOMAIN BUTTONS
+========================================================= */
 
 .dc-domains {
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 14px;
-
-  margin: 0 auto 55px;
-
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .dc-domain-btn {
-  position: relative;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 52px;
+  padding: 10px 20px;
 
-  gap: 10px;
-
-  min-height: 54px;
-  padding: 0 24px;
-
-  border: 1px solid #dce3ec;
   border-radius: 14px;
 
-  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-  color: #344054;
-
-  font-size: 15px;
-  font-weight: 700;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 750;
 
   cursor: pointer;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
 
   transition:
     background 0.3s ease,
     color 0.3s ease,
     border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+    box-shadow 0.3s ease;
 }
 
 .dc-domain-btn:hover {
-  border-color: #1769aa;
-
-  color: #1769aa;
-
-  box-shadow: 0 10px 30px rgba(23, 105, 170, 0.12);
+  border-color: #c7d2fe;
+  color: #4f46e5;
+  box-shadow: 0 10px 28px rgba(79, 70, 229, 0.12);
 }
 
 .dc-domain-btn.active {
   background: #10213d;
-  border-color: #10213d;
-
   color: #ffffff;
-
-  box-shadow: 0 12px 30px rgba(16, 33, 61, 0.18);
+  border-color: #10213d;
+  box-shadow: 0 12px 30px rgba(16, 33, 61, 0.2);
 }
 
 .domain-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-
 /* =========================================================
-   COURSES AREA
-   ========================================================= */
+   COURSES WRAPPER
+========================================================= */
 
 .dc-courses-wrapper {
   width: 100%;
+  position: relative;
 }
 
 .dc-courses-grid {
+  width: 100%;
   display: grid;
-
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 46px 42px;
+}
 
-  gap: 30px;
+/* =========================================================
+   COURSE CARD
+========================================================= */
 
-  align-items: stretch;
+.dc-course-card {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  min-height: 560px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  isolation: isolate;
+
+  box-shadow:
+    0 12px 35px rgba(15, 23, 42, 0.07);
+
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+/*
+   IMPORTANT:
+   Do NOT put transform here because Framer Motion
+   already controls the card transform.
+*/
+
+.dc-course-card:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--card-color) 35%,
+    #e2e8f0
+  );
+
+  box-shadow:
+    0 28px 65px rgba(15, 23, 42, 0.16);
+}
+
+/* =========================================================
+   COURSE IMAGE
+========================================================= */
+
+.dc-card-image {
+  position: relative;
+
+  width: 100%;
+  height: 255px;
+
+  overflow: hidden;
+
+  background: #e2e8f0;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s ease;
+}
+
+.dc-card-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.5s ease;
+}
+
+.dc-course-card:hover .dc-card-image img {
+  transform: scale(1.06);
+}
+
+.dc-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(6, 29, 77, 0.78),
+      rgba(6, 29, 77, 0.12) 55%,
+      rgba(6, 29, 77, 0.05)
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CARD BADGE
+========================================================= */
+
+.dc-card-badge {
+  position: absolute;
+
+  top: 18px;
+  left: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 36px;
+  padding: 7px 16px;
+
+  color: #ffffff;
+
+  border-radius: 50px;
+
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.3px;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.16);
 }
 
 
 /* =========================================================
-   COURSE CARD
-   ========================================================= */
+   CARD CONTENT
+========================================================= */
 
-.dc-course-card {
-  --card-color: #1769aa;
-
+.dc-card-content {
   position: relative;
 
-  min-height: 365px;
+  min-height: 305px;
 
-  padding: 32px 30px;
-
-  border-radius: 20px;
+  padding: 0 28px 25px;
 
   background: #ffffff;
 
-  border: 1px solid #e5eaf1;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.dc-card-icon {
+  position: relative;
+
+  width: 74px;
+  height: 74px;
+
+  margin-top: -37px;
+  margin-bottom: 18px;
+
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  color: var(--card-color);
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
 
   box-shadow:
-    0 10px 35px rgba(16, 33, 61, 0.08);
+    0 12px 30px rgba(15, 23, 42, 0.12);
 
-  overflow: hidden;
+  z-index: 3;
+}
+
+.dc-card-content h3 {
+  margin: 0 0 10px;
+
+  color: #10213d;
+
+  font-size: 28px;
+  line-height: 1.15;
+
+  font-weight: 900;
+
+  letter-spacing: -0.8px;
+}
+
+.dc-card-description {
+  margin: 0 0 22px;
+
+  color: #64748b;
+
+  font-size: 15px;
+  line-height: 1.65;
+
+  min-height: 48px;
+}
+
+/* =========================================================
+   CARD META
+========================================================= */
+
+.dc-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 22px;
+}
+
+.dc-meta-item {
+  min-height: 38px;
+
+  padding: 8px 12px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  border: 1px solid #eef2f7;
+}
+
+.dc-meta-item svg {
+  color: var(--card-color);
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+
+.dc-explore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-top: auto;
+
+  color: var(--explore-color);
+
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.dc-explore-arrow {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: color-mix(
+    in srgb,
+    var(--explore-color) 10%,
+    #ffffff
+  );
+
+  font-size: 21px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.dc-course-card:hover .dc-explore-arrow {
+  transform: translateX(5px);
+
+  background: color-mix(
+    in srgb,
+    var(--explore-color) 15%,
+    #ffffff
+  );
+}
+
+/* =========================================================
+   =========================================================
+   FULL CARD HOVER POPUP
+   THIS IS THE IMPORTANT PART
+   =========================================================
+   ========================================================= */
+
+/*
+   The popup covers the ENTIRE card.
+   It is NOT a small box inside the card.
+*/
+
+.dc-hover-popup {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 50;
+
+  padding: 34px 34px 30px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(
+        in srgb,
+        var(--card-color) 12%,
+        transparent
+      ),
+      transparent 32%
+    ),
+    #ffffff;
+
+  border-radius: inherit;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(18px);
+
+  pointer-events: none;
 
   display: flex;
   flex-direction: column;
 
-  cursor: pointer;
-
   transition:
-    background 0.45s ease,
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
-    transform 0.35s ease;
+    opacity 0.32s ease,
+    visibility 0.32s ease,
+    transform 0.38s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
+/*
+   SHOW THE WHOLE CARD POPUP
+*/
+
+@media (hover: hover) and (pointer: fine) {
+
+  .dc-course-card:hover .dc-hover-popup {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: none;
+  }
+
+  /*
+     Hide the normal card content visually.
+     Popup takes over the complete card.
+  */
+
+  .dc-course-card:hover .dc-card-image,
+  .dc-course-card:hover .dc-card-content {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 
 /* =========================================================
-   COLORED HOVER BACKGROUND
-   ========================================================= */
+   POPUP TOP
+========================================================= */
 
-.dc-course-card::before {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  bottom: 0;
-
+.dc-popup-top {
   width: 100%;
-  height: 0%;
 
-  background: var(--card-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-
-  z-index: 0;
+  margin-bottom: 25px;
 }
 
-.dc-course-card:hover::before {
-  height: 100%;
-}
+.dc-popup-number {
+  width: 48px;
+  height: 48px;
 
+  flex-shrink: 0;
 
-/* =========================================================
-   CARD CONTENT ABOVE BACKGROUND
-   ========================================================= */
-
-.dc-course-card > * {
-  position: relative;
-  z-index: 2;
-}
-
-
-/* =========================================================
-   ICON
-   ========================================================= */
-
-.dc-course-icon {
-  width: 64px;
-  height: 64px;
+  border-radius: 15px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 16px;
-
-  background: color-mix(
-    in srgb,
-    var(--card-color) 12%,
-    white
-  );
-
-  color: var(--card-color);
-
-  margin-bottom: 30px;
-
-  transition:
-    background 0.4s ease,
-    color 0.4s ease,
-    transform 0.4s ease;
-}
-
-.dc-course-card:hover .dc-course-icon {
-  background: rgba(255, 255, 255, 0.18);
-
   color: #ffffff;
 
-  transform: translateY(-3px) rotate(-3deg);
+  font-size: 14px;
+  font-weight: 900;
+
+  box-shadow:
+    0 10px 22px rgba(15, 23, 42, 0.14);
 }
 
+.dc-popup-category {
+  padding: 9px 15px;
+
+  border-radius: 50px;
+
+  background: #f8fafc;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  border: 1px solid #edf2f7;
+}
 
 /* =========================================================
-   COURSE INFO
-   ========================================================= */
+   POPUP COURSE TITLE
+========================================================= */
 
-.dc-course-info {
-  flex: 1;
-}
-
-.dc-course-info h3 {
-  margin: 0 0 14px;
+.dc-hover-popup h4 {
+  margin: 0 0 13px;
 
   color: #10213d;
 
-  font-size: 25px;
-
-  line-height: 1.25;
-
-  font-weight: 800;
-
-  letter-spacing: -0.5px;
-
-  transition: color 0.35s ease;
-}
-
-.dc-course-info p {
-  margin: 0;
-
-  max-width: 330px;
-
-  color: #667085;
-
-  font-size: 16px;
-
-  line-height: 1.7;
-
-  transition: color 0.35s ease;
-}
-
-
-/* =========================================================
-   HOVER TEXT
-   ========================================================= */
-
-.dc-course-card:hover .dc-course-info h3 {
-  color: #ffffff;
-}
-
-.dc-course-card:hover .dc-course-info p {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-
-/* =========================================================
-   COURSE NUMBER
-   ========================================================= */
-
-.dc-course-number {
-  position: absolute;
-
-  right: 28px;
-  bottom: 25px;
-
-  font-size: 48px;
-
-  line-height: 1;
+  font-size: 28px;
+  line-height: 1.15;
 
   font-weight: 900;
 
-  color: rgba(16, 33, 61, 0.06);
-
-  transition:
-    color 0.4s ease,
-    transform 0.4s ease;
+  letter-spacing: -0.8px;
 }
-
-.dc-course-card:hover .dc-course-number {
-  color: rgba(255, 255, 255, 0.18);
-
-  transform: translateY(-5px);
-}
-
 
 /* =========================================================
-   GLOW EFFECT
-   ========================================================= */
+   POPUP OVERVIEW
+========================================================= */
 
-.dc-course-glow {
-  position: absolute;
+.dc-popup-overview {
+  margin: 0 0 20px;
 
-  width: 150px;
-  height: 150px;
+  color: #64748b;
 
-  right: -70px;
-  top: -70px;
+  font-size: 14px;
+  line-height: 1.7;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   POPUP DETAILS
+========================================================= */
+
+.dc-popup-details {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  padding: 15px 0;
+
+  border-top: 1px solid #e9eef5;
+  border-bottom: 1px solid #e9eef5;
+
+  margin-bottom: 18px;
+}
+
+.dc-popup-details > div {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dc-popup-details svg {
+  flex-shrink: 0;
+
+  color: var(--card-color);
+}
+
+/* =========================================================
+   POPUP LEARNING
+========================================================= */
+
+.dc-popup-learning {
+  margin-top: 0;
+
+  flex: 1;
+
+  min-height: 0;
+}
+
+.dc-popup-learning strong {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #10213d;
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.dc-popup-learning ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.dc-popup-learning li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.dc-popup-learning li svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: var(--card-color);
+}
+
+/* =========================================================
+   POPUP EXPLORE
+========================================================= */
+
+.dc-popup-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+  padding-top: 18px;
+
+  border-top: 1px solid #e9eef5;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.dc-popup-arrow > span {
+  width: 42px;
+  height: 42px;
 
   border-radius: 50%;
 
-  background: var(--card-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  opacity: 0.06;
+  background: color-mix(
+    in srgb,
+    var(--card-color) 9%,
+    #ffffff
+  );
 
-  filter: blur(5px);
-
-  transition:
-    opacity 0.4s ease,
-    transform 0.5s ease;
-}
-
-.dc-course-card:hover .dc-course-glow {
-  opacity: 0;
-  transform: scale(1.5);
-}
-
-
-/* =========================================================
-   CLICK HINT
-   ========================================================= */
-
-.dc-click-hint {
-  position: absolute;
-
-  left: 30px;
-  bottom: 27px;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  color: var(--card-color);
-
-  opacity: 0;
-
-  transform: translateY(8px);
+  font-size: 21px;
 
   transition:
-    opacity 0.35s ease,
-    transform 0.35s ease,
-    color 0.35s ease;
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
-.dc-course-card:hover .dc-click-hint {
-  opacity: 1;
+.dc-course-card:hover .dc-popup-arrow > span {
+  transform: translateX(5px);
 
-  transform: translateY(0);
-
-  color: #ffffff;
+  background: color-mix(
+    in srgb,
+    var(--card-color) 15%,
+    #ffffff
+  );
 }
-
-
-/* =========================================================
-   CARD HOVER SHADOW
-   ========================================================= */
-
-.dc-course-card:hover {
-  border-color: var(--card-color);
-
-  box-shadow:
-    0 22px 50px color-mix(
-      in srgb,
-      var(--card-color) 25%,
-      transparent
-    );
-}
-
 
 /* =========================================================
    MODAL OVERLAY
-   ========================================================= */
+========================================================= */
 
 .dc-modal-overlay {
   position: fixed;
 
   inset: 0;
 
-  z-index: 9999;
+  z-index: 99999;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  padding: 25px;
+  padding: 30px;
 
-  background: rgba(10, 20, 35, 0.65);
+  background: rgba(8, 26, 51, 0.62);
 
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   overflow-y: auto;
 }
 
-
 /* =========================================================
-   MODAL
-   ========================================================= */
+   MODAL CONTENT
+========================================================= */
 
 .dc-modal-content {
   position: relative;
 
   width: min(900px, 100%);
 
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  border-radius: 24px;
+  max-height: calc(100vh - 60px);
 
   background: #ffffff;
 
-  box-shadow:
-    0 30px 100px rgba(0, 0, 0, 0.25);
-}
+  border-radius: 28px;
 
+  overflow: hidden;
+
+  box-shadow:
+    0 35px 100px rgba(8, 26, 51, 0.28);
+
+  display: flex;
+  flex-direction: column;
+}
 
 /* =========================================================
    MODAL CLOSE
-   ========================================================= */
+========================================================= */
 
 .dc-modal-close {
   position: absolute;
@@ -497,24 +824,24 @@
   top: 18px;
   right: 18px;
 
-  width: 42px;
-  height: 42px;
+  z-index: 20;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 44px;
+  height: 44px;
 
   border: none;
 
   border-radius: 50%;
 
-  background: #f2f4f7;
+  background: #f8fafc;
 
-  color: #344054;
+  color: #475569;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
-
-  z-index: 5;
 
   transition:
     background 0.25s ease,
@@ -524,42 +851,58 @@
 
 .dc-modal-close:hover {
   background: #10213d;
-
   color: #ffffff;
 
   transform: rotate(90deg);
 }
 
-
 /* =========================================================
    MODAL HEADER
-   ========================================================= */
+========================================================= */
 
 .dc-modal-header {
   display: flex;
-
   align-items: center;
 
-  gap: 22px;
+  gap: 20px;
 
-  padding: 35px 75px 30px 35px;
+  padding: 32px 70px 28px 32px;
 
-  border-bottom: 3px solid;
+  border-bottom: 3px solid var(--modal-color);
+
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(
+        in srgb,
+        var(--modal-color) 5%,
+        #ffffff
+      ),
+      #ffffff
+    );
 }
 
 .dc-modal-icon {
-  width: 70px;
-  height: 70px;
+  width: 68px;
+  height: 68px;
 
   flex-shrink: 0;
+
+  border-radius: 20px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 18px;
-
   color: #ffffff;
+
+  box-shadow:
+    0 12px 25px
+    color-mix(
+      in srgb,
+      var(--modal-color) 28%,
+      transparent
+    );
 }
 
 .dc-modal-header h2 {
@@ -568,163 +911,210 @@
   color: #10213d;
 
   font-size: 30px;
+  line-height: 1.15;
 
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .dc-modal-header p {
   margin: 0;
 
-  color: #667085;
+  color: #64748b;
 
+  font-size: 14px;
   line-height: 1.6;
 }
 
-
 /* =========================================================
    MODAL BODY
-   ========================================================= */
+========================================================= */
 
 .dc-modal-body {
-  padding: 30px 35px;
+  padding: 30px 32px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
 }
+
+.dc-modal-body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.dc-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dc-modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   MODAL STATS
+========================================================= */
 
 .dc-modal-stats {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 15px;
+  gap: 14px;
 
-  margin-bottom: 35px;
-}
-
-.dc-modal-stat {
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 15px;
-
-  border-radius: 12px;
-
-  background: #f7f9fc;
-
-  color: #344054;
-
-  font-size: 14px;
-
-  font-weight: 600;
-}
-
-.dc-modal-stat svg {
-  color: var(--modal-color);
-}
-
-
-/* =========================================================
-   MODAL SECTIONS
-   ========================================================= */
-
-.dc-modal-section {
   margin-bottom: 30px;
 }
 
+.dc-modal-stat {
+  min-height: 72px;
+
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #edf2f7;
+
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dc-modal-stat svg {
+  flex-shrink: 0;
+
+  color: var(--modal-color);
+}
+
+/* =========================================================
+   MODAL SECTIONS
+========================================================= */
+
+.dc-modal-section {
+  margin-bottom: 28px;
+}
+
+.dc-modal-section:last-child {
+  margin-bottom: 0;
+}
+
 .dc-modal-section h4 {
+  position: relative;
+
   margin: 0 0 12px;
+
+  padding-left: 14px;
 
   color: #10213d;
 
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: 900;
+}
 
-  font-weight: 800;
+.dc-modal-section h4::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 4px;
+
+  width: 4px;
+  height: 19px;
+
+  border-radius: 10px;
+
+  background: var(--modal-color);
 }
 
 .dc-modal-section p {
   margin: 0;
 
-  color: #667085;
+  color: #64748b;
 
+  font-size: 14px;
   line-height: 1.8;
-
-  font-size: 15px;
 }
 
-
 /* =========================================================
-   CURRICULUM / OUTCOMES
-   ========================================================= */
+   MODAL LIST
+========================================================= */
 
 .dc-modal-list {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 12px;
-
   margin: 0;
-
   padding: 0;
 
   list-style: none;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px 14px;
 }
 
 .dc-modal-list li {
-  display: flex;
+  min-height: 45px;
 
+  padding: 10px 12px;
+
+  display: flex;
   align-items: flex-start;
 
   gap: 9px;
 
-  padding: 12px;
-
-  border-radius: 10px;
+  border-radius: 12px;
 
   background: #f8fafc;
 
-  color: #475467;
+  color: #475569;
 
-  font-size: 14px;
-
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-.dc-modal-list li svg {
+.dc-modal-list svg {
   flex-shrink: 0;
 
-  margin-top: 2px;
+  margin-top: 1px;
 
   color: var(--modal-color);
 }
 
-
 /* =========================================================
    MODAL FOOTER
-   ========================================================= */
+========================================================= */
 
 .dc-modal-footer {
-  padding: 20px 35px 30px;
+  padding: 20px 32px;
+
+  border-top: 1px solid #e9eef5;
 
   display: flex;
-
   justify-content: flex-end;
 
-  border-top: 1px solid #eaecf0;
+  background: #ffffff;
 }
 
 .dc-modal-btn {
-  display: inline-flex;
+  min-height: 50px;
 
+  padding: 12px 22px;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
   gap: 9px;
 
-  padding: 13px 25px;
-
-  border-radius: 12px;
+  border-radius: 13px;
 
   background: #10213d;
 
@@ -733,84 +1123,75 @@
   text-decoration: none;
 
   font-size: 14px;
-
-  font-weight: 700;
+  font-weight: 800;
 
   transition:
     transform 0.25s ease,
+    box-shadow 0.25s ease,
     background 0.25s ease;
 }
 
 .dc-modal-btn:hover {
-  background: #1769aa;
+  background: #4f46e5;
 
   transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(79, 70, 229, 0.25);
 }
-
-
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-.dc-modal-content::-webkit-scrollbar {
-  width: 7px;
-}
-
-.dc-modal-content::-webkit-scrollbar-track {
-  background: #f1f3f5;
-}
-
-.dc-modal-content::-webkit-scrollbar-thumb {
-  background: #c8d0da;
-
-  border-radius: 20px;
-}
-
-.dc-modal-content::-webkit-scrollbar-thumb:hover {
-  background: #98a2b3;
-}
-
 
 /* =========================================================
    TABLET
-   ========================================================= */
+========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
+
+  .dc-container {
+    width: min(1100px, calc(100% - 50px));
+  }
 
   .dc-courses-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 24px;
+    gap: 35px 28px;
   }
 
   .dc-course-card {
-    min-height: 350px;
+    min-height: 550px;
   }
 
-}
+  .dc-card-image {
+    height: 245px;
+  }
 
+  .dc-hover-popup {
+    padding: 30px;
+  }
+
+  .dc-hover-popup h4 {
+    font-size: 25px;
+  }
+}
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
 
   .dc-section {
-    padding: 100px 0 60px;
+    padding: 70px 0 80px;
   }
 
   .dc-container {
-    width: 92%;
+    width: calc(100% - 30px);
   }
 
   .dc-header {
-    margin-bottom: 35px;
+    margin-bottom: 32px;
   }
 
   .dc-header h1 {
-    font-size: 40px;
-
+    font-size: 38px;
     letter-spacing: -1.5px;
   }
 
@@ -819,78 +1200,104 @@
   }
 
   .dc-domains {
-    display: grid;
+    justify-content: flex-start;
 
-    grid-template-columns: repeat(2, 1fr);
+    overflow-x: auto;
+    flex-wrap: nowrap;
 
-    gap: 10px;
+    padding: 4px 2px 12px;
 
-    margin-bottom: 40px;
+    margin-bottom: 35px;
+
+    scrollbar-width: none;
+  }
+
+  .dc-domains::-webkit-scrollbar {
+    display: none;
   }
 
   .dc-domain-btn {
-    width: 100%;
+    flex-shrink: 0;
 
-    min-height: 52px;
+    padding: 10px 15px;
 
-    padding: 0 10px;
-
-    font-size: 13px;
+    min-height: 48px;
   }
 
   .dc-courses-grid {
     grid-template-columns: 1fr;
 
-    gap: 20px;
+    gap: 28px;
   }
 
   .dc-course-card {
-    min-height: 330px;
+    min-height: 535px;
 
-    padding: 27px 25px;
-
-    border-radius: 18px;
+    border-radius: 25px;
   }
 
-  .dc-course-info h3 {
-    font-size: 23px;
+  .dc-card-image {
+    height: 235px;
   }
 
-  .dc-course-info p {
-    font-size: 15px;
+  .dc-card-content {
+    min-height: 300px;
+
+    padding-left: 23px;
+    padding-right: 23px;
   }
 
-  .dc-course-number {
-    right: 22px;
-    bottom: 22px;
-
-    font-size: 42px;
+  .dc-card-content h3 {
+    font-size: 25px;
   }
 
-  .dc-click-hint {
-    left: 25px;
-    bottom: 24px;
+  /*
+     On mobile there is no reliable hover.
+     Keep the normal card visible.
+  */
+
+  .dc-hover-popup {
+    display: none;
   }
+
+  .dc-card-description {
+    font-size: 14px;
+  }
+
+  .dc-card-meta {
+    gap: 7px;
+  }
+
+  .dc-meta-item {
+    font-size: 11px;
+  }
+
+  /* Modal */
 
   .dc-modal-overlay {
-    padding: 12px;
+    padding: 15px;
+    align-items: flex-start;
   }
 
   .dc-modal-content {
-    max-height: 94vh;
+    max-height: calc(100vh - 30px);
 
-    border-radius: 18px;
+    border-radius: 22px;
+
+    margin: auto 0;
   }
 
   .dc-modal-header {
-    padding: 30px 55px 25px 22px;
+    padding: 25px 55px 23px 22px;
 
-    gap: 15px;
+    gap: 14px;
   }
 
   .dc-modal-icon {
-    width: 55px;
-    height: 55px;
+    width: 56px;
+    height: 56px;
+
+    border-radius: 16px;
   }
 
   .dc-modal-header h2 {
@@ -898,17 +1305,23 @@
   }
 
   .dc-modal-header p {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .dc-modal-body {
-    padding: 25px 22px;
+    padding: 22px;
   }
 
   .dc-modal-stats {
     grid-template-columns: 1fr;
 
-    gap: 10px;
+    gap: 9px;
+
+    margin-bottom: 25px;
+  }
+
+  .dc-modal-stat {
+    min-height: 55px;
   }
 
   .dc-modal-list {
@@ -916,7 +1329,7 @@
   }
 
   .dc-modal-footer {
-    padding: 18px 22px 25px;
+    padding: 15px 22px;
   }
 
   .dc-modal-btn {
@@ -924,42 +1337,70 @@
   }
 }
 
-
 /* =========================================================
    SMALL MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 420px) {
 
   .dc-section {
-    padding-top: 90px;
+    padding-top: 60px;
+  }
+
+  .dc-container {
+    width: calc(100% - 22px);
   }
 
   .dc-header h1 {
-    font-size: 34px;
+    font-size: 33px;
   }
 
-  .dc-domains {
-    grid-template-columns: 1fr;
-  }
-
-  .dc-domain-btn {
-    justify-content: flex-start;
-
-    padding-left: 18px;
+  .dc-tag {
+    font-size: 10px;
+    padding: 7px 13px;
   }
 
   .dc-course-card {
-    min-height: 310px;
+    min-height: 520px;
   }
 
-  .dc-course-icon {
-    width: 58px;
-    height: 58px;
+  .dc-card-image {
+    height: 220px;
   }
 
-  .dc-course-info h3 {
-    font-size: 21px;
+  .dc-card-icon {
+    width: 65px;
+    height: 65px;
+
+    margin-top: -32px;
   }
 
+  .dc-card-content h3 {
+    font-size: 23px;
+  }
+
+  .dc-card-description {
+    min-height: auto;
+  }
+
+  .dc-explore-arrow {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .dc-section *,
+  .dc-section *::before,
+  .dc-section *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

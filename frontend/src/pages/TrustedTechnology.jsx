@@ -108,10 +108,7 @@ export default function TrustedTechnology() {
             transition={{ duration: 0.8 }}
           >
 
-            <span className="trusted-tech-eyebrow">
-              TRUSTED TECHNOLOGY
-            </span>
-
+            
             <h1>
               Technology You
               <span> Can Trust.</span>
@@ -516,10 +513,7 @@ export default function TrustedTechnology() {
                     {area.text}
                   </p>
 
-                  <ArrowRight
-                    size={19}
-                    className="trusted-tech-area-arrow"
-                  />
+
 
                 </motion.article>
               );
